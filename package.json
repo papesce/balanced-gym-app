@@ -4,7 +4,8 @@
   "private": true,
   "engines": {
     "npm": "6.4.1",
-    "node": "10.15.0"
+    "node": "10.15.0",
+    "yarn": "1.19.1"
   },
   "dependencies": {
     "@types/jest": "24.0.22",
