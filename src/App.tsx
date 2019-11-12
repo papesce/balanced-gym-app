@@ -1,11 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
+import Header from './components/Header';
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <div>with redux</div>
+      <Header/>
     </Provider>
   );
 }
