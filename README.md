@@ -10,3 +10,4 @@ yarn add @types/react-redux
 yarn add redux-starter-kit
 npx -p @storybook/cli sb init --type react
 yarn add @material-ui/core
+yarn add @material-ui/icons
