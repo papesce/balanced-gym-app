@@ -1,5 +1,5 @@
 import React from 'react';
-import { ElemList }from '../components/ElemList';
+import { ElemList }from './ElemList';
 
 
 export default {
