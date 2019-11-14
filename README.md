@@ -8,6 +8,6 @@ yarn add redux
 yarn add react-redux 
 yarn add @types/react-redux
 yarn add redux-starter-kit
-npx -p @storybook/cli sb init --type react
+npx -p @storybook/cli sb init --type react --story-format=csf-ts
 yarn add @material-ui/core
 yarn add @material-ui/icons

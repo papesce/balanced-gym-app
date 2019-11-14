@@ -17,19 +17,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RoutineList({data = []}) {
+type Primary = (elem: any) => string;
+type Secondary = (elem: any) => string;
+interface ElemListProps {
+  data: any[],
+  getId: (elem: any) => string;
+  getPrimary: (elem: any) => string;
+  getSecondary: (elem: any) => string;
+}
+
+export const ElemList: React.FC<ElemListProps> = 
+({data, getId, getPrimary, getSecondary}) => {
   const classes = useStyles();
   
   return (
     <List className={classes.root}>
-      {data.map(item => (
-        <ListItem ref={item.id}>
+      {data.map((elem: any) => (
+        <ListItem // ref={getId(elem)}
+        >
+
         <ListItemAvatar>
           <Avatar>
             <ImageIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={item.name} secondary="Jan 9, 2014" />
+        <ListItemText primary={getPrimary(elem)}
+           secondary={getSecondary(elem)} />
+
       </ListItem>
       ))}
     </List>

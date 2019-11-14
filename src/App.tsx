@@ -2,13 +2,13 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import Header from './components/Header';
-import List from './components/List';
+// import { ElemList } from './components/ElemList';
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Header/>
-      <List />
+      {/* <ElemList /> */}
     </Provider>
   );
 }

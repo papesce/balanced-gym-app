@@ -1,20 +1,20 @@
 import React from 'react';
-import List from '../src/components/List.tsx';
+import { ElemList }from '../components/ElemList';
 
 
 export default {
     title: 'Routine',
   };
 
-const emptydataList = [];
-const singledataList = [
+const emptydataList: [] = [];
+const singledataList : any[] = [
 {
   "_id": "59f0c59d4e55c40d38868034",
   "updatedAt": "2017-12-23T20:11:34.689Z",
   "createdAt": "2017-10-25T17:10:57.026Z",
   "name": "Thighs Shoulders Calves",
 }];
-const fulldataList = [
+const fulldataList : any[] = [
   {
     "_id": "59f0c59d4e55c40d38868034",
     "updatedAt": "2017-12-23T20:11:34.689Z",
@@ -57,6 +57,17 @@ const fulldataList = [
   }
 ];
 
-export const emptyList = () => <List data={emptydataList}/>;
-export const singleList = () => <List data={singledataList}/>;
-export const fullList = () => <List data={fulldataList}/>;
+const getId = (elem: any) => elem._id;
+const getPrimary = (elem: any) => elem.name;
+const getSecondary = (elem: any) => "todo";
+
+export const emptyList = () => <ElemList data={emptydataList} 
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+export const singleList = () => <ElemList data={singledataList}
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+export const fullList = () => <ElemList data={fulldataList}
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+export const loadingList = () => <ElemList data={fulldataList}
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+export const errorList = () => <ElemList data={fulldataList}
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
