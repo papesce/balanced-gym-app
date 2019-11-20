@@ -3,13 +3,33 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import Header from './components/Header';
 // import { ElemList } from './components/ElemList';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import RoutineList from './components/RoutineList';
+import NoMatch from './components/NoMatch';
 
 const App: React.FC = () => {
   return (
+    <Router>
     <Provider store={store}>
       <Header/>
-      {/* <ElemList /> */}
+      <Switch>
+          <Route exact path="/">
+            <Redirect to="/routine" />
+          </Route>
+          <Route path="/routine">
+            <RoutineList />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+      </Switch>
     </Provider>
+    </Router>
   );
 }
 

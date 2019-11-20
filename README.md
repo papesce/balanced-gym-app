@@ -11,3 +11,5 @@ yarn add redux-starter-kit
 npx -p @storybook/cli sb init --type react --story-format=csf-ts
 yarn add @material-ui/core
 yarn add @material-ui/icons
+yarn add react-router-dom
+yarn add @types/react-router-dom
