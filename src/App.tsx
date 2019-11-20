@@ -9,7 +9,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import RoutineList from './components/RoutineList';
+import Routines from './containers/Routines';
 import NoMatch from './components/NoMatch';
 
 const App: React.FC = () => {
@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <Redirect to="/routine" />
           </Route>
           <Route path="/routine">
-            <RoutineList />
+            <Routines />
           </Route>
           <Route path="*">
             <NoMatch />
