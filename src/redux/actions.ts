@@ -19,23 +19,24 @@ export const fetchRoutinesBegin = () => ({
     payload: { error }
   });
 
-// export const loadRoutines = () => (dispatch) => {
-//     dispatch(routinesLoading());
-//     return fetch('/routine')
-//     .then(handleErrors)
-//     .then(res => res.json())
-//     .then(json => {
-//         dispatch(routinesSuccess(json.routines))
-//         return json.products;
-//     })
-//     .catch(error => dispatch(
-//         routineError(error))
-//     ))
-// } 
+export const loadRoutines = () => (dispatch: any) => {
+     dispatch(fetchRoutinesBegin());
+     debugger;
+     return fetch('https://balanced-gym-dev.herokuapp.com/routines')
+     .then(handleErrors)
+     .then(res => res.json())
+     .then(json => {
+         dispatch(fetchRoutinesSuccess(json.routines))
+         return json.products;
+     })
+     .catch(error => dispatch(
+         fetchRoutinesFailure(error))
+     );
+ }; 
 
-// function handleErrors(response) {
-//     if (!response.ok) {
-//       throw Error(response.statusText);
-//     }
-//     return response;
-//   }
+ function handleErrors(response: any) {
+     if (!response.ok) {
+       throw Error(response.statusText);
+     }
+     return response;
+   }

@@ -11,6 +11,10 @@ interface RoutineListProps {
     noDataMsg?: string
 }
 
+const getId = (routine: IRoutine) => {
+    return routine._id;
+}
+
 export const getSecondary = (routine: IRoutine) => {
     let text = '';
     const tcount = routine.targetsCount;
@@ -40,6 +44,7 @@ export default class RoutineList extends Component<RoutineListProps> {
             <ElemList loading={loading} data={data}
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
+                getId={getId}
                 error={error ? "Error loading routines" : undefined}
                 noDataMsg={noDataMsg}
             >

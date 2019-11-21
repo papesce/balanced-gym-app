@@ -6,12 +6,13 @@ import { fulldataList } from '../model/RoutineModel.test';
 import { loadRoutines } from '../redux/actions';
 interface RoutineProps {
     data: IRoutine[];
+    loadRoutines?: () => {};
 }
 
 export class Routines extends Component<RoutineProps> {
     componentDidMount = () => {
        const { loadRoutines } = this.props;
-       loadRoutines() 
+       loadRoutines && loadRoutines();
     }
     render() {
         const { data } = this.props;
@@ -34,4 +35,4 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default connect(mapStateToProps)(Routines)
+export default connect(mapStateToProps, mapDispatchToProps)(Routines)

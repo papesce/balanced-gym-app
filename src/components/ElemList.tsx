@@ -33,10 +33,11 @@ interface ElemListProps {
 
 export const ElemList: React.FC<ElemListProps> = 
 ({data = [],
-   noDataMsg,
-    getPrimary = (f=>''),
-     getSecondary = (f=>''),
-      loading, error}) => {
+  noDataMsg,
+  getId = (f=>''),
+  getPrimary = (f=>''),
+  getSecondary = (f=>''),
+  loading, error}) => {
   const classes = useStyles();
   if (loading) {
     return  (<CircularProgress />);
@@ -50,9 +51,8 @@ export const ElemList: React.FC<ElemListProps> =
   return (
     <List className={classes.root}>
       {data.map((elem: any) => (
-        <ListItem // ref={getId(elem)}
+        <ListItem key={getId(elem)}
         >
-
         <ListItemAvatar>
           <Avatar>
             <ImageIcon />
