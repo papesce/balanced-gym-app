@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware }  from '@reduxjs/toolkit'
 import { routinesReducer } from './reducer';
+import thunk from 'redux-thunk';
 
 export const createStore = () => configureStore({
     reducer: {

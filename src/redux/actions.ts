@@ -25,9 +25,9 @@ export const loadRoutines = () => (dispatch: any) => {
      return fetch('https://balanced-gym-dev.herokuapp.com/routines')
      .then(handleErrors)
      .then(res => res.json())
-     .then(json => {
-         dispatch(fetchRoutinesSuccess(json.routines))
-         return json.products;
+     .then(routines => {
+         dispatch(fetchRoutinesSuccess(routines))
+         return routines;
      })
      .catch(error => dispatch(
          fetchRoutinesFailure(error))

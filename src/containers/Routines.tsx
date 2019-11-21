@@ -5,7 +5,7 @@ import { IRoutine } from '../model/RoutineModel';
 import { fulldataList } from '../model/RoutineModel.test';
 import { loadRoutines } from '../redux/actions';
 interface RoutineProps {
-    data: IRoutine[];
+    routines: IRoutine[];
     loadRoutines?: () => {};
 }
 
@@ -15,17 +15,16 @@ export class Routines extends Component<RoutineProps> {
        loadRoutines && loadRoutines();
     }
     render() {
-        const { data } = this.props;
+        const { routines } = this.props;
         return (
-           <RoutineList data={data}/>
+           <RoutineList data={routines.data}/>
         )
     }
 }
 
 const mapStateToProps = (state: any) => {
-    // debugger;
     return {
-        data: fulldataList
+        routines: state.routines
     }
 }
 
