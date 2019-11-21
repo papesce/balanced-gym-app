@@ -11,15 +11,8 @@ export interface IRoutine {
     exercises?: string[]
 }
 
-// export class Routine {
-//     targetsCount: number = 0;
-//     exercisesCount: number = 0;
-//     doneToday: number = 0; 
-//     constructor(targetsCount: number,
-//     exercisesCount: number,
-//     doneToday: number) {
-//         this.targetsCount = targetsCount;
-//         this.exercisesCount = exercisesCount;
-//         this.doneToday = doneToday;
-//     }
-// }
+export interface IRoutineState {
+    loading?: boolean;
+    error?: string;
+    data?: IRoutine[];
+}

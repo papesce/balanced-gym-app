@@ -9,7 +9,7 @@ export default {
   };
 
 export const loadingList = () => <RoutineList loading />;
-export const errorList = () => <RoutineList error />
+export const errorList = () => <RoutineList error="fetch error" />
 export const emptyList = () => <RoutineList data={emptydataList} />;
 export const singleList = () => <RoutineList data={singledataList} />;
 export const fullList = () => <RoutineList data={fulldataList} />;

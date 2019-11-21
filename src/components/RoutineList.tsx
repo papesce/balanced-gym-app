@@ -6,7 +6,7 @@ import { addS } from '../utils/utils';
 
 interface RoutineListProps {
     loading?: boolean;
-    error?: boolean;
+    error?: string;
     data?: IRoutine[],
     noDataMsg?: string
 }
@@ -18,6 +18,9 @@ const getId = (routine: IRoutine) => {
 export const getSecondary = (routine: IRoutine) => {
     let text = '';
     const tcount = routine.targetsCount;
+    if (!tcount) {
+        return 'No targets';
+    }
     const ecount = routine.exercisesCount;  
     if (tcount === 0 || !routine.lastUpdated) {
             text = addS('target', tcount);

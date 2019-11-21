@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RoutineList from '../components/RoutineList';
-import { IRoutine } from '../model/RoutineModel';
-import { fulldataList } from '../model/RoutineModel.test';
+import { IRoutineState } from '../model/RoutineModel';
 import { loadRoutines } from '../redux/actions';
+
 interface RoutineProps {
-    routines: IRoutine[];
+    routinesState?: IRoutineState;
     loadRoutines?: () => {};
 }
 
@@ -15,16 +15,19 @@ export class Routines extends Component<RoutineProps> {
        loadRoutines && loadRoutines();
     }
     render() {
-        const { routines } = this.props;
+        const { routinesState = {} } = this.props;
         return (
-           <RoutineList data={routines.data}/>
+           <RoutineList loading={routinesState.loading}
+             error={routinesState.error} 
+             data={routinesState.data}/>
         )
     }
 }
 
 const mapStateToProps = (state: any) => {
+    console.log('state changed:', state)
     return {
-        routines: state.routines
+        routinesState: state.routines
     }
 }
 

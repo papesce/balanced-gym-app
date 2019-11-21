@@ -1,6 +1,7 @@
+import { IRoutineState } from './../model/RoutineModel';
 import { FETCH_ROUTINES_BEGIN, FETCH_ROUTINES_SUCCESS, FETCH_ROUTINES_FAILURE } from './actions';
 
-export const routinesReducer = (state = {} , action: any ) => {
+export const routinesReducer = (state: IRoutineState = {} , action: any ) => {
     switch (action.type) {
       case FETCH_ROUTINES_BEGIN:
         return { loading: true };
