@@ -18,7 +18,7 @@ const getId = (routine: IRoutine) => {
 export const getSecondary = (routine: IRoutine) => {
     let text = '';
     const tcount = routine.targetsCount;
-    if (!tcount) {
+    if (tcount === undefined) {
         return 'No targets';
     }
     const ecount = routine.exercisesCount;  
