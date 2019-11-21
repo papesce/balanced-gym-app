@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './redux/configureStore';
+import { createStore } from './redux/configureStore';
 import Header from './components/Header';
 // import { ElemList } from './components/ElemList';
 import {
@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import Routines from './containers/Routines';
 import NoMatch from './components/NoMatch';
+
+const store = createStore();
 
 const App: React.FC = () => {
   return (

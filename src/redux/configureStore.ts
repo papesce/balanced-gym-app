@@ -1,13 +1,13 @@
-import { configureStore, getDefaultMiddleware } from 'redux-starter-kit'
+import { configureStore, getDefaultMiddleware }  from '@reduxjs/toolkit'
+import { routinesReducer } from './reducer';
 
-const store = configureStore({
+export const createStore = () => configureStore({
     reducer: {
-        // routines: routinesSlice,
+        routines: routinesReducer,
     },
     middleware: [...getDefaultMiddleware()],
     devTools: process.env.NODE_ENV !== 'production',
     preloadedState: {},
     enhancers: []
-})
+});
 
-export default store;
