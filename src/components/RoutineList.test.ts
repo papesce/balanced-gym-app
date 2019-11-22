@@ -27,7 +27,7 @@ describe('RoutineList/getSecondary', () => {
          createdAt:''
          };
          const text = getSecondary(routine);
-         expect(text).toBe("1 target")
+         expect(text).toBe("1 target 15 exercises")
      });
      it('last updated yesterday', () => {
         const yesterday = new Date();

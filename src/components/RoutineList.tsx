@@ -22,8 +22,10 @@ export const getSecondary = (routine: IRoutine) => {
         return 'No targets';
     }
     const ecount = routine.exercisesCount;  
-    if (tcount === 0 || !routine.lastUpdated) {
-            text = addS('target', tcount);
+    if (tcount === 0) {
+        text = addS('target', tcount);
+    } else if (!routine.lastUpdated) {
+        text = `${addS('target', tcount)} ${addS('exercise', ecount)}`;
     } else {
     // TODO Color for labels
         const days = getDaysFromString(routine.lastUpdated);    
