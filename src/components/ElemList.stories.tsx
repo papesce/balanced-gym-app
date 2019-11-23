@@ -1,6 +1,6 @@
 import React from 'react';
-import { ElemList }from './ElemList';
-
+import ElemList from './ElemList';
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'ElemList',
@@ -36,7 +36,9 @@ export const emptyListNoMsg = () => <ElemList data={emptydataList} />;
 export const emptyList = () => <ElemList data={emptydataList} 
 noDataMsg="No data available"/>;
 export const singleList = () => <ElemList data={singledataList}
-getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId} 
+onClick={action('clicked item')}/>;
 export const fullList = () => <ElemList data={fulldataList}
-getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}/>;
+getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}
+onClick={action('clicked item')}/>;
 

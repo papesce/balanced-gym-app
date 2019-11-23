@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ElemList } from './ElemList';
+import ElemList from './ElemList';
 import { IRoutine } from '../model/RoutineModel'
 import { getDaysFromString } from '../utils/dateUtils';
 import { addS } from '../utils/utils';
@@ -7,7 +7,8 @@ import { addS } from '../utils/utils';
 interface RoutineListProps {
     loading?: boolean;
     error?: string;
-    data?: IRoutine[],
+    data?: IRoutine[];
+    onClick?: (elem: IRoutine) => void;
     noDataMsg?: string
 }
 
@@ -44,7 +45,8 @@ export const getPrimary = (elem: IRoutine) => {
 export default class RoutineList extends Component<RoutineListProps> {
     
     render() {
-        const { data = [], loading, error, noDataMsg = "No routines" } = this.props;
+        const { data = [], loading, error, noDataMsg = "No routines", 
+            onClick = ()=>{} } = this.props;
         return (
             <ElemList loading={loading} data={data}
                 getPrimary={getPrimary} 
@@ -52,6 +54,7 @@ export default class RoutineList extends Component<RoutineListProps> {
                 getId={getId}
                 error={error ? "Error loading routines" : undefined}
                 noDataMsg={noDataMsg}
+                onClick={onClick}
             >
             </ElemList>
         )

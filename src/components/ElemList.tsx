@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,18 +27,25 @@ interface ElemListProps {
   getId?: (elem: any) => string;
   getPrimary?: (elem: any) => string;
   getSecondary?: (elem: any) => string;
+  onClick?: (elem: any) => void;
   loading?: boolean;
   error?: string;
 }
 
-export const ElemList: React.FC<ElemListProps> = 
-({data = [],
-  noDataMsg,
-  getId = (f=>''),
-  getPrimary = (f=>''),
-  getSecondary = (f=>''),
-  loading, error}) => {
+const ListWrapper: React.FC = ({children}) => {
   const classes = useStyles();
+  return <List className={classes.root}>{children}</List>
+}
+
+class ElemList extends Component<ElemListProps> { 
+onClick = (elem: any) => {
+  const { onClick = (()=>{}) }  = this.props;
+  onClick(elem);
+}
+render = () => {
+  const {data = [], noDataMsg,
+    getId = (()=>''), getPrimary = (()=>''), getSecondary = (()=>''),
+     loading, error} = this.props;
   if (loading) {
     return  (<CircularProgress />);
   }
@@ -49,9 +56,9 @@ export const ElemList: React.FC<ElemListProps> =
     return (<div>{noDataMsg || 'No data'}</div>);
   }
   return (
-    <List className={classes.root}>
+    <ListWrapper>
       {data.map((elem: any) => (
-        <ListItem key={getId(elem)}
+        <ListItem button key={getId(elem)}
         >
         <ListItemAvatar>
           <Avatar>
@@ -59,10 +66,13 @@ export const ElemList: React.FC<ElemListProps> =
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary={getPrimary(elem)}
-           secondary={getSecondary(elem)} />
-
+           secondary={getSecondary(elem)} 
+           onClick={() => this.onClick(elem)}/>
       </ListItem>
       ))}
-    </List>
+    </ListWrapper>
   );
 }
+}
+
+export default ElemList;

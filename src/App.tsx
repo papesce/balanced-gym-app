@@ -23,7 +23,10 @@ const App: React.FC = () => {
           <Route exact path="/">
             <Redirect to="/routine" />
           </Route>
-          <Route path="/routine">
+          <Route path="/routine/:id">
+            <div>now we are talking about</div>
+          </Route>
+          <Route exact path="/routine">
             <Routines />
           </Route>
           <Route path="*">
