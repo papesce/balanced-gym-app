@@ -1,8 +1,15 @@
 import { getSecondary } from './RoutineList';
 import { IRoutine } from '../model/RoutineModel';
-//
 
 describe('RoutineList/getSecondary', () => {
+    it('no targets', () => {
+        const routine: IRoutine = { 
+         _id:'',
+         name:'',
+         };
+         const text = getSecondary(routine);
+         expect(text).toBe("No targets")
+     });
     it('no targets', () => {
        const routine: IRoutine = { 
         targetsCount: 0,
@@ -10,8 +17,6 @@ describe('RoutineList/getSecondary', () => {
         doneToday: 0,
         _id:'',
         name:'',
-        updatedAt:'',
-        createdAt:''
         };
         const text = getSecondary(routine);
         expect(text).toBe("0 targets")
@@ -23,8 +28,6 @@ describe('RoutineList/getSecondary', () => {
          doneToday: 0,
          _id:'',
          name:'',
-         updatedAt:'',
-         createdAt:''
          };
          const text = getSecondary(routine);
          expect(text).toBe("1 target 15 exercises")
@@ -38,8 +41,6 @@ describe('RoutineList/getSecondary', () => {
          doneToday: 0,
          _id:'',
          name:'',
-         updatedAt:'',
-         createdAt:'',
          lastUpdated:yesterday.toString()
          };
          const text = getSecondary(routine);
@@ -54,8 +55,6 @@ describe('RoutineList/getSecondary', () => {
          doneToday: 2,
          _id:'',
          name:'',
-         updatedAt:'',
-         createdAt:'',
          lastUpdated:yesterday.toString()
          };
          const text = getSecondary(routine);
@@ -70,8 +69,6 @@ describe('RoutineList/getSecondary', () => {
          doneToday: 2,
          _id:'',
          name:'',
-         updatedAt:'',
-         createdAt:'',
          lastUpdated:yesterday.toString()
          };
          const text = getSecondary(routine);

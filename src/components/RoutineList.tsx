@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import ElemList from './ElemList';
 import { IRoutine } from '../model/RoutineModel'
-import { getDaysFromString } from '../utils/dateUtils';
-import { addS } from '../utils/utils';
+import { getSummary } from './common';
 
 interface RoutineListProps {
     loading?: boolean;
     error?: string;
-    data?: IRoutine[];
+    routines?: IRoutine[];
     onClick?: (elem: IRoutine) => void;
     noDataMsg?: string
 }
@@ -17,26 +16,8 @@ const getId = (routine: IRoutine) => {
 }
 
 export const getSecondary = (routine: IRoutine) => {
-    let text = '';
-    const tcount = routine.targetsCount;
-    if (tcount === undefined) {
-        return 'No targets';
-    }
-    const ecount = routine.exercisesCount;  
-    if (tcount === 0) {
-        text = addS('target', tcount);
-    } else if (!routine.lastUpdated) {
-        text = `${addS('target', tcount)} ${addS('exercise', ecount)}`;
-    } else {
-    // TODO Color for labels
-        const days = getDaysFromString(routine.lastUpdated);    
-        // self.daysLabel.textColor = Utils.getLabelColor(count: days)
-        text = `${addS('day', days)} ${addS('target', tcount)} ${addS('exercise', ecount)}`
-        if (routine.doneToday > 0) {
-            text = text + ` ${routine.doneToday} done today`;
-        }
-    }
-    return text;
+    const { targetsCount, exercisesCount, lastUpdated, doneToday } = routine;
+    return getSummary(targetsCount, exercisesCount, lastUpdated, doneToday);
 }
 export const getPrimary = (elem: IRoutine) => {
     return elem.name; 
@@ -45,10 +26,10 @@ export const getPrimary = (elem: IRoutine) => {
 export default class RoutineList extends Component<RoutineListProps> {
     
     render() {
-        const { data = [], loading, error, noDataMsg = "No routines", 
+        const { routines = [], loading, error, noDataMsg = "No routines", 
             onClick = ()=>{} } = this.props;
         return (
-            <ElemList loading={loading} data={data}
+            <ElemList loading={loading} data={routines}
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}

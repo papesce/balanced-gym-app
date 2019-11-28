@@ -3,7 +3,7 @@ import { routinesReducer } from './reducer';
 
 export const createStore = () => configureStore({
     reducer: {
-        routines: routinesReducer,
+        routinesState: routinesReducer,
     },
     middleware: [...getDefaultMiddleware()],
     devTools: process.env.NODE_ENV !== 'production',

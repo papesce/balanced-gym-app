@@ -6,7 +6,7 @@ export const routinesReducer = (state: IRoutineState = {} , action: any ) => {
       case FETCH_ROUTINES_BEGIN:
         return { loading: true };
       case FETCH_ROUTINES_SUCCESS:
-        return { data: action.payload.routines };
+        return { routines: action.payload.routines };
       case FETCH_ROUTINES_FAILURE:
         return { error : action.payload.error}        
       default:

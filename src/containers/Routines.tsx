@@ -25,7 +25,7 @@ export class Routines extends Component<RoutineProps> {
         return (
            <RoutineList loading={routinesState.loading}
              error={routinesState.error} 
-             data={routinesState.data}
+             routines={routinesState.routines}
              onClick={this.onRoutineClick}
              />
         )
@@ -33,9 +33,9 @@ export class Routines extends Component<RoutineProps> {
 }
 
 const mapStateToProps = (state: any) => {
-    console.log('state changed:', state)
+    // console.log('state changed:', state)
     return {
-        routinesState: state.routines
+        routinesState: state.routinesState
     }
 }
 

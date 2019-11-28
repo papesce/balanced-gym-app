@@ -1,18 +1,19 @@
+import { IMuscleGroup } from './MuscleGroupModel';
+
 
 export interface IRoutine {
     _id: string,
     name: string,
-    updatedAt: string,
-    createdAt: string,
-    targetsCount: number ,
-    exercisesCount: number,
+    targetsCount?: number ,
+    exercisesCount?: number,
     lastUpdated?: string,
-    doneToday: number,
-    exercises?: string[]
+    doneToday?: number,
+    exercises?: string[],
+    muscleGroups?: IMuscleGroup[]
 }
 
 export interface IRoutineState {
     loading?: boolean;
     error?: string;
-    data?: IRoutine[];
+    routines?: IRoutine[];
 }
