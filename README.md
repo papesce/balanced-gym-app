@@ -13,3 +13,7 @@ yarn add @material-ui/core
 yarn add @material-ui/icons
 yarn add react-router-dom
 yarn add @types/react-router-dom
+
+
+# Heroku
+heroku config:set REACT_APP_SERVER=https://balanced-gym-dev.herokuapp.com

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MuscleGroupList from '../components/MuscleGroupList';
-import { IRoutineState } from '../model/RoutineModel';
+import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { loadRoutine } from '../redux/actions';
 import { withRouter } from "react-router";
 
 interface RoutineProps {
-    routineState?: IRoutineState;
+    loading: boolean;
+    error: string;
+    routine: IRoutine;
     loadRoutine?: (routineId: string) => {};
     match?: any;
     history?: any;
@@ -23,22 +25,25 @@ export class Routine extends Component<RoutineProps> {
         history.push(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
     }
     render() {
-        const { routineState = {} } = this.props;
-        return (
-           <MuscleGroupList loading={routineState.loading}
-             error={routineState.error} 
-             routine={routineState.routine}
+        const { loading, error, routine } = this.props;
+        return (<>
+           <div>Routines / Routine</div>
+           <MuscleGroupList loading={loading}
+             error={error} 
+             routine={routine}
              onClick={this.onRoutineClick}
              />
+             </>
         )
     }
 }
 
 const mapStateToProps = (state: any) => {
     // console.log('state changed:', state)
+    const { loading, error, routine = {} } = state.routineState;
     return {
-        routineState: state.routineState
-    }
+        loading, error, routine
+    };
 }
 
 const mapDispatchToProps = (dispatch: any) => {

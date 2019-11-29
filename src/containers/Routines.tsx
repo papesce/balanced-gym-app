@@ -22,12 +22,14 @@ export class Routines extends Component<RoutineProps> {
     }
     render() {
         const { routinesState = {} } = this.props;
-        return (
+        return (<>
+           <div>Routines</div> 
            <RoutineList loading={routinesState.loading}
              error={routinesState.error} 
              routines={routinesState.routines}
              onClick={this.onRoutineClick}
              />
+            </>
         )
     }
 }
