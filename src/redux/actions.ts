@@ -1,4 +1,5 @@
 import { IRoutine } from './../model/RoutineModel';
+import { handleErrors } from './utils';
 
 export const FETCH_ROUTINES_BEGIN   = 'FETCH_ROUTINES_BEGIN';
 export const FETCH_ROUTINES_SUCCESS = 'FETCH_ROUTINES_SUCCESS';
@@ -21,7 +22,7 @@ export const fetchRoutinesBegin = () => ({
 
 export const loadRoutines = () => (dispatch: any) => {
      dispatch(fetchRoutinesBegin());
-     return fetch('https://balanced-gym-dev.herokuapp.com/routines')
+     return fetch(`${process.env.REACT_APP_SERVER}/routines`)
      .then(handleErrors)
      .then(res => res.json())
      .then(routines => {
@@ -33,9 +34,38 @@ export const loadRoutines = () => (dispatch: any) => {
      );
  }; 
 
- function handleErrors(response: any) {
-     if (!response.ok) {
-       throw Error(response.statusText);
-     }
-     return response;
-   }
+ export const FETCH_ROUTINE_BEGIN   = 'FETCH_ROUTINE_BEGIN';
+ export const FETCH_ROUTINE_SUCCESS = 'FETCH_ROUTINE_SUCCESS';
+ export const FETCH_ROUTINE_FAILURE = 'FETCH_ROUTINE_FAILURE';
+ 
+ 
+ export const fetchRoutineBegin = () => ({
+     type: FETCH_ROUTINE_BEGIN
+   });
+   
+   export const fetchRoutineSuccess = (routine: IRoutine) => ({
+     type: FETCH_ROUTINE_SUCCESS,
+     payload: { routine }
+   });
+   
+   export const fetchRoutineFailure = (error: string) => ({
+     type: FETCH_ROUTINE_FAILURE,
+     payload: { error }
+   });
+ 
+ export const loadRoutine = (routineId: string) => (dispatch: any) => {
+      dispatch(fetchRoutineBegin());
+      return fetch(`${process.env.REACT_APP_SERVER}/routine/${routineId}`)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(routine => {
+        debugger;
+          dispatch(fetchRoutineSuccess(routine))
+          return routine;
+      })
+      .catch(error => dispatch(
+          fetchRoutineFailure(error))
+      );
+  }; 
+
+ 

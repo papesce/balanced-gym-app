@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RoutineList from '../components/RoutineList';
-import { IRoutineState, IRoutine } from '../model/RoutineModel';
+import { IRoutinesState, IRoutine } from '../model/RoutineModel';
 import { loadRoutines } from '../redux/actions';
 import { withRouter } from "react-router";
 
 interface RoutineProps {
-    routinesState?: IRoutineState;
+    routinesState?: IRoutinesState;
     loadRoutines?: () => {};
     history?: any;
 }

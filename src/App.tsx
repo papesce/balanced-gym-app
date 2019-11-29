@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from './redux/configureStore';
 import Header from './components/Header';
-// import { ElemList } from './components/ElemList';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +9,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Routines from './containers/Routines';
+import MuscleGroups from './containers/Routine';
 import NoMatch from './components/NoMatch';
 
 const store = createStore();
@@ -21,12 +21,15 @@ const App: React.FC = () => {
       <Header/>
       <Switch>
           <Route exact path="/">
-            <Redirect to="/routine" />
+            <Redirect to="/routines" />
           </Route>
-          <Route path="/routine/:id">
-            <div>now we are talking about</div>
+          <Route path="/routine/:routineId/muscleGroup/:muscleGroupId">
+            <div> next step</div> 
           </Route>
-          <Route exact path="/routine">
+          <Route exact path="/routine/:routineId">
+            <MuscleGroups />
+          </Route>
+          <Route exact path="/routines">
             <Routines />
           </Route>
           <Route path="*">

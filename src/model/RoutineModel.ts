@@ -12,8 +12,14 @@ export interface IRoutine {
     muscleGroups?: IMuscleGroup[]
 }
 
-export interface IRoutineState {
+export interface IRoutinesState {
     loading?: boolean;
     error?: string;
     routines?: IRoutine[];
+}
+
+export interface IRoutineState {
+    loading?: boolean;
+    error?: string;
+    routine?: IRoutine;
 }
