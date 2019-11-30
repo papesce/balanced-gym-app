@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ElemList from './ElemList';
 import { IRoutine } from '../model/RoutineModel'
-import { getSummary } from './common';
+import { getRoutineSummary } from './common';
 
 interface RoutineListProps {
     loading?: boolean;
@@ -15,11 +15,10 @@ const getId = (routine: IRoutine) => {
     return routine._id;
 }
 
-export const getSecondary = (routine: IRoutine) => {
-    const { targetsCount, exercisesCount, lastUpdated, doneToday } = routine;
-    return getSummary(targetsCount, exercisesCount, lastUpdated, doneToday);
+const getSecondary = (routine: IRoutine) => {
+    return getRoutineSummary(routine);
 }
-export const getPrimary = (elem: IRoutine) => {
+const getPrimary = (elem: IRoutine) => {
     return elem.name; 
  };
 

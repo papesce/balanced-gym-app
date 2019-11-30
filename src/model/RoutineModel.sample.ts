@@ -1,6 +1,6 @@
 import { IRoutine } from './RoutineModel';
 import { muscleGroupWithEmptyTargets, muscleGroupWithNoTargets,
-  muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroupModel.test';
+  muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroupModel.sample';
 
 export const emptyRoutine: IRoutine = {
   "_id": "",

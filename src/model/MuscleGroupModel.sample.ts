@@ -1,4 +1,5 @@
 import { IMuscleGroup } from './MuscleGroupModel';
+import { sampleTarget, sampleTarget1, sampleTarget2, sampleTarget3 } from './TargetModel.sample';
 
 
 export const emptyMuscleGroupList: IMuscleGroup[] = [];
@@ -37,5 +38,32 @@ export const muscleGroupWithFullTargets: IMuscleGroup = {
   exercisesCount: 10,
   lastUpdated: "2018-03-02T00:21:55.118Z",
   doneToday: 2,
-
 }
+
+export const muscleGroupWithEmptyTargetList: IMuscleGroup = {
+  "_id":"5dde9b568603d000157b6284",
+  "name":"Chest",
+  targets:[],
+  exercisesCount: 10,
+  lastUpdated: "2018-03-02T00:21:55.118Z",
+  doneToday: 2,
+}
+
+export const muscleGroupWithSingleTarget: IMuscleGroup = {
+  "_id":"5dde9b568603d000157b6284",
+  "name":"Chest",
+  targets:[sampleTarget],
+  exercisesCount: 10,
+  lastUpdated: "2018-03-02T00:21:55.118Z",
+  doneToday: 2,
+}
+
+export const muscleGroupWithFullTargetList: IMuscleGroup = {
+  "_id":"5dde9b568603d000157b6284",
+  "name":"Chest",
+  targets:[sampleTarget1, sampleTarget2, sampleTarget3],
+  exercisesCount: 10,
+  lastUpdated: "2018-03-02T00:21:55.118Z",
+  doneToday: 2,
+}
+

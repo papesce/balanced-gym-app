@@ -9,7 +9,8 @@ import {
   Redirect
 } from "react-router-dom";
 import Routines from './containers/Routines';
-import MuscleGroups from './containers/Routine';
+import Routine from './containers/Routine';
+import MuscleGroup from './containers/MuscleGroup';
 import NoMatch from './components/NoMatch';
 
 const store = createStore();
@@ -24,10 +25,10 @@ const App: React.FC = () => {
             <Redirect to="/routines" />
           </Route>
           <Route path="/routine/:routineId/muscleGroup/:muscleGroupId">
-            <div> next step</div> 
+            <MuscleGroup />
           </Route>
           <Route exact path="/routine/:routineId">
-            <MuscleGroups />
+            <Routine />
           </Route>
           <Route exact path="/routines">
             <Routines />

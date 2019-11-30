@@ -2,7 +2,7 @@ import React from 'react';
 import MuscleGroupList from './MuscleGroupList';
 import { action } from '@storybook/addon-actions';
 import { sampleRoutine1, routineWithEmptyGroup, routineWithSingleGroup, 
-  routineWithFullGroup } from '../model/RoutineModel.test'
+  routineWithFullGroup } from '../model/RoutineModel.sample'
 
 export default {
     title: 'Muscle Group', 
