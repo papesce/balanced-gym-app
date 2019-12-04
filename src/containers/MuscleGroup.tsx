@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TargetList from '../components/TargetList';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { loadMuscleGroup } from '../redux/actions';
+import { ITarget } from '../model/TargetModel';
+import { loadMuscleGroup } from '../redux/actions.muscleGroup';
 import { withRouter } from "react-router";
 
 interface MuscleGroupProps {
@@ -19,18 +20,18 @@ export class MuscleGroup extends Component<MuscleGroupProps> {
        const { loadMuscleGroup, match : { params : { routineId, muscleGroupId }} } = this.props;
        loadMuscleGroup && loadMuscleGroup(routineId, muscleGroupId);
     }
-    onMuscleGroupClick = (muscleGroup: IMuscleGroup) => {
-        // const { history,  match : { params : { routineId }} } = this.props;
-        // history.push(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
+    onTargetClick = (target: ITarget) => {
+        const { history, match : { params : { routineId, muscleGroupId }} } = this.props;
+        history.push(`/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${target._id}`);
     }
     render() {
         const { loading, error, muscleGroup } = this.props;
         return (<>
-           <div>Routines / Routine / MuscleGroup</div>
+           <div>Routines / Routine / Targets</div>
            <TargetList loading={loading}
              error={error} 
              muscleGroup={muscleGroup}
-             onClick={this.onMuscleGroupClick}
+             onClick={this.onTargetClick}
              />
              </>
         )

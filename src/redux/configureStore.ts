@@ -1,11 +1,12 @@
 import { configureStore, getDefaultMiddleware }  from '@reduxjs/toolkit'
-import { routinesReducer, routineReducer, muscleGroupReducer } from './reducer';
+import { routinesReducer, routineReducer, muscleGroupReducer, targetReducer } from './reducer';
 
 export const createStore = () => configureStore({
     reducer: {
         routinesState: routinesReducer,
         routineState: routineReducer,
-        muscleGroupState: muscleGroupReducer
+        muscleGroupState: muscleGroupReducer,
+        targetState: targetReducer
     },
     middleware: [...getDefaultMiddleware()],
     devTools: process.env.NODE_ENV !== 'production',

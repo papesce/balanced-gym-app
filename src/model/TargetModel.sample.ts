@@ -1,4 +1,5 @@
 import { ITarget } from './TargetModel';
+import { sampleExercise1, sampleExercise2, sampleExercise3, sampleExercise4 } from './ExerciseModel.sample';
 
 export const sampleTarget: ITarget = {
     "_id": "5a551582d9b8730014575796",
@@ -24,4 +25,16 @@ export const sampleTarget3: ITarget = {
     "_id": "5a551347620ca90014df37a6",
     "name": "Adductors, Hip",
     "exercisesCount": 1
+} 
+
+export const sampleTargetWithSingleExercise: ITarget = {
+    "_id": "5a551347620ca90014df37a6",
+    "name": "Adductors, Hip",
+    exercises: [sampleExercise1]
+} 
+
+export const sampleTargetWithFullExercise: ITarget = {
+    "_id": "5a551347620ca90014df37a6",
+    "name": "Adductors, Hip",
+    exercises: [sampleExercise2, sampleExercise3, sampleExercise4]
 } 

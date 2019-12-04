@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RoutineList from '../components/RoutineList';
 import { IRoutinesState, IRoutine } from '../model/RoutineModel';
-import { loadRoutines } from '../redux/actions';
+import { loadRoutines } from '../redux/actions.routines';
 import { withRouter } from "react-router";
 
 interface RoutineProps {

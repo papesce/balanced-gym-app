@@ -12,6 +12,7 @@ import Routines from './containers/Routines';
 import Routine from './containers/Routine';
 import MuscleGroup from './containers/MuscleGroup';
 import NoMatch from './components/NoMatch';
+import Target from './containers/Target';
 
 const store = createStore();
 
@@ -24,7 +25,10 @@ const App: React.FC = () => {
           <Route exact path="/">
             <Redirect to="/routines" />
           </Route>
-          <Route path="/routine/:routineId/muscleGroup/:muscleGroupId">
+          <Route exact path="/routine/:routineId/muscleGroup/:muscleGroupId/target/:targetId">
+            <Target />
+          </Route>
+          <Route exact path="/routine/:routineId/muscleGroup/:muscleGroupId">
             <MuscleGroup />
           </Route>
           <Route exact path="/routine/:routineId">

@@ -14,15 +14,15 @@ interface TargetListProps {
 
 // TODO do i really need the muscle group or just the [targets]
 
-const getId = (muscleGroup: ITarget) => {
-    return muscleGroup._id;
+const getId = (target: ITarget) => {
+    return target._id;
 }
 
 export const getSecondary = (target: ITarget) => {
     return getTargetSummary(target);
 }
-export const getPrimary = (muscleGroup: IMuscleGroup) => {
-    return muscleGroup.name; 
+export const getPrimary = (target: ITarget) => {
+    return target.name; 
  };
 
 export default class TargetList extends Component<TargetListProps> {

@@ -1,6 +1,6 @@
 import { IRoutine } from './../model/RoutineModel';
-import { fetchRoutinesBegin, fetchRoutinesSuccess, fetchRoutinesFailure,
-fetchRoutineBegin, fetchRoutineSuccess, fetchRoutineFailure } from './actions';
+import { fetchRoutinesBegin, fetchRoutinesSuccess, fetchRoutinesFailure} from './actions.routines';
+import { fetchRoutineBegin, fetchRoutineSuccess, fetchRoutineFailure } from './actions.routine';
 import { createStore } from './configureStore';
 
 describe('routines Reducer', () => {

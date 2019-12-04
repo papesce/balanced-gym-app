@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MuscleGroupList from '../components/MuscleGroupList';
 import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { loadRoutine } from '../redux/actions';
+import { loadRoutine } from '../redux/actions.routine';
 import { withRouter } from "react-router";
 
 interface RoutineProps {
