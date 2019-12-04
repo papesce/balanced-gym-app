@@ -19,18 +19,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Header() {
-  const classes = useStyles();
+interface HeaderProps {
+  handleClick: () => void;
+}
 
+const Header:React.FC<HeaderProps>  = ({ handleClick }) => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <MenuIcon onClick={() => handleClick()}/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Balanced Gym v0.1
+            Balanced Gym App v0.1
           </Typography>
           <Button color="inherit">Logout</Button>
         </Toolbar>
@@ -38,3 +41,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default Header;
