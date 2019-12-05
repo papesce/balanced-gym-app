@@ -8,90 +8,59 @@ describe('getTargetSummary1', () => {
         name:'',
         };
         const text = getTargetSummary1(target);
-        expect(text).toBe("")
+        expect(text).toBe("0 exercises")
     });
-    it('never updated', () => {
+    it('exercises > 0', () => {
         const target: ITarget = {
          exercisesCount: 15,
-         doneToday: 0,
          _id:'',
          name:'',
          };
          const text = getTargetSummary1(target);
-         expect(text).toBe("")
+         expect(text).toBe("15 exercises")
      });
-     it('last updated yesterday', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
+     it('with synergists > 0', () => {
         const target: ITarget = {
          exercisesCount: 15,
-         doneToday: 0,
+         synergistsCount: 5,
          _id:'',
          name:'',
-         lastUpdated:yesterday.toString()
          };
          const text = getTargetSummary1(target);
-         expect(text).toBe("1 day");
+         expect(text).toBe("15 exercises (syns: 5)")
      });
-     it('last updated yesterday doneToday 2', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
+     it('with stabilizers > 0', () => {
         const target: ITarget = {
          exercisesCount: 15,
-         doneToday: 2,
+         synergistsCount: 5,
+         stabilizersCount: 7,
          _id:'',
          name:'',
-         lastUpdated:yesterday.toString()
          };
          const text = getTargetSummary1(target);
-         expect(text).toBe("1 day");
-     });
-     it('last updated yesterday doneToday 2', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 2,
-         _id:'',
-         name:'',
-         lastUpdated:yesterday.toString()
-         };
-         const text = getTargetSummary1(target);
-         expect(text).toBe("1 day");
+         expect(text).toBe("15 exercises (syns: 5, stbs: 7)")
      });
 })
 
 describe('getTargetSummary2', () => {
-    it('no exercises', () => {
+    it('no last updated', () => {
        const target: ITarget = { 
         _id:'',
         name:'',
         };
         const text = getTargetSummary2(target);
-        expect(text).toBe("0 exercises")
+        expect(text).toBe("")
     });
-    it('never updated', () => {
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 0,
-         _id:'',
-         name:'',
-         };
-         const text = getTargetSummary2(target);
-         expect(text).toBe("15 exercises")
-     });
      it('last updated yesterday', () => {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
         const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 0,
          _id:'',
          name:'',
          lastUpdated:yesterday.toString()
          };
          const text = getTargetSummary2(target);
-         expect(text).toBe("15 exercises");
+         expect(text).toBe("1 day");
      });
      it('last updated yesterday doneToday 2', () => {
         const yesterday = new Date();
@@ -104,20 +73,7 @@ describe('getTargetSummary2', () => {
          lastUpdated:yesterday.toString()
          };
          const text = getTargetSummary2(target);
-         expect(text).toBe("15 exercises 2 done today");
-     });
-     it('last updated yesterday doneToday 2', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 2,
-         _id:'',
-         name:'',
-         lastUpdated:yesterday.toString()
-         };
-         const text = getTargetSummary2(target);
-         expect(text).toBe("15 exercises 2 done today");
+         expect(text).toBe("1 day 2 done today");
      });
 })
 

@@ -2,9 +2,9 @@ import { ITarget } from '../model/TargetModel';
 import { getDaysFromString } from '../utils/dateUtils';
 import { addS } from '../utils/utils';
 
-export const getTargetSummary1 = (target: ITarget) => {
+export const getTargetSummary2 = (target: ITarget) => {
     let text = '';
-    const { lastUpdated } = target;
+    const { lastUpdated, doneToday } = target;
     // const ecount = exercisesCount || 0;  
     if (!lastUpdated) {
          text = ``;
@@ -13,19 +13,27 @@ export const getTargetSummary1 = (target: ITarget) => {
          const days = getDaysFromString(lastUpdated);    
          // self.daysLabel.textColor = Utils.getLabelColor(count: days)
         text = `${addS('day', days)}`
+        if (doneToday || 0) {
+            text = text + ` ${doneToday} done today`;
+        }
      }
     return text;
 }
 
-export const getTargetSummary2 = (target: ITarget) => {
+export const getTargetSummary1 = (target: ITarget) => {
     let text = '';
-    const { exercisesCount, doneToday} = target;
+    const { exercisesCount, synergistsCount, stabilizersCount} = target;
     const ecount = exercisesCount || 0;  
-    // // TODO Color for labels
-         text = `${addS('exercise', ecount)}`
-         if (doneToday || 0) {
-             text = text + ` ${doneToday} done today`;
-         }
+    text = `${addS('exercise', ecount)}`
+    if (synergistsCount || stabilizersCount) text = text + ` (`;
+    if (synergistsCount) {
+             text = text + `syns: ${synergistsCount}`;
+    }
+    if (stabilizersCount) {
+        if (synergistsCount) text = text + `, `;
+        text = text + `stbs: ${stabilizersCount}`;
+    }
+    if (synergistsCount || stabilizersCount) text = text + `)`;
     return text;
 }
 

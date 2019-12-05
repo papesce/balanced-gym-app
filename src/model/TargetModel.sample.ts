@@ -21,6 +21,8 @@ export const sampleTarget2: ITarget = {
     "_id": "5a55152ad9b873001457578f",
     "name": "Hamstrings",
     "exercisesCount": 6,
+    "synergistsCount": 3,
+    "stabilizersCount": 0,
     "muscleURL": "/Hamstring.png",
 } 
 
@@ -28,6 +30,8 @@ export const sampleTarget3: ITarget = {
     "_id": "5a551347620ca90014df37a6",
     "name": "Adductors, Hip",
     "exercisesCount": 1,
+    "synergistsCount": 16,
+    "stabilizersCount": 5,
     "muscleURL": "/AdductorAnteriorSmall.png",
 } 
 
