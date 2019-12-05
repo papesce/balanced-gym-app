@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ElemList from './ElemList';
+import ElemCardList from './ElemCardList';
 import { ITarget } from '../model/TargetModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { getTargetSummary } from './common';
+import { getTargetSummary1, getTargetSummary2  } from './summary.target';
 
 interface TargetListProps {
     loading?: boolean;
@@ -18,8 +18,14 @@ const getId = (target: ITarget) => {
     return target._id;
 }
 
-export const getSecondary = (target: ITarget) => {
-    return getTargetSummary(target);
+export const getSecondary1 = (target: ITarget) => {
+    return getTargetSummary1(target);
+}
+export const getSecondary2 = (target: ITarget) => {
+    return getTargetSummary2(target);
+}
+export const getImage = (target: ITarget) => {
+    return target.muscleURL || '';
 }
 export const getPrimary = (target: ITarget) => {
     return target.name; 
@@ -32,15 +38,17 @@ export default class TargetList extends Component<TargetListProps> {
         const { muscleGroup = emptyMuscleGroup, loading, error, noDataMsg = "No targets", 
             onClick = ()=>{} } = this.props;
         return (
-            <ElemList loading={loading} data={muscleGroup.targets}
+            <ElemCardList loading={loading} data={muscleGroup.targets}
                 getPrimary={getPrimary} 
-                getSecondary={getSecondary}
+                getSecondary1={getSecondary1}
+                getSecondary2={getSecondary2}
+                getImage={getImage}
                 getId={getId}
                 error={error ? "Error loading the muscle group" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}
             >
-            </ElemList>
+            </ElemCardList>
         )
     }
 }

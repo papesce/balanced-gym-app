@@ -7,6 +7,7 @@ export interface ITarget {
     doneToday?: number,
     lastUpdated?: string,
     exercises?: IExercise[]
+    muscleURL?: string
 }
 
 export interface ITargetState {

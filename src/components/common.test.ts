@@ -1,6 +1,6 @@
 import { IExercise } from './../model/ExerciseModel';
-import { ITarget } from './../model/TargetModel';
-import { getRoutineSummary, getTargetSummary, getExerciseSummary } from './common';
+
+import { getRoutineSummary, getExerciseSummary } from './common';
 import { IRoutine } from '../model/RoutineModel';
 
 describe('getRoutineSecondary', () => {
@@ -77,65 +77,7 @@ describe('getRoutineSecondary', () => {
 })
 
 
-describe('getTargetSecondary', () => {
-    it('no exercises', () => {
-       const target: ITarget = { 
-        _id:'',
-        name:'',
-        };
-        const text = getTargetSummary(target);
-        expect(text).toBe("0 exercises")
-    });
-    it('never updated', () => {
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 0,
-         _id:'',
-         name:'',
-         };
-         const text = getTargetSummary(target);
-         expect(text).toBe("15 exercises")
-     });
-     it('last updated yesterday', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 0,
-         _id:'',
-         name:'',
-         lastUpdated:yesterday.toString()
-         };
-         const text = getTargetSummary(target);
-         expect(text).toBe("1 day 15 exercises");
-     });
-     it('last updated yesterday doneToday 2', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 2,
-         _id:'',
-         name:'',
-         lastUpdated:yesterday.toString()
-         };
-         const text = getTargetSummary(target);
-         expect(text).toBe("1 day 15 exercises 2 done today");
-     });
-     it('last updated yesterday doneToday 2', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const target: ITarget = {
-         exercisesCount: 15,
-         doneToday: 2,
-         _id:'',
-         name:'',
-         lastUpdated:yesterday.toString()
-         };
-         const text = getTargetSummary(target);
-         expect(text).toBe("1 day 15 exercises 2 done today");
-     });
-})
+
 
 describe('getExerciseSecondary', () => {
     it('no exercises', () => {

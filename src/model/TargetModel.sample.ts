@@ -7,24 +7,28 @@ export const sampleTarget: ITarget = {
     "exercisesCount": 21,
     lastUpdated: "2018-03-02T00:21:55.118Z",
     doneToday: 2,
+    "muscleURL": "/QuadricepsAnteriorSmall.png",
 } 
 
 export const sampleTarget1: ITarget = {
     "_id": "5a55151fd9b873001457578e",
     "name": "Gluteus Maximus",
-    "exercisesCount": 11
+    "exercisesCount": 11,
+    "muscleURL": "/GluteusMaximus.png",
 } 
 
 export const sampleTarget2: ITarget = {
     "_id": "5a55152ad9b873001457578f",
     "name": "Hamstrings",
-    "exercisesCount": 6
+    "exercisesCount": 6,
+    "muscleURL": "/Hamstring.png",
 } 
 
 export const sampleTarget3: ITarget = {
     "_id": "5a551347620ca90014df37a6",
     "name": "Adductors, Hip",
-    "exercisesCount": 1
+    "exercisesCount": 1,
+    "muscleURL": "/AdductorAnteriorSmall.png",
 } 
 
 export const sampleTargetWithSingleExercise: ITarget = {

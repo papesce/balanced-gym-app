@@ -1,28 +1,7 @@
 import { IExercise } from './../model/ExerciseModel';
-import { ITarget } from './../model/TargetModel';
 import { IRoutine } from './../model/RoutineModel';
 import { getDaysFromString } from '../utils/dateUtils';
 import { addS } from '../utils/utils';
-
-export const getTargetSummary = (target: ITarget) => {
-    let text = '';
-    const { exercisesCount, lastUpdated, doneToday} = target;
-    const ecount = exercisesCount || 0;  
-    if (!lastUpdated) {
-        text = `${addS('exercise', ecount)}`;
-    } else {
-    // TODO Color for labels
-        const days = getDaysFromString(lastUpdated);    
-        // self.daysLabel.textColor = Utils.getLabelColor(count: days)
-        text = `${addS('day', days)} ${addS('exercise', ecount)}`
-        if (doneToday || 0) {
-            text = text + ` ${doneToday} done today`;
-        }
-    }
-    return text;
-}
-
-
 
 export const getRoutineSummary = (routine: IRoutine) => {
     const {targetsCount, exercisesCount = 0, lastUpdated, doneToday = 0} = routine;
