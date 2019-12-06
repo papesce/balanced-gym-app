@@ -22,7 +22,7 @@ interface ElemCardListProps {
   getSecondary2?: (elem: any) => string;
   getImage?: (elem: any) => string;
   onClick?: (elem: any) => void;
-  subHeader?: string;
+  subHeader?: any;
   loading?: boolean;
   error?: string;
 }

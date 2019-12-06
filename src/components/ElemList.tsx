@@ -19,7 +19,7 @@ interface ElemListProps {
   getPrimary?: (elem: any) => string;
   getSecondary?: (elem: any) => string;
   onClick?: (elem: any) => void;
-  subHeader?: string;
+  subHeader?: any;
   loading?: boolean;
   error?: string;
 }

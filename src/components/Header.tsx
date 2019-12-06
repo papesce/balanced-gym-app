@@ -33,7 +33,7 @@ const Header:React.FC<HeaderProps>  = ({ handleClick }) => {
               edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="subtitle1" className={classes.title}>
             Balanced Gym App v0.1
           </Typography>
           <Button color="inherit">Logout</Button>

@@ -28,9 +28,6 @@ export class Target extends Component<TargetProps> {
     render() {
         const { loading, error, target } = this.props;
         return (<>
-            <div>Routine: {target.routineName}</div>
-            <div>Muscle Group: {target.muscleGroupName}</div>
-            <div>Target: {target.name}</div>
            <ExerciseList loading={loading}
              error={error} 
              target={target}

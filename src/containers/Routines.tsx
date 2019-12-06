@@ -24,7 +24,6 @@ export class Routines extends Component<RoutineProps> {
     render() {
         const { routinesState = {} } = this.props;
         return (<>
-           <ElemPaper title="Routines" />
            <RoutineList loading={routinesState.loading}
              error={routinesState.error} 
              routines={routinesState.routines}

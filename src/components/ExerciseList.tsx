@@ -3,6 +3,7 @@ import ElemList from './ElemList';
 import { ITarget } from '../model/TargetModel';
 import { IExercise } from '../model/ExerciseModel';
 import { getExerciseSummary } from './common';
+import TargetHeader from './TargetHeader';
 
 interface ExerciseListProps {
     loading?: boolean;
@@ -35,7 +36,7 @@ export default class ExerciseList extends Component<ExerciseListProps> {
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}
-                subHeader={'Exercises:'}
+                subHeader={(<TargetHeader target={target}/>)}
                 error={error ? "Error loading exercises" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

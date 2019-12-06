@@ -29,8 +29,6 @@ export class MuscleGroup extends Component<MuscleGroupProps> {
         const { loading, error, muscleGroup } = this.props;
         // console.log('muscleGroup', muscleGroup);
         return (<>
-           <div>Routine: {muscleGroup.routineName}</div>
-           <div>Muscle Group: {muscleGroup.name}</div>
            <TargetList loading={loading}
              error={error} 
              muscleGroup={muscleGroup}

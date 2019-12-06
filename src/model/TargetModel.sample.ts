@@ -38,6 +38,10 @@ export const sampleTarget3: ITarget = {
 export const sampleTargetWithSingleExercise: ITarget = {
     "_id": "5a551347620ca90014df37a6",
     "name": "Adductors, Hip",
+    routineId: "5dde9b568603d000157b6285",
+    routineName: "Chest Shoulder Biceps",
+    muscleGroupId: "5dde9b568603d000157b6287",
+    muscleGroupName: "Chest",
     exercises: [sampleExercise1]
 } 
 

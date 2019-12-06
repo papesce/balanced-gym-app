@@ -28,7 +28,6 @@ export class Routine extends Component<RoutineProps> {
     render() {
         const { loading, error, routine } = this.props;
         return (<>
-           <div>Routine: {routine.name}</div>
            <MuscleGroupList loading={loading}
              error={error} 
              routine={routine}

@@ -3,6 +3,7 @@ import ElemList from './ElemList';
 import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { getRoutineSummary } from './common';
+import RoutineHeader from './RoutineHeader';
 
 interface MuscleGroupListProps {
     loading?: boolean;
@@ -34,7 +35,7 @@ export default class MuscleGroupList extends Component<MuscleGroupListProps> {
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}
-                subHeader={'Muscle Groups:'}
+                subHeader={(<RoutineHeader routine={routine}/>)}
                 error={error ? "Error loading muscle groups" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

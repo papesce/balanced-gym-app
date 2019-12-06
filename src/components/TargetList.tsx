@@ -3,6 +3,7 @@ import ElemCardList from './ElemCardList';
 import { ITarget } from '../model/TargetModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { getTargetSummary1, getTargetSummary2  } from './summary.target';
+import MuscleGroupHeader from './MuscleGroupHeader';
 
 interface TargetListProps {
     loading?: boolean;
@@ -44,7 +45,7 @@ export default class TargetList extends Component<TargetListProps> {
                 getSecondary2={getSecondary2}
                 getImage={getImage}
                 getId={getId}
-                subHeader={'Targets:'}
+                subHeader={(<MuscleGroupHeader muscleGroup={muscleGroup}/>)}
                 error={error ? "Error loading the muscle group" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

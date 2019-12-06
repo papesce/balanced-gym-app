@@ -3,7 +3,7 @@ import { ITarget } from './TargetModel';
 export interface IMuscleGroup {
     _id: string,
     name: string,
-    routineId?: number,
+    routineId?: string,
     routineName?: string,
     targetsCount?: number,
     exercisesCount?: number,

@@ -50,8 +50,10 @@ export const muscleGroupWithEmptyTargetList: IMuscleGroup = {
 }
 
 export const muscleGroupWithSingleTarget: IMuscleGroup = {
-  "_id":"5dde9b568603d000157b6284",
-  "name":"Chest",
+  _id:"5dde9b568603d000157b6284",
+  name:"Chest",
+  routineId: "5dde9b568603d000157b6285",
+  routineName: "Chest Shoulder Biceps",
   targets:[sampleTarget],
   exercisesCount: 10,
   lastUpdated: "2018-03-02T00:21:55.118Z",
@@ -59,8 +61,10 @@ export const muscleGroupWithSingleTarget: IMuscleGroup = {
 }
 
 export const muscleGroupWithFullTargetList: IMuscleGroup = {
-  "_id":"5dde9b568603d000157b6284",
-  "name":"Chest",
+  _id:"5dde9b568603d000157b6284",
+  name:"Chest",
+  routineId: "5dde9b568603d000157b6285",
+  routineName: "Chest Shoulder Biceps",
   targets:[sampleTarget1, sampleTarget2, sampleTarget3],
   exercisesCount: 10,
   lastUpdated: "2018-03-02T00:21:55.118Z",
