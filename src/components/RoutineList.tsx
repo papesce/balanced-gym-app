@@ -33,6 +33,7 @@ export default class RoutineList extends Component<RoutineListProps> {
                 getSecondary={getSecondary}
                 getId={getId}
                 error={error ? "Error loading routines" : undefined}
+                subHeader={'Routines:'}
                 noDataMsg={noDataMsg}
                 onClick={onClick}
             >

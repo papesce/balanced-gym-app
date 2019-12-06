@@ -38,7 +38,8 @@ noDataMsg="No data available"/>;
 export const singleList = () => <ElemList data={singledataList}
 getPrimary={getPrimary} getSecondary={getSecondary} getId={getId} 
 onClick={action('clicked item')}/>;
-export const fullList = () => <ElemList data={fulldataList}
+export const fullList = () => <ElemList subHeader="Sub Header" 
+data={fulldataList}
 getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}
 onClick={action('clicked item')}/>;
 

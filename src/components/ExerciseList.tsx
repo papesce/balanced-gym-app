@@ -35,6 +35,7 @@ export default class ExerciseList extends Component<ExerciseListProps> {
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}
+                subHeader={'Exercises:'}
                 error={error ? "Error loading exercises" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

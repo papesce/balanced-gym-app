@@ -34,6 +34,7 @@ export default class MuscleGroupList extends Component<MuscleGroupListProps> {
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}
+                subHeader={'Muscle Groups:'}
                 error={error ? "Error loading muscle groups" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

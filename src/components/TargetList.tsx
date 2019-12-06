@@ -44,6 +44,7 @@ export default class TargetList extends Component<TargetListProps> {
                 getSecondary2={getSecondary2}
                 getImage={getImage}
                 getId={getId}
+                subHeader={'Targets:'}
                 error={error ? "Error loading the muscle group" : undefined}
                 noDataMsg={noDataMsg}
                 onClick={onClick}

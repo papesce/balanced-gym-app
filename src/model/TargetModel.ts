@@ -3,6 +3,10 @@ import { IExercise } from './ExerciseModel';
 export interface ITarget {
     _id: string,
     name: string,
+    routineId?: string,
+    routineName?: string,
+    muscleGroupId?: string,
+    muscleGroupName?: string,
     exercisesCount?: number,
     synergistsCount?: number,
     stabilizersCount?: number,

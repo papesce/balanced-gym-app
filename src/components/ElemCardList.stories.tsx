@@ -50,5 +50,6 @@ onClick={action('clicked item')}/>;
 export const fullList = () => <ElemCardList data={fulldataList}
 getPrimary={getPrimary} getSecondary1={getSecondary1}  getImage={getImage}
 getSecondary2={getSecondary2} getId={getId}
+subHeader={'Sub Header'}
 onClick={action('clicked item')}/>;
 

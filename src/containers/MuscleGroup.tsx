@@ -5,6 +5,7 @@ import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { ITarget } from '../model/TargetModel';
 import { loadMuscleGroup } from '../redux/actions.muscleGroup';
 import { withRouter } from "react-router";
+import ElemPaper from '../components/ElemPaper';
 
 interface MuscleGroupProps {
     loading: boolean;
@@ -26,8 +27,10 @@ export class MuscleGroup extends Component<MuscleGroupProps> {
     }
     render() {
         const { loading, error, muscleGroup } = this.props;
+        // console.log('muscleGroup', muscleGroup);
         return (<>
-           <div>Routines / Routine / Targets</div>
+           <div>Routine: {muscleGroup.routineName}</div>
+           <div>Muscle Group: {muscleGroup.name}</div>
            <TargetList loading={loading}
              error={error} 
              muscleGroup={muscleGroup}

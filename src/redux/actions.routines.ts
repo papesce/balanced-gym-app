@@ -22,7 +22,7 @@ export const fetchRoutinesBegin = () => ({
 
 export const loadRoutines = () => (dispatch: any) => {
      dispatch(fetchRoutinesBegin());
-     return fetch(`${process.env.REACT_APP_SERVER}/routines`)
+     return fetch(`${process.env.REACT_APP_SERVER}/api/routines`)
      .then(handleErrors)
      .then(res => res.json())
      .then(routines => {

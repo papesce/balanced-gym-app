@@ -4,6 +4,7 @@ import RoutineList from '../components/RoutineList';
 import { IRoutinesState, IRoutine } from '../model/RoutineModel';
 import { loadRoutines } from '../redux/actions.routines';
 import { withRouter } from "react-router";
+import ElemPaper from '../components/ElemPaper';
 
 interface RoutineProps {
     routinesState?: IRoutinesState;
@@ -23,7 +24,7 @@ export class Routines extends Component<RoutineProps> {
     render() {
         const { routinesState = {} } = this.props;
         return (<>
-           <div>Routines</div> 
+           <ElemPaper title="Routines" />
            <RoutineList loading={routinesState.loading}
              error={routinesState.error} 
              routines={routinesState.routines}

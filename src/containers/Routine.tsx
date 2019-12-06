@@ -5,6 +5,7 @@ import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { loadRoutine } from '../redux/actions.routine';
 import { withRouter } from "react-router";
+import ElemPaper from '../components/ElemPaper';
 
 interface RoutineProps {
     loading: boolean;
@@ -27,7 +28,7 @@ export class Routine extends Component<RoutineProps> {
     render() {
         const { loading, error, routine } = this.props;
         return (<>
-           <div>Routines / Routine</div>
+           <div>Routine: {routine.name}</div>
            <MuscleGroupList loading={loading}
              error={error} 
              routine={routine}
