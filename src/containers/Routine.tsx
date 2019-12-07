@@ -5,7 +5,6 @@ import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { loadRoutine } from '../redux/actions.routine';
 import { withRouter } from "react-router";
-import ElemPaper from '../components/ElemPaper';
 
 interface RoutineProps {
     loading: boolean;

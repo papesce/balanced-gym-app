@@ -6,7 +6,12 @@ export const sampleExercise1: IExercise = {
     "lastReps": 1,
     "lastWeight": 2,
     "normalizedWeight": 0,
-    "seriesCount": 3
+    "seriesCount": 3,
+    suggestedSerie: {
+        "reps": 13,
+        "weight": 27.5
+      },
+    "gifURL": "/BBSquatHigh.gif"
 } 
 
 export const sampleExercise2: IExercise = {
@@ -16,7 +21,12 @@ export const sampleExercise2: IExercise = {
       "lastReps": 10,
       "lastWeight": 7.5,
       "normalizedWeight": 7.5,
-      "seriesCount": 4
+      "seriesCount": 4,
+      "gifURL": "/DBLungeQuad.gif",
+      suggestedSerie: {
+        "reps": 13,
+        "weight": 27.5
+      }
 } 
 
 export const sampleExercise3: IExercise = {
@@ -25,7 +35,12 @@ export const sampleExercise3: IExercise = {
       "lastReps": 0,
       "lastWeight": 0,
       "normalizedWeight": 0,
-      "seriesCount": 0
+      "seriesCount": 0,
+      "gifURL": "/BBRearLunge.gif",
+      suggestedSerie: {
+        "reps": 13,
+        "weight": 27.5
+      },
 } 
 
 export const sampleExercise4: IExercise = {
@@ -35,5 +50,10 @@ export const sampleExercise4: IExercise = {
     "lastReps": 12,
     "lastWeight": 25,
     "normalizedWeight": 25,
-    "seriesCount": 1
+    "seriesCount": 1,
+    "gifURL": "/DBSplitSquat.gif",
+    "suggestedSerie": {
+        "reps": 13,
+        "weight": 27.5
+      },
 } 

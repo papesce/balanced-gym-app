@@ -1,4 +1,9 @@
 
+interface ISerie {
+    reps: number,
+    weight: number
+}
+
 export interface IExercise {
     _id: string,
     name: string,
@@ -7,5 +12,6 @@ export interface IExercise {
     lastWeight?: number,
     normalizedWeight?: number,
     seriesCount?: number
-    // suggestedSerie
+    suggestedSerie?: ISerie,
+    gifURL?: string
 }

@@ -5,7 +5,6 @@ import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { ITarget } from '../model/TargetModel';
 import { loadMuscleGroup } from '../redux/actions.muscleGroup';
 import { withRouter } from "react-router";
-import ElemPaper from '../components/ElemPaper';
 
 interface MuscleGroupProps {
     loading: boolean;
