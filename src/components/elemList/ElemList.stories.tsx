@@ -3,7 +3,7 @@ import ElemList from './ElemList';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'ElemList',
+    title: 'elemList/ElemList',
   };
 
 const emptydataList: [] = [];

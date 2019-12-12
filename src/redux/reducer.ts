@@ -1,6 +1,10 @@
+import { exercisePage } from './../components/exercisePage/ExercisePage.stories';
+import { IExercise } from './../model/ExerciseModel';
 import { IRoutineState } from './../model/RoutineModel';
 import { IMuscleGroupState } from './../model/MuscleGroupModel';
 import { ITargetState } from './../model/TargetModel';
+import { IExerciseState } from './../model/ExerciseModel';
+
 import { FETCH_ROUTINES_BEGIN, FETCH_ROUTINES_SUCCESS, FETCH_ROUTINES_FAILURE }
 from './actions.routines';
 import {
@@ -9,6 +13,7 @@ import {
  import { FETCH_MUSCLE_GROUP_BEGIN, FETCH_MUSCLE_GROUP_FAILURE, FETCH_MUSCLE_GROUP_SUCCESS,
  } from './actions.muscleGroup';
  import { FETCH_TARGET_BEGIN, FETCH_TARGET_FAILURE, FETCH_TARGET_SUCCESS} from './actions.target';
+import { FETCH_EXERCISE_BEGIN, FETCH_EXERCISE_FAILURE, FETCH_EXERCISE_SUCCESS } from './actions.exercise';
 
 export const routinesReducer = (state: IRoutineState = {} , action: any ) => {
     switch (action.type) {
@@ -56,6 +61,19 @@ export const routinesReducer = (state: IRoutineState = {} , action: any ) => {
       case FETCH_TARGET_SUCCESS:
         return { target: action.payload.target };
       case FETCH_TARGET_FAILURE:
+        return { error : action.payload.error}        
+      default:
+        return state
+    }
+  }
+
+  export const exerciseReducer = (state: IExerciseState = {} , action: any ) => {
+    switch (action.type) {
+      case FETCH_EXERCISE_BEGIN:
+        return { loading: true };
+      case FETCH_EXERCISE_SUCCESS:
+        return { exercise: action.payload.exercise };
+      case FETCH_EXERCISE_FAILURE:
         return { error : action.payload.error}        
       default:
         return state

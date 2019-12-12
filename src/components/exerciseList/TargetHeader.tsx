@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { ITarget } from '../model/TargetModel';
-import { IHeaderRow } from './HeaderRow';
-import HeaderRowList from './HeaderRowList';
+import { ITarget } from '../../model/TargetModel';
+import { IHeaderRow } from '../headerRowList/HeaderRow';
+import HeaderRowList from '../headerRowList/HeaderRowList';
 
 interface  TargetHeaderProps {
     target: ITarget;

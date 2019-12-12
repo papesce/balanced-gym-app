@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ElemList from './ElemList';
-import { IRoutine } from '../model/RoutineModel';
-import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { getRoutineSummary } from './common';
+import ElemList from '../elemList/ElemList';
+import { IRoutine } from '../../model/RoutineModel';
+import { IMuscleGroup } from '../../model/MuscleGroupModel';
+import { getRoutineSummary } from '../common';
 import RoutineHeader from './RoutineHeader';
 
 interface MuscleGroupListProps {

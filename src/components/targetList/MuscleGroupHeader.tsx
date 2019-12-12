@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { IHeaderRow } from './HeaderRow';
-import HeaderRowList from './HeaderRowList';
+import { IMuscleGroup } from '../../model/MuscleGroupModel';
+import { IHeaderRow } from '../headerRowList/HeaderRow';
+import HeaderRowList from '../headerRowList/HeaderRowList';
 
 interface  MuscleGroupHeaderProps {
     muscleGroup: IMuscleGroup;

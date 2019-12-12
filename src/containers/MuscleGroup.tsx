@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TargetList from '../components/TargetList';
+import TargetList from '../components/targetList/TargetList';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { ITarget } from '../model/TargetModel';
 import { loadMuscleGroup } from '../redux/actions.muscleGroup';

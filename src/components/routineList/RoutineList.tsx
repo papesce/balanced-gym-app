@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ElemList from './ElemList';
-import { IRoutine } from '../model/RoutineModel'
-import { getRoutineSummary } from './common';
+import ElemList from '../elemList/ElemList';
+import { IRoutine } from '../../model/RoutineModel'
+import { getRoutineSummary } from '../common';
 
 interface RoutineListProps {
     loading?: boolean;

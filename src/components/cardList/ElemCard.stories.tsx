@@ -1,9 +1,9 @@
 import React from 'react';
 import ElemCard from './ElemCard';
-import { action } from '@storybook/addon-actions';
+// import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'ElemCard',
+    title: 'cardList/ElemCard',
   };
 
 const data =
@@ -15,7 +15,7 @@ const data =
   muscleURL: "/GluteusMaximus.png"
 };
 
-const getId = (elem: any) => elem._id;
+// const getId = (elem: any) => elem._id;
 const getPrimary = (elem: any) => elem.name;
 const getSecondary1 = (elem: any) => elem.desc1;
 const getSecondary2 = (elem: any) => elem.desc2;

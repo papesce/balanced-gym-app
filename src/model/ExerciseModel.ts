@@ -1,3 +1,6 @@
+import { IRoutine } from './RoutineModel';
+import { ITarget } from './TargetModel';
+import { IMuscleGroup } from './MuscleGroupModel';
 
 interface ISerie {
     reps: number,
@@ -13,5 +16,14 @@ export interface IExercise {
     normalizedWeight?: number,
     seriesCount?: number
     suggestedSerie?: ISerie,
-    gifURL?: string
+    gifURL?: string,
+    muscleGroup?: IMuscleGroup,
+    target?: ITarget,
+    routineId?: IRoutine,
+}
+
+export interface IExerciseState {
+    loading?: boolean;
+    error?: string;
+    exercise?: IExercise;
 }

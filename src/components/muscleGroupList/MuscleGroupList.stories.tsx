@@ -2,11 +2,11 @@ import React from 'react';
 import MuscleGroupList from './MuscleGroupList';
 import { action } from '@storybook/addon-actions';
 import { sampleRoutine1, routineWithEmptyGroup, routineWithSingleGroup, 
-  routineWithFullGroup } from '../model/RoutineModel.sample'
+  routineWithFullGroup } from '../../model/RoutineModel.sample'
 import { BrowserRouter as Router } from 'react-router-dom';
 
   export default {
-    title: 'Muscle Group', 
+    title: 'muscleGroupList/Muscle Group', 
   };
 
 export const loadingList = () => <MuscleGroupList loading />;

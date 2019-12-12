@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ElemCardList from './ElemCardList';
-import { ITarget } from '../model/TargetModel';
-import { IExercise } from '../model/ExerciseModel';
-import { getExerciseSummary } from './common';
+import ElemCardList from '../cardList/ElemCardList';
+import { ITarget } from '../../model/TargetModel';
+import { IExercise } from '../../model/ExerciseModel';
+import { getExerciseSummary } from '../common';
 import TargetHeader from './TargetHeader';
 
 interface ExerciseListProps {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ExerciseList from '../components/ExerciseList';
+import ExerciseList from '../components/exerciseList/ExerciseList';
 import { ITarget } from '../model/TargetModel';
 import { IExercise } from '../model/ExerciseModel';
 import { loadTarget } from '../redux/actions.target';
@@ -22,8 +22,8 @@ export class Target extends Component<TargetProps> {
           loadTarget && loadTarget(routineId, muscleGroupId, targetId);
     }
     onExerciseClick = (exercise: IExercise) => {
-    //     // const { history,  match : { params : { routineId }} } = this.props;
-    //     // history.push(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
+      const { history } = this.props;
+      history.push(`/exercise/${exercise._id}`);
     }
     render() {
         const { loading, error, target } = this.props;

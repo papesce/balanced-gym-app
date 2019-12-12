@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { IRoutine } from '../model/RoutineModel';
-import { IHeaderRow } from './HeaderRow';
-import HeaderRowList from './HeaderRowList';
+import { IRoutine } from '../../model/RoutineModel';
+import { IHeaderRow } from '../headerRowList/HeaderRow';
+import HeaderRowList from '../headerRowList/HeaderRowList';
 
 
 interface  RoutineHeaderProps {

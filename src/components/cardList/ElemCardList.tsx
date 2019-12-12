@@ -1,43 +1,46 @@
 import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
+import ElemCard from './ElemCard';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
-import ListWrapper from './ListWrapper';
+import ListWrapper from '../ListWrapper';
+import './ElemCardList.css';
 
 // import WorkIcon from '@material-ui/icons/Work';
 // import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import './ElemList.css';
 
-interface ElemListProps {
+
+
+interface ElemCardListProps {
   data?: any[],
   noDataMsg?: string,
   getId?: (elem: any) => string;
   getPrimary?: (elem: any) => string;
-  getSecondary?: (elem: any) => string;
+  getSecondary1?: (elem: any) => string;
+  getSecondary2?: (elem: any) => string;
+  getImage?: (elem: any) => string;
   onClick?: (elem: any) => void;
   subHeader?: any;
   loading?: boolean;
   error?: string;
 }
 
-class ElemList extends Component<ElemListProps> { 
+class ElemCardList extends Component<ElemCardListProps> { 
 onClick = (elem: any) => {
   const { onClick = (()=>{}) }  = this.props;
   onClick(elem);
 }
 render = () => {
   const {data = [], noDataMsg,
-    getId = (()=>''), 
-    getPrimary = (()=>''), 
-    getSecondary = (()=>''),
-    subHeader = '',
+    getId = (()=>''),
+     getPrimary = (()=>''),
+     getSecondary1 = (()=>''),
+     getSecondary2 = (()=>''),
+     getImage = (()=>''),
+     subHeader = '',
      loading, error} = this.props;
   if (loading) {
-    return  (<CircularProgress className='elem-list'/>);
+    return  (<CircularProgress  className='target-list'/>);
   }
   if (error) {
     return (<Typography className='elem-list' variant="caption" display="block" gutterBottom>
@@ -52,21 +55,27 @@ render = () => {
   return (
     <ListWrapper subHeader={subHeader}>
       {data.map((elem: any) => (
-        <ListItem button key={getId(elem)}
+        <ListItem button key={getId(elem)} onClick={() => this.onClick(elem)}
         >
-        <ListItemAvatar>
+        <ElemCard primary={getPrimary(elem)} 
+           secondary1={getSecondary1(elem)} 
+           secondary2={getSecondary2(elem)}
+           image={getImage(elem)}  
+           // onClick={() => this.onClick(elem)}
+           ></ElemCard>
+        {/* <ListItemAvatar>
           <Avatar>
             <ImageIcon />
           </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={getPrimary(elem)}
+        </ListItemAvatar> */}
+        {/* <ListItemText primary={getPrimary(elem)}
            secondary={getSecondary(elem)} 
-           onClick={() => this.onClick(elem)}/>
-      </ListItem>
+           onClick={() => this.onClick(elem)}/> */}
+      </ListItem> 
       ))}
     </ListWrapper>
   );
 }
 }
 
-export default ElemList;
+export default ElemCardList;

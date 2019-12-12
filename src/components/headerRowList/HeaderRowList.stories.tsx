@@ -4,7 +4,7 @@ import { IHeaderRow }  from './HeaderRow';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
-    title: 'Header Row List', 
+    title: 'headerRowList/Header Row List', 
   };
 
   const header: IHeaderRow = {

@@ -3,10 +3,10 @@ import RoutineList from './RoutineList';
 import { action } from '@storybook/addon-actions';
 import { emptyRoutineList,
    singleRoutineList,
-    fullRoutineList } from '../model/RoutineModel.sample'
+    fullRoutineList } from '../../model/RoutineModel.sample'
 
 export default {
-    title: 'Routine', 
+    title: 'routineList/Routine', 
   };
 
 export const loadingList = () => <RoutineList loading />;

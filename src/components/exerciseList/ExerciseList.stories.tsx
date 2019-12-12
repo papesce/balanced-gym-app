@@ -1,11 +1,11 @@
 import React from 'react';
 import ExerciseList from './ExerciseList';
 import { action } from '@storybook/addon-actions';
-import { sampleTarget1, sampleTargetWithSingleExercise, sampleTargetWithFullExercise } from '../model/TargetModel.sample'
+import { sampleTarget1, sampleTargetWithSingleExercise, sampleTargetWithFullExercise } from '../../model/TargetModel.sample'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
-    title: 'Exercises', 
+    title: 'exerciseList/Exercises', 
   };
 
 export const loadingList = () => <ExerciseList loading />;
