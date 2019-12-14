@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { IExercise } from '../../model/ExerciseModel';
 import ElemPage, { IElemPage } from './ElemPage';
 import DetailsPage from './DetailsPage';
+import LogPage from './LogPage';
+import MusclesPage from './MusclesPage';
 import ExerciseHeader from './ExerciseHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -18,11 +20,12 @@ class ExercisePage extends Component<ExercisePageProps> {
         const { exercise = emptyExercise, loading, error } = this.props;
          const defaultError = error ? "Error loading exericse" : undefined;
          const detailsPage = <DetailsPage/>;
-         const emptyPage = <div></div>
+         const musclesPage = <MusclesPage/>;
+         const logPage = <LogPage/>;
          const pages: IElemPage[] = [
-            {name: 'Log', page: emptyPage},
+            {name: 'Log', page: logPage},
             {name: 'Details', page: detailsPage},
-            {name: 'Muscles', page: emptyPage}
+            {name: 'Muscles', page: musclesPage}
           ] 
           if (loading) {
             return  (<CircularProgress  className='target-list'/>);
