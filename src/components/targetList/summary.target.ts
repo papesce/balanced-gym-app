@@ -1,6 +1,7 @@
-import { ITarget } from '../model/TargetModel';
-import { getDaysFromString } from '../utils/dateUtils';
-import { addS } from '../utils/utils';
+import { getSynsAndStabs } from './../common';
+import { ITarget } from '../../model/TargetModel';
+import { getDaysFromString } from '../../utils/dateUtils';
+import { addS } from '../../utils/utils';
 
 export const getTargetSummary2 = (target: ITarget) => {
     let text = '';
@@ -25,15 +26,7 @@ export const getTargetSummary1 = (target: ITarget) => {
     const { exercisesCount, synergistsCount, stabilizersCount} = target;
     const ecount = exercisesCount || 0;  
     text = `${addS('exercise', ecount)}`
-    if (synergistsCount || stabilizersCount) text = text + ` (`;
-    if (synergistsCount) {
-             text = text + `syns: ${synergistsCount}`;
-    }
-    if (stabilizersCount) {
-        if (synergistsCount) text = text + `, `;
-        text = text + `stbs: ${stabilizersCount}`;
-    }
-    if (synergistsCount || stabilizersCount) text = text + `)`;
+    text = text + getSynsAndStabs(synergistsCount, stabilizersCount);
     return text;
 }
 

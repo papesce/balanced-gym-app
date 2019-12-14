@@ -1,6 +1,4 @@
-import { IExercise } from './../model/ExerciseModel';
-
-import { getRoutineSummary, getExerciseSummary } from './common';
+import { getRoutineSummary } from './common';
 import { IRoutine } from '../model/RoutineModel';
 
 describe('getRoutineSecondary', () => {
@@ -78,58 +76,3 @@ describe('getRoutineSecondary', () => {
 
 
 
-
-describe('getExerciseSecondary', () => {
-    it('no exercises', () => {
-       const exercise: IExercise = { 
-        _id:'',
-        name:'',
-        };
-        const text = getExerciseSummary(exercise);
-        expect(text).toBe("")
-    });
-    it('Last Reps', () => {
-        const exercise: IExercise = { 
-            _id:'',
-            name:'',
-            lastReps: 10
-            };
-        const text = getExerciseSummary(exercise);
-        expect(text).toBe("r:10 w:0 t:0")
-      });
-      it('Last weight', () => {
-        const exercise: IExercise = { 
-            _id:'',
-            name:'',
-            lastReps: 10,
-            lastWeight: 9
-            };
-        const text = getExerciseSummary(exercise);
-        expect(text).toBe("r:10 w:9 t:0")
-      });
-      it('RepsCount', () => {
-        const exercise: IExercise = { 
-            _id:'',
-            name:'',
-            lastReps: 10,
-            lastWeight: 9,
-            seriesCount: 2
-            };
-        const text = getExerciseSummary(exercise);
-        expect(text).toBe("r:10 w:9 t:2")
-      });
-      it('last updated yesterday', () => {
-         const yesterday = new Date();
-         yesterday.setDate(yesterday.getDate() - 1);
-         const exercise: IExercise = { 
-            _id:'',
-            name:'',
-            lastReps: 10,
-            lastWeight: 9,
-            seriesCount: 2,
-            lastUpdated:yesterday.toString()
-            };
-        const text = getExerciseSummary(exercise);
-        expect(text).toBe("1 day r:10 w:9 t:2");
-    });
-})

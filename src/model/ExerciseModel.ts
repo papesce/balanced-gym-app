@@ -15,6 +15,8 @@ export interface IExercise {
     lastWeight?: number,
     normalizedWeight?: number,
     seriesCount?: number
+    synergistsCount?: number,
+    stabilizersCount?: number,
     suggestedSerie?: ISerie,
     gifURL?: string,
     muscleGroup?: IMuscleGroup,

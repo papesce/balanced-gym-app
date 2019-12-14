@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { IExercise } from '../../model/ExerciseModel';
-import { IMuscleGroup } from '../../model/MuscleGroupModel';
-import { ITarget } from '../../model/TargetModel';
-import { IRoutine } from '../../model/RoutineModel';
 import ElemPage, { IElemPage } from './ElemPage';
 import DetailsPage from './DetailsPage';
 import ExerciseHeader from './ExerciseHeader';
@@ -37,7 +34,7 @@ class ExercisePage extends Component<ExercisePageProps> {
           } 
         return (<>
              <ExerciseHeader exercise={exercise} />
-             <ElemPage pages={pages}/>;
+             <ElemPage pages={pages}/>
             {/* <div>
                 Name: {name}
             </div>

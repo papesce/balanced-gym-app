@@ -1,5 +1,5 @@
 import { getTargetSummary, getTargetSummary1, getTargetSummary2 } from './summary.target';
-import { ITarget } from './../model/TargetModel';
+import { ITarget } from '../../model/TargetModel';
 
 describe('getTargetSummary1', () => {
     it('no exercises', () => {

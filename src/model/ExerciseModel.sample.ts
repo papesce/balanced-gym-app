@@ -26,7 +26,9 @@ export const sampleExercise2: IExercise = {
       suggestedSerie: {
         "reps": 13,
         "weight": 27.5
-      }
+      },
+      synergistsCount: 4,
+      stabilizersCount: 7
 } 
 
 export const sampleExercise3: IExercise = {
@@ -41,6 +43,7 @@ export const sampleExercise3: IExercise = {
         "reps": 13,
         "weight": 27.5
       },
+      
 } 
 
 export const sampleExercise4: IExercise = {
@@ -56,4 +59,6 @@ export const sampleExercise4: IExercise = {
         "reps": 13,
         "weight": 27.5
       },
+    synergistsCount: 2,
+    
 } 

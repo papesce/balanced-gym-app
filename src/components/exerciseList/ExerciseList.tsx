@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ElemCardList from '../cardList/ElemCardList';
 import { ITarget } from '../../model/TargetModel';
 import { IExercise } from '../../model/ExerciseModel';
-import { getExerciseSummary } from '../common';
+import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
 
 interface ExerciseListProps {
@@ -17,9 +17,11 @@ interface ExerciseListProps {
 const getId = (exercise: IExercise) => {
     return exercise._id;
 }
-
-export const getSecondary = (exercise: IExercise) => {
-    return getExerciseSummary(exercise);
+export const getSecondary1 = (exercise: IExercise) => {
+    return getExerciseSummary1(exercise);
+}
+export const getSecondary2 = (exercise: IExercise) => {
+    return getExerciseSummary2(exercise);
 }
 export const getImage = (exercise: IExercise) => {
     return exercise.gifURL || '';
@@ -37,8 +39,8 @@ export default class ExerciseList extends Component<ExerciseListProps> {
         return (
             <ElemCardList loading={loading} data={target.exercises}
                 getPrimary={getPrimary} 
-                getSecondary1={getSecondary}
-                // getSecondary2={getSecondary}
+                getSecondary1={getSecondary1}
+                getSecondary2={getSecondary2}
                 getId={getId}
                 getImage={getImage}
                 subHeader={(<TargetHeader target={target}/>)}
