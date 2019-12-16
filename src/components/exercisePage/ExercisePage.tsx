@@ -38,44 +38,7 @@ class ExercisePage extends Component<ExercisePageProps> {
         return (<>
              <ExerciseHeader exercise={exercise} />
              <ElemPage pages={pages}/>
-            {/* <div>
-                Name: {name}
-            </div>
-            <div>
-                Muscle Group: {muscleGroup.name} 
-            </div>
-            <div>
-                Target: {target.name}
-            </div>
-            <div>
-                Equipment:
-            </div>
-            <div>
-                Last 2/3 Series:
-                (r:2, w:10)
-                (r:2, w:9)
-            </div>
-            <div>
-                Suggested Serie: (r: 2, w: 15)
-            </div>
-            <div>
-                Routine: {routineId.name}
-            </div>     
-            <div>
-                Add New Serie:
-            </div>
-            <div>
-                Series Count: 12
-            </div>
-            <div>
-                Last Updated:  200 days ago
-            </div>
-            <div>
-                syn:
-            </div>
-            <div>
-                stab:
-            </div> */}
+           
             </>
         )
     }

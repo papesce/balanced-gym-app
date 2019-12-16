@@ -5,5 +5,5 @@ export default {
     title: 'exercisePage/LogPage',
   };
   
-export const detailsPage = () => 
+export const logPage = () => 
       <LogPage />;    

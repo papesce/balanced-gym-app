@@ -2,8 +2,8 @@ import React from 'react';
 import MusclesPage from './MusclesPage';
 
 export default {
-    title: 'exercisePage/MusclesPage',
+    title: 'exercisePage/MusclePage',
   };
   
-export const detailsPage = () => 
+export const musclePage = () => 
       <MusclesPage />;    
