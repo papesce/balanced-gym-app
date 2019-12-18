@@ -16,7 +16,7 @@ export default {
   ]
 
   const fullHeaders : IHeaderRow[] = [
-    {_id: '1', title: "Title1:", value:"value1", url:"url1"},
+    {_id: '1', title: "Title1:", value:"value1"},
     {_id: '2', title: "Title2:", value:"value2", url:"url2"},
     {_id: '3', title: "Title3:", value:"value3", url:"url3"}
   ]

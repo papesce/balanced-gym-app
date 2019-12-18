@@ -10,5 +10,11 @@ export default {
      _id: '1', title: "Title:", value:"value", url:"url"
   };
 
+  const header2: IHeaderRow = {
+    _id: '1', title: "Title:", value:"value"
+ };
+
   export const headerRow = () => 
     <Router><HeaderRow header={header}/></Router>;
+  export const unlikedHeaderRow = () => 
+    <Router><HeaderRow header={header2}/></Router>;

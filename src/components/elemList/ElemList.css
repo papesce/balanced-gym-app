@@ -1,3 +1,4 @@
 .elem-list {
-    padding: 16px 16px;
+    padding: 16px 160px;
+    max-width: 360px;
 }

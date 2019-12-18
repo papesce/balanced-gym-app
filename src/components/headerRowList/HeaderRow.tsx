@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export interface IHeaderRow {
     _id: string,
     title: string,
-    url: string,
+    url?: string,
     value: string
 }
 
@@ -16,10 +16,17 @@ interface HeaderRowProps {
 export default class HeaderRow extends Component<HeaderRowProps> {
     render() {
         const { header: { title, url, value } } = this.props;
+        let linkedValue;
+        if (url) {
+            linkedValue = <Link className='header-link' to={url}>{value}</Link>  
+        } else {
+            linkedValue = (<span className='header-row-unlinked'>{value}</span>);
+        };
         return (
                  <div className='header-row'>
-                {title}
-                <Link className='header-link' to={url}>{value}</Link></div>
+                <span className='header-row-title'>{title}</span>
+                {linkedValue}
+                </div>
         )
     }
 }

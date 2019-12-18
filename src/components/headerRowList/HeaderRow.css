@@ -1,7 +1,17 @@
 .header-row {
     line-height: 24px;
+    font-size: 0.875rem;
+}
+
+.header-row-title {
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .header-link {
     margin-left: 8px;
+}
+
+.header-row-unlinked {
+    margin-left: 8px;
+    color: black;
 }

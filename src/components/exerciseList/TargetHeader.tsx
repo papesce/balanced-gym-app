@@ -14,15 +14,13 @@ export default class TargetHeader extends Component<TargetHeaderProps> {
             routineId,
             muscleGroupName = '',
             muscleGroupId, 
-            name,
-            _id } } = this.props;
+            name} } = this.props;
         const headers: IHeaderRow[] = [
+            {_id: '3',  title: "Target:", value: name},
             {_id: '1',  title: "Routine:", value: routineName, 
             url:`/routine/${routineId}`},
             {_id: '2',  title: "Muscle Group:", value: muscleGroupName, 
-            url:`/routine/${routineId}/muscleGroup/${muscleGroupId}`},
-            {_id: '3',  title: "Target:", value: name, 
-            url:`/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${_id}`},
+            url:`/routine/${routineId}/muscleGroup/${muscleGroupId}`}
         ];
         return (<HeaderRowList headers={headers} listTitle={'Exercises:'} />)
     }

@@ -9,12 +9,11 @@ interface  MuscleGroupHeaderProps {
 
 export default class MuscleGroupHeader extends Component<MuscleGroupHeaderProps> {
     render() {
-        const { muscleGroup: { routineName = '', routineId, name, _id } } = this.props;
+        const { muscleGroup: { routineName = '', routineId, name } } = this.props;
         const headers: IHeaderRow[] = [
+            {_id: '2',  title: "Muscle Group:", value: name}, 
             {_id: '1',  title: "Routine:", value: routineName, 
-            url:`/routine/${routineId}`},
-            {_id: '2',  title: "Muscle Group:", value: name, 
-            url:`/routine/${routineId}/muscleGroup/${_id}`},
+            url:`/routine/${routineId}`}
         ];
         return (<HeaderRowList headers={headers} listTitle={'Targets:'} />)
     }
