@@ -1,11 +1,8 @@
 import { IRoutine } from './RoutineModel';
 import { ITarget } from './TargetModel';
 import { IMuscleGroup } from './MuscleGroupModel';
+import { ISerie } from './SerieModel';
 
-interface ISerie {
-    reps: number,
-    weight: number
-}
 
 export interface IExercise {
     _id: string,
@@ -22,6 +19,7 @@ export interface IExercise {
     muscleGroup?: IMuscleGroup,
     target?: ITarget,
     routineId?: IRoutine,
+    series?: ISerie[]
 }
 
 export interface IExerciseState {
