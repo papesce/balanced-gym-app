@@ -1,4 +1,5 @@
 import { IExercise } from './ExerciseModel';
+import { series1, series2, series8 } from './SerieModel.sample';
 
 export const sampleExercise1: IExercise = {
     "_id": "59f0c59d4e55c40d38868035",
@@ -7,10 +8,6 @@ export const sampleExercise1: IExercise = {
     "lastWeight": 2,
     "normalizedWeight": 0,
     "seriesCount": 3,
-    suggestedSerie: {
-        "reps": 13,
-        "weight": 27.5
-      },
     "gifURL": "/BBSquatHigh.gif"
 } 
 
@@ -23,10 +20,6 @@ export const sampleExercise2: IExercise = {
       "normalizedWeight": 7.5,
       "seriesCount": 4,
       "gifURL": "/DBLungeQuad.gif",
-      suggestedSerie: {
-        "reps": 13,
-        "weight": 27.5
-      },
       synergistsCount: 4,
       stabilizersCount: 7
 } 
@@ -38,11 +31,7 @@ export const sampleExercise3: IExercise = {
       "lastWeight": 0,
       "normalizedWeight": 0,
       "seriesCount": 0,
-      "gifURL": "/BBRearLunge.gif",
-      suggestedSerie: {
-        "reps": 13,
-        "weight": 27.5
-      },
+      "gifURL": "/BBRearLunge.gif"
       
 } 
 
@@ -55,10 +44,29 @@ export const sampleExercise4: IExercise = {
     "normalizedWeight": 25,
     "seriesCount": 1,
     "gifURL": "/DBSplitSquat.gif",
-    "suggestedSerie": {
-        "reps": 13,
-        "weight": 27.5
-      },
     synergistsCount: 2,
-    
+} 
+
+export const sampleExerciseSeries: IExercise = {
+  _id: '',
+  name: 'Chest',
+  series: []
+}
+
+export const sampleExerciseSeries1: IExercise = {
+  _id: '',
+  name: 'Chest',
+  series: series1
+}
+
+export const sampleExerciseSeries2: IExercise = {
+  _id: '',
+  name: 'Chest',
+  series: series2
+}   
+  
+export const sampleExerciseSeries8: IExercise = {
+  _id: '',
+  name: 'Chest',
+  series: series8
 } 

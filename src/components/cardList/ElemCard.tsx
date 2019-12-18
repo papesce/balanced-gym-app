@@ -30,7 +30,7 @@ const ElemCard: React.FC<ElemCardProps> = ({ primary = '',
  secondary1 = '', secondary2 = '', image = ''}) => {
   const classes = useStyles();
   const imageURL: string = `${process.env.REACT_APP_SERVER}/${image}`;
-  console.log(imageURL)
+  // console.log(imageURL)
   return (
     <Card className={classes.card}>
        <CardMedia

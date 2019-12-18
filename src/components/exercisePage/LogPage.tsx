@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { IExercise } from '../../model/ExerciseModel';
+import Graph from './Graph';
 
-export default class LogPage extends Component {
+interface LogProps {
+    exercise: IExercise
+}
+
+export default class LogPage extends Component<LogProps> {
     render() {
+        const { exercise } = this.props;
         return (
-            <div>
-                Log here
-            </div>
+            <Graph exercise={exercise}></Graph>
         )
     }
 }

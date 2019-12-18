@@ -21,7 +21,7 @@ class ExercisePage extends Component<ExercisePageProps> {
          const defaultError = error ? "Error loading exericse" : undefined;
          const detailsPage = <DetailsPage/>;
          const musclesPage = <MusclesPage/>;
-         const logPage = <LogPage/>;
+         const logPage = <LogPage exercise={ exercise }/>;
          const pages: IElemPage[] = [
             {name: 'Log', page: logPage},
             {name: 'Details', page: detailsPage},

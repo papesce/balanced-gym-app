@@ -14,12 +14,12 @@ export interface IExercise {
     seriesCount?: number
     synergistsCount?: number,
     stabilizersCount?: number,
-    suggestedSerie?: ISerie,
     gifURL?: string,
     muscleGroup?: IMuscleGroup,
     target?: ITarget,
     routineId?: IRoutine,
-    series?: ISerie[]
+    series?: ISerie[],
+    suggestedSerie?: ISerie
 }
 
 export interface IExerciseState {
