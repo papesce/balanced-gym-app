@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ElemList from '../elemList/ElemList';
 import { IRoutine } from '../../model/RoutineModel'
 import { getRoutineSummary } from '../common';
+import './RoutineList.css';
 
 interface RoutineListProps {
     loading?: boolean;
@@ -27,13 +28,14 @@ export default class RoutineList extends Component<RoutineListProps> {
     render() {
         const { routines = [], loading, error, noDataMsg = "No routines", 
             onClick = ()=>{} } = this.props;
+        const subHeader = <div className='routine-list-subheader'>Routines:</div>;
         return (
             <ElemList loading={loading} data={routines}
                 getPrimary={getPrimary} 
                 getSecondary={getSecondary}
                 getId={getId}
                 error={error ? "Error loading routines" : undefined}
-                subHeader={'Routines:'}
+                subHeader={subHeader}
                 noDataMsg={noDataMsg}
                 onClick={onClick}
             >

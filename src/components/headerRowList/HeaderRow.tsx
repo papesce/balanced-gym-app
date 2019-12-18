@@ -23,9 +23,9 @@ export default class HeaderRow extends Component<HeaderRowProps> {
             linkedValue = (<span className='header-row-unlinked'>{value}</span>);
         };
         return (
-                 <div className='header-row'>
-                <span className='header-row-title'>{title}</span>
-                {linkedValue}
+                <div className='header-row'>
+                  <span className='header-row-title'>{title}</span>
+                  {linkedValue}
                 </div>
         )
     }
