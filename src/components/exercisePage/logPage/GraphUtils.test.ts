@@ -1,5 +1,5 @@
 import { getGraphData } from './GraphUtils';
-import { series0, series1 } from '../../model/SerieModel.sample';
+import { series0, series1 } from '../../../model/SerieModel.sample';
 
 describe('Graph', () => {
     it('getGraph series0', () => {
@@ -11,7 +11,7 @@ describe('Graph', () => {
     it('getGraph series1', () => {
         const {labels, reps, weights} = getGraphData(series1);
         expect(labels).toHaveLength(1);
-        expect(labels[0]).toBe('680');
+        expect(labels[0]).toBe('681');
         expect(reps).toHaveLength(1);
         expect(reps[0]).toBe(8)
         expect(weights).toHaveLength(1);

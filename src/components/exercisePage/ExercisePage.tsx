@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { IExercise } from '../../model/ExerciseModel';
 import ElemPage, { IElemPage } from './ElemPage';
 import DetailsPage from './DetailsPage';
-import LogPage from './LogPage';
+import LogPage from './logPage/LogPage';
 import MusclesPage from './MusclesPage';
 import ExerciseHeader from './ExerciseHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';

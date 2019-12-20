@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactFrappeChart from "react-frappe-charts";
-import { IExercise}  from '../../model/ExerciseModel';
+import { IExercise}  from '../../../model/ExerciseModel';
 import { getGraphData } from './GraphUtils';
 import './Graph.css';
 

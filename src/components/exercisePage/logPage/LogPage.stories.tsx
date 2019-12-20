@@ -1,9 +1,9 @@
 import React from 'react';
 import LogPage from './LogPage';
-import { sampleExerciseSeries2 } from '../../model/ExerciseModel.sample';
+import { sampleExerciseSeries2 } from '../../../model/ExerciseModel.sample';
 
 export default {
-    title: 'exercisePage/LogPage',
+    title: 'exercisePage/logPage/LogPage',
   };
  
 

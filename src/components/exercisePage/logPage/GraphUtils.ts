@@ -1,5 +1,5 @@
-import { getDaysFromString } from './../../utils/dateUtils';
-import { ISerie } from '../../model/SerieModel';
+import { getDaysFromString } from '../../../utils/dateUtils';
+import { ISerie } from '../../../model/SerieModel';
 
 export const getGraphData = ( series: ISerie[] ) => {
     const labels: string[] = [];

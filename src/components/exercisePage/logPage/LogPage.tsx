@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IExercise } from '../../model/ExerciseModel';
+import { IExercise } from '../../../model/ExerciseModel';
 import Graph from './Graph';
 
 interface LogProps {
