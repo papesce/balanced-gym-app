@@ -1,6 +1,5 @@
 import { getSynsAndStabs } from './../common';
 import { IExercise } from '../../model/ExerciseModel';
-import { IRoutine } from '../../model/RoutineModel';
 import { getDaysFromString } from '../../utils/dateUtils';
 import { addS } from '../../utils/utils';
 
@@ -25,7 +24,7 @@ export const getExerciseSummary1 = (exercise: IExercise) => {
 export const getExerciseSummary2 = (exercise: IExercise) => {
     let text = '';
     // setNumberOfDays(exercise: withExercise)
-    const { lastReps, lastWeight = 0, seriesCount = 0, lastUpdated, synergistsCount, stabilizersCount  } = exercise;
+    const { synergistsCount, stabilizersCount  } = exercise;
     text = text + getSynsAndStabs(synergistsCount, stabilizersCount);
     // if (lastUpdated) {
     //     const days = getDaysFromString(lastUpdated);  

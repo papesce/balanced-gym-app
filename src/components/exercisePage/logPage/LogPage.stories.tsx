@@ -3,7 +3,7 @@ import LogPage from './LogPage';
 import { sampleExerciseSeries2 } from '../../../model/ExerciseModel.sample';
 
 export default {
-    title: 'exercisePage/logPage/LogPage',
+    title: 'logPage/LogPage',
   };
  
 

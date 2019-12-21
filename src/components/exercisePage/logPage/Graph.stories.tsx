@@ -3,7 +3,7 @@ import Graph from './Graph';
 import { sampleExerciseSeries, sampleExerciseSeries1, sampleExerciseSeries2, sampleExerciseSeries8 } from '../../../model/ExerciseModel.sample';
 
 export default {
-    title: 'exercisePage/logPage/Graph',
+    title: 'logPage/Graph',
   };
 
 export const graphSeries0 = () => 
