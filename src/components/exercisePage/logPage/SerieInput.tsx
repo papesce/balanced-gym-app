@@ -6,16 +6,27 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import './SerieInput.css';
 
-export default class SeriesInput extends Component {
+interface SerieInputProps {
+    handleDoneClick?: () => void;
+    handleCancelClick?: () => void;
+    handleRepsChange?: () => void;
+    handleWeightChange?: () => void;
+}
+
+export default class SeriesInput extends Component<SerieInputProps> {
     render() {
+        const { handleDoneClick, handleCancelClick,
+             handleRepsChange, handleWeightChange } = this.props;
         return (
             <div className="serie-input">
                 <TextField
                     className="serie-input-text-field"
                     id="input-reps"
                     label="# Reps"
-                    // type="number"
+                    type="number"
                     variant="outlined"
+                    onChange={handleRepsChange}
+                    // onBlur
                 />
                 <TextField
                     className="serie-input-text-field"
@@ -26,11 +37,12 @@ export default class SeriesInput extends Component {
                       }}
                     type="number"
                     variant="outlined"
+                    onChange={handleWeightChange}
                 />
-                <IconButton>
+                <IconButton onClick={handleDoneClick}>
                     <DoneIcon/>
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={handleCancelClick}>
                     <CancelIcon/>
                 </IconButton>
             </div>

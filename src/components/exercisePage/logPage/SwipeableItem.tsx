@@ -3,6 +3,7 @@ import './SwipeableItem.css';
 
 interface SwipeableItemProps {
     threshold?: number;
+    background?: any;
     onSwipe?: any;
 }
 
@@ -109,21 +110,23 @@ export default class SwipeableItem extends Component<SwipeableItemProps> {
       }  
     render() {
         return (
-            <div>
+            <>
                 <div className="Wrapper" ref={div => (this.wrapper = div)}>
-                    <div className="Background" ref={div => (this.background = div)}>
-                        <span>Delete</span>
-                    </div>
+                  <div ref={div => (this.background = div)} className="Background">
+                    {this.props.background 
+                      ? this.props.background 
+                      : <span>Delete</span>}
+                   </div>
                     <div
                         ref={div => (this.listElement = div)}
                         onMouseDown={this.onDragStartMouse}
                         onTouchStart={this.onDragStartTouch}
-                        className="ListItem"
->                   {this.props.children}
+                        className="ListItem">
+                       {this.props.children}
                    </div>
                  </div>
-                (https://malcoded.com/posts/react-swipeable-list/)
-            </div>
+               
+            </>
         )
     }
 }
