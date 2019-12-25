@@ -4,3 +4,10 @@ export interface ISerie {
     reps: number,
     weight: number
 }
+
+export const emptySerie = {
+    _id: '',
+    reps: 0,
+    weight:0,
+    createdAt: ''
+}

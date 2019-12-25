@@ -2,6 +2,7 @@
     max-width: 400px;
 }
 
-.serie-input-text-field {
-    width: 150px;
+.MuiTextField-root.serie-input-text-field {
+    width: 140px;
+    padding-right: 12px;
 }

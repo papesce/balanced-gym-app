@@ -76,7 +76,7 @@ export default class SwipeableItem extends Component<SwipeableItemProps> {
           const threshold = this.props.threshold || 0.9;
           
           const leLeft = this.listElement.offsetWidth * threshold * -1;
-          console.log('left vs listElement:', this.left, leLeft)
+          // console.log('left vs listElement:', this.left, leLeft)
           if (this.left < leLeft) {
             this.left = -this.listElement.offsetWidth * 2;
             this.onSwiped();
