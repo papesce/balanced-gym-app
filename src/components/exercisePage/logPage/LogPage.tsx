@@ -11,6 +11,7 @@ export default class LogPage extends Component<LogProps> {
         const { exercise } = this.props;
         return (
             <Graph exercise={exercise}></Graph>
+            
         )
     }
 }

@@ -9,7 +9,10 @@ interface GraphProps {
 }
 
 export default class Graph extends Component<GraphProps> {
-    render() {
+  onDataSelect = (evt: any) => {
+    console.log(evt.index, evt.label);
+  }  
+  render() {
       const { exercise } = this.props;
       const { series = [] } = exercise;
       const { labels, reps, weights } = getGraphData(series);
@@ -19,13 +22,20 @@ export default class Graph extends Component<GraphProps> {
             title={title}
       type="line"
       colors={["#21ba45"]}
-      axisOptions={{ xAxisMode: "tick", yAxisMode: "tick", xIsSeries: 1 }}
+      axisOptions={{ xAxisMode: "span", yAxisMode: "span", xIsSeries: 1 }}
       height={250}
       data={{
         labels,
         datasets: [{ name: 'Reps', values: reps  }, 
         {name: 'Weights', values: weights}]
       }}
+      lineOptions={ {dotSize: 5,
+         hideLine: 0, hideDots:0, 
+         heatline : 0, 
+         regionFill: 1, areaFill:0} }
+      isNavigable={true}
+      maxSlices={5}
+      onDataSelect={this.onDataSelect}
     />
     </div>
         )
