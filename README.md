@@ -16,6 +16,7 @@ yarn add @types/react-router-dom --dev
 yarn add npm-run-all --dev
 yarn add react-swipeable-views
 yarn add @types/react-swipeable-views --dev
+yarn add react-frappe-charts
 
 # Heroku
 heroku config:set REACT_APP_SERVER=https://balanced-gym-dev.herokuapp.com
