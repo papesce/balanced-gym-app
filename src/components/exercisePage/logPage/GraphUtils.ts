@@ -11,5 +11,11 @@ export const getGraphData = ( series: ISerie[] ) => {
         reps.push(serie.reps);
         weights.push(serie.weight);
     });
+    if (labels.length === 1) {
+        return { labels: ['', ...labels], 
+                 reps: [0, ...reps],
+                 weights: [0, ...weights]
+                }
+    }
     return { labels, reps, weights}
   } 

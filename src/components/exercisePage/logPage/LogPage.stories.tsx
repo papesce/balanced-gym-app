@@ -1,11 +1,13 @@
 import React from 'react';
 import LogPage from './LogPage';
-import { sampleExerciseSeries2 } from '../../../model/ExerciseModel.sample';
+import { sampleExerciseSeries2, sampleExerciseSeries8 } from '../../../model/ExerciseModel.sample';
 
 export default {
     title: 'logPage/LogPage',
   };
  
 
-export const logPage = () => 
-      <LogPage exercise={sampleExerciseSeries2} />;    
+export const series2 = () => 
+      <LogPage exercise={sampleExerciseSeries2} />;   
+export const series8 = () =>  
+      <LogPage exercise={sampleExerciseSeries8} />;   

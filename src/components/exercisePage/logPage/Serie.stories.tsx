@@ -9,8 +9,6 @@ export default {
   
 export const serieInitialSerie = () => 
       <Serie initialSerie={serie1} />;  
-export const serieCancel = () => 
-      <Serie handleCancel={action('cancel')} />;
 export const serieDelete = () => 
       <Serie handleDelete={action('deleted')} />;
 export const serieDone = () => 

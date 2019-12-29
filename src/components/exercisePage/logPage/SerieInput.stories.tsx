@@ -14,5 +14,10 @@ export const initialSerie = () =>
         <SerieInput handleDoneClick={action('done click')}
           handleCancelClick={action('cancel click')}
           initialSerie={serie1}
-          />;         
+          />;
+export const invalidNumber = () => 
+          <SerieInput handleDoneClick={action('done click')}
+            handleCancelClick={action('cancel click')}
+            initialSerie={serie1}
+            />;                      
         

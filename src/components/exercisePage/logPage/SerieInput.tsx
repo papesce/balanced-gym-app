@@ -58,7 +58,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
         handleDoneClick && handleDoneClick(serie)
     }
     render() {
-        const { handleCancelClick,
+        const { 
              initialSerie = emptySerie } = this.props;
         return (
             <div className="serie-input">
@@ -89,9 +89,9 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                 <IconButton onClick={this.handleDoneClick}>
                     <DoneIcon/>
                 </IconButton> )}
-                <IconButton onClick={handleCancelClick}>
+                {/* <IconButton onClick={handleCancelClick}>
                     <CancelIcon/>
-                </IconButton>
+                </IconButton> */}
             </div>
         )
     }
