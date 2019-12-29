@@ -1,0 +1,20 @@
+.chart-container {
+    pointer-events: none;
+    max-width: 340px;
+}
+
+.chart-container .chart-draw-area {
+    pointer-events: all;
+
+    
+
+    
+}
+
+.chart-container .chart-draw-area .y.axis {
+    pointer-events: none;
+}
+
+.chart-container .chart-draw-area .x.axis {
+    pointer-events: all;
+}
