@@ -33,7 +33,7 @@ export default class LogPage extends Component<LogProps, LogState> {
         if (selectedSerie) console.log(selectedSerie.reps);
         return (<>
             <Graph exercise={exercise} 
-                   handleSelected={this.handleSelected} ></Graph>
+                   handleSelected={this.handleSelected} isNavigable></Graph>
             {selectedSerie && <Serie key={selectedSerie._id} initialSerie={selectedSerie}></Serie>}
            
             </>
