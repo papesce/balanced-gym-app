@@ -30,9 +30,9 @@ export const newSerieBegin = () => ({
     type: EDIT_SERIE_BEGIN
   });
   
-  export const editSerieSuccess = (serie: ISerie) => ({
+  export const editSerieSuccess = (exercise:IExercise, serie: ISerie) => ({
     type: EDIT_SERIE_SUCCESS,
-    payload: { serie }
+    payload: { exercise, serie }
   });
   
   export const editSerieFailure = (error: string) => ({
@@ -79,9 +79,9 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
       })
     .then(handleErrors)
     .then(res => res.json())
-    .then(serie => {
-        dispatch(editSerieSuccess(serie))
-        return serie;
+    .then(result => {
+        dispatch(editSerieSuccess(result.exercise, result.serie))
+        return result;
     })
     .catch(error => {
       // console.log('patch api/exercise/:id/serie/:id', error.message);
