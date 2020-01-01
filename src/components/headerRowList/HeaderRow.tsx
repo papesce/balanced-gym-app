@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export interface IHeaderRow {
     _id: string,
-    title: string,
+    title?: string,
     url?: string,
     value: string
 }
@@ -24,7 +24,7 @@ export default class HeaderRow extends Component<HeaderRowProps> {
         };
         return (
                 <div className='header-row'>
-                  <span className='header-row-title'>{title}</span>
+                  {title && <span className='header-row-title'>{title}</span>}
                   {linkedValue}
                 </div>
         )
