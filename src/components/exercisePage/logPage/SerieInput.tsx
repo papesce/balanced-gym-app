@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
-import CancelIcon from '@material-ui/icons/Cancel';
+// import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { ISerie, emptySerie } from '../../../model/SerieModel';
@@ -17,49 +17,71 @@ interface SerieInputProps {
 
 interface SerieInputState {
     isDirty: boolean;
-    serie: ISerie;
+    isValidWeight: boolean;
+    weight: string;
+    isValidReps: boolean;
+    reps: string;
+}
+
+export const isValidWeight = (value: string) => {
+    const weight = parseFloat(value);
+    return weight >= 0;
+}
+
+export const isValidReps = (value: string) => {
+    const number = parseFloat(value);
+    const reps = parseInt(value);
+    return Number.isInteger(number) && reps >= 0;
+}
+
+export const isDirty = (reps: number, weight: number, initialSerie: ISerie) => {
+    const isDirty = weight >= 0 && reps >= 0 && (
+        weight !== initialSerie.weight ||
+        reps !== initialSerie.reps);
+    return isDirty;
 }
 
 export default class SeriesInput extends Component<SerieInputProps, SerieInputState> {
     constructor(props: SerieInputProps) {
         super(props);
         const { initialSerie = emptySerie } = props;
-        this.state = { 
+        console.log('initialSerie:', initialSerie);
+        this.state = {
             isDirty: false,
-            serie: initialSerie
+            weight: initialSerie.weight.toString(),
+            reps: initialSerie.reps.toString(),
+            isValidWeight: true,
+            isValidReps: true,
         };
     }
     reps: any = null;
-    computeIsDirty = (newSerie: ISerie) => {
-        const { initialSerie = emptySerie } = this.props;
-        const isDirty = newSerie.weight !== initialSerie.weight ||
-        newSerie.reps !== initialSerie.reps;
-        return isDirty;
-    }
     handleRepsChange = (evt: any) => {
-        const { serie } = this.state;
-        const { value: reps } = evt.target;
-        const num = parseInt(reps);
-        const newSerie: ISerie = {...serie, reps: num };
-        const isDirty: boolean = this.computeIsDirty(newSerie);
-        this.setState({isDirty, serie: newSerie })
+        const { value } = evt.target;
+        const { weight, isValidWeight } = this.state;
+        const { initialSerie = emptySerie } = this.props;
+        const isValid: boolean = isValidReps(value);
+        const dirty: boolean = isValid && isValidWeight &&
+             isDirty(parseInt(value), parseFloat(weight), initialSerie);
+        this.setState({isDirty: dirty, isValidReps: isValid, reps: value })
     };
     handleWeightChange = (evt: any) => {
-        const { serie } = this.state;
-        const { value: weight } = evt.target;
-        const num = parseInt(weight);
-        const newSerie = {...serie, weight: num };
-        const isDirty = this.computeIsDirty(newSerie);        
-        this.setState({isDirty, serie: newSerie });
+        const { value } = evt.target;
+        const { reps, isValidReps } = this.state;
+        const { initialSerie = emptySerie } = this.props;
+        const isValid: boolean = isValidWeight(value);
+        const dirty: boolean = isValid && isValidReps &&
+             isDirty(parseInt(reps), parseFloat(value), initialSerie);
+        this.setState({isDirty: dirty, isValidWeight: isValid, weight: value })
     };
-    handleDoneClick = (evt:any) => {
-        const { handleDoneClick } = this.props;
-        const { serie } = this.state;
-        handleDoneClick && handleDoneClick(serie)
+    handleDoneClick = () => {
+        const { handleDoneClick, initialSerie = emptySerie } = this.props;
+        const { reps, weight } = this.state; 
+        console.log('initialSerie:', initialSerie);
+        const serie: ISerie = {...initialSerie, reps: parseInt(reps), weight: parseFloat(weight) };
+        handleDoneClick && handleDoneClick(serie);
     }
     render() {
-        const { 
-             initialSerie = emptySerie } = this.props;
+        const { weight, reps, isValidWeight, isValidReps } = this.state;     
         return (
             <div className="serie-input">
                 <TextField
@@ -70,7 +92,8 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     type="number"
                     variant="outlined"
                     onChange={this.handleRepsChange}
-                    defaultValue={initialSerie.reps}
+                    value={reps}
+                    error={!isValidReps}
                     // onBlur
                 />
                 <TextField
@@ -83,7 +106,8 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     type="number"
                     variant="outlined"
                     onChange={this.handleWeightChange}
-                    defaultValue={initialSerie.weight}
+                    value={weight}
+                    error={!isValidWeight}
                 />
                 {this.state.isDirty && (
                 <IconButton onClick={this.handleDoneClick}>

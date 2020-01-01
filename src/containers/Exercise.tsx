@@ -14,7 +14,7 @@ interface ExerciseProps {
     loadExercise?: (exerciseId: string) => {};
     match?: any;
     history?: any;
-    editSerie?: (serie: ISerie) => {};
+    editSerie?: (exerciseId: string, serie: ISerie) => {};
     newSerie?: (exerciseId: string) => {};
     deleteSerie?: (exerciseId:string, serieId: string) => {};
     deleting?: boolean;
@@ -63,7 +63,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        editSerie:  (serie: ISerie) => dispatch(editSerie(serie)),
+        editSerie:  (exerciseId: string, serie: ISerie) => dispatch(editSerie(exerciseId, serie)),
         newSerie:  (exerciseId: string) => dispatch(newSerie(exerciseId)),
         deleteSerie: (exerciseId:string, serieId: string) => dispatch(deleteSerie(exerciseId, serieId)),
         loadExercise: (exerciseId: string) =>

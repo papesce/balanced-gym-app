@@ -70,10 +70,10 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
      );
  }; 
 
- export const editSerie = (serie: ISerie) => (dispatch: any) => {
+ export const editSerie = (exerciseId: string, serie: ISerie) => (dispatch: any) => {
     dispatch(editSerieBegin());
     const body: any = { serie };
-    return fetch(`${process.env.REACT_APP_SERVER}/api/serie/${serie._id}`,
+    return fetch(`${process.env.REACT_APP_SERVER}/api/exercise/${exerciseId}/serie/${serie._id}`,
     { method: 'patch', body })
     .then(handleErrors)
     .then(res => res.json())

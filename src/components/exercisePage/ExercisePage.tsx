@@ -13,7 +13,7 @@ interface ExercisePageProps {
    loading?: boolean;
    error?: string;
    exercise?: IExercise;
-   handleEditSerie?: (serie: ISerie) => void;
+   handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
    handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
 }
 

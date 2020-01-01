@@ -7,9 +7,9 @@ export default {
   };
  
   
-export const serieInitialSerie = () => 
+export const initialSerie = () => 
       <Serie initialSerie={serie1} />;  
 export const serieDelete = () => 
-      <Serie handleDelete={action('deleted')} />;
+      <Serie initialSerie={serie1} handleDelete={action('deleted')} />;
 export const serieDone = () => 
-      <Serie handleDone={action('done')}/>;            
+      <Serie initialSerie={serie1} handleDone={action('done')}/>;            

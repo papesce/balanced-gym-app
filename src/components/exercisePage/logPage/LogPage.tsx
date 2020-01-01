@@ -6,7 +6,7 @@ import Serie from './Serie';
 
 interface LogProps {
     exercise: IExercise,
-    handleEditSerie?: (serie: ISerie) => void;
+    handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
     handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
 }
 
@@ -43,7 +43,7 @@ export default class LogPage extends Component<LogProps, LogState> {
                 weight: 0,
                 reps: 0,
             }
-             handleEditSerie(editedSerie);
+             handleEditSerie(exercise._id, editedSerie);
         }
     }
     render() {
