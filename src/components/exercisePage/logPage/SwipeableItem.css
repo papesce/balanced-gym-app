@@ -9,7 +9,7 @@
 
   .BouncingListItem {
     transition: transform 0.5s ease-out;
-    width: 400px;
+    width: 340px;
     align-items: center;
     box-sizing: border-box;
     background-color: #fff;
@@ -19,7 +19,7 @@
   
   .Background {
     position: absolute;
-    width: 400px;
+    width: 340px;
     height: 72px;
     z-index: -1;
     display: flex;
@@ -34,6 +34,6 @@
   
   .Wrapper {
     position: relative;
-    width: 400px;
+    width: 340px;
     height: 72px;
   }

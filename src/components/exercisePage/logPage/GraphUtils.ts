@@ -5,11 +5,13 @@ export const getGraphData = ( series: ISerie[] ) => {
     const labels: string[] = [];
     const reps: number[] = [];
     const weights: number[] = [];
-    series.slice().reverse().forEach(serie => {
-        const days: number = getDaysFromString(serie.createdAt);
-        labels.push(days.toString());
-        reps.push(serie.reps);
-        weights.push(serie.weight);
+    series.slice(0,6).reverse().forEach(serie => {
+        if (serie.createdAt) {
+            const days: number = getDaysFromString(serie.createdAt);
+            labels.push(days.toString());
+            reps.push(serie.reps);
+            weights.push(serie.weight);
+        }
     });
     if (labels.length === 1) {
         return { labels: ['', ...labels], 

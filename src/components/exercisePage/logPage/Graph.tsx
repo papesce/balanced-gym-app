@@ -31,7 +31,7 @@ export default class Graph extends Component<GraphProps> {
       </Typography>);
       }
         return (<div className='chart-container'>
-            {/* <ReactFrappeChart
+          <ReactFrappeChart
             title={"Reps"}
       type="line"
       colors={['#7cd6fd', '#743ee2']}
@@ -60,8 +60,8 @@ export default class Graph extends Component<GraphProps> {
       isNavigable={isNavigable}
       valuesOverPoints={1}
       onDataSelect={this.onDataSelect}
-    /> */}
-     <ReactFrappeChart
+    /> 
+     {/* <ReactFrappeChart
             title={"Reps"}
       type="line"
       colors={['#7cd6fd']}
@@ -111,7 +111,7 @@ export default class Graph extends Component<GraphProps> {
       isNavigable={isNavigable}
       valuesOverPoints={1}
       onDataSelect={this.onDataSelect}
-    />
+    /> */}
     
     </div>
         )

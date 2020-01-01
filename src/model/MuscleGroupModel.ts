@@ -12,7 +12,6 @@ export interface IMuscleGroup {
     targets?: ITarget[]
 }
 
-
 export interface IMuscleGroupState {
     loading?: boolean;
     error?: string;

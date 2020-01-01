@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { IExercise } from '../../model/ExerciseModel';
+import { ISerie } from '../../model/SerieModel';
 import ElemPage, { IElemPage } from './ElemPage';
 import DetailsPage from './DetailsPage';
 import LogPage from './logPage/LogPage';
@@ -12,16 +13,21 @@ interface ExercisePageProps {
    loading?: boolean;
    error?: string;
    exercise?: IExercise;
+   handleEditSerie?: (serie: ISerie) => void;
+   handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
 }
 
 class ExercisePage extends Component<ExercisePageProps> {
     render() {
         const emptyExercise: IExercise = {_id:'', name:''}
-        const { exercise = emptyExercise, loading, error } = this.props;
+        const { exercise = emptyExercise, loading, error, 
+          handleEditSerie, handleDeleteSerie } = this.props;
          const defaultError = error ? "Error loading exericse" : undefined;
-         const detailsPage = <DetailsPage/>;
-         const musclesPage = <MusclesPage/>;
-         const logPage = <LogPage exercise={ exercise }/>;
+         const detailsPage = <DetailsPage key="1"/>;
+         const musclesPage = <MusclesPage key="2"/>;
+         const logPage = <LogPage key="3" exercise={ exercise } 
+          handleEditSerie={handleEditSerie}
+          handleDeleteSerie={handleDeleteSerie} />;
          const pages: IElemPage[] = [
             {name: 'Log', page: logPage},
             {name: 'Details', page: detailsPage},

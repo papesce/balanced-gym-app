@@ -1,6 +1,10 @@
-import { exercisePage } from './../components/exercisePage/ExercisePage.stories';
 import { configureStore, getDefaultMiddleware }  from '@reduxjs/toolkit'
-import { routinesReducer, routineReducer, muscleGroupReducer, targetReducer, exerciseReducer } from './reducer';
+import { routinesReducer } from './reducer.routines';
+import { routineReducer } from './reducer.routine';
+import { muscleGroupReducer } from './reducer.muscleGroup';
+import { targetReducer } from './reducer.target';
+import { exerciseReducer } from './reducer.exercise';
+import { serieReducer } from './reducer.serie';
 
 export const createStore = () => configureStore({
     reducer: {
@@ -8,7 +12,8 @@ export const createStore = () => configureStore({
         routineState: routineReducer,
         muscleGroupState: muscleGroupReducer,
         targetState: targetReducer,
-        exerciseState: exerciseReducer
+        exerciseState: exerciseReducer,
+        serieState: serieReducer
     },
     middleware: [...getDefaultMiddleware()],
     devTools: process.env.NODE_ENV !== 'production',

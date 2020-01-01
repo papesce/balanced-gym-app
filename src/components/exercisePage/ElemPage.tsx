@@ -33,8 +33,8 @@ export default class ElemPage extends Component<ElemPageProps, ElemPageState> {
             <ButtonGroup fullWidth size="small" aria-label="small outlined button group">
                 {pages.map((item, index)=> 
                   (index === selected) ?  
-                     <Button style={{backgroundColor:'gray'}} onClick={()=>this.handleClick(index)}>{item.name}</Button>
-                   : <Button onClick={()=>this.handleClick(index)}>{item.name}</Button>
+                     <Button key={index} style={{backgroundColor:'gray'}} onClick={()=>this.handleClick(index)}>{item.name}</Button>
+                   : <Button key={index} onClick={()=>this.handleClick(index)}>{item.name}</Button>
                 )}
           </ButtonGroup>
           <SwipeableViews

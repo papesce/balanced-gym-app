@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExercisePage from '../components/exercisePage/ExercisePage';
 import { IExercise } from '../model/ExerciseModel';
+import { ISerie, ISerieState } from '../model/SerieModel';
 import { loadExercise } from '../redux/actions.exercise';
 import { withRouter } from "react-router";
+import { newSerie, editSerie, deleteSerie } from '../redux/actions.serie';
 
 interface ExerciseProps {
     loading: boolean;
@@ -12,6 +14,12 @@ interface ExerciseProps {
     loadExercise?: (exerciseId: string) => {};
     match?: any;
     history?: any;
+    editSerie?: (serie: ISerie) => {};
+    newSerie?: (exerciseId: string) => {};
+    deleteSerie?: (exerciseId:string, serieId: string) => {};
+    deleting?: boolean;
+    editing?: boolean;
+    creating?: boolean;
 }
 
 export class Exercise extends Component<ExerciseProps> {
@@ -20,13 +28,22 @@ export class Exercise extends Component<ExerciseProps> {
             } = this.props;
        loadExercise && loadExercise(exerciseId);
     }
+    newSerie = () => {
+        const { newSerie, exercise } = this.props;
+        newSerie && newSerie(exercise._id); 
+    }
     render() {
-        const { loading, error, exercise } = this.props;
+        const { loading, error, exercise, editSerie, deleteSerie,
+          creating, deleting, editing } = this.props;
+        const isLoading = loading || creating || deleting || editing;
         return (<>
-           <ExercisePage 
-             loading={loading}
+           {!isLoading && <button onClick={this.newSerie}>New</button>}
+           <ExercisePage
+             loading={isLoading}
              error={error} 
              exercise={exercise}
+             handleEditSerie={editSerie}
+             handleDeleteSerie={deleteSerie}
              />
              </>
         )
@@ -36,15 +53,22 @@ export class Exercise extends Component<ExerciseProps> {
 const mapStateToProps = (state: any) => {
     // console.log('state changed:', state)
     const { loading, error, exercise = {} } = state.exerciseState;
+    const serieState: ISerieState = state.serieState;;
+    const { editing, deleting, creating, editingError, creatingError, deletingError } = serieState;
     return {
-        loading, error, exercise
+        loading, error, exercise,
+        editing, deleting, creating, editingError, creatingError, deletingError
     };
 }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
+        editSerie:  (serie: ISerie) => dispatch(editSerie(serie)),
+        newSerie:  (exerciseId: string) => dispatch(newSerie(exerciseId)),
+        deleteSerie: (exerciseId:string, serieId: string) => dispatch(deleteSerie(exerciseId, serieId)),
         loadExercise: (exerciseId: string) =>
             dispatch(loadExercise(exerciseId))
+        
     }
 }
 
