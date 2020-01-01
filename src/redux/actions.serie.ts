@@ -73,9 +73,9 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
     dispatch(editSerieBegin());
     const body: any = { weight: serie.weight, reps: serie.reps };
     return fetch(`${process.env.REACT_APP_SERVER}/api/updateSerie/${serie._id}/exercise/${exerciseId}`,
-      { headers: { 'Content-Type': 'application/json' },
-       method: 'patch',
-       body: JSON.stringify(body)
+      { headers: { 'content-type': 'application/json' },
+        method: 'PATCH',
+        body: JSON.stringify(body)
       })
     .then(handleErrors)
     .then(res => res.json())
