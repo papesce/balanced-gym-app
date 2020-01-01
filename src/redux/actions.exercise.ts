@@ -29,8 +29,10 @@ export const loadExercise = (exerciseId: string) => (dispatch: any) => {
          dispatch(fetchExerciseSuccess(exercise))
          return exercise;
      })
-     .catch(error => dispatch(
-         fetchExerciseFailure(error))
+     .catch(error => {
+        // console.log('actions.exercise.error', error); 
+        return dispatch(fetchExerciseFailure(error));
+      }
      );
  }; 
 

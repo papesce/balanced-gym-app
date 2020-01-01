@@ -61,7 +61,6 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
      .then(handleErrors)
      .then(res => res.json())
      .then(result => {
-         debugger;
          dispatch(newSerieSuccess(result.exercise, result.serie))
          return result;
      })
@@ -72,23 +71,28 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
 
  export const editSerie = (exerciseId: string, serie: ISerie) => (dispatch: any) => {
     dispatch(editSerieBegin());
-    const body: any = { serie };
-    return fetch(`${process.env.REACT_APP_SERVER}/api/exercise/${exerciseId}/serie/${serie._id}`,
-    { method: 'patch', body })
+    const body: any = { weight: serie.weight, reps: serie.reps };
+    return fetch(`${process.env.REACT_APP_SERVER}/api/updateSerie/${serie._id}/exercise/${exerciseId}`,
+      { headers: { 'Content-Type': 'application/json' },
+       method: 'patch',
+       body: JSON.stringify(body)
+      })
     .then(handleErrors)
     .then(res => res.json())
     .then(serie => {
         dispatch(editSerieSuccess(serie))
         return serie;
     })
-    .catch(error => dispatch(
-        editSerieFailure(error))
-    );
+    .catch(error => {
+      // console.log('patch api/exercise/:id/serie/:id', error.message);
+      dispatch(
+        editSerieFailure(error.message))
+      });
 }; 
 
 export const deleteSerie = (exerciseId:string, serieId: string) => (dispatch: any) => {
     dispatch(deleteSerieBegin());
-    return fetch(`${process.env.REACT_APP_SERVER}/api/exercise/${exerciseId}/serie/${serieId}`,
+    return fetch(`${process.env.REACT_APP_SERVER}/api/deleteSerie/${serieId}/exercise/${exerciseId}`,
     {method: 'delete'})
     .then(handleErrors)
     .then(res => res.json())

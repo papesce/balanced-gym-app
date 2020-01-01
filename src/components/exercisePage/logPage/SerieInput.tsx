@@ -45,7 +45,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
     constructor(props: SerieInputProps) {
         super(props);
         const { initialSerie = emptySerie } = props;
-        console.log('initialSerie:', initialSerie);
+        // console.log('initialSerie:', initialSerie);
         this.state = {
             isDirty: false,
             weight: initialSerie.weight.toString(),
@@ -76,9 +76,15 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
     handleDoneClick = () => {
         const { handleDoneClick, initialSerie = emptySerie } = this.props;
         const { reps, weight } = this.state; 
-        console.log('initialSerie:', initialSerie);
+        // console.log('initialSerie:', initialSerie);
         const serie: ISerie = {...initialSerie, reps: parseInt(reps), weight: parseFloat(weight) };
         handleDoneClick && handleDoneClick(serie);
+    }
+    handleDoneKeyPress = (event: any) => {
+        console.log('keypress', event.keyCode);
+        if (event.keyCode === 13){
+            this.handleDoneClick();
+        }
     }
     render() {
         const { weight, reps, isValidWeight, isValidReps } = this.state;     
@@ -94,7 +100,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     onChange={this.handleRepsChange}
                     value={reps}
                     error={!isValidReps}
-                    // onBlur
+                    // onKeyPress={this.handleDoneKeyPress}
                 />
                 <TextField
                     className="serie-input-text-field"
@@ -108,9 +114,10 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     onChange={this.handleWeightChange}
                     value={weight}
                     error={!isValidWeight}
+                    
                 />
                 {this.state.isDirty && (
-                <IconButton onClick={this.handleDoneClick}>
+                <IconButton onClick={this.handleDoneClick} >
                     <DoneIcon/>
                 </IconButton> )}
                 {/* <IconButton onClick={handleCancelClick}>

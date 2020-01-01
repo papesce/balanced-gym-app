@@ -22,7 +22,7 @@ class ExercisePage extends Component<ExercisePageProps> {
         const emptyExercise: IExercise = {_id:'', name:''}
         const { exercise = emptyExercise, loading, error, 
           handleEditSerie, handleDeleteSerie } = this.props;
-         const defaultError = error ? "Error loading exericse" : undefined;
+         const defaultError = error;
          const detailsPage = <DetailsPage key="1"/>;
          const musclesPage = <MusclesPage key="2"/>;
          const logPage = <LogPage key="3" exercise={ exercise } 

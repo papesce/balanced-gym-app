@@ -33,15 +33,14 @@ export default class LogPage extends Component<LogProps, LogState> {
         const { handleDeleteSerie, exercise } = this.props;
         handleDeleteSerie && handleDeleteSerie(exercise._id, serieId);
     }
-    handleDone = () => {
+    handleDone = (editedSerie: ISerie) => {
         const { exercise, handleEditSerie } = this.props;
-        const { serieIndex } = this.state;
-        const selectedSerie = getSerie(exercise, serieIndex);
-        if (selectedSerie && handleEditSerie) {
+        const { weight, reps, _id } = editedSerie;
+        if (handleEditSerie) {
             const editedSerie: ISerie  = {
-                _id: selectedSerie._id,
-                weight: 0,
-                reps: 0,
+                _id,
+                weight,
+                reps,
             }
              handleEditSerie(exercise._id, editedSerie);
         }

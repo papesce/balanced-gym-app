@@ -11,19 +11,19 @@ export const serieReducer = (state: ISerieState = {} , action: any ) => {
       case EDIT_SERIE_SUCCESS:
         return { serie: action.payload.serie };
       case EDIT_SERIE_FAILURE:
-        return { error : action.payload.error};
+        return { editingError : action.payload.error};
       case NEW_SERIE_BEGIN:
           return { creating: true };
       case NEW_SERIE_SUCCESS:
           return { serie: action.payload.serie };
       case NEW_SERIE_FAILURE:
-          return { error : action.payload.error};
+          return { creatingError : action.payload.error};
       case DELETE_SERIE_BEGIN:
             return { deleting: true };
       case DELETE_SERIE_SUCCESS:
             return { serie: action.payload.serie };
       case DELETE_SERIE_FAILURE:
-            return { error : action.payload.error}                
+            return { deletingError : action.payload.error}                
       default:
         return state
     }

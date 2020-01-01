@@ -20,7 +20,30 @@ interface ExerciseProps {
     deleting?: boolean;
     editing?: boolean;
     creating?: boolean;
+    creatingError?: string;
+    deletingError?: string;
+    editingError?: string;
 }
+
+const getError = (error: string,
+     creatingError: string,
+      editingError: string,
+       deletingError: string) => {
+    if (error) {
+        return "Error loading exericse";
+    }
+    if (creatingError) {
+        return "Error creating serie";
+    }
+    if (editingError) {
+        return "Error editing serie";
+    }
+    if (deletingError) {
+        return "Error deleting serie";
+    }
+    return undefined;
+} 
+    
 
 export class Exercise extends Component<ExerciseProps> {
     componentDidMount = () => {
@@ -34,13 +57,15 @@ export class Exercise extends Component<ExerciseProps> {
     }
     render() {
         const { loading, error, exercise, editSerie, deleteSerie,
-          creating, deleting, editing } = this.props;
+          creating, deleting, editing, creatingError = '', editingError = '',
+          deletingError = ''} = this.props;
+        const theError = getError(error, creatingError, editingError, deletingError);
         const isLoading = loading || creating || deleting || editing;
         return (<>
            {!isLoading && <button onClick={this.newSerie}>New</button>}
            <ExercisePage
              loading={isLoading}
-             error={error} 
+             error={theError} 
              exercise={exercise}
              handleEditSerie={editSerie}
              handleDeleteSerie={deleteSerie}
