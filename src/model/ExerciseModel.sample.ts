@@ -70,3 +70,47 @@ export const sampleExerciseSeries8: IExercise = {
   name: 'Chest',
   series: series8
 } 
+
+export const fullExerciseSample: IExercise = {
+  _id: "5a5cfe29d273cb00140c8e8b",
+  name: "Weighted Lying Hip Abduction",
+  muscleGroup: {
+  "_id": "5dde9b568603d000157b6284",
+  "name": "Hips"
+  },
+  target: {
+  "_id": "5a55153bd9b8730014575790",
+  "name": "Hip Abductors",
+  "muscleURL": "/abductor-muscles2.jpg"
+  },
+  equipment: "Barbell Short",
+  routineId: {
+  "_id": "59ee3ddc243a5977dab96c2b",
+  "name": "Chest Triceps Waist Hips"
+  },
+  synergists: [
+  {
+    "_id": "5a5c1e834ba7ee0014932f02",
+    "name": "Gluteus Medius"
+  },
+  {
+    "_id": "5a5c1ea44ba7ee0014932f03",
+    "name": "Gluteus Minimus"
+  },
+  {
+    "_id": "5a5c0cf21b55f80014889a39",
+    "name": "Tensor Fasciae Latae"
+  }
+],
+"series": [
+  
+],
+lastReps: 0,
+lastWeight: 0,
+normalizedWeight: 0,
+suggestedSerie: {
+  _id: "",
+  "reps": 9,
+  "weight": 2.3
+}
+}

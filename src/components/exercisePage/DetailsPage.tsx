@@ -1,40 +1,49 @@
 import React, { Component } from 'react';
 import { IExercise } from '../../model/ExerciseModel';
+import { getDaysFromString } from '../../utils/dateUtils';
+import { addS } from '../../utils/utils';
 
 interface DetailsPageProps {
     exercise: IExercise;
 }
 
-export default class DetailsPage extends Component {
+export default class DetailsPage extends Component<DetailsPageProps> {
     render() {
-        // const { exercise } = this.props;
+        const { exercise } = this.props;
+        const { suggestedSerie = { reps: 0, weight:0}, 
+               series = [],
+               equipment = 'none',
+               lastUpdated = '2018-02-05T22:15:47.918Z',
+               synergists = [],
+               stabilizers = [],
+               lastReps = 0,
+               lastWeight = 0 } = exercise;
+        const days: number = getDaysFromString(lastUpdated); 
         return (
             <div>
             <div>
-                Equipment:
+                Equipment: {equipment}
             </div>
             <div>
-                Last 2/3 Series:
-                (r:2, w:10)
-                (r:2, w:9)
+                Last reps: {lastReps}
+            </div>
+            <div>    
+                Last weight: {lastWeight}
             </div>
             <div>
-                Suggested Serie: (r: 2, w: 15)
+                Suggested Serie: (r: {suggestedSerie.reps}, w: {suggestedSerie.weight})
             </div>
             <div>
-                Add New Serie:
+                Series Count: {series.length}
             </div>
             <div>
-                Series Count: 12
+                Last Updated:  {addS('day', days)}
             </div>
             <div>
-                Last Updated:  200 days ago
+                syn Count: {synergists.length}
             </div>
             <div>
-                syn:
-            </div>
-            <div>
-                stab:
+                stab Count: {stabilizers.length}
             </div> 
             </div>
         )

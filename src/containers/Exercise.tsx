@@ -15,7 +15,7 @@ interface ExerciseProps {
     match?: any;
     history?: any;
     editSerie?: (exerciseId: string, serie: ISerie) => {};
-    newSerie?: (exerciseId: string) => {};
+    newSerie?: (exerciseId: string, suggestedSerie: ISerie) => {};
     deleteSerie?: (exerciseId:string, serieId: string) => {};
     deleting?: boolean;
     editing?: boolean;
@@ -53,7 +53,8 @@ export class Exercise extends Component<ExerciseProps> {
     }
     newSerie = () => {
         const { newSerie, exercise } = this.props;
-        newSerie && newSerie(exercise._id); 
+        const { suggestedSerie = {_id: '', reps: 0, weight:0}} = exercise;
+        newSerie && newSerie(exercise._id, suggestedSerie); 
     }
     render() {
         const { loading, error, exercise, editSerie, deleteSerie,
@@ -89,7 +90,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         editSerie:  (exerciseId: string, serie: ISerie) => dispatch(editSerie(exerciseId, serie)),
-        newSerie:  (exerciseId: string) => dispatch(newSerie(exerciseId)),
+        newSerie:  (exerciseId: string, suggestedSerie: ISerie) => dispatch(newSerie(exerciseId, suggestedSerie)),
         deleteSerie: (exerciseId:string, serieId: string) => dispatch(deleteSerie(exerciseId, serieId)),
         loadExercise: (exerciseId: string) =>
             dispatch(loadExercise(exerciseId))

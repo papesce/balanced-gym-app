@@ -54,10 +54,15 @@ export const newSerieBegin = () => ({
     payload: { error }
   });
 
-export const newSerie = (exerciseId: string) => (dispatch: any) => {
+export const newSerie = (exerciseId: string, suggestedSerie: ISerie) => (dispatch: any) => {
      dispatch(newSerieBegin());
+     delete suggestedSerie._id;
+     const body: any = { suggestedSerie };
      return fetch(`${process.env.REACT_APP_SERVER}/api/newSerie/${exerciseId}`,
-     { method: 'post' })
+     { method: 'post',
+       headers: { 'content-type': 'application/json' },
+       body: JSON.stringify(body) 
+      })
      .then(handleErrors)
      .then(res => res.json())
      .then(result => {
@@ -73,8 +78,8 @@ export const newSerie = (exerciseId: string) => (dispatch: any) => {
     dispatch(editSerieBegin());
     const body: any = { weight: serie.weight, reps: serie.reps };
     return fetch(`${process.env.REACT_APP_SERVER}/api/updateSerie/${serie._id}/exercise/${exerciseId}`,
-      { headers: { 'content-type': 'application/json' },
-        method: 'PATCH',
+      { method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body)
       })
     .then(handleErrors)

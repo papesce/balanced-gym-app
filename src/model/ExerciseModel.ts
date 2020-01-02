@@ -19,7 +19,10 @@ export interface IExercise {
     target?: ITarget,
     routineId?: IRoutine,
     series?: ISerie[],
-    suggestedSerie?: ISerie
+    suggestedSerie?: ISerie,
+    equipment?: string;
+    synergists?: ITarget[];
+    stabilizers?: ITarget[];
 }
 
 export interface IExerciseState {
