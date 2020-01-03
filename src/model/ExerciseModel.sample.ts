@@ -81,7 +81,7 @@ export const fullExerciseSample: IExercise = {
   target: {
   "_id": "5a55153bd9b8730014575790",
   "name": "Hip Abductors",
-  "muscleURL": "/abductor-muscles2.jpg"
+  "muscleURL": "https://balanced-gym-dev.herokuapp.com/abductor-muscles2.jpg"
   },
   equipment: "Barbell Short",
   routineId: {

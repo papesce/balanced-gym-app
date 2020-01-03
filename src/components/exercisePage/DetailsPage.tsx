@@ -1,51 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { IExercise } from '../../model/ExerciseModel';
-import { getDaysFromString } from '../../utils/dateUtils';
-import { addS } from '../../utils/utils';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 interface DetailsPageProps {
     exercise: IExercise;
 }
 
-export default class DetailsPage extends Component<DetailsPageProps> {
-    render() {
-        const { exercise } = this.props;
+const useStyles = makeStyles(theme => ({
+    card: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9
+    },
+    expand: {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+      }),
+    },
+  }));
+
+const DetailsPage: React.FC<DetailsPageProps> = ({ exercise }) => {   
+        const classes = useStyles();
         const { suggestedSerie = { reps: 0, weight:0}, 
-               series = [],
+               gifURL,
                equipment = 'none',
-               lastUpdated = '2018-02-05T22:15:47.918Z',
                synergists = [],
-               stabilizers = [],
-               lastReps = 0,
-               lastWeight = 0 } = exercise;
-        const days: number = getDaysFromString(lastUpdated); 
+               stabilizers = [] } = exercise; 
+        const imageURL: string = `${process.env.REACT_APP_SERVER}/${gifURL}`;       
         return (
-            <div>
-            <div>
+                 <Card className={classes.card}>
+                 <CardMedia
+                        className={classes.media}
+                        image={imageURL}
+                        title="Paella dish"
+                />
+ <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+             <div>
                 Equipment: {equipment}
-            </div>
-            <div>
-                Last reps: {lastReps}
-            </div>
-            <div>    
-                Last weight: {lastWeight}
             </div>
             <div>
                 Suggested Serie: (r: {suggestedSerie.reps}, w: {suggestedSerie.weight})
             </div>
             <div>
-                Series Count: {series.length}
+                Syn Count: {synergists.length}
             </div>
             <div>
-                Last Updated:  {addS('day', days)}
-            </div>
-            <div>
-                syn Count: {synergists.length}
-            </div>
-            <div>
-                stab Count: {stabilizers.length}
+                Stab Count: {stabilizers.length}
             </div> 
-            </div>
+        </Typography>
+      </CardContent>
+                 </Card>
         )
-    }
 }
+
+export default DetailsPage;
