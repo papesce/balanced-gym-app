@@ -1,35 +1,38 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from './redux/configureStore';
-import HeaderContainer from './containers/HeaderContainer';
+import React from "react";
+import { Provider } from "react-redux";
+import { createStore } from "./redux/configureStore";
+import HeaderContainer from "./containers/HeaderContainer";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
-import Routines from './containers/Routines';
-import Routine from './containers/Routine';
-import MuscleGroup from './containers/MuscleGroup';
-import NoMatch from './components/NoMatch';
-import Target from './containers/Target';
-import Exercise from './containers/Exercise';
+import Routines from "./containers/Routines";
+import Routine from "./containers/Routine";
+import MuscleGroup from "./containers/MuscleGroup";
+import NoMatch from "./components/NoMatch";
+import Target from "./containers/Target";
+import Exercise from "./containers/Exercise";
 
 const store = createStore();
 
 const App: React.FC = () => {
   return (
     <Router>
-    <Provider store={store}>
-      <HeaderContainer />
-      <Switch>
+      <Provider store={store}>
+        <HeaderContainer />
+        <Switch>
           <Route exact path="/">
             <Redirect to="/routines" />
           </Route>
           <Route exact path="/exercise/:exerciseId">
-             <Exercise />
+            <Exercise />
           </Route>
-          <Route exact path="/routine/:routineId/muscleGroup/:muscleGroupId/target/:targetId">
+          <Route
+            exact
+            path="/routine/:routineId/muscleGroup/:muscleGroupId/target/:targetId"
+          >
             <Target />
           </Route>
           <Route exact path="/routine/:routineId/muscleGroup/:muscleGroupId">
@@ -44,10 +47,10 @@ const App: React.FC = () => {
           <Route path="*">
             <NoMatch />
           </Route>
-      </Switch>
-    </Provider>
+        </Switch>
+      </Provider>
     </Router>
   );
-}
+};
 
 export default App;

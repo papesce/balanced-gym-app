@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart } from "frappe-charts/dist/frappe-charts.min.esm";
+import { Chart } from "frappe-charts/dist/frappe-charts.esm";
 
 type ChartType =
   | "line"
@@ -22,12 +22,12 @@ type ChartData = {
   start?: Date;
   end?: Date;
   yRegions?: Array<{
-      label: string;
-      start: number;
-      end: number;
-      options: {
-          labelPos: string
-      }
+    label: string;
+    start: number;
+    end: number;
+    options: {
+      labelPos: string;
+    };
   }>;
 };
 
