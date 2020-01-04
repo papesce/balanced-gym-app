@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart } from "frappe-charts/dist/frappe-charts.esm";
+import { Chart } from "frappe-charts/dist/frappe-charts.min.esm";
 
 type ChartType =
   | "line"

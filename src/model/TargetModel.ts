@@ -1,23 +1,24 @@
-import { IExercise } from './ExerciseModel';
+import { IExercise } from "./ExerciseModel";
 
 export interface ITarget {
-    _id: string,
-    name: string,
-    routineId?: string,
-    routineName?: string,
-    muscleGroupId?: string,
-    muscleGroupName?: string,
-    exercisesCount?: number,
-    synergistsCount?: number,
-    stabilizersCount?: number,
-    doneToday?: number,
-    lastUpdated?: string,
-    exercises?: IExercise[]
-    muscleURL?: string
+  _id: string;
+  name: string;
+  routineId?: string;
+  routineName?: string;
+  muscleGroupId?: string;
+  muscleGroupName?: string;
+  exercisesCount?: number;
+  synergistsCount?: number;
+  stabilizersCount?: number;
+  doneToday?: number;
+  lastUpdated?: string;
+  exercises?: IExercise[];
+  muscleURL?: string;
+  muscleType?: string;
 }
 
 export interface ITargetState {
-    loading?: boolean;
-    error?: string;
-    target?: ITarget;
+  loading?: boolean;
+  error?: string;
+  target?: ITarget;
 }
