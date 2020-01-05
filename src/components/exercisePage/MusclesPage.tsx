@@ -9,7 +9,6 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { IExercise } from "../../model/ExerciseModel";
 import { ITarget } from "../../model/TargetModel";
 import Typography from "@material-ui/core/Typography";
-import { wrap } from "module";
 
 const useStyles = makeStyles(theme => ({
   root: {
