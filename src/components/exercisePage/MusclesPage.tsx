@@ -9,6 +9,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { IExercise } from "../../model/ExerciseModel";
 import { ITarget } from "../../model/TargetModel";
 import Typography from "@material-ui/core/Typography";
+import { wrap } from "module";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,10 +22,16 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     width: 345,
-    height: 350
+    // height: 350
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
+  },
+  tileBarSubtitle: {
+    whiteSpace: "normal"
+  },
+  tileBarTitle: {
+
   }
 }));
 
@@ -79,9 +86,11 @@ const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
           <GridListTile key={muscle._id}>
             <img src={getMuscleURL(muscle)} alt={" "} />
             <GridListTileBar
-              title={muscle.muscleType || ""}
-              titlePosition="top"
-              subtitle={<span>{muscle.name}</span>}
+              // title={muscle.muscleType || ""}
+              // titlePosition="top"
+              subtitle={(<div>
+              <span className={classes.tileBarSubtitle}>{muscle.name}</span>
+              <div className={classes.tileBarTitle}>({muscle.muscleType || ""})</div></div>)}
               // actionIcon={
               //   <IconButton
               //     aria-label={`info about ${muscle.name}`}

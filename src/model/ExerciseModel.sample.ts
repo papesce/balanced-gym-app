@@ -81,7 +81,7 @@ export const onlyTargetSample: IExercise = {
   target: {
     _id: "5a55153bd9b8730014575790",
     name: "Hip Abductors",
-    muscleURL: "https://localhost:5000/abductor-muscles2.jpg"
+    muscleURL: "/abductor-muscles2.jpg"
   }
 };
 
@@ -96,7 +96,7 @@ export const withSynergystsSample: IExercise = {
   target: {
     _id: "5a55153bd9b8730014575790",
     name: "Hip Abductors",
-    muscleURL: "http://localhost:5000/abductor-muscles2.jpg"
+    muscleURL: "/abductor-muscles2.jpg"
   },
   equipment: "Barbell Short",
   routineId: {
@@ -107,17 +107,17 @@ export const withSynergystsSample: IExercise = {
     {
       _id: "5a5514bad9b8730014575786",
       name: "Pectoralis Major. Clavicular",
-      muscleURL: "http://localhost:5000/PectoralisClavicular.png"
+      muscleURL: "/PectoralisClavicular.png"
     },
     {
       _id: "5a5514c8d9b8730014575787",
       name: "Deltoid, Anterior",
-      muscleURL: "http://localhost:5000/DeltoidAnteriorFront.gif"
+      muscleURL: "/DeltoidAnteriorFront.gif"
     },
     {
       _id: "5a5515fbd9b87300145757a3",
       name: "Triceps Brachii",
-      muscleURL: "http://localhost:5000/TricepsOutsideSmall.png"
+      muscleURL: "/TricepsOutsideSmall.png"
     }
   ],
   series: [],
