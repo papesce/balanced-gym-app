@@ -26,11 +26,17 @@ const useStyles = makeStyles(theme => ({
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
   },
+  gridTileBar: {
+    background: "rgba(0, 0, 0, 0.2)"
+  },
   tileBarSubtitle: {
-    whiteSpace: "normal"
+    whiteSpace: "normal",
+    color: "rgba(0, 0, 0, 0.9)",
+    background: "rgba(255, 255, 255, 0.5)"
   },
   tileBarTitle: {
-
+    color: "rgba(0, 0, 0, 0.9)",
+    background: "rgba(255, 255, 255, 0.5)"
   }
 }));
 
@@ -84,12 +90,13 @@ const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
         {muscles.map(muscle => (
           <GridListTile key={muscle._id}>
             <img src={getMuscleURL(muscle)} alt={" "} />
-            <GridListTileBar
+            <GridListTileBar className={classes.gridTileBar}
               // title={muscle.muscleType || ""}
               // titlePosition="top"
               subtitle={(<div>
-              <span className={classes.tileBarSubtitle}>{muscle.name}</span>
-              <div className={classes.tileBarTitle}>({muscle.muscleType || ""})</div></div>)}
+              <span className={classes.tileBarSubtitle}>{muscle.name}</span><div>
+              <span className={classes.tileBarTitle}>({muscle.muscleType || ""})</span>
+              </div></div>)}
               // actionIcon={
               //   <IconButton
               //     aria-label={`info about ${muscle.name}`}
