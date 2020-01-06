@@ -5,6 +5,7 @@ import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { loadRoutine } from '../redux/actions.routine';
 import { withRouter } from "react-router";
+import BackHeader from '../components/headerBar/BackHeader';
 
 interface RoutineProps {
     loading: boolean;
@@ -24,9 +25,14 @@ export class Routine extends Component<RoutineProps> {
         const { history,  match : { params : { routineId }} } = this.props;
         history.push(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
     }
+    handleBack = () => {
+        const { history } = this.props;
+        history.goBack();
+    }
     render() {
         const { loading, error, routine } = this.props;
         return (<>
+           <BackHeader handleBack={this.handleBack}/>
            <MuscleGroupList loading={loading}
              error={error} 
              routine={routine}

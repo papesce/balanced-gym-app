@@ -6,6 +6,7 @@ import { ISerie, ISerieState } from '../model/SerieModel';
 import { loadExercise } from '../redux/actions.exercise';
 import { withRouter } from "react-router";
 import { newSerie, editSerie, deleteSerie } from '../redux/actions.serie';
+import ExerciseHeader from '../components/headerBar/ExerciseHeader';
 
 interface ExerciseProps {
     loading: boolean;
@@ -23,6 +24,7 @@ interface ExerciseProps {
     creatingError?: string;
     deletingError?: string;
     editingError?: string;
+    handleBack?: () => void;
 }
 
 const getError = (error: string,
@@ -56,6 +58,10 @@ export class Exercise extends Component<ExerciseProps> {
         const { suggestedSerie = {_id: '', reps: 0, weight:0}} = exercise;
         newSerie && newSerie(exercise._id, suggestedSerie); 
     }
+    handleBack = () => {
+        const { history } = this.props;
+        history.goBack();
+    }
     render() {
         const { loading, error, exercise, editSerie, deleteSerie,
           creating, deleting, editing, creatingError = '', editingError = '',
@@ -63,7 +69,7 @@ export class Exercise extends Component<ExerciseProps> {
         const theError = getError(error, creatingError, editingError, deletingError);
         const isLoading = loading || creating || deleting || editing;
         return (<>
-           {!isLoading && <button onClick={this.newSerie}>New</button>}
+           <ExerciseHeader handleBack={this.handleBack} handleAddSerie={this.newSerie}></ExerciseHeader>
            <ExercisePage
              loading={isLoading}
              error={theError} 

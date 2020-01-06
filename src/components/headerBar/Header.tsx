@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,23 +18,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface HeaderProps {
-  handleClick: () => void;
+  leftComponent?: any;
+  rightComponent?: any;
 }
 
-const Header:React.FC<HeaderProps>  = ({ handleClick }) => {
+const Header:React.FC<HeaderProps>  = ({ leftComponent, rightComponent }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton onClick={() => handleClick()}
-              edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+          {leftComponent}
           <Typography variant="subtitle1" className={classes.title}>
-            Balanced Gym App v0.1
+            Balanced Gym App v0.2
           </Typography>
-          <Button color="inherit">Logout</Button>
+           {rightComponent}
         </Toolbar>
       </AppBar>
     </div>

@@ -5,6 +5,7 @@ import { ITarget } from '../model/TargetModel';
 import { IExercise } from '../model/ExerciseModel';
 import { loadTarget } from '../redux/actions.target';
 import { withRouter } from "react-router";
+import BackHeader from '../components/headerBar/BackHeader';
 
 interface TargetProps {
     loading: boolean;
@@ -25,9 +26,14 @@ export class Target extends Component<TargetProps> {
       const { history } = this.props;
       history.push(`/exercise/${exercise._id}`);
     }
+    handleBack = () => {
+        const { history } = this.props;
+        history.goBack();
+    }
     render() {
         const { loading, error, target } = this.props;
         return (<>
+           <BackHeader handleBack={this.handleBack}/>
            <ExerciseList loading={loading}
              error={error} 
              target={target}

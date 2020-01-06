@@ -1,7 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "./redux/configureStore";
-import HeaderContainer from "./containers/HeaderContainer";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +20,6 @@ const App: React.FC = () => {
   return (
     <Router>
       <Provider store={store}>
-        <HeaderContainer />
         <Switch>
           <Route exact path="/">
             <Redirect to="/routines" />

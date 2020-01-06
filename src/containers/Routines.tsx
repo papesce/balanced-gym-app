@@ -4,6 +4,7 @@ import RoutineList from '../components/routineList/RoutineList';
 import { IRoutinesState, IRoutine } from '../model/RoutineModel';
 import { loadRoutines } from '../redux/actions.routines';
 import { withRouter } from "react-router";
+import InitialHeader from '../components/headerBar/InitialHeader';
 
 interface RoutineProps {
     routinesState?: IRoutinesState;
@@ -23,6 +24,7 @@ export class Routines extends Component<RoutineProps> {
     render() {
         const { routinesState = {} } = this.props;
         return (<>
+           <InitialHeader handleLogout={() => {}} />
            <RoutineList loading={routinesState.loading}
              error={routinesState.error} 
              routines={routinesState.routines}
