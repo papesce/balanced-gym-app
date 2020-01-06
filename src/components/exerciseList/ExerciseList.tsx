@@ -4,6 +4,7 @@ import { ITarget } from '../../model/TargetModel';
 import { IExercise } from '../../model/ExerciseModel';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
+import { getDaysFromString } from '../../utils/dateUtils';
 
 interface ExerciseListProps {
     loading?: boolean;
@@ -18,11 +19,26 @@ const getId = (exercise: IExercise) => {
     return exercise._id;
 }
 export const getSecondary1 = (exercise: IExercise) => {
-    return getExerciseSummary1(exercise);
+    const { lastUpdated } = exercise;
+  let color =  {};
+  if (lastUpdated) {
+     const days = getDaysFromString(lastUpdated);
+     if (days === 0) {
+        color =  { color: "blue" }
+     }
+  }
+  const line2 = getExerciseSummary1(exercise);
+  let text: any = line2;
+  if (line2) {
+    text = <div style={color}>{line2}</div>;
+  }
+  return text;
 }
+
 export const getSecondary2 = (exercise: IExercise) => {
-    return getExerciseSummary2(exercise);
+  return getExerciseSummary2(exercise);
 }
+
 export const getImage = (exercise: IExercise) => {
     return exercise.gifURL || '';
 }

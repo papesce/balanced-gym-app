@@ -17,7 +17,7 @@ interface ElemListProps {
   noDataMsg?: string,
   getId?: (elem: any) => string;
   getPrimary?: (elem: any) => string;
-  getSecondary?: (elem: any) => string;
+  getSecondary?: (elem: any) => any;
   onClick?: (elem: any) => void;
   subHeader?: any;
   loading?: boolean;

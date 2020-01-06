@@ -29,6 +29,7 @@ const fulldataList : any[] = [
 const getId = (elem: any) => elem._id;
 const getPrimary = (elem: any) => elem.name;
 const getSecondary = (elem: any) => elem.desc;
+const getSecondaryColor = (elem: any) => <div style={{color:'red'}}>{elem.desc}</div>;
 
 export const loadingList = () => <ElemList loading/>;
 export const errorList = () => <ElemList error="Error loading data"/>;
@@ -38,6 +39,10 @@ noDataMsg="No data available"/>;
 export const singleList = () => <ElemList data={singledataList}
 getPrimary={getPrimary} getSecondary={getSecondary} getId={getId} 
 onClick={action('clicked item')}/>;
+export const singleColorList = () => <ElemList data={singledataList}
+getPrimary={getPrimary} getSecondary={getSecondaryColor} getId={getId} 
+onClick={action('clicked item')}/>;
+
 export const fullList = () => <ElemList subHeader="Sub Header" 
 data={fulldataList}
 getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}

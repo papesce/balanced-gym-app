@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ElemList from '../elemList/ElemList';
 import { IRoutine } from '../../model/RoutineModel';
 import { IMuscleGroup } from '../../model/MuscleGroupModel';
-import { getRoutineSummary } from '../common';
+import { getRoutineSummary1, getRoutineSummary2 } from '../common';
 import RoutineHeader from './RoutineHeader';
 
 interface MuscleGroupListProps {
@@ -18,7 +18,20 @@ const getId = (muscleGroup: IMuscleGroup) => {
 }
 
 export const getSecondary = (routine: IRoutine) => {
-    return getRoutineSummary(routine);
+    const { doneToday } = routine;
+  const line1 = getRoutineSummary1(routine);
+  let text: any = line1;
+  const line2 = getRoutineSummary2(routine);
+  const color = doneToday && doneToday > 0 ? { color: "blue" } : {};
+  if (line2) {
+    text = (
+      <div>
+        <div>{text}</div>
+        <div style={color}>{line2}</div>
+      </div>
+    );
+  }
+  return text;
 }
 export const getPrimary = (muscleGroup: IMuscleGroup) => {
     return muscleGroup.name; 

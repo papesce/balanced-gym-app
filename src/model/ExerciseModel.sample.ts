@@ -37,7 +37,7 @@ export const sampleExercise3: IExercise = {
 export const sampleExercise4: IExercise = {
   _id: "5a380a8d70ddd40014934e94",
   name: "Barbell Split Squat",
-  lastUpdated: "2017-12-18T23:44:01.393Z",
+  lastUpdated: new Date().toUTCString(),
   lastReps: 12,
   lastWeight: 25,
   normalizedWeight: 25,

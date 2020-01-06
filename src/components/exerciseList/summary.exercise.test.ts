@@ -54,7 +54,7 @@ describe('getExerciseSummary1', () => {
             lastUpdated:yesterday.toString()
             };
         const text = getExerciseSummary1(exercise);
-        expect(text).toBe("1 day r:10 w:9 t:2");
+        expect(text).toBe("a day ago, r:10 w:9 t:2");
     });
 })
 

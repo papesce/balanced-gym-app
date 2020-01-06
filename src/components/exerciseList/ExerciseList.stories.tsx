@@ -13,5 +13,7 @@ export const errorList = () => <ExerciseList error="fetch error message ignored"
 export const noExercises = () => <ExerciseList target={sampleTarget1}/>;
 export const singleExercisesList = () => <Router><ExerciseList target={sampleTargetWithSingleExercise}
   onClick={action('clicked item')}/></Router>;
+export const singleExercisesToday = () => <Router><ExerciseList target={sampleTargetWithSingleExercise}
+  onClick={action('clicked item')}/></Router>;
 export const fullGroupList = () => <Router><ExerciseList target={sampleTargetWithFullExercise}
    onClick={action('clicked item')}/></Router>;

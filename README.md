@@ -19,6 +19,7 @@ yarn add react-swipeable-views
 yarn add @types/react-swipeable-views --dev
 yarn add frappe-charts
 yarn add prettier --dev --exact
+yarn add moment  
 
 # Heroku
 
