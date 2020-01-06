@@ -1,6 +1,7 @@
 import React from 'react';
 import Graph from './Graph';
 import { sampleExerciseSeries, sampleExerciseSeries1, sampleExerciseSeries2, sampleExerciseSeries8 } from '../../../model/ExerciseModel.sample';
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'logPage/Graph',
@@ -13,4 +14,5 @@ export const graphSeries1 = () =>
 export const graphSeries2 = () => 
       <Graph exercise={sampleExerciseSeries2} />; 
 export const graphSeries8 = () => 
-      <Graph exercise={sampleExerciseSeries8} />; 
+      <Graph exercise={sampleExerciseSeries8} isNavigable 
+      handleSelected={action('selected')}/>; 

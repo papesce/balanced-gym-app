@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
-import { IExercise } from '../../../model/ExerciseModel';
-import { ISerie } from '../../../model/SerieModel';
-import Graph from './Graph';
-import Serie from './Serie';
+import React, { Component } from "react";
+import { IExercise } from "../../../model/ExerciseModel";
+import { ISerie } from "../../../model/SerieModel";
+import Graph from "./Graph";
+import Serie from "./Serie";
+import { getDaysFromString } from '../../../utils/dateUtils';
 
 interface LogProps {
-    exercise: IExercise,
-    handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
-    handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
+  exercise: IExercise;
+  handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
+  handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
 }
 
 interface LogState {
-    serieIndex: number
+  serieIndex: number;
+  navigable: boolean;
 }
 
 export const getSerie = (exercise: IExercise, index: number) => {
@@ -20,46 +22,69 @@ export const getSerie = (exercise: IExercise, index: number) => {
     return series[index];
   }
   return undefined;
-}
-
-
+};
 
 export default class LogPage extends Component<LogProps, LogState> {
-    state = { serieIndex: 0 } 
-    handleSelected = (index: number) => {
-        this.setState({serieIndex: index});
-    }
-    handleDelete = (serieId: string) => {
-        const { handleDeleteSerie, exercise } = this.props;
-        handleDeleteSerie && handleDeleteSerie(exercise._id, serieId);
-    }
-    handleDone = (editedSerie: ISerie) => {
-        const { exercise, handleEditSerie } = this.props;
-        const { weight, reps, _id } = editedSerie;
-        if (handleEditSerie) {
-            const editedSerie: ISerie  = {
-                _id,
-                weight,
-                reps,
-            }
-             handleEditSerie(exercise._id, editedSerie);
+  constructor(props: LogProps) {
+      super(props)
+      const { exercise } = this.props;
+      const { series = [] } = exercise;
+      let isNavigable = false;
+      if (series.length > 0) {
+        const lastSerie: ISerie = series[0];
+        if (lastSerie.createdAt) {
+            const days = getDaysFromString(lastSerie.createdAt);
+            isNavigable = days === 0;
         }
+      }
+      this.state = { serieIndex: 0, navigable: isNavigable };
+  }  
+  
+  handleSelected = (index: number) => {
+    this.setState({ serieIndex: index });
+  };
+  handleDelete = (serieId: string) => {
+    const { handleDeleteSerie, exercise } = this.props;
+    handleDeleteSerie && handleDeleteSerie(exercise._id, serieId);
+  };
+  handleDone = (editedSerie: ISerie) => {
+    const { exercise, handleEditSerie } = this.props;
+    const { weight, reps, _id } = editedSerie;
+    if (handleEditSerie) {
+      const editedSerie: ISerie = {
+        _id,
+        weight,
+        reps
+      };
+      handleEditSerie(exercise._id, editedSerie);
     }
-    render() {
-        const { exercise } = this.props;
-        const { serieIndex } = this.state;
-        const selectedSerie = getSerie(exercise, serieIndex);
-        // if (selectedSerie) console.log(selectedSerie.reps);
-        return (<>
-            <Graph exercise={exercise} 
-                   handleSelected={this.handleSelected} isNavigable></Graph>
-            {selectedSerie && <Serie key={selectedSerie._id} 
-                initialSerie={selectedSerie}
-                handleDone={this.handleDone}
-                handleDelete={this.handleDelete}
-            ></Serie>}
-           
-            </>
-        )
-    }
+  };
+  handleGraphClick = () => {
+    this.setState(prev => ({navigable: true}));
+  }
+  render() {
+    const { exercise } = this.props;
+    const { serieIndex, navigable } = this.state;
+    const selectedSerie = getSerie(exercise, serieIndex);
+    // if (selectedSerie) console.log(selectedSerie.reps);
+    return (
+      <>
+        <Graph
+          key={navigable ? "1" : "0"}
+          exercise={exercise}
+          handleSelected={this.handleSelected}
+          handleGraphClick={this.handleGraphClick}
+          isNavigable={navigable}
+        ></Graph>
+        {navigable && selectedSerie && (
+          <Serie
+            key={selectedSerie._id}
+            initialSerie={selectedSerie}
+            handleDone={this.handleDone}
+            handleDelete={this.handleDelete}
+          ></Serie>
+        )}
+      </>
+    );
+  }
 }
