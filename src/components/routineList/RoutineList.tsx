@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ElemList from "../elemList/ElemList";
 import { IRoutine } from "../../model/RoutineModel";
-import { getRoutineSummary1, getRoutineSummary2 } from "../common";
+import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from "../common";
 import "./RoutineList.css";
 
 interface RoutineListProps {
@@ -21,12 +21,13 @@ const getSecondary = (routine: IRoutine) => {
   const line1 = getRoutineSummary1(routine);
   let text: any = line1;
   const line2 = getRoutineSummary2(routine);
-  const color = doneToday && doneToday > 0 ? { color: "blue" } : {};
+  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+  const colorLine2 = getColoredTextFromBoolean(line2, wasToday)
   if (line2) {
     text = (
       <div>
         <div>{text}</div>
-        <div style={color}>{line2}</div>
+        {colorLine2}
       </div>
     );
   }

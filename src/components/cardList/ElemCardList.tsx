@@ -16,8 +16,8 @@ interface ElemCardListProps {
   noDataMsg?: string,
   getId?: (elem: any) => string;
   getPrimary?: (elem: any) => string;
-  getSecondary1?: (elem: any) => string;
-  getSecondary2?: (elem: any) => string;
+  getSecondary1?: (elem: any) => any;
+  getSecondary2?: (elem: any) => any;
   getImage?: (elem: any) => string;
   onClick?: (elem: any) => void;
   subHeader?: any;

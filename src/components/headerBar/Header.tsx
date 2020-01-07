@@ -1,20 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 }));
 
 interface HeaderProps {
@@ -22,7 +22,7 @@ interface HeaderProps {
   rightComponent?: any;
 }
 
-const Header:React.FC<HeaderProps>  = ({ leftComponent, rightComponent }) => {
+const Header: React.FC<HeaderProps> = ({ leftComponent, rightComponent }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -30,13 +30,15 @@ const Header:React.FC<HeaderProps>  = ({ leftComponent, rightComponent }) => {
         <Toolbar>
           {leftComponent}
           <Typography variant="subtitle1" className={classes.title}>
-            Balanced Gym App v0.2
+            <Link to="/" style={{ color: 'inherit', textDecoration: "none" }}>
+              Balanced Gym App v0.2
+            </Link>
           </Typography>
-           {rightComponent}
+          {rightComponent}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 export default Header;

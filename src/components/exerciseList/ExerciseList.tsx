@@ -4,7 +4,7 @@ import { ITarget } from '../../model/TargetModel';
 import { IExercise } from '../../model/ExerciseModel';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
-import { getDaysFromString } from '../../utils/dateUtils';
+import { getColoredTextFromDateString } from '../common';
 
 interface ExerciseListProps {
     loading?: boolean;
@@ -20,19 +20,8 @@ const getId = (exercise: IExercise) => {
 }
 export const getSecondary1 = (exercise: IExercise) => {
     const { lastUpdated } = exercise;
-  let color =  {};
-  if (lastUpdated) {
-     const days = getDaysFromString(lastUpdated);
-     if (days === 0) {
-        color =  { color: "blue" }
-     }
-  }
-  const line2 = getExerciseSummary1(exercise);
-  let text: any = line2;
-  if (line2) {
-    text = <div style={color}>{line2}</div>;
-  }
-  return text;
+    const text: any = getExerciseSummary1(exercise);
+    return getColoredTextFromDateString(text, lastUpdated);
 }
 
 export const getSecondary2 = (exercise: IExercise) => {

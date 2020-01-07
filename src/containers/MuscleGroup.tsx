@@ -6,6 +6,7 @@ import { ITarget } from '../model/TargetModel';
 import { loadMuscleGroup } from '../redux/actions.muscleGroup';
 import { withRouter } from "react-router";
 import BackHeader from '../components/headerBar/BackHeader';
+import { getRoutineURL } from '../utils/routes';
 
 interface MuscleGroupProps {
     loading: boolean;
@@ -26,8 +27,13 @@ export class MuscleGroup extends Component<MuscleGroupProps> {
         history.push(`/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${target._id}`);
     }
     handleBack = () => {
-        const { history } = this.props;
-        history.goBack();
+        const {
+            history,
+            match: {
+              params: { routineId }
+            }
+          } = this.props;
+          history.push(getRoutineURL(routineId));
     }
     render() {
         const { loading, error, muscleGroup } = this.props;

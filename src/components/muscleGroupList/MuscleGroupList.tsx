@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ElemList from '../elemList/ElemList';
 import { IRoutine } from '../../model/RoutineModel';
 import { IMuscleGroup } from '../../model/MuscleGroupModel';
-import { getRoutineSummary1, getRoutineSummary2 } from '../common';
+import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from '../common';
 import RoutineHeader from './RoutineHeader';
 
 interface MuscleGroupListProps {
@@ -22,12 +22,13 @@ export const getSecondary = (routine: IRoutine) => {
   const line1 = getRoutineSummary1(routine);
   let text: any = line1;
   const line2 = getRoutineSummary2(routine);
-  const color = doneToday && doneToday > 0 ? { color: "blue" } : {};
-  if (line2) {
+  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+  const colorLine2 = getColoredTextFromBoolean(line2, wasToday)
+  if (colorLine2) {
     text = (
       <div>
         <div>{text}</div>
-        <div style={color}>{line2}</div>
+        {colorLine2}
       </div>
     );
   }

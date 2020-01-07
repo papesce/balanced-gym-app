@@ -19,5 +19,9 @@ export const getTimeFromString = (date1: string, date2?: string) => {
     return getTimeFromDate(new Date(date1), date);
 }
 
+export const isToday = (date: Date) => {
+    return moment(date).isSame(moment(), 'day');
+}
+
 
 

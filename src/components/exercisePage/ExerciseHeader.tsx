@@ -6,6 +6,7 @@ import { IHeaderRow } from '../headerRowList/HeaderRow';
 import { ITarget } from '../../model/TargetModel';
 import HeaderRowList from '../headerRowList/HeaderRowList';
 import './ExerciseHeader.css';
+import { getExerciseHeaderRow, getRoutineURL, getRoutineHeaderRow, getMuscleGroupHeaderRow, getMuscleGroupURL, getTargetHeaderRow, getTargetURL } from '../../utils/routes';
 
 interface  ExerciseHeaderProps {
     exercise: IExercise;
@@ -22,13 +23,10 @@ export default class ExerciseHeader extends Component<ExerciseHeaderProps> {
             target = emptyTarget,
             name} } = this.props;
         const headers: IHeaderRow[] = [
-            {_id: '0',  title: "Ex:", value: name},
-            {_id: '1',  title: "Routine:", value: routineId.name, 
-            url:`/routine/${routineId._id}`},
-            {_id: '2',  title: "Muscle Group:", value: muscleGroup.name, 
-            url:`/routine/${routineId._id}/muscleGroup/${muscleGroup._id}`},
-            {_id: '3',  title: "Target:", value: target.name, 
-            url:`/routine/${routineId._id}/muscleGroup/${muscleGroup._id}/target/${target._id}`},
+            getExerciseHeaderRow(name),
+            getRoutineHeaderRow(routineId.name, getRoutineURL(routineId._id)),
+            getMuscleGroupHeaderRow(muscleGroup.name, getMuscleGroupURL(routineId._id, muscleGroup._id)),
+            getTargetHeaderRow(target.name, getTargetURL(routineId._id, muscleGroup._id, target._id))
         ];
         return (
             <div className='exercise-header'>

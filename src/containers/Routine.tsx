@@ -27,7 +27,7 @@ export class Routine extends Component<RoutineProps> {
     }
     handleBack = () => {
         const { history } = this.props;
-        history.goBack();
+        history.push('/routines');
     }
     render() {
         const { loading, error, routine } = this.props;

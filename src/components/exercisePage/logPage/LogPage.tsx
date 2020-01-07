@@ -3,7 +3,7 @@ import { IExercise } from "../../../model/ExerciseModel";
 import { ISerie } from "../../../model/SerieModel";
 import Graph from "./Graph";
 import Serie from "./Serie";
-import { getDaysFromString } from '../../../utils/dateUtils';
+import { isToday } from '../../../utils/dateUtils';
 
 interface LogProps {
   exercise: IExercise;
@@ -33,8 +33,7 @@ export default class LogPage extends Component<LogProps, LogState> {
       if (series.length > 0) {
         const lastSerie: ISerie = series[0];
         if (lastSerie.createdAt) {
-            const days = getDaysFromString(lastSerie.createdAt);
-            isNavigable = days === 0;
+            isNavigable = isToday(new Date(lastSerie.createdAt));
         }
       }
       this.state = { serieIndex: 0, navigable: isNavigable };

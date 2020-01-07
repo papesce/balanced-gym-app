@@ -1,5 +1,6 @@
-import { IRoutine } from './../model/RoutineModel';
-import { getTimeFromString } from '../utils/dateUtils';
+import React from 'react';
+import { IRoutine } from '../model/RoutineModel';
+import { getTimeFromString, isToday } from '../utils/dateUtils';
 import { addS } from '../utils/utils';
 
 export const getRoutineSummary1 = (routine: IRoutine) => {
@@ -46,6 +47,21 @@ export const getSynsAndStabs = (synergistsCount: any, stabilizersCount: any) => 
     }
     if (synergistsCount || stabilizersCount) text = text + `)`;
     return text;
+}
+
+export const getColoredTextFromDateString = (text: string, date?: string) => {
+    if (date) {
+        return getColoredTextFromBoolean(text, isToday(new Date(date)));
+    }
+    return '';
+}
+
+export const getColoredTextFromBoolean = (text: string, isToday: boolean) => {
+    if (text) {
+        const color = (isToday) ? { color: "blue" } : {};
+        return (<div style={color}>{text}</div>);
+    }
+    return '';
 }
 
 

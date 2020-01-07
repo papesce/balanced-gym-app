@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExercisePage from '../components/exercisePage/ExercisePage';
 import { IExercise } from '../model/ExerciseModel';
+import { IRoutine } from '../model/RoutineModel';
+import { IMuscleGroup } from '../model/MuscleGroupModel';
+import { ITarget } from '../model/TargetModel';
 import { ISerie, ISerieState } from '../model/SerieModel';
 import { loadExercise } from '../redux/actions.exercise';
 import { withRouter } from "react-router";
 import { newSerie, editSerie, deleteSerie } from '../redux/actions.serie';
 import ExerciseHeader from '../components/headerBar/ExerciseHeader';
+import { getTargetURL } from '../utils/routes';
 
 interface ExerciseProps {
     loading: boolean;
@@ -59,8 +63,15 @@ export class Exercise extends Component<ExerciseProps> {
         newSerie && newSerie(exercise._id, suggestedSerie); 
     }
     handleBack = () => {
-        const { history } = this.props;
-        history.goBack();
+        const { history, exercise } = this.props;
+        const emptyRoutine: IRoutine = { _id: '', name: ''};
+        const emptyMuscleGroup: IMuscleGroup = { _id: '',  name: ''};
+        const emptyTarget: ITarget = { _id: '', name: ''};
+        const { 
+            routineId = emptyRoutine, 
+            muscleGroup = emptyMuscleGroup,
+            target = emptyTarget } = exercise;
+        history.push(getTargetURL(routineId._id, muscleGroup._id, target._id));
     }
     render() {
         const { loading, error, exercise, editSerie, deleteSerie,

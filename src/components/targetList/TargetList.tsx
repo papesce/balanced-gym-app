@@ -4,6 +4,7 @@ import { ITarget } from "../../model/TargetModel";
 import { IMuscleGroup } from "../../model/MuscleGroupModel";
 import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
+import { getColoredTextFromBoolean } from "../common";
 
 interface TargetListProps {
   loading?: boolean;
@@ -25,12 +26,8 @@ export const getSecondary1 = (target: ITarget) => {
 export const getSecondary2 = (target: ITarget) => {
   const { doneToday } = target;
   const line2 = getTargetSummary2(target);
-  let text: any = line2;
-  const color = doneToday && doneToday > 0 ? { color: "blue" } : {};
-  if (line2) {
-    text = <div style={color}>{line2}</div>;
-  }
-  return text;
+  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+  return getColoredTextFromBoolean(line2, wasToday)
 };
 export const getImage = (target: ITarget) => {
   return target.muscleURL || "";
