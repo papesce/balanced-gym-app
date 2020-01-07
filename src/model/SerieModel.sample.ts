@@ -12,6 +12,13 @@ export const serie1: ISerie = {
 "weight": 40
 };
 
+export const serieI: ISerie = {
+  "_id": "5a78d7933014df0014ad064a",
+  "createdAt": "2018-02-05T22:15:47.918Z",
+  "reps": 8.1,
+  "weight": -40
+  };
+
 export const series1: ISerie[] = [serie1];
 
 export const serie2: ISerie = {

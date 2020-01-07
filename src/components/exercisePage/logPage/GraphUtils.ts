@@ -1,4 +1,4 @@
-import { getDaysFromString } from '../../../utils/dateUtils';
+import { getTimeForGraph } from './../../../utils/dateUtils';
 import { ISerie } from '../../../model/SerieModel';
 
 export const getGraphData = ( series: ISerie[] ) => {
@@ -7,8 +7,8 @@ export const getGraphData = ( series: ISerie[] ) => {
     const weights: number[] = [];
     series.slice(0,6).reverse().forEach(serie => {
         if (serie.createdAt) {
-            const days: number = getDaysFromString(serie.createdAt);
-            labels.push(days.toString());
+            const days: string = getTimeForGraph(serie.createdAt);
+            labels.push(days);
             reps.push(serie.reps);
             weights.push(serie.weight);
         }

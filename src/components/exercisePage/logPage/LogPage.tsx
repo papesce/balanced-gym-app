@@ -4,6 +4,8 @@ import { ISerie } from "../../../model/SerieModel";
 import Graph from "./Graph";
 import Serie from "./Serie";
 import { isToday } from '../../../utils/dateUtils';
+import Typography from '@material-ui/core/Typography';
+import { formatDateString } from '../../../utils/dateUtils';
 
 interface LogProps {
   exercise: IExercise;
@@ -76,12 +78,18 @@ export default class LogPage extends Component<LogProps, LogState> {
           isNavigable={navigable}
         ></Graph>
         {navigable && selectedSerie && (
+          <>
+          <Typography style={{paddingLeft: '5px'}} variant="caption" display="block" gutterBottom >
+            Created: {formatDateString(selectedSerie.createdAt || '')}
+          </Typography>
+
           <Serie
             key={selectedSerie._id}
             initialSerie={selectedSerie}
             handleDone={this.handleDone}
             handleDelete={this.handleDelete}
           ></Serie>
+          </>
         )}
       </>
     );
