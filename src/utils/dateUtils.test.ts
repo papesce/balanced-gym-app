@@ -1,7 +1,8 @@
 import {
   getDaysFromDate,
   getDaysFromString,
-  getTimeFromDate
+  getTimeFromDate,
+  getTimeForGraph
 } from "./dateUtils";
 
 describe("dateUtils/getDaysFromDate", () => {
@@ -73,3 +74,48 @@ describe("dateUtils/getTimeFromDate", () => {
     expect(days).toBe("a month ago");
   });
 });
+
+const getDateAgo = (seconds: number) => {
+  const dateNow = new Date();
+  const dateAgo = new Date(dateNow.getTime() - seconds * 1000);
+  return getTimeForGraph(dateAgo.toUTCString());
+}
+
+describe('getTimeForGraph', () => {
+  it('now ', () => {
+    const text = getTimeForGraph(new Date().toUTCString());
+    expect(text).toBe("<1m");
+  })
+  it('seconds ', () => {
+    expect(getDateAgo(43)).toBe("<1m");
+  });
+  it('1 minute ', () => {
+    expect(getDateAgo(45)).toBe("1m");
+  })
+  it('3 minutes', () => {
+    expect(getDateAgo(3 * 60)).toBe("3m");
+  })
+   it('45 minutes', () => {
+    expect(getDateAgo(45 * 60)).toBe("<1h");
+  })
+  it('1 hour', () => {
+    expect(getDateAgo(60 * 60)).toBe("<1h");
+  })
+  it('3 hours', () => {
+    expect(getDateAgo(3 * 60 * 60)).toBe("3h");
+  })
+  it('23 hours', () => {
+    expect(getDateAgo(23 * 60 * 60)).toBe("<1d");
+  })
+  it('2 days', () => {
+    expect(getDateAgo(2 * 24 * 60 * 60)).toBe("2d");
+  })
+  it('30 days', () => {
+    expect(getDateAgo(30 * 24 * 60 * 60)).toBe("30d");
+  })
+  it('2 months', () => {
+    expect(getDateAgo(2 * 30 * 24 * 60 * 60)).toBe("60d");
+  })
+  
+})
+

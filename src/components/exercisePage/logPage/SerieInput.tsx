@@ -50,8 +50,8 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
             isDirty: false,
             weight: initialSerie.weight.toString(),
             reps: initialSerie.reps.toString(),
-            isValidWeight: true,
-            isValidReps: true,
+            isValidWeight: isValidWeight(initialSerie.weight.toString()),
+            isValidReps: isValidReps(initialSerie.reps.toString()),
         };
     }
     reps: any = null;

@@ -23,5 +23,30 @@ export const isToday = (date: Date) => {
     return moment(date).isSame(moment(), 'day');
 }
 
+export const getTimeForGraph = (date: string ) => {
+    const days: number = getDaysFromString(date);
+    if (days === 0) {        
+        moment.updateLocale('en', {
+            relativeTime: {
+                future: 'in %s',
+                past: '%s',
+                s:  '<1m',
+                ss: '%ss',
+                m:  '1m',
+                mm: '%dm',
+                h:  '<1h',
+                hh: '%dh',
+                d:  '<1d',
+                dd: '%dd',
+          }
+      });
+      return getTimeFromString(date);
+    }
+    return `${days}d`;
+}
+
+export const formatDateString = (date: string) => {
+    return moment(date).format('DD/MM/YY hh:mm:ss');
+}
 
 
