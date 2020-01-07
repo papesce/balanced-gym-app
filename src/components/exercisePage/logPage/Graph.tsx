@@ -3,6 +3,9 @@ import ReactFrappeChart from "./FappeChart";
 import { IExercise } from "../../../model/ExerciseModel";
 import { getGraphData } from "./GraphUtils";
 import Typography from "@material-ui/core/Typography";
+import Fab from '@material-ui/core/Fab';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import "./Graph.css";
 
 interface GraphProps {
@@ -40,8 +43,14 @@ export default class Graph extends Component<GraphProps> {
     }
     return (
       <div className="chart-container" onClick={handleGraphClick}>
+       <Fab size="small" color="primary" style={{position: 'absolute',  marginTop: '10px', marginLeft: '200px'}}>
+          <KeyboardArrowLeftIcon />
+      </Fab>
+      <Fab size="small" color="primary" style={{position: 'absolute', marginTop: '10px', marginLeft: '240px'}}>
+          <KeyboardArrowRightIcon />
+      </Fab>
         <ReactFrappeChart
-          title={"Reps"}
+          title={"History"}
           type="line"
           colors={["#7cd6fd", "#743ee2"]}
           axisOptions={{ xAxisMode: "span", yAxisMode: "tick", xIsSeries: 1 }}
