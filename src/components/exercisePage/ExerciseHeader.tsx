@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { IExercise } from '../../model/ExerciseModel';
 import { IRoutine } from '../../model/RoutineModel';
 import { IMuscleGroup } from '../../model/MuscleGroupModel';
-import { IHeaderRow } from '../headerRowList/HeaderRow';
+import { IHeaderRow } from '../generic/headerRowList/HeaderRow';
 import { ITarget } from '../../model/TargetModel';
-import HeaderRowList from '../headerRowList/HeaderRowList';
+import HeaderRowList from '../generic/headerRowList/HeaderRowList';
 import './ExerciseHeader.css';
 import { getExerciseHeaderRow, getRoutineURL, getRoutineHeaderRow, getMuscleGroupHeaderRow, getMuscleGroupURL, getTargetHeaderRow, getTargetURL } from '../../utils/routes';
 

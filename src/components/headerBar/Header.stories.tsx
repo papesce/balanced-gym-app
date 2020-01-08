@@ -3,20 +3,21 @@ import InitialHeader from "./InitialHeader";
 import BackHeader from "./BackHeader";
 import ExerciseHeader from "./ExerciseHeader";
 import { action } from "@storybook/addon-actions";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
-  title: "Header"
+  title: "headerBar"
 };
 
 export const initialHeader = () => (
-  <InitialHeader handleLogout={action("clicked item")} />
+  <Router><InitialHeader handleLogout={action("clicked item")} /></Router>
 );
 export const backHeader = () => (
-  <BackHeader handleBack={action("clicked item")} />
+  <Router><BackHeader handleBack={action("clicked item")} /></Router>
 );
 export const exerciseHeader = () => (
-  <ExerciseHeader
+  <Router><ExerciseHeader
     handleBack={action("clicked item")}
     handleAddSerie={action("clicked item")}
-  />
+  /></Router>
 );

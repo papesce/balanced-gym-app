@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MuscleGroupList from '../components/muscleGroupList/MuscleGroupList';
+import MuscleGroupList from '../components/lists/muscleGroupList/MuscleGroupList';
 import { IRoutine } from '../model/RoutineModel';
 import { IMuscleGroup } from '../model/MuscleGroupModel';
 import { loadRoutine } from '../redux/actions.routine';

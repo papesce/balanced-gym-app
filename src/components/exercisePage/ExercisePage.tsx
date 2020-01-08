@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { IExercise } from "../../model/ExerciseModel";
 import { ISerie } from "../../model/SerieModel";
-import ElemPage, { IElemPage } from "./ElemPage";
-import DetailsPage from "./DetailsPage";
+import ElemPage, { IElemPage } from "../generic/pages/ElemPage";
+import DetailsPage from "./detailsPage/DetailsPage";
 import LogPage from "./logPage/LogPage";
-import MusclesPage from "./MusclesPage";
+import MusclesPage from "./musclesPage/MusclesPage";
 import ExerciseHeader from "./ExerciseHeader";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";

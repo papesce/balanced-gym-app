@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ExerciseList from "../components/exerciseList/ExerciseList";
+import ExerciseList from "../components/lists/exerciseList/ExerciseList";
 import { ITarget } from "../model/TargetModel";
 import { IExercise } from "../model/ExerciseModel";
 import { loadTarget } from "../redux/actions.target";
