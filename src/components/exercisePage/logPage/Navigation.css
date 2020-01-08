@@ -1,0 +1,32 @@
+.navigation-mobile-stepper {
+   position: absolute;
+   margin-left: 30px;
+   height: 20px;
+   max-width: 180px;
+}
+
+.navigation-container {
+   z-index: 100;
+}
+
+.navigation-table-pagination .MuiTablePagination-caption {
+   fill: #6c7680;
+   font-size: 12px;
+}
+
+.navigation-table-pagination.MuiTablePagination-root {
+  padding: 0px;
+  font-size: 12px;
+}
+.navigation-table-pagination .MuiTablePagination-selectRoot {
+  margin-right: 10px;
+
+}
+
+.navigation-table-pagination .MuiTablePagination-actions {
+   margin-left: 5px;
+}
+
+.navigation-table-pagination .MuiToolbar-gutters {
+   padding-left: 90px;
+ }

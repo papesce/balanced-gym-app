@@ -3,9 +3,7 @@ import ReactFrappeChart from "./FappeChart";
 import { IExercise } from "../../../model/ExerciseModel";
 import { getGraphData } from "./GraphUtils";
 import Typography from "@material-ui/core/Typography";
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import Navigation from './Navigation';
 import "./Graph.css";
 
 interface GraphProps {
@@ -42,13 +40,9 @@ export default class Graph extends Component<GraphProps> {
       );
     }
     return (
-      <div className="chart-container" onClick={handleGraphClick}>
-       <Fab size="small" color="primary" style={{position: 'absolute',  marginTop: '10px', marginLeft: '200px'}}>
-          <KeyboardArrowLeftIcon />
-      </Fab>
-      <Fab size="small" color="primary" style={{position: 'absolute', marginTop: '10px', marginLeft: '240px'}}>
-          <KeyboardArrowRightIcon />
-      </Fab>
+      <div>
+        {series.length > 4 && <Navigation></Navigation>}
+        <div className="graph-chart-container" onClick={handleGraphClick}>
         <ReactFrappeChart
           title={"History"}
           type="line"
@@ -82,6 +76,7 @@ export default class Graph extends Component<GraphProps> {
           valuesOverPoints={1}
           onDataSelect={this.onDataSelect}
         />
+        </div>
       </div>
     );
   }
