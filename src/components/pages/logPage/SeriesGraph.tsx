@@ -4,9 +4,9 @@ import { IExercise } from "../../../model/ExerciseModel";
 import { getGraphData } from "./GraphUtils";
 import Typography from "@material-ui/core/Typography";
 import Navigation from './Navigation';
-import "./Graph.css";
+import "./SeriesGraph.css";
 
-interface GraphProps {
+interface SeriesGraphProps {
   exercise: IExercise;
   noDataMsg?: string;
   isNavigable?: boolean;
@@ -14,7 +14,7 @@ interface GraphProps {
   handleGraphClick?: () => void;
 }
 
-export default class Graph extends Component<GraphProps> {
+export default class SeriesGraph extends Component<SeriesGraphProps> {
   onDataSelect = (evt: any) => {
     // console.log(evt.index, evt.label);
     const { handleSelected, exercise } = this.props;
@@ -40,7 +40,7 @@ export default class Graph extends Component<GraphProps> {
       );
     }
     return (
-      <div>
+      <>
         {series.length > 4 && <Navigation></Navigation>}
         <div className="graph-chart-container" onClick={handleGraphClick}>
         <ReactFrappeChart
@@ -77,7 +77,8 @@ export default class Graph extends Component<GraphProps> {
           onDataSelect={this.onDataSelect}
         />
         </div>
-      </div>
+      </
+      >
     );
   }
 }

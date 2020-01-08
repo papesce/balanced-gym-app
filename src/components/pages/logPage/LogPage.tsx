@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { IExercise } from "../../../model/ExerciseModel";
 import { ISerie } from "../../../model/SerieModel";
-import Graph from "./Graph";
+import Graph from "./SeriesGraph";
 import Serie from "./Serie";
 import { isToday } from '../../../utils/dateUtils';
 import Typography from '@material-ui/core/Typography';

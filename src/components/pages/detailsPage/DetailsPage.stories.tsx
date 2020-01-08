@@ -3,7 +3,7 @@ import DetailsPage from './DetailsPage';
 import { fullExerciseSample } from '../../../model/ExerciseModel.sample';
 
 export default {
-    title: 'exercisePage/DettailsPage',
+    title: 'pages/DetailsPage',
 };
   
 export const detailsPage = () => 

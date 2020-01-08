@@ -7,7 +7,7 @@ import {
 } from "../../../model/ExerciseModel.sample";
 
 export default {
-  title: "exercisePage/MusclePage"
+  title: "pages/musclePage"
 };
 
 export const emptyPage = () => <MusclesPage exercise={sampleExercise1} />;

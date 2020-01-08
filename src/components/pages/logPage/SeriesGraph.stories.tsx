@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from './Graph';
+import SeriesGraph from './SeriesGraph';
 import { sampleExerciseSeries, sampleExerciseSeries1, sampleExerciseSeries2, sampleExerciseSeries8 } from '../../../model/ExerciseModel.sample';
 import { action } from '@storybook/addon-actions';
 
@@ -8,11 +8,11 @@ export default {
   };
 
 export const graphSeries0 = () => 
-      <Graph exercise={sampleExerciseSeries} />;    
+      <SeriesGraph exercise={sampleExerciseSeries} />;    
 export const graphSeries1 = () => 
-      <Graph exercise={sampleExerciseSeries1} />; 
+      <SeriesGraph exercise={sampleExerciseSeries1} />; 
 export const graphSeries2 = () => 
-      <Graph exercise={sampleExerciseSeries2} />; 
+      <SeriesGraph exercise={sampleExerciseSeries2} />; 
 export const graphSeries8 = () => 
-      <Graph exercise={sampleExerciseSeries8} isNavigable 
+      <SeriesGraph exercise={sampleExerciseSeries8} isNavigable 
       handleSelected={action('selected')}/>; 
