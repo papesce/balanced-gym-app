@@ -49,4 +49,9 @@ export const formatDateString = (date: string) => {
     return moment(date).format('DD/MM/YY hh:mm:ss');
 }
 
+export const  millisToMinutesAndSeconds = (millis: number) => {
+    const minutes: number = Math.floor(millis / 60000);
+    const seconds: number = Math.trunc((millis % 60000) / 1000);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 

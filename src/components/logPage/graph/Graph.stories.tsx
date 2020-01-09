@@ -13,3 +13,9 @@ export const graphSeries2 = () => <Graph series={series2} />;
 export const graphSeries8Nav = () => (
   <Graph series={series8} isNavigable handleSelected={action("selected")} />
 );
+export const graphClick = () => (
+  <Graph series={series8} handleGraphClick={action("clicked")} />
+);
+export const graphNavClick = () => (
+  <Graph series={series8} isNavigable handleGraphClick={action("clicked")} />
+);

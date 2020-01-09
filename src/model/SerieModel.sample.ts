@@ -11,7 +11,7 @@ export const series0: ISerie[] = [];
 
 export const serie1: ISerie = {
   _id: "5a78d7933014df0014ad064a",
-  createdAt: "2018-02-05T22:15:47.918Z",
+  createdAt: "2018-02-05T22:18:47.918Z",
   reps: 8,
   weight: 40
 };
@@ -27,7 +27,7 @@ export const series1: ISerie[] = [serie1];
 
 export const serie2: ISerie = {
   _id: "5a78d6d63014df0014ad0649",
-  createdAt: "2018-02-05T22:12:38.656Z",
+  createdAt: "2018-02-05T22:16:38.656Z",
   reps: 10,
   weight: 40
 };

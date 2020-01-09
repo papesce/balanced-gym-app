@@ -2,7 +2,8 @@ import {
   getDaysFromDate,
   getDaysFromString,
   getTimeFromDate,
-  getTimeForGraph
+  getTimeForGraph,
+  millisToMinutesAndSeconds
 } from "./dateUtils";
 
 describe("dateUtils/getDaysFromDate", () => {
@@ -119,3 +120,11 @@ describe('getTimeForGraph', () => {
   
 })
 
+describe('millisToMinutesAndSeconds', () => {
+  it('1s ', () => {
+    expect(millisToMinutesAndSeconds(1000)).toBe("0:01");
+  })
+  it('60s ', () => {
+    expect(millisToMinutesAndSeconds(60*1000)).toBe("1:00");
+  })
+})
