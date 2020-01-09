@@ -4,7 +4,7 @@ import { IExercise } from '../../model/ExerciseModel';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
-    title: 'pages/exercisePage',
+    title: 'pages/ExercisePage',
   };
 
 

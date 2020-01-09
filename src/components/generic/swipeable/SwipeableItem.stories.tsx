@@ -3,7 +3,7 @@ import SwipeableItem from './SwipeableItem';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'logPage/SwipeableItem',
+    title: 'generic/swipeable/SwipeableItem',
   };
 
 const background = <div>Delete this</div>

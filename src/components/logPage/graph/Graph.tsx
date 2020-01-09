@@ -1,32 +1,28 @@
 import React, { Component } from "react";
-import ReactFrappeChart from "./FappeChart";
-import { IExercise } from "../../../model/ExerciseModel";
+import ReactFrappeChart from "../../generic/chart/FappeChart";
+import { ISerie } from "../../../model/SerieModel";
 import { getGraphData } from "./GraphUtils";
 import Typography from "@material-ui/core/Typography";
-import Navigation from './Navigation';
-import "./SeriesGraph.css";
+import "./Graph.css";
 
 interface SeriesGraphProps {
-  exercise: IExercise;
+  series: ISerie[];
   noDataMsg?: string;
   isNavigable?: boolean;
-  handleSelected?: (index: number) => void;
+  handleSelected?: (serie: ISerie, serieIndex?: number) => void;
   handleGraphClick?: () => void;
 }
 
 export default class SeriesGraph extends Component<SeriesGraphProps> {
   onDataSelect = (evt: any) => {
     // console.log(evt.index, evt.label);
-    const { handleSelected, exercise } = this.props;
-    const { series = [] } = exercise;
+    const { handleSelected, series = [] } = this.props;
     let index: number = 0;
     if (series.length > 0) index = series.length - evt.index - 1;
-    handleSelected && handleSelected(index);
+    handleSelected && handleSelected(series[index], index);
   };
   render() {
-    const { exercise, noDataMsg, isNavigable = false, handleGraphClick } = this.props;
-    const { series = [] } = exercise;
-    const { labels, reps, weights } = getGraphData(series);
+    const { series = [], noDataMsg, isNavigable = false, handleGraphClick } = this.props;
     if (series.length === 0) {
       return (
         <Typography
@@ -39,9 +35,8 @@ export default class SeriesGraph extends Component<SeriesGraphProps> {
         </Typography>
       );
     }
+    const { labels, reps, weights } = getGraphData(series);
     return (
-      <>
-        {series.length > 4 && <Navigation></Navigation>}
         <div className="graph-chart-container" onClick={handleGraphClick}>
         <ReactFrappeChart
           title={"History"}
@@ -77,8 +72,6 @@ export default class SeriesGraph extends Component<SeriesGraphProps> {
           onDataSelect={this.onDataSelect}
         />
         </div>
-      </
-      >
     );
   }
 }

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { IExercise } from "../../../model/ExerciseModel";
 import { ISerie } from "../../../model/SerieModel";
-import Graph from "./SeriesGraph";
-import Serie from "./Serie";
-import { isToday } from '../../../utils/dateUtils';
-import Typography from '@material-ui/core/Typography';
-import { formatDateString } from '../../../utils/dateUtils';
-import './LogPage.css';
+import Graph from "../../logPage/graph/Graph";
+import Serie from "../../logPage/deletableSerie/DeletableSerie";
+import { isToday } from "../../../utils/dateUtils";
+import Typography from "@material-ui/core/Typography";
+import { formatDateString } from "../../../utils/dateUtils";
+import "./LogPage.css";
+import Navigation from "../../logPage/navigation/Navigation";
 
 interface LogProps {
   exercise: IExercise;
@@ -15,35 +16,33 @@ interface LogProps {
 }
 
 interface LogState {
+  serie?: ISerie;
   serieIndex: number;
+  subSeries: ISerie[];
   navigable: boolean;
 }
 
-export const getSerie = (exercise: IExercise, index: number) => {
-  const { series = [] } = exercise;
-  if (series.length > 0 && index < series.length) {
-    return series[index];
-  }
-  return undefined;
-};
+const computeRestTime = (series: ISerie[], serieIndex: number) => {
+    return '1:05m'
+}
 
 export default class LogPage extends Component<LogProps, LogState> {
   constructor(props: LogProps) {
-      super(props)
-      const { exercise } = this.props;
-      const { series = [] } = exercise;
-      let isNavigable = false;
-      if (series.length > 0) {
-        const lastSerie: ISerie = series[0];
-        if (lastSerie.createdAt) {
-            isNavigable = isToday(new Date(lastSerie.createdAt));
-        }
+    super(props);
+    const { exercise } = this.props;
+    const { series = [] } = exercise;
+    let isNavigable = false;
+    if (series.length > 0) {
+      const lastSerie: ISerie = series[0];
+      if (lastSerie.createdAt) {
+        isNavigable = isToday(new Date(lastSerie.createdAt));
       }
-      this.state = { serieIndex: 0, navigable: isNavigable };
-  }  
-  
-  handleSelected = (index: number) => {
-    this.setState({ serieIndex: index });
+    }
+    this.state = { serie: undefined, serieIndex: -1, navigable: isNavigable, subSeries: series.slice(0,5) };
+  }
+
+  handleSelected = (serie: ISerie, serieIndex: number = -1) => {
+    this.setState({ serie, serieIndex: serieIndex });
   };
   handleDelete = (serieId: string) => {
     const { handleDeleteSerie, exercise } = this.props;
@@ -62,34 +61,50 @@ export default class LogPage extends Component<LogProps, LogState> {
     }
   };
   handleGraphClick = () => {
-    this.setState(prev => ({navigable: true}));
+    const { serie } = this.state;
+    //todo compute serie using navigation if necesary
+    this.setState({ navigable: true });
+  };
+  handleSeriesChange = (subSeries: ISerie[]) => {
+    console.log('handleSeriesChange');
+    this.setState({subSeries, navigable: false})
   }
   render() {
     const { exercise } = this.props;
-    const { serieIndex, navigable } = this.state;
-    const selectedSerie = getSerie(exercise, serieIndex);
-    // if (selectedSerie) console.log(selectedSerie.reps);
+    const { series = [] } = exercise;
+    const { serie, serieIndex,  navigable, subSeries } = this.state;
+    const restTime = computeRestTime(series, serieIndex);
     return (
       <>
+        {series.length > 6 && <Navigation series={series} 
+          handleSeriesChange={this.handleSeriesChange}></Navigation>
+
+        }
         <Graph
           key={navigable ? "1" : "0"}
-          exercise={exercise}
+          series={subSeries}
           handleSelected={this.handleSelected}
           handleGraphClick={this.handleGraphClick}
           isNavigable={navigable}
         ></Graph>
-        {navigable && selectedSerie && (
+        {navigable && serie && (
           <>
-          <Typography className='log-page-created' variant="caption" display="block" gutterBottom >
-            Created: {formatDateString(selectedSerie.createdAt || '')}
-          </Typography>
+            <Typography
+              className="log-page-created"
+              variant="caption"
+              display="block"
+              gutterBottom
+            >
+              Created: {formatDateString(serie.createdAt || "")} 
+              {restTime && (<span> ( rest: {restTime} )</span>)}
+            </Typography>
 
-          <Serie
-            key={selectedSerie._id}
-            initialSerie={selectedSerie}
-            handleDone={this.handleDone}
-            handleDelete={this.handleDelete}
-          ></Serie>
+            <Serie
+              key={serie._id}
+              initialSerie={serie}
+              handleDone={this.handleDone}
+              handleDelete={this.handleDelete}
+            ></Serie>
           </>
         )}
       </>

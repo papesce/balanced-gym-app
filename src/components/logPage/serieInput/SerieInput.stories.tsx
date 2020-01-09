@@ -7,7 +7,7 @@ export default {
     title: 'logPage/SerieInput',
   };
   
-export const serieInput = () => 
+export const doneOnChange = () => 
       <SerieInput handleDoneClick={action('done click')}
         handleCancelClick={action('cancel click')}/>;  
 export const initialSerie = () => 
