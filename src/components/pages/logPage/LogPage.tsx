@@ -101,15 +101,17 @@ export default class LogPage extends Component<LogProps, LogState> {
     const { serieIndex, navigable, more, subSeries } = this.state;
     const serie = subSeries[serieIndex];
     const restTime = computeRestTime(series, serie);
+    const showNav = !more && series.length > 6;
     return (
       <>
-        {!more && series.length > 6 && (
+        {(showNav &&
           <Navigation
             series={series}
             handleSeriesChange={this.handleSeriesChange}
             handleCancel={this.handleMoreCancel}
           ></Navigation>
         )}
+         {!showNav && <div className='log-page-spacer'></div>}
         <GraphBar
           edit={!navigable}
           more={more}

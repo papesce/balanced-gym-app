@@ -41,8 +41,7 @@ export default class Graph extends Component<GraphProps> {
     }
     const { labels, reps, weights } = getGraphData(series);
     return (
-        <div className="graph-chart-container" onClick={this.handleGraphClick}>
-         
+        <div className="graph-chart-container" onClick={this.handleGraphClick}>  
         <ReactFrappeChart
           title={"History"}
           type="line"
