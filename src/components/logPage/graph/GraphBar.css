@@ -1,0 +1,9 @@
+.graph-bar-container {
+    position: absolute;
+    margin-left: 70px;
+    z-index: 3;
+}
+
+.graph-bar-container .graph-bar-icon-button {
+    margin-right: 13px;
+}

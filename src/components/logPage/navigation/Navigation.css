@@ -10,6 +10,7 @@
 
 .navigation-table-pagination.MuiTablePagination-root {
   padding: 0px;
+  margin-right: 50px;
   font-size: 12px;
 }
 .navigation-table-pagination .MuiTablePagination-selectRoot {
@@ -22,5 +23,13 @@
 }
 
 .navigation-table-pagination .MuiToolbar-gutters {
-   padding-left: 78px;
+   padding-left: 0px;
  }
+
+ .navigation-container .navigation-icon-button {
+    position: absolute;
+    margin-top: 14px;
+    margin-left: 295px;
+    z-index: 3;
+ }
+

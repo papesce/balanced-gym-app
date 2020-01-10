@@ -3,10 +3,13 @@ import "./Navigation.css";
 import TablePagination from "@material-ui/core/TablePagination";
 import { ISerie } from "../../../model/SerieModel";
 import { NavigationActions } from './NavigationActions';
+import IconButton from "@material-ui/core/IconButton";
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 
 interface NavigationProps {
   series: ISerie[];
   handleSeriesChange?: (series:ISerie[]) => void;
+  handleCancel?: () => void;
 }
 
 interface NavigationState {
@@ -63,7 +66,7 @@ export default class Navigation extends Component<
   };
   
   render() {
-    const { series = [] } = this.props;
+    const { series = [], handleCancel } = this.props;
     if (series.length <= 6) {
       return null;
     }
@@ -74,6 +77,9 @@ export default class Navigation extends Component<
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     return (
       <div className="navigation-container">
+        <IconButton className={"navigation-icon-button"} size="small" onClick={handleCancel}>
+          <CancelOutlinedIcon fontSize="inherit" />
+        </IconButton>
         <TablePagination
           className="navigation-table-pagination"
           component="div"

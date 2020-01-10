@@ -1,7 +1,9 @@
 .graph-chart-container {
     max-width: 340px;
+    z-index: -1;
 }
 
 .graph-chart-container .graph-svg-tip {
     display: none;
 }
+

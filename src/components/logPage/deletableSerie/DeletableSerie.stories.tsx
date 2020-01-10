@@ -7,6 +7,8 @@ export default {
   };
  
   
-export const serieDelete = () => 
+export const deletableSerie = () => 
       <Serie initialSerie={serie1} handleDelete={action('deleted')} />;
+export const withRestTime = () => 
+      <Serie initialSerie={serie1} handleDelete={action('deleted')} restTime={"2:05"} />;
        
