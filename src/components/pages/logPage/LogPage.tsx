@@ -78,6 +78,7 @@ export default class LogPage extends Component<LogProps, LogState> {
       };
       handleEditSerie(exercise._id, editedSerie);
     }
+    this.setState({ navigable: false });
   };
   handleEditClick = () => {
     this.setState({ navigable: true, serieIndex: 0 });
