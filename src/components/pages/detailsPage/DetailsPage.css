@@ -14,7 +14,11 @@
     margin: 8px;
 }
 
-.details-page-icon-button {
+.details-page-card {
+    max-width: 345px;
+}
+
+.details-page-card .details-page-icon-button {
     background: lightgray;
     position: absolute;
     margin-top: 10px;

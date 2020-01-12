@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import FlipToFrontTwoToneIcon from '@material-ui/icons/FlipToFrontTwoTone';
 import FlipToBackIcon from '@material-ui/icons/FlipToBack';
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/core/styles";
@@ -21,9 +20,6 @@ interface DetailsPageState {
 }
 
 const styles = (theme: any) => ({
-  card: {
-    maxWidth: 345
-  },
   media: {
     // height: 0
     // paddingTop: "56.25%" // 16:9
@@ -46,7 +42,7 @@ class DetailsPage extends Component<DetailsPageProps, DetailsPageState> {
   };
   render() {
     // const classes = useStyles();
-    const { exercise, classes } = this.props;
+    const { exercise } = this.props;
     const {
       suggestedSerie = { reps: 0, weight: 0 },
       gifURL,
@@ -58,7 +54,7 @@ class DetailsPage extends Component<DetailsPageProps, DetailsPageState> {
     const { flip } = this.state;
     const detailsPageImg: string = flip ? 'details-page-img' : 'details-page-img-hor';
     return (
-      <Card className={classes.card}>
+      <Card className={'details-page-card'}>
         <Tooltip title="Flip Horizontal">
           <IconButton
             className={"details-page-icon-button"}
