@@ -104,6 +104,7 @@ export default class LogPage extends Component<LogProps, LogState> {
     const restTime = computeRestTime(series, serie);
     const showNav = !more && series.length > 6;
     const isEditable = !navigable && series.length > 0;
+    const showEdit = navigable && serie;
     return (
       <>
         {(showNav &&
@@ -127,7 +128,7 @@ export default class LogPage extends Component<LogProps, LogState> {
           isNavigable={navigable}
         ></Graph>
 
-        {navigable && serie && (
+        { showEdit && (
           <DeletableSerie
             key={serie._id}
             initialSerie={serie}

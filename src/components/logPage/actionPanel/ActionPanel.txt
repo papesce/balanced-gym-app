@@ -1,0 +1,14 @@
+props state='showEdit' 
+  return <edit>
+  onEditDone => showTimer
+  onEditCancel => showTimer
+  onDeleteSerie => showAdd
+prop state='showAdd'
+   return <Add>
+   onAddClick => showEdit  (sacar lo de depender de la fecha de la serie)
+prop state='showTimer'
+   return <RestTimer>
+   onStopTimer => showAdd
+   onTimerExpired => showAdd
+showNone state='none'
+   
