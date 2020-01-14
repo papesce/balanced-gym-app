@@ -6,9 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import { formatDateString } from "../../../utils/dateUtils";
 import IconButton from "@material-ui/core/IconButton";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import './DeletableSerie.css';
+import './EditSerie.css';
 
-interface DeletableSerieProps {
+interface EditSerieProps {
   handleDelete?: (serieId: string) => void;
   handleCancel?: () => void;
   handleDone?: (serie: ISerie) => void;
@@ -16,7 +16,7 @@ interface DeletableSerieProps {
   restTime?: string;
 }
 
-export default class DeletableSerie extends Component<DeletableSerieProps> {
+export default class EditSerie extends Component<EditSerieProps> {
   handleDelete = () => {
     const { initialSerie, handleDelete } = this.props;
     if (handleDelete) {

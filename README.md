@@ -23,7 +23,6 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 - yarn add frappe-charts
 - yarn add prettier --dev --exact
 - yarn add moment  
-- yarn add react-stopwatch
 
 # Heroku
 

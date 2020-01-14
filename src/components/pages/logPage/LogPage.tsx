@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { IExercise } from "../../../model/ExerciseModel";
 import { ISerie } from "../../../model/SerieModel";
 import Graph from "../../logPage/graph/Graph";
-import DeletableSerie from "../../logPage/deletableSerie/DeletableSerie";
+import EditSerie from "../../logPage/editSerie/EditSerie";
 import { isToday } from "../../../utils/dateUtils";
 import Navigation from "../../logPage/navigation/Navigation";
 import { millisToMinutesAndSeconds } from "../../../utils/dateUtils";
@@ -129,14 +129,14 @@ export default class LogPage extends Component<LogProps, LogState> {
         ></Graph>
 
         { showEdit && (
-          <DeletableSerie
+          <EditSerie
             key={serie._id}
             initialSerie={serie}
             handleDone={this.handleSerieDone}
             handleDelete={this.handleSerieDelete}
             restTime={restTime}
             handleCancel={this.handleEditSerieCancel}
-          ></DeletableSerie>
+          ></EditSerie>
         )}
       </>
     );
