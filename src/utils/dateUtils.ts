@@ -55,3 +55,11 @@ export const  millisToMinutesAndSeconds = (millis: number) => {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
+export const secondsToNow = (date: string) => {
+    const ms1 = new Date(date).getTime();
+    const ms2 = new Date().getTime();
+    const diff = ms2 - ms1;
+    return  Math.trunc(diff / 1000);
+}
+    
+

@@ -1,53 +1,68 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import TimerOffIcon from "@material-ui/icons/TimerOff";
-import TimerIcon from "@material-ui/icons/Timer";
-import { Tooltip } from "@material-ui/core";
+// import TimerOffIcon from "@material-ui/icons/TimerOff";
+// import TimerIcon from "@material-ui/icons/Timer";
+// import { Tooltip } from "@material-ui/core";
+import { ISerie } from "../../../model/SerieModel";
+import {
+  millisToMinutesAndSeconds,
+  secondsToNow
+} from "../../../utils/dateUtils";
+import Typography from "@material-ui/core/Typography";
 import "./AddSerie.css";
 
-const DEFAULT_TIMER_LIMIT: number = 10 * 60; //10 minutes
+const DEFAULT_TIMER_LIMIT: number = 5 * 60; //5 minutes
 
 interface AddSerieProps {
-  timerStarted?: boolean;
-  handleLogNewSerie?: () => void;
+  lastSerie?: ISerie;
+  handleLogNewSerie?: (restTime?: number) => void;
   timerLimit?: number;
-  initialTimerTime?: number;
-  startTime?: number;
 }
 
 interface AddSerieState {
   timerTime: number;
   startTime: number;
-  timerPaused: boolean;
+  showTimer: boolean;
 }
 
-const formatTime = (min: number, sec: number) => {
-  const minutes: string = `${min}`;
-  const seconds: string = `${sec < 10 ? "0" : ""}${sec}`;
-  return minutes + ":" + seconds;
+// const formatTime = (min: number, sec: number) => {
+//   const minutes: string = `${min}`;
+//   const seconds: string = `${sec < 10 ? "0" : ""}${sec}`;
+//   return minutes + ":" + seconds;
+// };
+
+// const millisToMinutesAndSeconds = (millis: number) => {
+//   const minutes: number = Math.floor(millis / 60000);
+//   const seconds: number = Math.trunc((millis % 60000) / 1000);
+//   return formatTime(minutes, seconds);
+// };
+
+const secondsToNowSerie = (serie?: ISerie) => {
+  let result: number = -1;
+  if (serie && serie.createdAt) {
+    result = secondsToNow(serie.createdAt);
+  }
+  return result;
 };
 
-const millisToMinutesAndSeconds = (millis: number) => {
-  const minutes: number = Math.floor(millis / 60000);
-  const seconds: number = Math.trunc((millis % 60000) / 1000);
-  return formatTime(minutes, seconds);
+const isInRange = (secs: number, limit: number) => {
+  return secs >= 0 && secs <= limit;
 };
 
-
-
-export default class RestTime extends Component<AddSerieProps, AddSerieState> {
+export default class AddSerie extends Component<AddSerieProps, AddSerieState> {
   timer: any;
+  _isMounted = false;
   constructor(props: AddSerieProps) {
     super(props);
-    const {
-      initialTimerTime = 0,
-      startTime = Date.now(),
-      timerStarted = false
-    } = this.props;
+    const { lastSerie, timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
+    const seconds = secondsToNowSerie(lastSerie);
+    const initialTimerTime: number = seconds * 1000;
+    const showTimer: boolean =
+      lastSerie !== undefined && isInRange(seconds, timerLimit);
     this.state = {
-      timerTime: initialTimerTime * 1000,
-      startTime,
-      timerPaused: !timerStarted
+      timerTime: initialTimerTime,
+      startTime: Date.now() - initialTimerTime,
+      showTimer
     };
     this.timer = null;
   }
@@ -62,78 +77,57 @@ export default class RestTime extends Component<AddSerieProps, AddSerieState> {
   };
   increaseTimerTime = () => {
     const { timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
-    this.setState(prevState => {
-      const { startTime } = prevState;
-      const timerTime = Date.now() - startTime;
-      if (timerTime >= timerLimit * 1000) {
-        this.stopTimer();
-        return {...prevState, timerTime, timerPaused: true };
-       } else 
-        return {...prevState, timerTime }
-    })
+    this._isMounted &&
+      this.setState(prevState => {
+        const { startTime } = prevState;
+        const timerTime = Date.now() - startTime;
+        if (timerTime >= timerLimit * 1000) {
+          this.stopTimer();
+          return { ...prevState, timerTime, showTimer: false };
+        } else return { ...prevState, timerTime };
+      });
   };
   componentDidMount = () => {
-    const { timerPaused = false } = this.state;
-    if (!timerPaused) this.createTimer();
+    this._isMounted = true;
+    const { showTimer = false } = this.state;
+    if (showTimer) this.createTimer();
+  };
+  componentWillUnmount = () => {
+    this._isMounted = false;
   };
   handleAddSerie = () => {
     const { handleLogNewSerie } = this.props;
-    handleLogNewSerie && handleLogNewSerie();
+    const { timerTime } = this.state;
+    this.stopTimer();
+    if (timerTime === 0) handleLogNewSerie && handleLogNewSerie();
+    else handleLogNewSerie && handleLogNewSerie(Math.round(timerTime / 1000));
   };
-  handleTimerClick = () => {
-    this.setState(prevState => {
-      const { timerPaused } = prevState;
-      if (timerPaused) this.createTimer();
-      else this.stopTimer();
-      return { timerPaused: !timerPaused };
-    });
-  };
+  getShowTimer = (serie?: ISerie) => {};
   render() {
-    const stopTimer = (
-      <Tooltip title="Stop Timer">
-        <TimerOffIcon />
-      </Tooltip>
-    );
-    const resumeTimer = (
-      <Tooltip title="Resume Timer">
-        <TimerIcon />
-      </Tooltip>
-    );
-    const { initialTimerTime = 0, timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
-    const { timerTime, timerPaused } = this.state;
-    const hasTimer = timerTime > 0 || !timerPaused;
-    const canBePaused = initialTimerTime === 0 && timerTime <= timerLimit * 1000;
+    const { timerTime, showTimer } = this.state;
     return (
-      <div className="add-serie-contianer">
-        {hasTimer && (
-          <>
-            <span className="action-panel-timer">
-              Rest Time: <span>{millisToMinutesAndSeconds(timerTime)}</span>
-            </span>
-            {canBePaused && (
-              <span className="add-serie-timer-button">
-                <Button
-                variant="contained"
-                color="primary"
-                onClick={this.handleTimerClick}
-              >
-                {timerPaused ? resumeTimer : stopTimer}
-              </Button>
-              </span>
-            )}
-          </>
+      <div className="add-serie-container">
+        {showTimer && (
+          <div className="add-serie-rest-time">
+            <Typography variant="overline">Rest Time: </Typography>
+            <Typography className="add-serie-rest-timer" variant="overline">
+              {millisToMinutesAndSeconds(timerTime)}
+            </Typography>
+          </div>
         )}
-        {timerPaused && (
-          <span className="add-serie-log-button">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleAddSerie}
-            >
-              Log New Serie
-            </Button>
-          </span>
-        )}
+        <div
+          className={
+            showTimer ? "add-serie-log-button" : "add-serie-log-button-center"
+          }
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleAddSerie}
+          >
+            Log New Serie
+          </Button>
+        </div>
       </div>
     );
   }

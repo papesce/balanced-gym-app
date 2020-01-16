@@ -1,6 +1,22 @@
 .add-serie-log-button {
-    padding-left: 5px;
+    padding-left: 10px;
+    float: left;
+    
 }
-.add-serie-timer-button {
-    padding-left: 5px;
+
+.add-serie-log-button-center {
+    padding-left: 100px;
+}
+
+.add-serie-container .add-serie-rest-time {
+    padding-left: 10px;
+    float:left;
+    
+}
+
+.add-serie-container .add-serie-rest-timer {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1rem;
+
 }

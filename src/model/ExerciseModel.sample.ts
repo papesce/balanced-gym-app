@@ -1,5 +1,5 @@
 import { IExercise } from "./ExerciseModel";
-import { series1, series2, series8 } from "./SerieModel.sample";
+import { series1, series2, series8, series9now } from "./SerieModel.sample";
 
 export const sampleExercise1: IExercise = {
   _id: "59f0c59d4e55c40d38868035",
@@ -68,6 +68,12 @@ export const sampleExerciseSeries8: IExercise = {
   _id: "",
   name: "Chest",
   series: series8
+};
+
+export const sampleExerciseSeries9now: IExercise = {
+  _id: "",
+  name: "Chest",
+  series: series9now
 };
 
 export const onlyTargetSample: IExercise = {

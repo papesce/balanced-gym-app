@@ -13,6 +13,7 @@ interface ExercisePageProps {
   loading?: boolean;
   error?: string;
   exercise?: IExercise;
+  handleAddSerie?: (restTime?: number) => void;
   handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
   handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
 }
@@ -24,6 +25,7 @@ class ExercisePage extends Component<ExercisePageProps> {
       exercise = emptyExercise,
       loading,
       error,
+      handleAddSerie,
       handleEditSerie,
       handleDeleteSerie
     } = this.props;
@@ -34,6 +36,8 @@ class ExercisePage extends Component<ExercisePageProps> {
       <LogPage
         key="3"
         exercise={exercise}
+        secondsLimit={2}
+        handleAddSerie={handleAddSerie}
         handleEditSerie={handleEditSerie}
         handleDeleteSerie={handleDeleteSerie}
       />

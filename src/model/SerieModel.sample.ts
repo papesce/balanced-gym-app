@@ -7,13 +7,30 @@ export const emptySerie: ISerie = {
   weight: 0
 };
 
+export const serieNow: ISerie = {
+  _id: "fakeid",
+  reps: 7,
+  weight: 42,
+  createdAt: new Date().toString()
+};
+ 
+const minuteAgo: Date = new Date(Date.now() - 1000 * 60) ;
+
+export const serieMinAgo: ISerie = {
+  _id: "fakeid",
+  reps: 7,
+  weight: 42,
+  createdAt: minuteAgo.toString()
+};
+
 export const series0: ISerie[] = [];
 
 export const serie1: ISerie = {
   _id: "5a78d7933014df0014ad064a",
   createdAt: "2018-02-05T22:18:47.918Z",
   reps: 8,
-  weight: 40
+  weight: 40,
+  restTime: 110
 };
 
 export const serieI: ISerie = {
@@ -103,6 +120,18 @@ export const series8: ISerie[] = [
   serie6,
   serie7,
   serie8
+];
+export const series9now: ISerie[] = [
+  serieNow,
+  serie1,
+  serie2,
+  serie3,
+  serie4,
+  serie5,
+  serie6,
+  serie7,
+  serie8,
+  
 ];
 
 export const serie9: ISerie = {

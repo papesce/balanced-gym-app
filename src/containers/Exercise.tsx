@@ -57,10 +57,14 @@ export class Exercise extends Component<ExerciseProps> {
             } = this.props;
        loadExercise && loadExercise(exerciseId);
     }
-    newSerie = () => {
+    newSerie = (restTime?: number) => {
         const { newSerie, exercise } = this.props;
         const { suggestedSerie = {_id: '', reps: 0, weight:0}} = exercise;
-        newSerie && newSerie(exercise._id, suggestedSerie); 
+        const serie: ISerie = {...suggestedSerie};
+        if (restTime && restTime > 0) {
+            serie.restTime = restTime;
+        } 
+        newSerie && newSerie(exercise._id, serie); 
     }
     handleBack = () => {
         const { history, exercise } = this.props;
@@ -80,11 +84,12 @@ export class Exercise extends Component<ExerciseProps> {
         const theError = getError(error, creatingError, editingError, deletingError);
         const isLoading = loading || creating || deleting || editing;
         return (<>
-           <ExerciseHeader handleBack={this.handleBack} handleAddSerie={this.newSerie}></ExerciseHeader>
+           <ExerciseHeader handleBack={this.handleBack} ></ExerciseHeader>
            <ExercisePage
              loading={isLoading}
              error={theError} 
              exercise={exercise}
+             handleAddSerie={this.newSerie}
              handleEditSerie={editSerie}
              handleDeleteSerie={deleteSerie}
              />

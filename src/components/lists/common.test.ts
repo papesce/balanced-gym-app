@@ -70,7 +70,7 @@ describe('getRoutineSummary2', () => {
          doneToday: 0,
          _id:'',
          name:'',
-         lastUpdated:yesterday.toString()
+         lastUpdated: yesterday.toString()
          };
          const text = getRoutineSummary2(routine);
          expect(text).toBe("a day ago")

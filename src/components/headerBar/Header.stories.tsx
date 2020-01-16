@@ -18,6 +18,6 @@ export const backHeader = () => (
 export const exerciseHeader = () => (
   <Router><ExerciseHeader
     handleBack={action("clicked item")}
-    handleAddSerie={action("clicked item")}
+    // handleAddSerie={action("clicked item")}
   /></Router>
 );

@@ -2,7 +2,8 @@ export interface ISerie {
     _id: string,
     createdAt?: string,
     reps: number,
-    weight: number
+    weight: number,
+    restTime?: number
 }
 
 export interface ISerieState {

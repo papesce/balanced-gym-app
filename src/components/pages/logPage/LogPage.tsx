@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { IExercise } from "../../../model/ExerciseModel";
 import { ISerie } from "../../../model/SerieModel";
 import Graph from "../../logPage/graph/Graph";
-import EditSerie from "../../logPage/editSerie/EditSerie";
-import { isToday } from "../../../utils/dateUtils";
+import { secondsToNow } from "../../../utils/dateUtils";
 import Navigation from "../../logPage/navigation/Navigation";
-import { millisToMinutesAndSeconds } from "../../../utils/dateUtils";
 import GraphBar from "../../logPage/graph/GraphBar";
+import EditSerie from "../../logPage/editSerie/EditSerie";
+import AddSerie from '../../logPage/addSerie/AddSerie';
 import "./LogPage.css";
+
+const LOG_PAGE_DEFAULT_TIME_LIMIT = 60 * 5;
 
 interface LogProps {
   exercise: IExercise;
+  handleAddSerie?: (restTime?: number) => void;
   handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
   handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
+  secondsLimit?: number;
 }
 
 interface LogState {
@@ -20,36 +24,19 @@ interface LogState {
   subSeries: ISerie[];
   navigable: boolean;
   more: boolean;
+  
 }
-
-const computeRestTime = (series: ISerie[], serie: ISerie) => {
-  const index: number = series.findIndex(s => s._id === serie._id);
-  console.log("rest index", index);
-  if (index < series.length - 1) {
-    const prevSerie: ISerie = series[index + 1];
-    if (prevSerie.createdAt && serie.createdAt) {
-      const ms1: number = new Date(prevSerie.createdAt).getTime();
-      const ms2: number = new Date(serie.createdAt).getTime();
-      const diff: number = ms2 - ms1;
-      console.log("ms1, ms2, diff:", ms1, ms2, diff);
-      if (diff > 0 && diff < 1000 * 60 * 5) {
-        return millisToMinutesAndSeconds(diff);
-      }
-    }
-  }
-  return "";
-};
 
 export default class LogPage extends Component<LogProps, LogState> {
   constructor(props: LogProps) {
     super(props);
-    const { exercise } = this.props;
+    const { exercise, secondsLimit = LOG_PAGE_DEFAULT_TIME_LIMIT } = this.props;
     const { series = [] } = exercise;
     let isNavigable = false;
     if (series.length > 0) {
       const lastSerie: ISerie = series[0];
       if (lastSerie.createdAt) {
-        isNavigable = isToday(new Date(lastSerie.createdAt));
+        isNavigable = secondsToNow(lastSerie.createdAt) <= secondsLimit;
       }
     }
     this.state = {
@@ -96,15 +83,17 @@ export default class LogPage extends Component<LogProps, LogState> {
   handleMoreCancel = () => {
     this.setState({ more: true });
   }
+  handleAddSerie = (restTime?: number) => {
+    const { handleAddSerie } = this.props;
+    handleAddSerie && handleAddSerie(restTime);
+  }
   render() {
     const { exercise } = this.props;
     const { series = [] } = exercise;
     const { serieIndex, navigable, more, subSeries } = this.state;
-    const serie = subSeries[serieIndex];
-    const restTime = computeRestTime(series, serie);
-    const showNav = !more && series.length > 6;
-    const isEditable = !navigable && series.length > 0;
-    const showEdit = navigable && serie;
+    const serie: ISerie = subSeries[serieIndex];
+    const showNav: boolean = !more && series.length > 6;
+    const isEditable: boolean = !navigable && series.length > 0;
     return (
       <>
         {(showNav &&
@@ -127,17 +116,18 @@ export default class LogPage extends Component<LogProps, LogState> {
           handleSelected={this.handleGraphSelected}
           isNavigable={navigable}
         ></Graph>
-
-        { showEdit && (
-          <EditSerie
-            key={serie._id}
-            initialSerie={serie}
-            handleDone={this.handleSerieDone}
-            handleDelete={this.handleSerieDelete}
-            restTime={restTime}
-            handleCancel={this.handleEditSerieCancel}
-          ></EditSerie>
-        )}
+        {navigable && <EditSerie
+          key={serie._id}
+          initialSerie={serie}
+          handleDone={this.handleSerieDone}
+          handleDelete={this.handleSerieDelete}
+          handleCancel={this.handleEditSerieCancel} 
+        />}
+        {!navigable && <AddSerie 
+          key={serie ? serie._id : 'new'}
+          lastSerie={serie}
+          handleLogNewSerie={this.handleAddSerie} />
+        }        
       </>
     );
   }
