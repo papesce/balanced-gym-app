@@ -73,7 +73,8 @@ export const sampleExerciseSeries8: IExercise = {
 export const sampleExerciseSeries9now: IExercise = {
   _id: "",
   name: "Chest",
-  series: series9now
+  series: series9now,
+  lastCreationDate: new Date().toString()
 };
 
 export const onlyTargetSample: IExercise = {

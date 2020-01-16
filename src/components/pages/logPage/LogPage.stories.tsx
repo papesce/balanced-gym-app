@@ -36,10 +36,17 @@ export const series9now = () => (
     handleAddSerie={action("addClick")}
   />
 );
-export const series9nowLim10 = () => (
+export const nowNavLim20 = () => (
   <LogPage
     exercise={sampleExerciseSeries9now}
-    secondsLimit={10}
+    secondsLimit={15}
+    handleAddSerie={action("addClick")}
+  />
+);
+export const timerLim10 = () => (
+  <LogPage
+    exercise={sampleExerciseSeries9now}
+    timerLimit={20}
     handleAddSerie={action("addClick")}
   />
 );

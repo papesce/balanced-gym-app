@@ -14,7 +14,7 @@ import "./AddSerie.css";
 const DEFAULT_TIMER_LIMIT: number = 5 * 60; //5 minutes
 
 interface AddSerieProps {
-  lastSerie?: ISerie;
+  lastCreationDate?: string;
   handleLogNewSerie?: (restTime?: number) => void;
   timerLimit?: number;
 }
@@ -37,10 +37,10 @@ interface AddSerieState {
 //   return formatTime(minutes, seconds);
 // };
 
-const secondsToNowSerie = (serie?: ISerie) => {
+const secondsToNowSerie = (createdAt?: string) => {
   let result: number = -1;
-  if (serie && serie.createdAt) {
-    result = secondsToNow(serie.createdAt);
+  if (createdAt) {
+    result = secondsToNow(createdAt);
   }
   return result;
 };
@@ -54,11 +54,11 @@ export default class AddSerie extends Component<AddSerieProps, AddSerieState> {
   _isMounted = false;
   constructor(props: AddSerieProps) {
     super(props);
-    const { lastSerie, timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
-    const seconds = secondsToNowSerie(lastSerie);
+    const { lastCreationDate, timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
+    const seconds = secondsToNowSerie(lastCreationDate);
     const initialTimerTime: number = seconds * 1000;
     const showTimer: boolean =
-      lastSerie !== undefined && isInRange(seconds, timerLimit);
+      lastCreationDate !== undefined && isInRange(seconds, timerLimit);
     this.state = {
       timerTime: initialTimerTime,
       startTime: Date.now() - initialTimerTime,

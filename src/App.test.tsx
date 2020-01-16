@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 jest.mock(
-  "../src/components/exercisePage/logPage/FappeChart",
+  "../src/components/generic/chart/FappeChart",
   () => () => ({})
 );
 it("renders without crashing", () => {

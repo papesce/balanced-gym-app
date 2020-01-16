@@ -37,6 +37,7 @@ class ExercisePage extends Component<ExercisePageProps> {
         key="3"
         exercise={exercise}
         secondsLimit={2}
+        timerLimit={60*60}
         handleAddSerie={handleAddSerie}
         handleEditSerie={handleEditSerie}
         handleDeleteSerie={handleDeleteSerie}

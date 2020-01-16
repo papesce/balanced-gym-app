@@ -9,14 +9,15 @@ import EditSerie from "../../logPage/editSerie/EditSerie";
 import AddSerie from '../../logPage/addSerie/AddSerie';
 import "./LogPage.css";
 
-const LOG_PAGE_DEFAULT_TIME_LIMIT = 60 * 5;
+const LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT = 5;  //5 seconds
 
 interface LogProps {
   exercise: IExercise;
   handleAddSerie?: (restTime?: number) => void;
   handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
   handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
-  secondsLimit?: number;
+  secondsLimit?: number; // hack: seconds to show navigable
+  timerLimit?: number;
 }
 
 interface LogState {
@@ -30,7 +31,7 @@ interface LogState {
 export default class LogPage extends Component<LogProps, LogState> {
   constructor(props: LogProps) {
     super(props);
-    const { exercise, secondsLimit = LOG_PAGE_DEFAULT_TIME_LIMIT } = this.props;
+    const { exercise, secondsLimit = LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT } = this.props;
     const { series = [] } = exercise;
     let isNavigable = false;
     if (series.length > 0) {
@@ -88,8 +89,8 @@ export default class LogPage extends Component<LogProps, LogState> {
     handleAddSerie && handleAddSerie(restTime);
   }
   render() {
-    const { exercise } = this.props;
-    const { series = [] } = exercise;
+    const { exercise, timerLimit } = this.props;
+    const { series = [], lastCreationDate } = exercise;
     const { serieIndex, navigable, more, subSeries } = this.state;
     const serie: ISerie = subSeries[serieIndex];
     const showNav: boolean = !more && series.length > 6;
@@ -125,8 +126,9 @@ export default class LogPage extends Component<LogProps, LogState> {
         />}
         {!navigable && <AddSerie 
           key={serie ? serie._id : 'new'}
-          lastSerie={serie}
-          handleLogNewSerie={this.handleAddSerie} />
+          lastCreationDate={lastCreationDate}
+          handleLogNewSerie={this.handleAddSerie}
+          timerLimit={timerLimit} />
         }        
       </>
     );

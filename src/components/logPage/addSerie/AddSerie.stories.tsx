@@ -16,14 +16,14 @@ export const noPrevSerie = () => (
 export const prevSerieOld = () => (
   <AddSerie
     key={"2"}
-    lastSerie={serie1}
+    lastCreationDate={serie1.createdAt}
     handleLogNewSerie={action("logNewSerie")}
   />
 );
 export const prevSerieNow = () => (
   <AddSerie
     key={"3"}
-    lastSerie={serieNow}
+    lastCreationDate={serieNow.createdAt}
     handleLogNewSerie={action("logNewSerie")}
   />
 );
@@ -31,7 +31,7 @@ export const prevSerieNow = () => (
 export const prevSerieMinAgo = () => (
   <AddSerie
     key={"4"}
-    lastSerie={serieMinAgo}
+    lastCreationDate={serieMinAgo.createdAt}
     handleLogNewSerie={action("logNewSerie")}
   />
 );
@@ -40,7 +40,7 @@ export const nowLimit10 = () => (
   <AddSerie
     timerLimit={10}
     key={"5"}
-    lastSerie={serieNow}
+    lastCreationDate={serieNow.createdAt}
     handleLogNewSerie={action("logNewSerie")}
   />
 );

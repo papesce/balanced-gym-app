@@ -23,6 +23,7 @@ export interface IExercise {
     equipment?: string;
     synergists?: ITarget[];
     stabilizers?: ITarget[];
+    lastCreationDate?: string;
 }
 
 export interface IExerciseState {
