@@ -31,8 +31,12 @@ const Header: React.FC<HeaderProps> = ({ leftComponent, rightComponent }) => {
           {leftComponent}
           <Typography variant="subtitle1" className={classes.title}>
             <Link to="/" style={{ color: 'inherit', textDecoration: "none" }}>
-              Balanced Gym App v0.2
+              Balanced Gym App
             </Link>
+           
+          </Typography>
+          <Typography variant="caption" className={classes.title}>
+          v0.3 
           </Typography>
           {rightComponent}
         </Toolbar>
