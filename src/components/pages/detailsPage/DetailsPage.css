@@ -24,4 +24,9 @@
     margin-top: 10px;
     margin-left: 10px;
     z-index: 3;
+    
+}
+
+.details-page-card .details-page-icon-button:hover {
+    background: white;
 }
