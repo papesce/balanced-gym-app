@@ -36,7 +36,7 @@ const styles = (theme: any) => ({
 });
 
 class DetailsPage extends Component<DetailsPageProps, DetailsPageState> {
-  state = { flip: false };
+  state = { flip: true };
   handleFlipClick = () => {
     this.setState((prev: DetailsPageState) => ({ flip: !prev.flip }));
   };
@@ -58,7 +58,7 @@ class DetailsPage extends Component<DetailsPageProps, DetailsPageState> {
         <Tooltip title="Flip Horizontal">
           <IconButton
             className={"details-page-icon-button"}
-            size="small"
+            size="medium"
             onClick={this.handleFlipClick}
           >
             <FlipToBackIcon fontSize="inherit" />
