@@ -6,3 +6,8 @@
  max-width: 340px;
  padding-left: 16px;    
 }
+
+.sample-page {
+   height: 200px;
+   background: lightblue;
+}

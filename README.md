@@ -13,8 +13,8 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 - yarn add @types/react-redux --dev
 - yarn add @reduxjs/toolkit --dev
 - npx -p @storybook/cli sb init --type react --story-format=csf-ts
-- yarn add @material-ui/core --dev
-- yarn add @material-ui/icons --dev
+- yarn add @material-ui/core
+- yarn add @material-ui/icons
 - yarn add react-router-dom
 - yarn add @types/react-router-dom --dev
 - yarn add npm-run-all --dev

@@ -38,7 +38,7 @@ export default class ElemPage extends Component<ElemPageProps, ElemPageState> {
                 )}
           </ButtonGroup>
           <SwipeableViews
-        axis={'x-reverse'}
+        axis={'x'}
         index={selected}
         
         // onChangeIndex={handleChangeIndex}

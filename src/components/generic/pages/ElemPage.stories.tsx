@@ -1,13 +1,14 @@
 import React from 'react';
 import ElemPage, { IElemPage } from './ElemPage';
+import './ElemPage.css';
 
 export default {
     title: 'generic/pages/Elem Page',
   };
 
-const C1 = <div >Page 1</div>;
-const C2 = <div >Page 2</div>;
-const C3 = <div >Page 3</div>;
+const C1 = <div className='sample-page' >Page 1</div>;
+const C2 = <div className='sample-page'>Page 2</div>;
+const C3 = <div className='sample-page'>Page 3</div>;
 
 const samplePagesEmpty: IElemPage[] = [];
 const samplePagesSimple: IElemPage[] = [
