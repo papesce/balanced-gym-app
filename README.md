@@ -26,4 +26,4 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 
 # Heroku
 
-heroku config:set REACT_APP_SERVER=https://balanced-gym-dev.herokuapp.com
+heroku config:set REACT_APP_SERVER=https://balanced-gym-app-dev.herokuapp.com
