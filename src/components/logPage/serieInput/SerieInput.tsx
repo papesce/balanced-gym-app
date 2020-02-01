@@ -90,7 +90,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
         event.preventDefault();
         const { target } = event
         target.focus();
-        target.setSelectionRange(0, target.value.length);
+        target.select();
       }
       
     render() {
@@ -102,7 +102,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     className="serie-input-text-field"
                     id="input-reps"
                     label="# Reps"
-                    // type="number"
+                    type="number"
                     variant="outlined"
                     onChange={this.handleRepsChange}
                     value={reps}
@@ -117,7 +117,7 @@ export default class SeriesInput extends Component<SerieInputProps, SerieInputSt
                     InputProps={{
                         endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
                       }}
-                    // type="number"
+                    type="number"
                     variant="outlined"
                     onChange={this.handleWeightChange}
                     value={weight}
