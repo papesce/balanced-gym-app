@@ -1,5 +1,6 @@
 {
   "name": "balanced-gym-app",
+  "description": "Balanced Gym App Client",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -25,9 +26,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "cd ../balanced-gym/server && yarn start",
-    "start:all": "run-p start:server start",
-    "build": "react-scripts build",
+    "build:client": "react-scripts build",
+    "build": "react-scripts build && cd build && mv . ../server/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",

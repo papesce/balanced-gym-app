@@ -77,9 +77,9 @@ class ElemList extends Component<ElemListProps> {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primaryTypographyProps={{component: 'div'}}
+              // primaryTypographyProps={{component: 'div'}}
               primary={getPrimary(elem)}
-              secondaryTypographyProps={{component: 'div'}}
+              // secondaryTypographyProps={{component: 'div'}}
               secondary={getSecondary(elem)}
               onClick={() => this.onClick(elem)}
             />
