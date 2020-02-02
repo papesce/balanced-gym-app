@@ -8,7 +8,7 @@ import { Routine, IRoutineModel } from '../models/routines';
 export class RoutinesService {
 
   async all(): Promise<IRoutineModel[]> {
-    L.info('fetch all examples');
+    L.info('fetch all routines');
 
     const docs = await Routine
       .find()
