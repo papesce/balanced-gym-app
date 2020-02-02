@@ -22,6 +22,6 @@
     "outDir": "../server/public"
   },
   "include": [
-    "src"
+    "src", 
   ]
 }
