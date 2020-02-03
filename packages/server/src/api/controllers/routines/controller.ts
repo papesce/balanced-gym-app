@@ -8,7 +8,6 @@ export class Controller {
   async all(req: Request, res: Response, next: NextFunction) {
     try {
       const routines: IRoutineSummary[] = await RoutinesService.all();
-      // const results = [];
       return res.status(HttpStatus.OK).json(routines);
     }
     catch (err) {

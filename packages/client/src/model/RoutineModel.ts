@@ -1,3 +1,5 @@
+import { IRoutineSummary } from 'balanced-gym-model';
+
 import { IMuscleGroup } from './MuscleGroupModel';
 
 
@@ -15,7 +17,7 @@ export interface IRoutine {
 export interface IRoutinesState {
     loading?: boolean;
     error?: string;
-    routines?: IRoutine[];
+    routines?: IRoutineSummary[];
 }
 
 export interface IRoutineState {

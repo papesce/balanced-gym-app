@@ -2,12 +2,6 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export interface IRoutineModel extends mongoose.Document {
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
 const schema = new Schema({
   name: { type: String, required: true }
 },
@@ -17,4 +11,4 @@ const schema = new Schema({
   }
 );
 
-export const Routine = mongoose.model<IRoutineModel>("routine", schema);
+export const Routine = mongoose.model<mongoose.Document>("routine", schema);

@@ -1,21 +1,26 @@
-import { Types as mongooseTypes } from 'mongoose';
-import L from '../../common/logger'
-import * as HttpStatus from 'http-status-codes';
-import * as errors from "../../common/errors";
+import {
+  IRoutineSummary,
+  IRoutineModel,
+  getRoutinesSummary
+} from "balanced-gym-model";
+// import { Types as mongooseTypes } from 'mongoose';
+import L from "../../common/logger";
+// import * as HttpStatus from 'http-status-codes';
+// import * as errors from "../../common/errors";
 
-import { Routine, IRoutineModel } from '../models/routines';
+import { Routine } from "../models/routines";
 
 export class RoutinesService {
+  async all(): Promise<IRoutineSummary[]> {
+    L.info("fetch all routines");
 
-  async all(): Promise<IRoutineModel[]> {
-    L.info('fetch all routines');
-
-    const docs = await Routine
-      .find()
+    const docs: IRoutineModel[] = await Routine.find()
       .lean()
-      .exec() as IRoutineModel[];
+      .exec();
 
-    return docs;
+    L.info("routines business logic");
+    const result: IRoutineSummary[] = getRoutinesSummary(docs);
+    return result;
   }
 
   // async byId(id: string): Promise<IRoutineModel> {
@@ -32,7 +37,6 @@ export class RoutinesService {
 
   //   return doc;
   // }
-
 }
 
 export default new RoutinesService();
