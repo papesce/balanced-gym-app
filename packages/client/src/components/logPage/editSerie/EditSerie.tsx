@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SwipeableItem from "../../generic/swipeable/SwipeableItem";
 import SerieInput from "../serieInput/SerieInput";
-import { ISerie } from "../../../model/SerieModel";
+import { ISerie } from "balanced-gym-model";
 import Typography from "@material-ui/core/Typography";
 import { formatDateString, millisToMinutesAndSeconds } from "../../../utils/dateUtils";
 import IconButton from "@material-ui/core/IconButton";

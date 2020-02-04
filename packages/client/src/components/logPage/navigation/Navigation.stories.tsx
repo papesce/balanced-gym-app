@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 import { action } from "@storybook/addon-actions";
-import { series6, series8, series9 } from '../../../model/SerieModel.sample'; 
+import { series6, series8, series9 } from 'balanced-gym-model'; 
 
 export default {
   title: "logPage/Navigation"

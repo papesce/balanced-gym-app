@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { IExercise } from "../../../model/ExerciseModel";
-import { ISerie } from "../../../model/SerieModel";
+import { IExercise, ISerie } from "balanced-gym-model";
 import Graph from "../../logPage/graph/Graph";
 import { secondsToNow } from "../../../utils/dateUtils";
 import Navigation from "../../logPage/navigation/Navigation";

@@ -1,36 +1,28 @@
 import {
   IRoutineSummary,
-  IRoutineDAO, 
-  Routine,
+  IRoutineDAO,
   IExerciseDAO,
   Exercise,
   getRoutinesSummary
 } from "balanced-gym-model";
-// import { Types as mongooseTypes } from 'mongoose';
 import L from "../../common/logger";
-// import * as HttpStatus from 'http-status-codes';
-// import * as errors from "../../common/errors";
+import { RoutineDocumentModel } from '../mongoose/routines.mongoose';
 
 export class RoutinesService {
-  async all(): Promise<IRoutineSummary[]> {
+  async getRoutinesSummary(): Promise<IRoutineSummary[]> {
     L.info("fetch all routines");
 
-    const routinesDAO: IRoutineDAO[] = await Routine.find()
+    const routinesDAO: IRoutineDAO[] = await RoutineDocumentModel.find()
       .lean()
       .exec();
     const getExercises = async (routineId: string) => {
-      const exerciseDAO: IExerciseDAO[] =
-        await Exercise.find({ routineId })
-          .populate("series")
-          .lean()
-          .exec();
-        return exerciseDAO;
-    }
-    const result: IRoutineSummary[] = await getRoutinesSummary(
-      routinesDAO,
-      getExercises
-    );
-    return result;
+      const exerciseDAO: IExerciseDAO[] = await Exercise.find({ routineId })
+        .populate("series")
+        .lean()
+        .exec();
+      return exerciseDAO;
+    };
+    return getRoutinesSummary(routinesDAO, getExercises);
   }
 
   // async byId(id: string): Promise<IRoutineModel> {

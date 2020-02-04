@@ -1,6 +1,6 @@
 import React from 'react';
 import ExercisePage from './ExercisePage';
-import { IExercise } from '../../../model/ExerciseModel';
+import { IExercise } from 'balanced-gym-model';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {

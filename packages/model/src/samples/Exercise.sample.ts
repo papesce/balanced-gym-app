@@ -1,5 +1,5 @@
-import { IExercise } from "./ExerciseModel";
-import { series1, series2, series8, series9now } from "./SerieModel.sample";
+import { IExercise } from "../metamodel/Exercise.metamodel";
+import { series1, series2, series8, series9now } from "./Serie.sample";
 
 export const sampleExercise1: IExercise = {
   _id: "59f0c59d4e55c40d38868035",

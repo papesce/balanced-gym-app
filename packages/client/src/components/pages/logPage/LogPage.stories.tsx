@@ -5,7 +5,7 @@ import {
   sampleExerciseSeries2,
   sampleExerciseSeries8,
   sampleExerciseSeries9now
-} from "../../../model/ExerciseModel.sample";
+} from "balanced-gym-model";
 import { action } from "@storybook/addon-actions";
 
 export default {

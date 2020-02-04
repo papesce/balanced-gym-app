@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ElemList from "../../generic/elemList/ElemList";
-import { IRoutine } from "../../../model/RoutineModel";
+import { IRoutine } from "balanced-gym-model";
 import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from "../common";
 import "./RoutineList.css";
 

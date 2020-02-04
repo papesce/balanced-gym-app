@@ -4,7 +4,7 @@ import DoneIcon from '@material-ui/icons/Done';
 // import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { ISerie, emptySerie } from '../../../model/SerieModel';
+import { ISerie, emptySerie } from 'balanced-gym-model';
 import './SerieInput.css';
 
 interface SerieInputProps {

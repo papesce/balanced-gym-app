@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RoutineList from '../components/lists/routineList/RoutineList';
-import { IRoutinesState, IRoutine } from '../model/RoutineModel';
+import { IRoutine } from 'balanced-gym-model';
+import {  IRoutinesState } from '../redux/reducer.routines';
 import { loadRoutines } from '../redux/actions.routines';
 import { withRouter } from "react-router";
 import InitialHeader from '../components/headerBar/InitialHeader';

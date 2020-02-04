@@ -1,5 +1,5 @@
-import { ITarget } from './TargetModel';
-import { sampleExercise1, sampleExercise2, sampleExercise3, sampleExercise4 } from './ExerciseModel.sample';
+import { ITarget } from '../metamodel/Target.metamodel';
+import { sampleExercise1, sampleExercise2, sampleExercise3, sampleExercise4 } from './Exercise.sample';
 
 export const sampleTarget: ITarget = {
     "_id": "5a551582d9b8730014575796",

@@ -1,4 +1,4 @@
-import { ISerie } from "./SerieModel";
+import { ISerie } from "../metamodel/Serie.metamodel";
 
 export const emptySerie: ISerie = {
   _id: "",

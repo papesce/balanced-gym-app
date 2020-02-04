@@ -1,5 +1,5 @@
 import { getSynsAndStabs } from './../common';
-import { IExercise } from '../../../model/ExerciseModel';
+import { IExercise } from 'balanced-gym-model';
 import { getTimeFromString } from '../../../utils/dateUtils';
 
 export const getExerciseSummary1 = (exercise: IExercise) => {

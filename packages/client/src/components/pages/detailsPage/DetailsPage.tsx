@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IExercise } from "../../../model/ExerciseModel";
+import { IExercise } from "balanced-gym-model";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";

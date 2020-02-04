@@ -1,5 +1,5 @@
 import { getSynsAndStabs } from './../common';
-import { ITarget } from '../../../model/TargetModel';
+import { ITarget } from 'balanced-gym-model';
 import { getTimeFromString } from '../../../utils/dateUtils';
 import { addS } from '../../../utils/utils';
 

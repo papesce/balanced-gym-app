@@ -3,7 +3,7 @@ import RoutineList from './RoutineList';
 import { action } from '@storybook/addon-actions';
 import { emptyRoutineList,
    singleRoutineList,
-    fullRoutineList } from '../../../model/RoutineModel.sample'
+    fullRoutineList } from 'balanced-gym-model';
 
 export default {
     title: 'lists/routineList/Routine', 

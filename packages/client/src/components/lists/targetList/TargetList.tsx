@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ElemCardList from "../../generic/cardList/ElemCardList";
-import { ITarget } from "../../../model/TargetModel";
-import { IMuscleGroup } from "../../../model/MuscleGroupModel";
+import { ITarget, IMuscleGroup } from "balanced-gym-model";
 import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
 import { getColoredTextFromBoolean } from "../common";

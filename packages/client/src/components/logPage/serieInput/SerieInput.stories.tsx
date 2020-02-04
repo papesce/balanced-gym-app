@@ -1,7 +1,7 @@
 import React from 'react';
 import SerieInput from './SerieInput';
 import { action } from '@storybook/addon-actions';
-import { serie1, serieI } from '../../../model/SerieModel.sample'
+import { serie1, serieI } from 'balanced-gym-model'
 
 export default {
     title: 'logPage/SerieInput',

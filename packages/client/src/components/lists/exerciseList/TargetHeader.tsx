@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ITarget } from "../../../model/TargetModel";
+import { ITarget } from "balanced-gym-model";
 import { IHeaderRow } from "../../generic/headerRowList/HeaderRow";
 import HeaderRowList from "../..//generic/headerRowList/HeaderRowList";
 import {

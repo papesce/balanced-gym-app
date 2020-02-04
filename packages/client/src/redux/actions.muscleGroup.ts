@@ -1,4 +1,4 @@
-import { IMuscleGroup } from '../model/MuscleGroupModel';
+import { IMuscleGroup } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 

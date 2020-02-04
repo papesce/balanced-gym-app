@@ -1,4 +1,4 @@
-import { ITarget } from './TargetModel';
+import { ITarget } from './Target.metamodel';
 
 export interface IMuscleGroup {
     _id: string,

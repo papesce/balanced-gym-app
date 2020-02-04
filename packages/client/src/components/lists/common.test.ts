@@ -1,5 +1,5 @@
 import { getRoutineSummary1, getRoutineSummary2 } from './common';
-import { IRoutine } from '../../model/RoutineModel';
+import { IRoutine } from 'balanced-gym-model';
 
 describe('getRoutineSummary', () => {
     it('no targets', () => {

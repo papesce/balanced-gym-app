@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ElemList from '../../generic/elemList/ElemList';
-import { IRoutine } from '../../../model/RoutineModel';
-import { IMuscleGroup } from '../../../model/MuscleGroupModel';
+import { IRoutine, IMuscleGroup } from 'balanced-gym-model';
 import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from '../common';
 import RoutineHeader from './RoutineHeader';
 

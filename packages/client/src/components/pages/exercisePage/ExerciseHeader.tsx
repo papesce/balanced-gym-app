@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { IExercise } from "../../../model/ExerciseModel";
-import { IRoutine } from "../../../model/RoutineModel";
-import { IMuscleGroup } from "../../../model/MuscleGroupModel";
+import { IExercise, IRoutine, IMuscleGroup, ITarget } from "balanced-gym-model";
 import { IHeaderRow } from "../../generic/headerRowList/HeaderRow";
-import { ITarget } from "../../../model/TargetModel";
 import HeaderRowList from "../../generic/headerRowList/HeaderRowList";
 import "./ExerciseHeader.css";
 import {

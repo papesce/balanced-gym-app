@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ExerciseList from "../components/lists/exerciseList/ExerciseList";
-import { ITarget } from "../model/TargetModel";
-import { IExercise } from "../model/ExerciseModel";
+import { ITarget, IExercise } from "balanced-gym-model";
 import { loadTarget } from "../redux/actions.target";
 import { withRouter } from "react-router";
 import BackHeader from "../components/headerBar/BackHeader";

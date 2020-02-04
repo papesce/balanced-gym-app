@@ -1,5 +1,5 @@
-import { IMuscleGroup } from './MuscleGroupModel';
-import { sampleTarget, sampleTarget1, sampleTarget2, sampleTarget3 } from './TargetModel.sample';
+import { IMuscleGroup } from '../metamodel/MuscleGroup.metamodel';
+import { sampleTarget, sampleTarget1, sampleTarget2, sampleTarget3 } from './Target.sample';
 
 
 export const emptyMuscleGroupList: IMuscleGroup[] = [];

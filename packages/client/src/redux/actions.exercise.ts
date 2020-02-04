@@ -1,4 +1,4 @@
-import { IExercise } from '../model/ExerciseModel';
+import { IExercise } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 export const FETCH_EXERCISE_BEGIN   = 'FETCH_EXERCISE_BEGIN';

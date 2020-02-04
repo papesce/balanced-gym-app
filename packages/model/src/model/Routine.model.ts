@@ -1,9 +1,9 @@
 import { IExerciseDAO } from "../metamodel/Exercise.metamodel";
 import { sortByLastUpdated } from "../utils/utils";
-import { IRoutineDAO, IRoutineSummary } from "../metamodel/Routine.metamodel";
+import { IRoutineDao, IRoutineSummary } from "../metamodel/Routine.metamodel";
 
 export const getRoutineSummary = (
-  routineDAO: IRoutineDAO,
+  routineDAO: IRoutineDao,
   exercisesDAO: IExerciseDAO[]
 ) => {
   const newRoutine: IRoutineSummary = { _id: routineDAO._id, name: routineDAO.name };
@@ -24,7 +24,7 @@ export const getRoutineSummary = (
 };
 
 export const getRoutinesSummary = async (
-  routines: IRoutineDAO[],
+  routines: IRoutineDao[],
   getExercisesDAO: (routineId: string) => Promise<IExerciseDAO[]>
 ) => {
   // const routines = await getRoutines();

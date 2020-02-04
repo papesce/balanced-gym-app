@@ -24,6 +24,9 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 - yarn add prettier --dev --exact
 - yarn add moment  
 
+# Model
+- yarn add jest @types/jest ts-jest --dev
+
 # Heroku
 
 heroku config:set REACT_APP_SERVER=https://balanced-gym-app-dev.herokuapp.com

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { IMuscleGroup } from '../../../model/MuscleGroupModel';
+import { IMuscleGroup } from 'balanced-gym-model';
 import { IHeaderRow } from '../../generic/headerRowList/HeaderRow';
 import HeaderRowList from '../../generic/headerRowList/HeaderRowList';
 import { getMuscleGroupHeaderRow, getRoutineHeaderRow, getRoutineURL } from '../../../utils/routes';

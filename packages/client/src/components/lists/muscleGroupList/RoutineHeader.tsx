@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { IRoutine } from '../../../model/RoutineModel';
+import { IRoutine } from 'balanced-gym-model';
 import { IHeaderRow } from '../../generic/headerRowList/HeaderRow';
 import HeaderRowList from '../../generic/headerRowList/HeaderRowList';
 import { getRoutineHeaderRow, getRoutinesHeaderRow } from '../../../utils/routes';

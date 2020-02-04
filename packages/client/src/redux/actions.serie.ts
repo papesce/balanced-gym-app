@@ -1,5 +1,4 @@
-import { IExercise } from '../model/ExerciseModel';
-import { ISerie } from '../model/SerieModel';
+import { IExercise, ISerie } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 export const NEW_SERIE_BEGIN   = 'NEW_SERIE_BEGIN';

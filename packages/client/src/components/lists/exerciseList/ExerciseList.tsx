@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ElemCardList from '../../generic/cardList/ElemCardList';
-import { ITarget } from '../../../model/TargetModel';
-import { IExercise } from '../../../model/ExerciseModel';
+import { ITarget, IExercise } from 'balanced-gym-model';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
 import { getColoredTextFromDateString } from '../common';

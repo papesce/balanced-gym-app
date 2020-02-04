@@ -1,7 +1,7 @@
 import React from "react";
 import EditSerie from "./EditSerie";
 import { action } from "@storybook/addon-actions";
-import { serie1 } from "../../../model/SerieModel.sample";
+import { serie1 } from "balanced-gym-model";
 export default {
   title: "logPage/EditSerie"
 };

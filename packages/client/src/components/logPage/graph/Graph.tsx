@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactFrappeChart from "../../generic/chart/FappeChart";
-import { ISerie } from "../../../model/SerieModel";
+import { ISerie } from "balanced-gym-model";
 import { getGraphData } from "./GraphUtils";
 import Typography from "@material-ui/core/Typography";
 import "./Graph.css";

@@ -4,7 +4,7 @@ import {
   onlyTargetSample,
   withSynergystsSample,
   sampleExercise1
-} from "../../../model/ExerciseModel.sample";
+} from "balanced-gym-model";
 
 export default {
   title: "pages/MusclePage"

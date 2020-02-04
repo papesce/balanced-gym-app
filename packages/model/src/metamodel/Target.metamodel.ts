@@ -1,4 +1,4 @@
-import { IExercise } from "./ExerciseModel";
+import { IExercise } from "./Exercise.metamodel";
 
 export interface ITarget {
   _id: string;

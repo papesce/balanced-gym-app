@@ -5,13 +5,16 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build:model": "rm -rf ./dist && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "types": "rm -rf ./dist && tsc",
+    "test": "jest"
   },
   "author": " (Pablo Pesce)",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^25.1.1",
     "@types/mongoose": "^5.7.0",
+    "jest": "24.9.0",
+    "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {

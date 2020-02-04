@@ -1,6 +1,6 @@
 import React from "react";
 import Graph from "./Graph";
-import { series1, series2, series8 } from "../../../model/SerieModel.sample";
+import { series1, series2, series8 } from "balanced-gym-model";
 import { action } from "@storybook/addon-actions";
 
 export default {

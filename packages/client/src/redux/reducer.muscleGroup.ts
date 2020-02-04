@@ -1,6 +1,6 @@
 import { FETCH_MUSCLE_GROUP_BEGIN, FETCH_MUSCLE_GROUP_FAILURE, FETCH_MUSCLE_GROUP_SUCCESS,
 } from './actions.muscleGroup';
-import { IMuscleGroupState } from './../model/MuscleGroupModel';
+import { IMuscleGroupState } from 'balanced-gym-model';
 
 export const muscleGroupReducer = (state: IMuscleGroupState = {} , action: any ) => {
     switch (action.type) {

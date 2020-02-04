@@ -1,7 +1,13 @@
-import { IRoutineState } from './../model/RoutineModel';
 import {
     FETCH_ROUTINE_BEGIN, FETCH_ROUTINE_SUCCESS, FETCH_ROUTINE_FAILURE } 
     from './actions.routine';
+import { IRoutine } from 'balanced-gym-model';
+    
+   export interface IRoutineState {
+      loading?: boolean;
+      error?: string;
+      routine?: IRoutine;
+  }
     
   export const routineReducer = (state: IRoutineState = {} , action: any ) => {
     switch (action.type) {

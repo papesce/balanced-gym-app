@@ -1,5 +1,5 @@
 import { getTimeForGraph } from '../../../utils/dateUtils';
-import { ISerie } from '../../../model/SerieModel';
+import { ISerie } from 'balanced-gym-model';
 
 export const getGraphData = ( series: ISerie[] ) => {
     const labels: string[] = [];

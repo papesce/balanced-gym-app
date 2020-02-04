@@ -6,8 +6,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 // import ListSubheader from '@material-ui/core/ListSubheader';
 // import IconButton from "@material-ui/core/IconButton";
 // import InfoIcon from "@material-ui/icons/Info";
-import { IExercise } from "../../../model/ExerciseModel";
-import { ITarget } from "../../../model/TargetModel";
+import { IExercise, ITarget } from "balanced-gym-model";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({

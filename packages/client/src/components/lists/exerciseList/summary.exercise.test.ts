@@ -1,4 +1,4 @@
-import { IExercise } from '../../model/ExerciseModel';
+import { IExercise } from 'balanced-gym-model';
 
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 

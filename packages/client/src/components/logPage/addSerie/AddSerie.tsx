@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 // import TimerOffIcon from "@material-ui/icons/TimerOff";
 // import TimerIcon from "@material-ui/icons/Timer";
 // import { Tooltip } from "@material-ui/core";
-import { ISerie } from "../../../model/SerieModel";
+import { ISerie } from "balanced-gym-model";
 import {
   millisToMinutesAndSeconds,
   secondsToNow

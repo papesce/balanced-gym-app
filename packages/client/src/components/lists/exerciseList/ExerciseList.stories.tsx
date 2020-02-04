@@ -5,7 +5,7 @@ import {
   sampleTarget1,
   sampleTargetWithSingleExercise,
   sampleTargetWithFullExercise
-} from "../../../model/TargetModel.sample";
+} from "balanced-gym-model";
 import { BrowserRouter as Router } from "react-router-dom";
 
 export default {

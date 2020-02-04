@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Navigation.css";
 import TablePagination from "@material-ui/core/TablePagination";
-import { ISerie } from "../../../model/SerieModel";
+import { ISerie } from "balanced-gym-model";
 import { NavigationActions } from './NavigationActions';
 import IconButton from "@material-ui/core/IconButton";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';

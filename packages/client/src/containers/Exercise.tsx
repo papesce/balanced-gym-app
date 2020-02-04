@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExercisePage from '../components/pages/exercisePage/ExercisePage';
-import { IExercise } from '../model/ExerciseModel';
-import { IRoutine } from '../model/RoutineModel';
-import { IMuscleGroup } from '../model/MuscleGroupModel';
-import { ITarget } from '../model/TargetModel';
-import { ISerie, ISerieState } from '../model/SerieModel';
+import { IExercise, IRoutine, IMuscleGroup, ITarget, ISerie } from 'balanced-gym-model';
+import { ISerieState } from '../redux/reducer.serie';
 import { loadExercise } from '../redux/actions.exercise';
 import { withRouter } from "react-router";
 import { newSerie, editSerie, deleteSerie } from '../redux/actions.serie';

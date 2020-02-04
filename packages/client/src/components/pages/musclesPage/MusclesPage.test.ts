@@ -1,5 +1,5 @@
 import { getMuscles } from "./MusclesPage";
-import { IExercise } from "../../../model/ExerciseModel";
+import { IExercise } from "balanced-gym-model";
 
 describe("MusclesPage", () => {
   it("getMuslces for no data", () => {

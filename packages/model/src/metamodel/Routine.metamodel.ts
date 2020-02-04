@@ -1,26 +1,11 @@
+import { IMuscleGroup } from './MuscleGroup.metamodel';
 
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
-
-export interface IRoutineDAO extends mongoose.Document {
-    _id: string;
+export interface IRoutineDao {
+    _id: any;
     name: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 };
-
-const schema = new Schema({
-  name: { type: String, required: true }
-},
-  {
-    timestamps: true,
-    usePushEach: true
-  }
-);
-
-export const Routine = mongoose.model<IRoutineDAO>("routine", schema);
-
 
 export interface IRoutineSummary {
     _id: string,
@@ -39,5 +24,5 @@ export interface IRoutine {
     lastUpdated?: string,
     doneToday?: number,
     exercises?: string[],
-    // muscleGroups?: IMuscleGroup[]
+    muscleGroups?: IMuscleGroup[]
 }

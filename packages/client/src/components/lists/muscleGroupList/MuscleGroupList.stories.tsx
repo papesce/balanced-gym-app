@@ -2,7 +2,7 @@ import React from 'react';
 import MuscleGroupList from './MuscleGroupList';
 import { action } from '@storybook/addon-actions';
 import { sampleRoutine1, routineWithEmptyGroup, routineWithSingleGroup, 
-  routineWithFullGroup } from '../../../model/RoutineModel.sample'
+  routineWithFullGroup } from 'balanced-gym-model'
 import { BrowserRouter as Router } from 'react-router-dom';
 
   export default {

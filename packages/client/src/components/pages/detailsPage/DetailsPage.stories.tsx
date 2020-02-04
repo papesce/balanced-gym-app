@@ -1,6 +1,6 @@
 import React from 'react';
 import DetailsPage from './DetailsPage';
-import { fullExerciseSample } from '../../../model/ExerciseModel.sample';
+import { fullExerciseSample } from 'balanced-gym-model';
 
 export default {
     title: 'pages/DetailsPage',

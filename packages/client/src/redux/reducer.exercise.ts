@@ -1,7 +1,13 @@
 import { NEW_SERIE_SUCCESS, DELETE_SERIE_SUCCESS, EDIT_SERIE_SUCCESS } from './actions.serie';
 import { FETCH_EXERCISE_BEGIN, FETCH_EXERCISE_FAILURE, FETCH_EXERCISE_SUCCESS } from './actions.exercise';
-import { IExerciseState } from './../model/ExerciseModel';
+import { IExercise } from 'balanced-gym-model';
 
+
+export interface IExerciseState {
+  loading?: boolean;
+  error?: string;
+  exercise?: IExercise;
+}
 
 export const exerciseReducer = (state: IExerciseState = {} , action: any ) => {
     switch (action.type) {

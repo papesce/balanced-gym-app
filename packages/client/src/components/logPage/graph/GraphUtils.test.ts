@@ -1,5 +1,5 @@
 import { getGraphData } from './GraphUtils';
-import { series0, series1, series2 } from '../../../model/SerieModel.sample';
+import { series0, series1, series2 } from 'balanced-gym-model';
 
 describe('Graph', () => {
     it('getGraph series0', () => {

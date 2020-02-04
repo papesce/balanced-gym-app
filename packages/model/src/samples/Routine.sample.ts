@@ -1,8 +1,8 @@
-import { IRoutine } from './RoutineModel';
+import { IRoutineDao, IRoutine } from '../metamodel/routine.metamodel';
 import { muscleGroupWithEmptyTargets, muscleGroupWithNoTargets,
-  muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroupModel.sample';
+  muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroup.sample';
 
-export const emptyRoutine: IRoutine = {
+export const emptyRoutineDao: IRoutineDao = {
   "_id": "",
   "name": ""
 };

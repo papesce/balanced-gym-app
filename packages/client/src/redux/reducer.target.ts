@@ -1,5 +1,5 @@
 import { FETCH_TARGET_BEGIN, FETCH_TARGET_FAILURE, FETCH_TARGET_SUCCESS} from './actions.target';
-import { ITargetState } from './../model/TargetModel';
+import { ITargetState } from 'balanced-gym-model';
 
 export const targetReducer = (state: ITargetState = {} , action: any ) => {
     switch (action.type) {

@@ -1,1 +1,7 @@
-//TODO similar code for series
+export interface ISerie {
+    _id: string,
+    createdAt?: string,
+    reps: number,
+    weight: number,
+    restTime?: number
+}

@@ -1,4 +1,4 @@
-import { IRoutine } from '../model/RoutineModel';
+import { IRoutine } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 export const FETCH_ROUTINES_BEGIN   = 'FETCH_ROUTINES_BEGIN';

@@ -17,10 +17,14 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --parallel",
-    "dev:server": "lerna run dev:server",
+    "dev:client": "cd packages/client && yarn dev && cd ../../",
+    "dev:server": "cd packages/server && yarn dev && cd../../",
     "start": "lerna run start",
-    "build:model": "lerna run build:model",
-    "build": "lerna run build:model && lerna run build --parallel",
-    "storybook": "lerna run storybook"
+    "types": "lerna run types",
+    "build": "lerna run types && lerna run build --parallel",
+    "storybook": "lerna run storybook",
+    "test:model": "cd packages/model && yarn test",
+    "test:client": "cd packages/model && yarn test"
+
   }
 }

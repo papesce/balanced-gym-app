@@ -2,7 +2,7 @@ import React from 'react';
 import TargetList from './TargetList';
 import { action } from '@storybook/addon-actions';
 import { muscleGroupWithEmptyTargetList, muscleGroupWithSingleTarget, 
-  muscleGroupWithFullTargetList } from '../../../model/MuscleGroupModel.sample'
+  muscleGroupWithFullTargetList } from 'balanced-gym-model'
   import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {

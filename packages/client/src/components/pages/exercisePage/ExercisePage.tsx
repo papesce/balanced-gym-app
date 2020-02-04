@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { IExercise } from "../../../model/ExerciseModel";
-import { ISerie } from "../../../model/SerieModel";
+import { IExercise, ISerie } from "balanced-gym-model";
 import ElemPage, { IElemPage } from "../../generic/pages/ElemPage";
 import DetailsPage from "../detailsPage/DetailsPage";
 import LogPage from "../logPage/LogPage";

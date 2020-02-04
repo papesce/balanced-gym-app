@@ -1,4 +1,4 @@
-import { ITarget } from './../model/TargetModel';
+import { ITarget } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 export const FETCH_TARGET_BEGIN   = 'FETCH_TARGET_BEGIN';
