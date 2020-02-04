@@ -17,7 +17,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --parallel",
+    "dev:server": "lerna run dev:server",
     "start": "lerna run start",
+    "build:model": "lerna run build:model",
     "build": "lerna run build:model && lerna run build --parallel",
     "storybook": "lerna run storybook"
   }

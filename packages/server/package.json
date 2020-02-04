@@ -9,6 +9,7 @@
     "start:server": "node dist/index.js",
     "build": "ts-node build.ts && tsc",
     "dev": "nodemon src/index.ts | pino-pretty",
+    "dev:server": "nodemon src/index.ts | pino-pretty",
     "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' server/index.ts | pino-pretty",
     "test": "mocha test/**/*.ts --exit",
     "test:debug": "mocha --inspect-brk test/**/*.ts --exit"

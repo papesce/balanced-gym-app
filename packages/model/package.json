@@ -11,7 +11,10 @@
   "author": " (Pablo Pesce)",
   "license": "MIT",
   "devDependencies": {
+    "@types/mongoose": "^5.7.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "mongoose": "^5.8.11"
   }
 }
- 
