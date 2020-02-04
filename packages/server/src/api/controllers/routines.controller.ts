@@ -1,5 +1,5 @@
 import { IRoutineSummary } from 'balanced-gym-model';
-import RoutinesService from '../../services/routines.service';
+import RoutinesService from '../services/routines.service';
 import { Request, Response, NextFunction } from 'express';
 import * as HttpStatus from 'http-status-codes';
 

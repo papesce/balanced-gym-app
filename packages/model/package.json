@@ -1,6 +1,6 @@
 {
   "name": "balanced-gym-model",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Balanced Gym App Model",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,3 +14,4 @@
     "typescript": "^3.7.5"
   }
 }
+ 

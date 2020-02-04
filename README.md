@@ -27,3 +27,10 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 # Heroku
 
 heroku config:set REACT_APP_SERVER=https://balanced-gym-app-dev.herokuapp.com
+
+
+# Startup
+
+yarn dev for development will start client port 3000 & server port 5001
+yarn build will compile client and pack it into the server
+yarn start will start only the server 

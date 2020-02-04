@@ -33,10 +33,9 @@ const Header: React.FC<HeaderProps> = ({ leftComponent, rightComponent }) => {
             <Link to="/" style={{ color: 'inherit', textDecoration: "none" }}>
               Balanced Gym App
             </Link>
-           
           </Typography>
           <Typography variant="caption" className={classes.title}>
-          v0.3 
+            v{process.env.REACT_APP_VERSION}
           </Typography>
           {rightComponent}
         </Toolbar>
