@@ -22,6 +22,7 @@
     "start": "lerna run start",
     "types": "lerna run types",
     "build": "lerna run types && lerna run build --parallel",
+    "build:client": "lerna run build:client",
     "storybook": "lerna run storybook",
     "test:model": "cd packages/model && yarn test",
     "test:client": "cd packages/model && yarn test"
