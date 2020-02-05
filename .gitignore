@@ -1,6 +1,6 @@
 dist
 node_modules
 packages/server/.env
-packages/server/public
+packages/server/public/*
 packages/server/dist
 packages/model/dist
