@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import * as serie from '../api/mongoose/serie.mongoose';
 
 export default class Mongoose {
   connectionURI = `${process.env.MONGO_URI}`;
@@ -17,5 +18,8 @@ export default class Mongoose {
 
     //Bind connection to error event (to get notification of connection errors)
     db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+    //register models
+    serie.SerieDocumentModel
   }
 }

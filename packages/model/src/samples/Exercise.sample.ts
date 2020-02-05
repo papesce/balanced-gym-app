@@ -1,5 +1,5 @@
-import { IExercise } from "../metamodel/Exercise.metamodel";
-import { series1, series2, series8, series9now } from "./Serie.sample";
+import { IExercise, IExerciseDao } from "../metamodel/Exercise.metamodel";
+import { series1, series2, series8, series9now, serie0dao } from "./Serie.sample";
 
 export const sampleExercise1: IExercise = {
   _id: "59f0c59d4e55c40d38868035",
@@ -44,6 +44,25 @@ export const sampleExercise4: IExercise = {
   seriesCount: 1,
   gifURL: "/DBSplitSquat.gif",
   synergistsCount: 2
+};
+
+export const sampleExercise5: IExerciseDao = {
+  _id: "59f0c59d4e55c40d38868035",
+  name: "Barbell Squats",
+  target: "fakeId",
+};
+
+export const sampleExercise6: IExerciseDao = {
+  _id: "59f0c59d4e55c40d38868036",
+  name: "Barbell Squats 2",
+  target: "fakeId",
+};
+
+export const sampleExercise7Series: IExerciseDao = {
+  _id: "59f0c59d4e55c40d38868037",
+  name: "Barbell Squats 3",
+  target: "fakeId",
+  series: [serie0dao]
 };
 
 export const sampleExerciseSeries: IExercise = {

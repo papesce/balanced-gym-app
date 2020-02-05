@@ -1,4 +1,4 @@
-import { ISerie } from "../metamodel/Serie.metamodel";
+import { ISerie, ISerieDao } from "../metamodel/Serie.metamodel";
 
 export const emptySerie: ISerie = {
   _id: "",
@@ -22,6 +22,13 @@ export const serieMinAgo: ISerie = {
   weight: 42,
   createdAt: minuteAgo.toString()
 };
+
+export const serie0dao: ISerieDao = {
+  _id: "5a78d7933014df0014ad064a",
+  createdAt: "2018-02-05T22:18:47.918Z",
+  reps: 8,
+  weight: 40,
+}
 
 export const series0: ISerie[] = [];
 
