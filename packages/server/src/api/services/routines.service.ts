@@ -1,28 +1,27 @@
 import {
   IRoutineSummary,
-  IRoutineDAO,
-  IExerciseDAO,
-  Exercise,
+  IRoutineDao,
+  IExerciseDao,
   getRoutinesSummary
 } from "balanced-gym-model";
 import L from "../../common/logger";
-import { RoutineDocumentModel } from '../mongoose/routines.mongoose';
+import { RoutineDocumentModel } from '../mongoose/routine.mongoose';
+import { ExerciseDocumentModel } from '../mongoose/exercise.mongoose';
 
 export class RoutinesService {
   async getRoutinesSummary(): Promise<IRoutineSummary[]> {
     L.info("fetch all routines");
-
-    const routinesDAO: IRoutineDAO[] = await RoutineDocumentModel.find()
+    const routinesDao: IRoutineDao[] = await RoutineDocumentModel.find()
       .lean()
       .exec();
     const getExercises = async (routineId: string) => {
-      const exerciseDAO: IExerciseDAO[] = await Exercise.find({ routineId })
+      const exerciseDAO: IExerciseDao[] = await ExerciseDocumentModel.find({ routineId })
         .populate("series")
         .lean()
         .exec();
       return exerciseDAO;
     };
-    return getRoutinesSummary(routinesDAO, getExercises);
+    return getRoutinesSummary(routinesDao, getExercises);
   }
 
   // async byId(id: string): Promise<IRoutineModel> {

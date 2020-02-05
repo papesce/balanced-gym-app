@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { IRoutineDAO } from 'balanced-gym-model';
+import { IRoutineDao } from 'balanced-gym-model';
 
 const Schema = mongoose.Schema;
 
-export interface IRoutineDocument extends mongoose.Document, IRoutineDAO {
+export interface IRoutineDocument extends mongoose.Document, IRoutineDao {
 }
 
 const schema = new Schema({

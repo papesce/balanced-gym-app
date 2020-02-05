@@ -1,23 +1,23 @@
 import { IRoutine } from './Routine.metamodel';
 import { ITarget } from './Target.metamodel';
 import { IMuscleGroup } from './MuscleGroup.metamodel';
-import { ISerie } from './Serie.metamodel';
+import { ISerie, ISerieDao } from './Serie.metamodel';
 
-export interface IExerciseDAO {
+export interface IExerciseDao {
     _id: any;
     name: string;
     // muscleGroup: ,
-    target: any,
-    // series: [{ type: mongoose.Schema.Types.ObjectId, ref: "serie" }],
+    target?: any,  // ITarget | ObjectId
+    series?: ISerieDao[],
     // gifURL: { type: String, required: true },
     // exerciseURL: { type: String },
     // synergists: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
     // stabilizers: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
-    // equipment: { type: String },
+    equipment?: string,
     // routineId: { type: mongoose.Schema.Types.ObjectId, ref: "routine" },
     // links: [{ type: String }]
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 };
 
 

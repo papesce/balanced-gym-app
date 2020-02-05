@@ -1,23 +1,11 @@
 import mongoose from 'mongoose';
+import { IExerciseDao } from 'balanced-gym-model';
 
 const Schema = mongoose.Schema;
 
-export interface IExerciseDAO extends mongoose.Document {
-    _id: string;
-    name: string;
-    // muscleGroup: ,
-    target: mongoose.Types.ObjectId,
-    // series: [{ type: mongoose.Schema.Types.ObjectId, ref: "serie" }],
-    // gifURL: { type: String, required: true },
-    // exerciseURL: { type: String },
-    // synergists: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
-    // stabilizers: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
-    // equipment: { type: String },
-    // routineId: { type: mongoose.Schema.Types.ObjectId, ref: "routine" },
-    // links: [{ type: String }]
-    createdAt: string;
-    updatedAt: string;
-};
+export interface IExerciseDocument extends mongoose.Document, IExerciseDao {
+}
+
 
 const schema = new Schema({
     name: { type: String, required: true },
@@ -38,4 +26,4 @@ const schema = new Schema({
   }
 );
 
-export const Exercise = mongoose.model<IExerciseDAO>("exercise", schema);
+export const ExerciseDocumentModel = mongoose.model<IExerciseDocument>("exercise", schema);
