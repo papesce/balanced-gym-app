@@ -1,4 +1,4 @@
-import { IRoutineDao, IRoutine } from '../metamodel/routine.metamodel';
+import { IRoutineDao, IRoutine } from '../metamodel/Routine.metamodel';
 import { muscleGroupWithEmptyTargets, muscleGroupWithNoTargets,
   muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroup.sample';
 
