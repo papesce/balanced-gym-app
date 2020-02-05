@@ -1,5 +1,9 @@
 import { IExercise } from "./Exercise.metamodel";
 
+export interface IMuscleDao {
+
+}
+
 export interface ITarget {
   _id: string;
   name: string;

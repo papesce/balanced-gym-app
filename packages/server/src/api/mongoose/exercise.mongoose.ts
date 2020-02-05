@@ -1,13 +1,10 @@
 import mongoose from 'mongoose';
 import { IExerciseDao } from 'balanced-gym-model';
 
-const Schema = mongoose.Schema;
-
 export interface IExerciseDocument extends mongoose.Document, IExerciseDao {
 }
 
-
-const schema = new Schema({
+const schema = new mongoose.Schema({
     name: { type: String, required: true },
     muscleGroup: { type: mongoose.Schema.Types.ObjectId, ref: "muscleGroup" },
     target: { type: mongoose.Schema.Types.ObjectId, ref: "muscle" },

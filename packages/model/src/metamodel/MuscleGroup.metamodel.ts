@@ -1,5 +1,8 @@
 import { ITarget } from './Target.metamodel';
 
+export interface IMuscleDao {
+}
+
 export interface IMuscleGroup {
     _id: string,
     name: string,
