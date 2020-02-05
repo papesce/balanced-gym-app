@@ -19,13 +19,8 @@ export default class ExpressServer {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser(process.env.SESSION_SECRET));
-    // app.use(express.static(path.join(__dirname, "./assets"))); 
-    app.use(express.static(`${root}/public`));
-    // console.log(path.join(__dirname, "./assets"));
-     
-    // app.get("/*", (req, res) => {
-    //  res.sendFile(path.join(__dirname, "../build/index.html"));
-    // });
+    app.use(express.static(`${root}/public`)); 
+    
   }
 
   router(routes: (app: Application) => void): ExpressServer {
@@ -41,6 +36,14 @@ export default class ExpressServer {
       );
     http.createServer(app).listen(p, welcome(p));
     mongoose.init();
+    const root = path.normalize(__dirname + "/../..");
+    app.get("/*", (req, res, next) => {
+      if (req.url === '/' || req.url === '/spec') return next();
+      if (req.url.startsWith('/api')) return next();
+      const index = `${root}/public/index.html`;
+      l.info('redirecting to index:', index)
+      res.sendFile(index);
+    });
     return app;
   }
 }
