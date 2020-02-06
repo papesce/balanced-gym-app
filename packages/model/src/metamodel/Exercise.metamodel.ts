@@ -1,12 +1,12 @@
 import { IRoutine } from './Routine.metamodel';
-import { ITarget } from './Target.metamodel';
-import { IMuscleGroup } from './MuscleGroup.metamodel';
+import { IMuscle, IMuscleDao } from './Muscle.metamodel';
+import { IMuscleGroup, IMuscleGroupDao } from './MuscleGroup.metamodel';
 import { ISerie, ISerieDao } from './Serie.metamodel';
 
 export interface IExerciseDao {
     _id: any;
     name: string;
-    // muscleGroup: ,
+    muscleGroup?: IMuscleGroupDao // | ObjectId,
     target?: any,  // ITarget | ObjectId
     series?: ISerieDao[],
     // gifURL: { type: String, required: true },
@@ -33,12 +33,12 @@ export interface IExercise {
   stabilizersCount?: number,
   gifURL?: string,
   muscleGroup?: IMuscleGroup,
-  target?: ITarget,
+  target?: IMuscle,
   routineId?: IRoutine,
   series?: ISerie[],
   suggestedSerie?: ISerie,
   equipment?: string;
-  synergists?: ITarget[];
-  stabilizers?: ITarget[];
+  synergists?: IMuscle[];
+  stabilizers?: IMuscle[];
   lastCreationDate?: string;
  }

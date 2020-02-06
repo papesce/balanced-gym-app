@@ -1,4 +1,4 @@
-import { IMuscleGroup } from './MuscleGroup.metamodel';
+import { IMuscleGroupSummary } from './MuscleGroup.metamodel';
 
 export interface IRoutineDao {
     _id: any;
@@ -7,6 +7,7 @@ export interface IRoutineDao {
     updatedAt?: string;
 };
 
+// getRoutines
 export interface IRoutineSummary {
     _id: string,
     name: string,
@@ -16,13 +17,9 @@ export interface IRoutineSummary {
     doneToday?: number
 }
 
+// getRoutine
 export interface IRoutine {
     _id: string,
     name: string,
-    targetsCount?: number ,
-    exercisesCount?: number,
-    lastUpdated?: string,
-    doneToday?: number,
-    exercises?: string[],
-    muscleGroups?: IMuscleGroup[]
+    muscleGroups?: IMuscleGroupSummary[]
 }

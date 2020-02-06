@@ -1,10 +1,10 @@
 import { IExercise } from "./Exercise.metamodel";
 
 export interface IMuscleDao {
-
+  _id: string;
 }
 
-export interface ITarget {
+export interface IMuscle {
   _id: string;
   name: string;
   routineId?: string;
@@ -21,8 +21,8 @@ export interface ITarget {
   muscleType?: string;
 }
 
-export interface ITargetState {
+export interface IMuscleState {
   loading?: boolean;
   error?: string;
-  target?: ITarget;
+  target?: IMuscle;
 }
