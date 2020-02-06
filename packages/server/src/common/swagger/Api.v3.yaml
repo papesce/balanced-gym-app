@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: balanced-gym-app
+  description: Balanced Gym App
+tags:
+  - name: All
+paths:
+  /routines:
+    get:
+      tags:
+        - All
+      description: Fetch all routines
+      responses:
+        "200":
+          description: Returns all routines
+  /routine/{routineID}:
+    get:
+      tags:
+        - All
+      description: Fetch the routine with the given ID
+      parameters:
+        - in: path
+          name: routineID
+          schema: 
+            type: string
+          required: true
+          example: 59f0c59d4e55c40d38868034
+      responses:
+        "200":
+          description: Returns the routine with ID
+    
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        "200":
+          description: Return the API specification
+servers:
+  - url: /api/v1

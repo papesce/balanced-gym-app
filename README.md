@@ -5,7 +5,7 @@ Balanced Gym React App
 App used to log Gym Routines using the balanced gym algorithm to select the next exercise
 
 
-# Dependencies:
+# Client Dependencies:
 
 - create-react-app --typescript
 - yarn add redux
@@ -27,14 +27,15 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 # Model
 - yarn add jest @types/jest ts-jest --dev
 
-# Heroku
+# Server Dependencies
 
-heroku config:set REACT_APP_SERVER=https://balanced-gym-app-dev.herokuapp.com
-
+- yarn add swagger-express-middleware
+- yarn add api-spec-converter --dev
 
 # Startup
 
 yarn dev for development will start client port 3000 & server port 5001
+yarn dev:server will start only the server in port 5001
 yarn build will compile client and pack it into the server
 yarn start will start only the server 
 

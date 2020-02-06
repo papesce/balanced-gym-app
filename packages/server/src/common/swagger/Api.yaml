@@ -1,31 +1,41 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  version: 1.0.0
-  title: balanced-gym-app
   description: Balanced Gym App
+  title: balanced-gym-app
+  version: 1.0.0
 basePath: /api/v1
-tags:
-  - name: All
-
-consumes:
-  - application/json
-produces:
-  - application/json
-
 paths:
+  '/routine/{routineID}':
+    get:
+      parameters:
+        - in: path
+          name: routineID
+          required: true
+          type: string
+          x-example: 59f0c59d4e55c40d38868034
+      responses:
+        '200':
+          description: Returns the routine with ID
+      tags:
+        - All
+      description: Fetch the routine with the given ID
   /routines:
     get:
+      parameters: []
+      responses:
+        '200':
+          description: Returns all routines
       tags:
         - All
       description: Fetch all routines
-      responses:
-        200:
-          description: Returns all routines
-
   /spec:
     get:
+      parameters: []
+      responses:
+        '200':
+          description: Return the API specification
       tags:
         - Specification
-      responses:
-        200:
-          description: Return the API specification
+tags:
+  - name: All
+
