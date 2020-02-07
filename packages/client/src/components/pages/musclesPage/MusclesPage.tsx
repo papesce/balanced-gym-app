@@ -6,7 +6,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 // import ListSubheader from '@material-ui/core/ListSubheader';
 // import IconButton from "@material-ui/core/IconButton";
 // import InfoIcon from "@material-ui/icons/Info";
-import { IExercise, ITarget } from "balanced-gym-model";
+import { IExercise, IMuscle } from "balanced-gym-model";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
@@ -45,14 +45,14 @@ interface MusclePageProps {
 }
 
 export const getMuscles = (exercise: IExercise) => {
-  const muscles: ITarget[] = [];
+  const muscles: IMuscle[] = [];
   const { target, synergists = [] } = exercise;
   if (target) {
-    const tmuscle: ITarget = { muscleType: "Target", ...target };
+    const tmuscle: IMuscle = { muscleType: "Target", ...target };
     muscles.push(tmuscle);
   }
   synergists.forEach(syn => {
-    const smuscle: ITarget = {
+    const smuscle: IMuscle = {
       muscleType: "Synergist",
       ...syn
     };
@@ -61,13 +61,13 @@ export const getMuscles = (exercise: IExercise) => {
   return muscles;
 };
 
-const getMuscleURL = (muscle: ITarget) => {
+const getMuscleURL = (muscle: IMuscle) => {
   return `${process.env.REACT_APP_SERVER}/${muscle.muscleURL}`;
 };
 
 const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
   const classes = useStyles();
-  const muscles: ITarget[] = getMuscles(exercise);
+  const muscles: IMuscle[] = getMuscles(exercise);
   if (muscles.length === 0) {
     return (
       <Typography

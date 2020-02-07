@@ -1,7 +1,7 @@
 import { FETCH_TARGET_BEGIN, FETCH_TARGET_FAILURE, FETCH_TARGET_SUCCESS} from './actions.target';
-import { ITargetState } from 'balanced-gym-model';
+import { IMuscleState } from 'balanced-gym-model';
 
-export const targetReducer = (state: ITargetState = {} , action: any ) => {
+export const targetReducer = (state: IMuscleState = {} , action: any ) => {
     switch (action.type) {
       case FETCH_TARGET_BEGIN:
         return { loading: true };

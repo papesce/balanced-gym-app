@@ -1,4 +1,4 @@
-import { IRoutineDao, IRoutine } from '../metamodel/Routine.metamodel';
+import { IRoutineDao, IRoutine, IRoutineSummary } from '../metamodel/Routine.metamodel';
 import { muscleGroupWithEmptyTargets, muscleGroupWithNoTargets,
   muscleGroupWithSingleTargets, muscleGroupWithFullTargets } from './MuscleGroup.sample';
 
@@ -7,7 +7,7 @@ export const emptyRoutineDao: IRoutineDao = {
   "name": ""
 };
 
-export const sampleRoutine1: IRoutine = {
+export const sampleRoutine1: IRoutineSummary = {
   "_id": "59f0c59d4e55c40d38868034",
   "name": "Thighs Shoulders Calves",
   targetsCount:0,
@@ -15,13 +15,9 @@ export const sampleRoutine1: IRoutine = {
   doneToday: 0,
 };
 
-export const sampleRoutine2: IRoutine = {
+export const sampleRoutine2: IRoutineSummary = {
   "_id": "59ee3ddc243a5977dab96c2b",
   "name": "Chest Triceps Waist Hips",
-  "exercises": [
-    "59ee3ddc243a5977dab96c2c",
-    "5a3d82ed01ee670014833365"
-  ],
   targetsCount:15,
   exercisesCount: 19,
   doneToday: 1,

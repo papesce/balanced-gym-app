@@ -1,9 +1,9 @@
 import { getSynsAndStabs } from './../common';
-import { ITarget } from 'balanced-gym-model';
+import { IMuscle } from 'balanced-gym-model';
 import { getTimeFromString } from '../../../utils/dateUtils';
 import { addS } from '../../../utils/utils';
 
-export const getTargetSummary2 = (target: ITarget) => {
+export const getTargetSummary2 = (target: IMuscle) => {
     let text = '';
     const { lastUpdated, doneToday } = target;
     // const ecount = exercisesCount || 0;  
@@ -20,7 +20,7 @@ export const getTargetSummary2 = (target: ITarget) => {
     return text;
 }
 
-export const getTargetSummary1 = (target: ITarget) => {
+export const getTargetSummary1 = (target: IMuscle) => {
     let text = '';
     const { exercisesCount, synergistsCount, stabilizersCount} = target;
     const ecount = exercisesCount || 0;  

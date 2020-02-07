@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IExercise, IRoutine, IMuscleGroup, ITarget } from "balanced-gym-model";
+import { IExercise, IRoutine, IMuscleGroup, IMuscle } from "balanced-gym-model";
 import { IHeaderRow } from "../../generic/headerRowList/HeaderRow";
 import HeaderRowList from "../../generic/headerRowList/HeaderRowList";
 import "./ExerciseHeader.css";
@@ -21,7 +21,7 @@ export default class ExerciseHeader extends Component<ExerciseHeaderProps> {
   render() {
     const emptyRoutine: IRoutine = { _id: "", name: "" };
     const emptyMuscleGroup: IMuscleGroup = { _id: "", name: "" };
-    const emptyTarget: ITarget = { _id: "", name: "" };
+    const emptyTarget: IMuscle = { _id: "", name: "" };
     const {
       exercise: {
         routineId = emptyRoutine,

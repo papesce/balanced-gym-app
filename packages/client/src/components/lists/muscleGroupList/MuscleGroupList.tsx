@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ElemList from '../../generic/elemList/ElemList';
-import { IRoutine, IMuscleGroup } from 'balanced-gym-model';
+import { IRoutine, IRoutineSummary, IMuscleGroup } from 'balanced-gym-model';
 import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from '../common';
 import RoutineHeader from './RoutineHeader';
 
@@ -16,8 +16,8 @@ const getId = (muscleGroup: IMuscleGroup) => {
     return muscleGroup._id;
 }
 
-export const getSecondary = (routine: IRoutine) => {
-    const { doneToday } = routine;
+export const getSecondary = (routine: IRoutineSummary) => {
+  const { doneToday } = routine;
   const line1 = getRoutineSummary1(routine);
   let text: any = line1;
   const line2 = getRoutineSummary2(routine);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ITarget } from "balanced-gym-model";
+import { IMuscle } from "balanced-gym-model";
 import { IHeaderRow } from "../../generic/headerRowList/HeaderRow";
 import HeaderRowList from "../..//generic/headerRowList/HeaderRowList";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../../../utils/routes";
 
 interface TargetHeaderProps {
-  target: ITarget;
+  target: IMuscle;
 }
 
 export default class TargetHeader extends Component<TargetHeaderProps> {
