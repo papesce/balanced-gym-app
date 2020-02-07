@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ElemCardList from '../../generic/cardList/ElemCardList';
-import { ITarget, IExercise } from 'balanced-gym-model';
+import { IMuscle, IExercise } from 'balanced-gym-model';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
 import { getColoredTextFromDateString } from '../common';
@@ -8,7 +8,7 @@ import { getColoredTextFromDateString } from '../common';
 interface ExerciseListProps {
     loading?: boolean;
     error?: string;
-    target?: ITarget;
+    target?: IMuscle;
     onClick?: (elem: IExercise) => void;
     noDataMsg?: string
 }
@@ -37,7 +37,7 @@ export const getPrimary = (exercise: IExercise) => {
 export default class ExerciseList extends Component<ExerciseListProps> {
     
     render() {
-        const emptyTarget: ITarget = {_id:'', name:'', exercises: []}
+        const emptyTarget: IMuscle = {_id:'', name:'', exercises: []}
         const { target = emptyTarget, loading, error, noDataMsg = "No exercises", 
             onClick = ()=>{} } = this.props;
         return (

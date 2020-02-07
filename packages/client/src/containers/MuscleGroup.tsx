@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TargetList from '../components/lists/targetList/TargetList';
-import { IMuscleGroup, ITarget } from 'balanced-gym-model';
+import { IMuscleGroup, IMuscle} from 'balanced-gym-model';
 import { loadMuscleGroup } from '../redux/actions.muscleGroup';
 import { withRouter } from "react-router";
 import BackHeader from '../components/headerBar/BackHeader';
@@ -21,7 +21,7 @@ export class MuscleGroup extends Component<MuscleGroupProps> {
        const { loadMuscleGroup, match : { params : { routineId, muscleGroupId }} } = this.props;
        loadMuscleGroup && loadMuscleGroup(routineId, muscleGroupId);
     }
-    onTargetClick = (target: ITarget) => {
+    onTargetClick = (target: IMuscle) => {
         const { history, match : { params : { routineId, muscleGroupId }} } = this.props;
         history.push(`/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${target._id}`);
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExercisePage from '../components/pages/exercisePage/ExercisePage';
-import { IExercise, IRoutine, IMuscleGroup, ITarget, ISerie } from 'balanced-gym-model';
+import { IExercise, IRoutine, IMuscleGroup, IMuscle, ISerie } from 'balanced-gym-model';
 import { ISerieState } from '../redux/reducer.serie';
 import { loadExercise } from '../redux/actions.exercise';
 import { withRouter } from "react-router";
@@ -67,7 +67,7 @@ export class Exercise extends Component<ExerciseProps> {
         const { history, exercise } = this.props;
         const emptyRoutine: IRoutine = { _id: '', name: ''};
         const emptyMuscleGroup: IMuscleGroup = { _id: '',  name: ''};
-        const emptyTarget: ITarget = { _id: '', name: ''};
+        const emptyTarget: IMuscle = { _id: '', name: ''};
         const { 
             routineId = emptyRoutine, 
             muscleGroup = emptyMuscleGroup,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ElemCardList from "../../generic/cardList/ElemCardList";
-import { ITarget, IMuscleGroup } from "balanced-gym-model";
+import { IMuscle, IMuscleGroup } from "balanced-gym-model";
 import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
 import { getColoredTextFromBoolean } from "../common";
@@ -9,29 +9,29 @@ interface TargetListProps {
   loading?: boolean;
   error?: string;
   muscleGroup?: IMuscleGroup;
-  onClick?: (elem: ITarget) => void;
+  onClick?: (elem: IMuscle) => void;
   noDataMsg?: string;
 }
 
 // TODO do i really need the muscle group or just the [targets]
 
-const getId = (target: ITarget) => {
+const getId = (target: IMuscle) => {
   return target._id;
 };
 
-export const getSecondary1 = (target: ITarget) => {
+export const getSecondary1 = (target: IMuscle) => {
   return getTargetSummary1(target);
 };
-export const getSecondary2 = (target: ITarget) => {
+export const getSecondary2 = (target: IMuscle) => {
   const { doneToday } = target;
   const line2 = getTargetSummary2(target);
   const wasToday: boolean = doneToday !== undefined && doneToday > 0;
   return getColoredTextFromBoolean(line2, wasToday)
 };
-export const getImage = (target: ITarget) => {
+export const getImage = (target: IMuscle) => {
   return target.muscleURL || "";
 };
-export const getPrimary = (target: ITarget) => {
+export const getPrimary = (target: IMuscle) => {
   return target.name;
 };
 

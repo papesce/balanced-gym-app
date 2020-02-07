@@ -1,4 +1,4 @@
-import { ITarget } from 'balanced-gym-model';
+import { IMuscle } from 'balanced-gym-model';
 import { handleErrors } from './utils';
 
 export const FETCH_TARGET_BEGIN   = 'FETCH_TARGET_BEGIN';
@@ -10,7 +10,7 @@ export const fetchTargetBegin = () => ({
     type: FETCH_TARGET_BEGIN
   });
   
-  export const fetchTargetSuccess = (target: ITarget) => ({
+  export const fetchTargetSuccess = (target: IMuscle) => ({
     type: FETCH_TARGET_SUCCESS,
     payload: { target }
   });

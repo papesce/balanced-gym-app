@@ -1,7 +1,7 @@
 import { IMuscle } from './Muscle.metamodel';
 
 export interface IMuscleGroupDao {
-    _id: string,
+    _id: any,
     name: string,
 }
 

@@ -1,7 +1,8 @@
 import { IExercise } from "./Exercise.metamodel";
 
 export interface IMuscleDao {
-  _id: string;
+  _id: any;
+  name: string;
 }
 
 export interface IMuscle {

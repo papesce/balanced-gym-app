@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ElemList from "../../generic/elemList/ElemList";
-import { IRoutine } from "balanced-gym-model";
+import { IRoutine, IRoutineSummary } from "balanced-gym-model";
 import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from "../common";
 import "./RoutineList.css";
 
@@ -16,7 +16,7 @@ const getId = (routine: IRoutine) => {
   return routine._id;
 };
 
-const getSecondary = (routine: IRoutine) => {
+const getSecondary = (routine: IRoutineSummary) => {
   const { doneToday } = routine;
   const line1 = getRoutineSummary1(routine);
   let text: any = line1;

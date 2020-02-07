@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ExerciseList from "../components/lists/exerciseList/ExerciseList";
-import { ITarget, IExercise } from "balanced-gym-model";
+import { IMuscle, IExercise } from "balanced-gym-model";
 import { loadTarget } from "../redux/actions.target";
 import { withRouter } from "react-router";
 import BackHeader from "../components/headerBar/BackHeader";
@@ -10,7 +10,7 @@ import { getMuscleGroupURL } from "../utils/routes";
 interface TargetProps {
   loading: boolean;
   error: string;
-  target: ITarget;
+  target: IMuscle;
   loadTarget?: (
     routineId: string,
     muscleGroupId: string,
