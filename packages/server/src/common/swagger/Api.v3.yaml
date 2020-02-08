@@ -50,6 +50,27 @@ paths:
       responses:
         "200":
           description: Returns the routine with ID 
+  /routine/{routineId}/muscleGroup/{muscleGroupId}/target/{targetId}:
+    get:
+      tags:
+        - All
+      description: Fetch the target with the given IDs
+      parameters:
+        - in: path
+          name: routineId
+          schema: 
+            type: string
+          required: true
+          example: 59f0c59d4e55c40d38868034
+        - in: path
+          name: muscleGroupId
+          schema: 
+            type: string
+          required: true
+          example: 5dde9b568603d000157b627d   
+      responses:
+        "200":
+          description: Returns the routine with ID 
   /spec:
     get:
       tags:
