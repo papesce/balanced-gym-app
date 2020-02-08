@@ -67,7 +67,13 @@ paths:
           schema: 
             type: string
           required: true
-          example: 5dde9b568603d000157b627d   
+          example: 5dde9b568603d000157b627d  
+        - in: path
+          name: targetId
+          schema: 
+            type: string
+          required: true
+          example: 5a55152ad9b873001457578f 
       responses:
         "200":
           description: Returns the routine with ID 
