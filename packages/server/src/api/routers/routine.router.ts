@@ -6,10 +6,10 @@ import express from "express";
 
 const api = express.Router();
 
-api.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+api.get("/routine/:routineId", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
-    const routine: IRoutine = await RoutineService.getRoutineById(id);
+    const { routineId } = req.params;
+    const routine: IRoutine = await RoutineService.getRoutineById(routineId);
     return res.status(HttpStatus.OK).json(routine);
   } catch (err) {
     return next(err);

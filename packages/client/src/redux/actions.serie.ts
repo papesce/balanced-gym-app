@@ -57,7 +57,7 @@ export const newSerie = (exerciseId: string, suggestedSerie: ISerie) => (dispatc
      dispatch(newSerieBegin());
      delete suggestedSerie._id;
      const body: any = { suggestedSerie };
-     return fetch(`${process.env.REACT_APP_SERVER}/api/newSerie/${exerciseId}`,
+     return fetch(`${process.env.REACT_APP_API}/newSerie/${exerciseId}`,
      { method: 'post',
        headers: { 'content-type': 'application/json' },
        body: JSON.stringify(body) 
@@ -76,7 +76,7 @@ export const newSerie = (exerciseId: string, suggestedSerie: ISerie) => (dispatc
  export const editSerie = (exerciseId: string, serie: ISerie) => (dispatch: any) => {
     dispatch(editSerieBegin());
     const body: any = { weight: serie.weight, reps: serie.reps };
-    return fetch(`${process.env.REACT_APP_SERVER}/api/updateSerie/${serie._id}/exercise/${exerciseId}`,
+    return fetch(`${process.env.REACT_APP_API}/updateSerie/${serie._id}/exercise/${exerciseId}`,
       { method: 'PATCH',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body)
@@ -96,7 +96,7 @@ export const newSerie = (exerciseId: string, suggestedSerie: ISerie) => (dispatc
 
 export const deleteSerie = (exerciseId:string, serieId: string) => (dispatch: any) => {
     dispatch(deleteSerieBegin());
-    return fetch(`${process.env.REACT_APP_SERVER}/api/deleteSerie/${serieId}/exercise/${exerciseId}`,
+    return fetch(`${process.env.REACT_APP_API}/deleteSerie/${serieId}/exercise/${exerciseId}`,
     {method: 'delete'})
     .then(handleErrors)
     .then(res => res.json())

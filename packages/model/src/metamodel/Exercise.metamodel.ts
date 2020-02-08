@@ -7,12 +7,12 @@ export interface IExerciseDao {
     _id: any;
     name: string;
     muscleGroup?: IMuscleGroupDao // | ObjectId,
-    target?: any,  // ITarget | ObjectId
+    target?: any,  // IMuscleDao | ObjectId
     series?: ISerieDao[],
     // gifURL: { type: String, required: true },
     // exerciseURL: { type: String },
-    // synergists: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
-    // stabilizers: [{ type: mongoose.Schema.Types.ObjectId, ref: "muscle" }],
+    synergists?: any // IMuscleDao[] | ObjectId
+    stabilizers?: any // IMuscleDao[] | ObjectId
     equipment?: string,
     // routineId: { type: mongoose.Schema.Types.ObjectId, ref: "routine" },
     // links: [{ type: String }]

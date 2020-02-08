@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "build": "ts-node build.ts && tsc",
+    "build": "convert && ts-node build.ts && tsc",
     "dev": "nodemon src/index.ts | pino-pretty",
     "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' server/index.ts | pino-pretty",
     "convert": "api-spec-converter -f openapi_3 -t swagger_2 -s yaml -c -d ./src/common/swagger/Api.v3.yaml > ./src/common/swagger/Api.yaml",

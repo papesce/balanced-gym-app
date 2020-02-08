@@ -1,15 +1,12 @@
 import {
     IRoutine,
-    // IRoutineDao,
-    // IExerciseDao,
     getRoutineAndMuscles,
-    IRoutineDao
+    IRoutineDao,
+    IExerciseDao
   } from "balanced-gym-model";
   import L from "../../common/logger";
 import { RoutineDocumentModel } from "../mongoose/routine.mongoose";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
-  // import { RoutineDocumentModel } from '../mongoose/routine.mongoose';
-  // import { ExerciseDocumentModel } from '../mongoose/exercise.mongoose';
   
   export class RoutineService {
     async getRoutineById(routineId: string): Promise<IRoutine> {
@@ -19,7 +16,7 @@ import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
       const routineDao: IRoutineDao = await RoutineDocumentModel
         .findOne({ _id: routineId })
         .select('name').lean().exec();
-       const exercisesDao = await ExerciseDocumentModel
+       const exercisesDao: IExerciseDao[] = await ExerciseDocumentModel
         .find({ routineId }).select('name')
         .populate("muscleGroup", 'name')
         .populate("series")

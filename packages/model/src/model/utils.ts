@@ -10,6 +10,14 @@ export const sortByCreatedAt = (list: any[]) => {
   });
 };
 
+// PLAN: some targets are more important than others?
+export const sortTargets = (list: any[]) => {
+  list.sort(
+    (r1, r2) =>
+      new Date(r1.lastUpdated).valueOf() - new Date(r2.lastUpdated).valueOf()
+  );
+};
+
 export const isToday = (someDate: Date) => {
   const today = new Date();
   return (

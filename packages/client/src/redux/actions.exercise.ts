@@ -22,7 +22,7 @@ export const fetchExerciseBegin = () => ({
 
 export const loadExercise = (exerciseId: string) => (dispatch: any) => {
      dispatch(fetchExerciseBegin());
-     return fetch(`${process.env.REACT_APP_SERVER}/api/exercise/${exerciseId}`)
+     return fetch(`${process.env.REACT_APP_API}/exercise/${exerciseId}`)
      .then(handleErrors)
      .then(res => res.json())
      .then(exercise => {
