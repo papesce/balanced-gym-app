@@ -33,7 +33,7 @@ const ElemCard: React.FC<ElemCardProps> = ({
   image = ""
 }) => {
   const classes = useStyles();
-  const imageURL: string = `${process.env.REACT_APP_SERVER}/${image}`;
+  const imageURL: string = `${process.env.REACT_APP_ASSETS}/${image}`;
   // console.log(imageURL)
   return (
     <Card className={classes.card}>

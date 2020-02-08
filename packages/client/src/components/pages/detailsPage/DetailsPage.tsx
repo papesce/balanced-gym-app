@@ -50,7 +50,7 @@ class DetailsPage extends Component<DetailsPageProps, DetailsPageState> {
       // synergists = [],
       // stabilizers = []
     } = exercise;
-    const imageURL: string = `${process.env.REACT_APP_SERVER}/${gifURL}`;
+    const imageURL: string = `${process.env.REACT_APP_ASSETS}/${gifURL}`;
     const { flip } = this.state;
     const detailsPageImg: string = flip ? 'details-page-img' : 'details-page-img-hor';
     return (

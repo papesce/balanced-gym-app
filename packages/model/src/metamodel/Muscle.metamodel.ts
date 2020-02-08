@@ -3,6 +3,7 @@ import { IExercise } from "./Exercise.metamodel";
 export interface IMuscleDao {
   _id: any;
   name: string;
+  muscleURL?: string;
 }
 
 export interface IMuscle {

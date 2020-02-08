@@ -62,7 +62,8 @@ export const getMuscles = (exercise: IExercise) => {
 };
 
 const getMuscleURL = (muscle: IMuscle) => {
-  return `${process.env.REACT_APP_SERVER}/${muscle.muscleURL}`;
+  debugger;
+  return `${process.env.REACT_APP_ASSETS}/${muscle.muscleURL}`;
 };
 
 const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {

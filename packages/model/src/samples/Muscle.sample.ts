@@ -1,4 +1,4 @@
-import { IMuscle } from '../metamodel/Muscle.metamodel';
+import { IMuscle, IMuscleDao } from '../metamodel/Muscle.metamodel';
 import { sampleExercise1, sampleExercise2, sampleExercise3, sampleExercise4 } from './Exercise.sample';
 
 export const sampleTarget: IMuscle = {
@@ -35,6 +35,11 @@ export const sampleTarget3: IMuscle = {
     "muscleURL": "/AdductorAnteriorSmall.png",
 } 
 
+export const sampleTarget4: IMuscleDao = {
+    "_id": "5a551347620ca90014df37a6",
+    "name": "Adductors, Hip",
+}
+
 export const sampleTargetWithSingleExercise: IMuscle = {
     "_id": "5a551347620ca90014df37a6",
     "name": "Adductors, Hip",
@@ -50,3 +55,5 @@ export const sampleTargetWithFullExercise: IMuscle = {
     "name": "Adductors, Hip",
     exercises: [sampleExercise2, sampleExercise3, sampleExercise4]
 } 
+
+

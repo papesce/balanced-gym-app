@@ -1,5 +1,6 @@
 import { IExercise, IExerciseDao } from "../metamodel/Exercise.metamodel";
 import { series1, series2, series8, series9now, serie0dao } from "./Serie.sample";
+import { sampleTarget4 } from "./Muscle.sample";
 
 export const sampleExercise1: IExercise = {
   _id: "59f0c59d4e55c40d38868035",
@@ -65,10 +66,20 @@ export const sampleExercise7Series: IExerciseDao = {
   series: [serie0dao]
 };
 
-export const sampleExercise8: IExerciseDao = {
+export const sampleExerciseDao8: IExerciseDao = {
   _id: "59f0c59d4e55c40d38868035",
   name: "Barbell Squats",
   target: "fakeId",
+  muscleGroup: {
+    _id: '2',
+    name: 'msgroup 1'
+  }
+};
+
+export const sampleExerciseDao9: IExerciseDao = {
+  _id: "59f0c59d4e55c40d38868035",
+  name: "Barbell Squats",
+  target: sampleTarget4,
   muscleGroup: {
     _id: '2',
     name: 'msgroup 1'

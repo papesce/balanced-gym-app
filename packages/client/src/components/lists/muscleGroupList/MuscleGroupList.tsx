@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ElemList from '../../generic/elemList/ElemList';
 import { IRoutine, IRoutineSummary, IMuscleGroup } from 'balanced-gym-model';
-import { getRoutineSummary1, getRoutineSummary2, getColoredTextFromBoolean } from '../common';
+import { getRoutineSummary1, getRoutineSummary2 } from '../common';
 import RoutineHeader from './RoutineHeader';
 
 interface MuscleGroupListProps {
@@ -17,20 +17,20 @@ const getId = (muscleGroup: IMuscleGroup) => {
 }
 
 export const getSecondary = (routine: IRoutineSummary) => {
-  const { doneToday } = routine;
+  // const { doneToday } = routine;
   const line1 = getRoutineSummary1(routine);
   let text: any = line1;
   const line2 = getRoutineSummary2(routine);
-  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
-  const colorLine2 = getColoredTextFromBoolean(line2, wasToday)
-  if (colorLine2) {
-    text = (
-      <div>
-        <div>{text}</div>
-        {colorLine2}
-      </div>
-    );
-  }
+  // const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+  // const colorLine2 = getColoredTextFromBoolean(line2, wasToday)
+  // if (colorLine2) {
+  //   text = (
+  //     <div>
+  //       <div>{text}</div>
+  //       {colorLine2}
+  //     </div>
+  //   );
+  // }
   return text;
 }
 export const getPrimary = (muscleGroup: IMuscleGroup) => {

@@ -6,7 +6,7 @@ import express from 'express';
 
 const api = express.Router();
 
-api.get('/', async (req: Request, res: Response, next: NextFunction) => {
+api.get('/routines', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const routines: IRoutineSummary[] = await RoutinesService.getRoutinesSummary();
       return res.status(HttpStatus.OK).json(routines);

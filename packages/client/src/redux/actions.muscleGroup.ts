@@ -24,7 +24,7 @@ import { handleErrors } from './utils';
  
  export const loadMuscleGroup = (routineId: string, muscleGroupId: string) => (dispatch: any) => {
       dispatch(fetchMuscleGroupBegin());
-      return fetch(`${process.env.REACT_APP_SERVER}/api/routine/${routineId}/muscleGroup/${muscleGroupId}`)
+      return fetch(`${process.env.REACT_APP_API}/routine/${routineId}/muscleGroup/${muscleGroupId}`)
       .then(handleErrors)
       .then(res => res.json())
       .then(routine => {

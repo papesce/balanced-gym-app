@@ -22,7 +22,7 @@ export const fetchTargetBegin = () => ({
 
 export const loadTarget = (routineId: string, muscleGroupId: string, targetId: string) => (dispatch: any) => {
      dispatch(fetchTargetBegin());
-     return fetch(`${process.env.REACT_APP_SERVER}/api/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${targetId}`)
+     return fetch(`${process.env.REACT_APP_API}/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${targetId}`)
      .then(handleErrors)
      .then(res => res.json())
      .then(routines => {

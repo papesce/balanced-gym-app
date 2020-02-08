@@ -1,5 +1,5 @@
 import React from 'react';
-import { IRoutine, IRoutineSummary } from 'balanced-gym-model';
+import { IRoutineSummary } from 'balanced-gym-model';
 import { getTimeFromString, isToday } from '../../utils/dateUtils';
 import { addS } from '../../utils/utils';
 
