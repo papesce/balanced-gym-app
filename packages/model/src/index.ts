@@ -4,6 +4,7 @@ export * from './metamodel/MuscleGroup.metamodel';
 export * from './metamodel/Routine.metamodel';
 export * from './metamodel/Serie.metamodel';
 export * from './model/Exercise.model';
+export * from './model/Muscle.model';
 export * from './model/MuscleGroup.model';
 export * from './model/Routines.model';
 export * from './model/Routine.model';

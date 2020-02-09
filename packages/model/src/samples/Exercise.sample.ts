@@ -1,23 +1,31 @@
-import { IExercise, IExerciseDao } from "../metamodel/Exercise.metamodel";
-import { series1, series2, series8, series9now, serie0dao } from "./Serie.sample";
+import {
+  IExercise,
+  IExerciseDao,
+  IExerciseSummary
+} from "../metamodel/Exercise.metamodel";
+import {
+  series1,
+  series2,
+  series8,
+  series9now,
+  serie0dao
+} from "./Serie.sample";
 import { sampleTarget4 } from "./Muscle.sample";
 
-export const sampleExercise1: IExercise = {
+export const sampleExercise1: IExerciseSummary = {
   _id: "59f0c59d4e55c40d38868035",
   name: "Barbell Squats",
-  lastReps: 1,
-  lastWeight: 2,
+  lastSerie: { _id: "s1", reps: 1, weight: 2 },
   normalizedWeight: 0,
   seriesCount: 3,
   gifURL: "/BBSquatHigh.gif"
 };
 
-export const sampleExercise2: IExercise = {
+export const sampleExercise2: IExerciseSummary = {
   _id: "59f0c59f4e55c40d38868038",
   name: "Dumbbell short Lunge",
   lastUpdated: "2017-11-01T19:45:35.761Z",
-  lastReps: 10,
-  lastWeight: 7.5,
+  lastSerie: { _id: "s2", reps: 10, weight: 7.5 },
   normalizedWeight: 7.5,
   seriesCount: 4,
   gifURL: "/DBLungeQuad.gif",
@@ -25,22 +33,19 @@ export const sampleExercise2: IExercise = {
   stabilizersCount: 7
 };
 
-export const sampleExercise3: IExercise = {
+export const sampleExercise3: IExerciseSummary = {
   _id: "5a3809c670ddd40014934e8f",
   name: "Barbell Rear short Lunge",
-  lastReps: 0,
-  lastWeight: 0,
   normalizedWeight: 0,
   seriesCount: 0,
   gifURL: "/BBRearLunge.gif"
 };
 
-export const sampleExercise4: IExercise = {
+export const sampleExercise4: IExerciseSummary = {
   _id: "5a380a8d70ddd40014934e94",
   name: "Barbell Split Squat",
   lastUpdated: new Date().toUTCString(),
-  lastReps: 12,
-  lastWeight: 25,
+  lastSerie: { _id: "id", reps: 12, weight: 25 },
   normalizedWeight: 25,
   seriesCount: 1,
   gifURL: "/DBSplitSquat.gif",
@@ -50,13 +55,13 @@ export const sampleExercise4: IExercise = {
 export const sampleExercise5: IExerciseDao = {
   _id: "59f0c59d4e55c40d38868035",
   name: "Barbell Squats",
-  target: "fakeId",
+  target: "fakeId"
 };
 
 export const sampleExercise6: IExerciseDao = {
   _id: "59f0c59d4e55c40d38868036",
   name: "Barbell Squats 2",
-  target: "fakeId",
+  target: "fakeId"
 };
 
 export const sampleExercise7Series: IExerciseDao = {
@@ -71,8 +76,8 @@ export const sampleExerciseDao8: IExerciseDao = {
   name: "Barbell Squats",
   target: "fakeId",
   muscleGroup: {
-    _id: '2',
-    name: 'msgroup 1'
+    _id: "2",
+    name: "msgroup 1"
   }
 };
 
@@ -81,8 +86,8 @@ export const sampleExerciseDao9: IExerciseDao = {
   name: "Barbell Squats",
   target: sampleTarget4,
   muscleGroup: {
-    _id: '2',
-    name: 'msgroup 1'
+    _id: "2",
+    name: "msgroup 1"
   }
 };
 
@@ -168,8 +173,6 @@ export const withSynergystsSample: IExercise = {
     }
   ],
   series: [],
-  lastReps: 0,
-  lastWeight: 0,
   normalizedWeight: 0,
   suggestedSerie: {
     _id: "",
@@ -211,8 +214,6 @@ export const fullExerciseSample: IExercise = {
     }
   ],
   series: [],
-  lastReps: 0,
-  lastWeight: 0,
   normalizedWeight: 0,
   suggestedSerie: {
     _id: "",

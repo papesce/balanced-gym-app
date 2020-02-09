@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ElemCardList from "../../generic/cardList/ElemCardList";
-import { IMuscle, IMuscleGroup } from "balanced-gym-model";
+import { IMuscle, IMuscleGroup, IMuscleSummary } from "balanced-gym-model";
 import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
 import { getColoredTextFromBoolean } from "../common";
@@ -22,7 +22,7 @@ const getId = (target: IMuscle) => {
 export const getSecondary1 = (target: IMuscle) => {
   return getTargetSummary1(target);
 };
-export const getSecondary2 = (target: IMuscle) => {
+export const getSecondary2 = (target: IMuscleSummary) => {
   const { doneToday } = target;
   const line2 = getTargetSummary2(target);
   const wasToday: boolean = doneToday !== undefined && doneToday > 0;

@@ -44,15 +44,19 @@ interface MusclePageProps {
   noDataMsg?: string;
 }
 
+interface IMuscleWithType extends IMuscle {
+  muscleType: string
+}
+
 export const getMuscles = (exercise: IExercise) => {
-  const muscles: IMuscle[] = [];
+  const muscles: IMuscleWithType[] = [];
   const { target, synergists = [] } = exercise;
   if (target) {
-    const tmuscle: IMuscle = { muscleType: "Target", ...target };
+    const tmuscle: IMuscleWithType = { muscleType: "Target", ...target };
     muscles.push(tmuscle);
   }
   synergists.forEach(syn => {
-    const smuscle: IMuscle = {
+    const smuscle: IMuscleWithType = {
       muscleType: "Synergist",
       ...syn
     };
@@ -68,7 +72,7 @@ const getMuscleURL = (muscle: IMuscle) => {
 
 const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
   const classes = useStyles();
-  const muscles: IMuscle[] = getMuscles(exercise);
+  const muscles: IMuscleWithType[] = getMuscles(exercise);
   if (muscles.length === 0) {
     return (
       <Typography

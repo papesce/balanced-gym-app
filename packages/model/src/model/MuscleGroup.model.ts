@@ -1,11 +1,11 @@
 import { IRoutineDao } from "../metamodel/Routine.metamodel";
-import { IExerciseDao, IExercise } from "../metamodel/Exercise.metamodel";
+import { IExerciseDao } from "../metamodel/Exercise.metamodel";
 import { sortTargets } from "./utils";
 import {
   IMuscleGroup,
   IMuscleGroupDao
 } from "../metamodel/MuscleGroup.metamodel";
-import { IMuscle, IMuscleDao } from "../metamodel/Muscle.metamodel";
+import { IMuscle, IMuscleDao, IMuscleSummary } from "../metamodel/Muscle.metamodel";
 import { getLastUpdatedFromExercises } from "./Exercise.model";
 
 interface ITargetById {
@@ -56,7 +56,7 @@ export const groupExercisesByTarget = (exercisesDao: IExerciseDao[]) => {
       const { maxLastUpdated, updatedToday } = getLastUpdatedFromExercises(
         exercisesDao
       );
-      const target: IMuscle = {
+      const target: IMuscleSummary = {
         _id: targetDao._id,
         name: targetDao.name,
         muscleURL: targetDao.muscleURL,
