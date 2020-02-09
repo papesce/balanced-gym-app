@@ -5,9 +5,9 @@ import bodyParser from "body-parser";
 import http from "http";
 import os from "os";
 import cookieParser from "cookie-parser";
-import swaggerify from "./swagger";
-import l from "./logger";
-import Mongoose from "./mongoose";
+import swaggerify from "./api/swagger";
+import l from "./common/logger";
+import Mongoose from "./common/mongoose";
 
 const app = express();
 const mongoose = new Mongoose();

@@ -13,8 +13,8 @@ export const serieNow: ISerie = {
   weight: 42,
   createdAt: new Date().toString()
 };
- 
-const minuteAgo: Date = new Date(Date.now() - 1000 * 60) ;
+
+const minuteAgo: Date = new Date(Date.now() - 1000 * 60);
 
 export const serieMinAgo: ISerie = {
   _id: "fakeid",
@@ -27,8 +27,25 @@ export const serie0dao: ISerieDao = {
   _id: "5a78d7933014df0014ad064a",
   createdAt: "2018-02-05T22:18:47.918Z",
   reps: 8,
-  weight: 40,
-}
+  weight: 40
+};
+
+export const seriesDao2: ISerieDao[] = [
+  {
+    _id: "5a5b84f3b8de6d0014844191",
+    createdAt: "2018-01-14T16:27:31.355Z",
+    reps: 16,
+    weight: 25,
+    restTime: 188
+  },
+  {
+    _id: "5a1dde09c5803b0004611e4f",
+    createdAt: "2017-11-28T22:07:05.753Z",
+    reps: 14,
+    weight: 25,
+    restTime: 150
+  }
+];
 
 export const series0: ISerie[] = [];
 
@@ -137,8 +154,7 @@ export const series9now: ISerie[] = [
   serie5,
   serie6,
   serie7,
-  serie8,
-  
+  serie8
 ];
 
 export const serie9: ISerie = {
