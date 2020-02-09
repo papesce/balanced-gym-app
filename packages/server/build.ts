@@ -6,4 +6,4 @@ s.rm('-rf', outDir);
 s.mkdir(outDir);
 s.cp('.env', `${outDir}/.env`);
 s.mkdir('-p', `${outDir}/common/swagger`);
-s.cp('src/common/swagger/Api.yaml', `${outDir}/common/swagger/Api.yaml`);
+s.cp('src/api/swagger/Api.yaml', `${outDir}/api/swagger/Api.yaml`);
