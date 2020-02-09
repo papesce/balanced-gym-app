@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ElemCardList from '../../generic/cardList/ElemCardList';
-import { IMuscle, IExercise } from 'balanced-gym-model';
+import { IMuscle, IExercise, IExerciseSummary } from 'balanced-gym-model';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
 import TargetHeader from './TargetHeader';
 import { getColoredTextFromDateString } from '../common';
@@ -17,7 +17,7 @@ interface ExerciseListProps {
 const getId = (exercise: IExercise) => {
     return exercise._id;
 }
-export const getSecondary1 = (exercise: IExercise) => {
+export const getSecondary1 = (exercise: IExerciseSummary) => {
     const { lastUpdated } = exercise;
     const text: any = getExerciseSummary1(exercise);
     return getColoredTextFromDateString(text, lastUpdated);
