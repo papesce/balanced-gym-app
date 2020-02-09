@@ -6,6 +6,18 @@ export interface IMuscleDao {
   muscleURL?: string;
 }
 
+export interface IMuscleSummary {
+  _id: string;
+  name: string;
+  exercisesCount?: number;
+  synergistsCount?: number;
+  stabilizersCount?: number;
+  doneToday?: number;
+  lastUpdated?: string;
+  muscleURL?: string;
+  muscleType?: string;
+}
+
 export interface IMuscle {
   _id: string;
   name: string;
@@ -13,14 +25,8 @@ export interface IMuscle {
   routineName?: string;
   muscleGroupId?: string;
   muscleGroupName?: string;
-  exercisesCount?: number;
-  synergistsCount?: number;
-  stabilizersCount?: number;
-  doneToday?: number;
-  lastUpdated?: string;
-  exercises?: IExercise[];
   muscleURL?: string;
-  muscleType?: string;
+  exercises?: IExercise[];
 }
 
 export interface IMuscleState {

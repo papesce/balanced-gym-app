@@ -6,9 +6,9 @@ import {
   IMuscleGroupDao
 } from "balanced-gym-model";
 import L from "../../common/logger";
-import { RoutineDocumentModel } from "../mongoose/routine.mongoose";
+import { RoutineDocumentModel, getRoutineDao } from "../mongoose/routine.mongoose";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
-import { MuscleGroupDocumentModel } from "../mongoose/muscleGroup.mongoose";
+import { MuscleGroupDocumentModel, getMuscleGroupDao } from "../mongoose/muscleGroup.mongoose";
 
 export class MuscleGroupService {
   async getMuscleGroupById(
@@ -18,18 +18,8 @@ export class MuscleGroupService {
     L.info(
       `fetch muscleGroup with routineId ${routineId} muscleGroupId: ${muscleGroupId}`
     );
-    const muscleGroupDao: IMuscleGroupDao = await MuscleGroupDocumentModel.findOne(
-      { _id: muscleGroupId }
-    )
-      .select("name")
-      .lean()
-      .exec();
-    const routineDao: IRoutineDao = await RoutineDocumentModel.findOne({
-      _id: routineId
-    })
-      .select("name")
-      .lean()
-      .exec();
+    const muscleGroupDao: IMuscleGroupDao = await getMuscleGroupDao(muscleGroupId);
+    const routineDao: IRoutineDao = await getRoutineDao(routineId);
     const exercisesDao: IExerciseDao[] = await ExerciseDocumentModel.find({
       routineId,
       muscleGroup: muscleGroupId

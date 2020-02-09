@@ -9,7 +9,7 @@ export interface IExerciseDao {
     muscleGroup?: IMuscleGroupDao // | ObjectId,
     target?: any,  // IMuscleDao | ObjectId
     series?: ISerieDao[],
-    // gifURL: { type: String, required: true },
+    gifURL?: string,
     // exerciseURL: { type: String },
     synergists?: any // IMuscleDao[] | ObjectId
     stabilizers?: any // IMuscleDao[] | ObjectId
@@ -21,24 +21,31 @@ export interface IExerciseDao {
 };
 
 
+export interface IExerciseSummary {
+  _id: string,
+  name: string,
+  gifURL?: string,
+  lastUpdated?: string,
+  lastSerie?: ISerie,
+  normalizedWeight?: number,
+  suggestedSerie?: ISerie,
+  seriesCount?: number,
+  synergistsCount?: number,
+  stabilizersCount?: number,
+}
+
 export interface IExercise {
   _id: string,
   name: string,
-  lastUpdated?: string,
-  lastReps?: number,
-  lastWeight?: number,
-  normalizedWeight?: number,
-  seriesCount?: number
-  synergistsCount?: number,
-  stabilizersCount?: number,
   gifURL?: string,
   muscleGroup?: IMuscleGroup,
   target?: IMuscle,
   routineId?: IRoutine,
   series?: ISerie[],
-  suggestedSerie?: ISerie,
   equipment?: string;
   synergists?: IMuscle[];
   stabilizers?: IMuscle[];
   lastCreationDate?: string;
+  normalizedWeight?: number,
+  suggestedSerie?: ISerie
  }
