@@ -1,4 +1,4 @@
-import { IRoutine } from './Routine.metamodel';
+import { IRoutine, IRoutineDao } from './Routine.metamodel';
 import { IMuscle, IMuscleDao } from './Muscle.metamodel';
 import { IMuscleGroup, IMuscleGroupDao } from './MuscleGroup.metamodel';
 import { ISerie, ISerieDao } from './Serie.metamodel';
@@ -14,7 +14,7 @@ export interface IExerciseDao {
     synergists?: any // IMuscleDao[] | ObjectId
     stabilizers?: any // IMuscleDao[] | ObjectId
     equipment?: string,
-    // routineId: { type: mongoose.Schema.Types.ObjectId, ref: "routine" },
+    routineId?: IRoutineDao,
     // links: [{ type: String }]
     createdAt?: string;
     updatedAt?: string;
@@ -45,6 +45,7 @@ export interface IExercise {
   equipment?: string;
   synergists?: IMuscle[];
   stabilizers?: IMuscle[];
+  lastUpdated?: string,
   lastCreationDate?: string;
   normalizedWeight?: number,
   suggestedSerie?: ISerie

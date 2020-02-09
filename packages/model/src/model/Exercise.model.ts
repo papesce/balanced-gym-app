@@ -1,7 +1,8 @@
 import { sortByCreatedAt, isToday } from "./utils";
-import { IExerciseDao } from "../metamodel/Exercise.metamodel";
+import { IExerciseDao, IExercise } from "../metamodel/Exercise.metamodel";
 import { ISerieDao, ISerie } from "../metamodel/Serie.metamodel";
 import { IMuscleDao } from "../metamodel/Muscle.metamodel";
+import { serie0dao } from "../samples/Serie.sample";
 
 const computeExtraWeight = (equip?: string) => {
   switch (equip) {
@@ -127,4 +128,35 @@ export const getSuggestedSerieFromExercise = (
     suggestedSerie.weight = weight;
   }
   return suggestedSerie;
+};
+
+export const getExercise = (
+  exerciseDao: IExerciseDao,
+  exercisesDao: IExerciseDao[],
+  lastCreationDate?: string
+) => {
+  const { lastUpdated, normalizedWeight } = getLastUpdatedFromExercise(
+    exerciseDao
+  );
+  const suggestedSerie: ISerie = getSuggestedSerieFromExercise(
+    exerciseDao,
+    exercisesDao
+  );
+  const exercise: IExercise = {
+    _id: exerciseDao._id,
+    name: exerciseDao.name,
+    muscleGroup: exerciseDao.muscleGroup,
+    target: exerciseDao.target,
+    series: exerciseDao.series,
+    gifURL: exerciseDao.gifURL,
+    routineId: exerciseDao.routineId,
+    equipment: exerciseDao.equipment,
+    synergists: exerciseDao.synergists,
+    stabilizers: exerciseDao.stabilizers,
+    lastUpdated,
+    normalizedWeight,
+    suggestedSerie,
+    lastCreationDate
+  };
+  return exercise;
 };

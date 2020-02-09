@@ -5,6 +5,7 @@ export interface ISerieDao {
     weight: number,
     createdAt?: string;
     updatedAt?: string;
+    restTime?: number
 }
 
 

@@ -5,6 +5,20 @@ info:
   version: 1.0.0
 basePath: /api/v1
 paths:
+  '/exercise/{exerciseId}':
+    get:
+      parameters:
+        - in: path
+          name: exerciseId
+          required: true
+          type: string
+          x-example: 5a04c3471e403f31c973d699
+      responses:
+        '200':
+          description: Returns the routine with ID
+      tags:
+        - All
+      description: Fetch the exercise with the given Id
   '/routine/{routineId}':
     get:
       parameters:
@@ -58,7 +72,7 @@ paths:
           x-example: 5a55152ad9b873001457578f
       responses:
         '200':
-          description: Returns the routine with ID
+          description: Returns the target with ID
       tags:
         - All
       description: Fetch the target with the given IDs

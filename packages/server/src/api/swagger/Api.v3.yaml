@@ -76,7 +76,22 @@ paths:
           example: 5a55152ad9b873001457578f 
       responses:
         "200":
-          description: Returns the routine with ID 
+          description: Returns the target with ID
+  /exercise/{exerciseId}:
+    get:
+      tags:
+        - All
+      description: Fetch the exercise with the given Id
+      parameters:
+        - in: path
+          name: exerciseId
+          schema: 
+            type: string
+          required: true
+          example: 5a04c3471e403f31c973d699
+      responses:
+        "200":
+          description: Returns the routine with ID
   /spec:
     get:
       tags:
