@@ -3,15 +3,18 @@ import { IMuscle } from './Muscle.metamodel';
 export interface IMuscleGroupDao {
     _id: any,
     name: string,
+    order: number
 }
 
 export interface IMuscleGroupSummary {
     _id: string,
     name: string,
+    order: number,
     exercisesCount?: number,
     targetsCount?: number,
     lastUpdated?: string,
-    doneToday?: number,
+    doneToday?: number
+    
 }
 
 export interface IMuscleGroup {

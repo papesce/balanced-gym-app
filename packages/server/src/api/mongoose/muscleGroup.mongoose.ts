@@ -9,7 +9,8 @@ export interface IMuscleGroupDocument
 
 const schema = new Schema(
   {
-    name: { type: String, required: true }
+    name: { type: String, required: true },
+    order: { type: Number, required: true}
   },
   {
     timestamps: true,

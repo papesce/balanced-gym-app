@@ -3,8 +3,8 @@ import {
   IMuscleGroupSummary,
   IMuscleGroupDao
 } from "../metamodel/MuscleGroup.metamodel";
-import { IExerciseDao, IExercise } from "../metamodel/Exercise.metamodel";
-import { sortByLastUpdated } from "./utils";
+import { IExerciseDao } from "../metamodel/Exercise.metamodel";
+import { sortByOrder } from "./utils";
 import { getLastUpdatedFromExercises } from "./Exercise.model";
 
 interface IMuscleGroupById {
@@ -36,7 +36,7 @@ const groupByMuscleGroupExercises = (exercises: IExerciseDao[]) => {
   return muscleGroupsById;
 };
 
-const groupExercisesByMuscleGroup = (exercises: IExerciseDao[]) => {
+const groupExercisesByMuscleGroup = (exercises: IExerciseDao[]): IMuscleGroupSummary[] => {
   const muscleGroups: IMuscleGroupSummary[] = [];
   const muscleGroupsById = groupByMuscleGroupExercises(exercises);
   for (const muscleGroupId in muscleGroupsById) {
@@ -49,10 +49,12 @@ const groupExercisesByMuscleGroup = (exercises: IExerciseDao[]) => {
       const muscleGroup: IMuscleGroupSummary = {
         _id: muscleGroupDao._id,
         name: muscleGroupDao.name,
+        order: muscleGroupDao.order,
         exercisesCount: exercisesDao.length,
         targetsCount: targetsId.size,
         lastUpdated: maxLastUpdated,
-        doneToday: updatedToday
+        doneToday: updatedToday,
+        
       };
       muscleGroups.push(muscleGroup);
     }
@@ -65,7 +67,7 @@ const getMuscleGroups = (exercisesDao: IExerciseDao[]) => {
   const muscleGroups: IMuscleGroupSummary[] = groupExercisesByMuscleGroup(
     exercisesDao
   );
-  sortByLastUpdated(muscleGroups);
+  sortByOrder(muscleGroups)
   return muscleGroups;
 };
 

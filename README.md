@@ -34,10 +34,10 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 
 # Startup
 
-yarn dev for development will start client port 3000 & server port 5001
-yarn dev:server will start only the server in port 5001
-yarn build will compile client and pack it into the server
-yarn start will start only the server 
+- yarn dev for development will start client port 3000 & server port 5001
+- yarn dev:server will start only the server in port 5001
+- yarn build will compile client and pack it into the server
+- yarn start will start only the server 
 
 ## Issue with port already in use:
 

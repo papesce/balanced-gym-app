@@ -77,7 +77,8 @@ export const sampleExerciseDao8: IExerciseDao = {
   target: "fakeId",
   muscleGroup: {
     _id: "2",
-    name: "msgroup 1"
+    name: "msgroup 1",
+    order: 1
   }
 };
 
@@ -87,7 +88,8 @@ export const sampleExerciseDao9: IExerciseDao = {
   target: sampleTarget4,
   muscleGroup: {
     _id: "2",
-    name: "msgroup 1"
+    name: "msgroup 1",
+    order: 1
   }
 };
 
