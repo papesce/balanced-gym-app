@@ -1,17 +1,16 @@
 import { getSynsAndStabs } from './../common';
 import { IMuscleSummary } from 'balanced-gym-model';
-import { getTimeFromString } from '../../../utils/dateUtils';
+import { getTimeForGraph } from '../../../utils/dateUtils';
 import { addS } from '../../../utils/utils';
 
 export const getTargetSummary2 = (target: IMuscleSummary) => {
     let text = '';
     const { lastUpdated, doneToday } = target;
-    // const ecount = exercisesCount || 0;  
     if (!lastUpdated) {
          text = ``;
     } else {
         if (lastUpdated) {
-            text = getTimeFromString(lastUpdated)
+            text = getTimeForGraph(lastUpdated)
         } 
         if (doneToday) {
             text = `${text}, ${doneToday} done today`;

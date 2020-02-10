@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import ElemCardList from "../../generic/cardList/ElemCardList";
+import ElemCardList, { ISecondaryCardText } from "../../generic/cardList/ElemCardList";
 import { IMuscle, IMuscleGroup, IMuscleSummary } from "balanced-gym-model";
 import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
-import { getColoredTextFromBoolean } from "../common";
+import { isToday } from "../../../utils/dateUtils";
+import { DEFAULT_LIST_BLUE } from "../../generic/elemList/ElemList";
 
 interface TargetListProps {
   loading?: boolean;
@@ -15,18 +16,21 @@ interface TargetListProps {
 
 // TODO do i really need the muscle group or just the [targets]
 
-const getId = (target: IMuscle) => {
+const getId = (target: IMuscle): string => {
   return target._id;
 };
 
-export const getSecondary1 = (target: IMuscle) => {
-  return getTargetSummary1(target);
+export const getSecondary1 = (target: IMuscleSummary): ISecondaryCardText => {
+  const line2: string = getTargetSummary1(target);
+  return { text: line2 };
 };
-export const getSecondary2 = (target: IMuscleSummary) => {
-  const { doneToday } = target;
-  const line2 = getTargetSummary2(target);
-  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
-  return getColoredTextFromBoolean(line2, wasToday)
+
+export const getSecondary2 = (target: IMuscleSummary): ISecondaryCardText => {
+    const { doneToday } = target;
+    const line2 = getTargetSummary2(target);
+    const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+    const colorClass = wasToday ? DEFAULT_LIST_BLUE : undefined;
+    return ({ text: line2, colorClass });
 };
 export const getImage = (target: IMuscle) => {
   return target.muscleURL || "";

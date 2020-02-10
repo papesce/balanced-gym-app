@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-// import sampleImage from '../static/TeresMinor.png';
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
@@ -21,8 +20,8 @@ const useStyles = makeStyles({
 
 interface ElemCardProps {
   primary: string;
-  secondary1: string;
-  secondary2: string;
+  secondary1: any;
+  secondary2: any;
   image: string;
 }
 

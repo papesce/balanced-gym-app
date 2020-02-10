@@ -29,13 +29,13 @@ export const muscleGroupWithEmptyTargets: IMuscleGroup = {
   // doneToday: 0,
 };
 export const muscleGroupWithSingleTargets: IMuscleGroupSummary = {
-  _id: "5dde9b568603d000157b6284",
+  _id: "5dde9b568603d000157b6285",
   name: "Chest",
   targetsCount: 1
 };
 
 export const muscleGroupWithFullTargets: IMuscleGroupSummary = {
-  _id: "5dde9b568603d000157b6284",
+  _id: "5dde9b568603d000157b6286",
   name: "Chest",
   targetsCount: 6,
   exercisesCount: 10,
@@ -44,7 +44,7 @@ export const muscleGroupWithFullTargets: IMuscleGroupSummary = {
 };
 
 export const muscleGroupWithEmptyTargetList: IMuscleGroup= {
-  _id: "5dde9b568603d000157b6284",
+  _id: "5dde9b568603d000157b6287",
   name: "Chest",
   targets: [],
   // exercisesCount: 10,
@@ -53,7 +53,7 @@ export const muscleGroupWithEmptyTargetList: IMuscleGroup= {
 };
 
 export const muscleGroupWithSingleTarget: IMuscleGroup = {
-  _id: "5dde9b568603d000157b6284",
+  _id: "5dde9b568603d000157b6288",
   name: "Chest",
   routineId: "5dde9b568603d000157b6285",
   routineName: "Chest Shoulder Biceps",
@@ -64,7 +64,7 @@ export const muscleGroupWithSingleTarget: IMuscleGroup = {
 };
 
 export const muscleGroupWithFullTargetList: IMuscleGroup = {
-  _id: "5dde9b568603d000157b6284",
+  _id: "5dde9b568603d000157b6289",
   name: "Chest",
   routineId: "5dde9b568603d000157b6285",
   routineName: "Chest Shoulder Biceps",
