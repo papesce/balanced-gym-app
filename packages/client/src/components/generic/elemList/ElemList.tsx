@@ -7,17 +7,23 @@ import ImageIcon from "@material-ui/icons/Image";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import ListWrapper from "../ListWrapper";
-
-// import WorkIcon from '@material-ui/icons/Work';
-// import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import "./ElemList.css";
+
+export const DEFAULT_LIST_BLUE = "elem-list-secondary-blue";
+
+export interface ISecondaryText {
+  text: string;
+  colorClass?: string;
+}
 
 interface ElemListProps {
   data?: any[];
   noDataMsg?: string;
   getId?: (elem: any) => string;
   getPrimary?: (elem: any) => string;
-  getSecondary?: (elem: any) => any;
+  getSecondary1?: (elem: any) => ISecondaryText;
+  getSecondary2?: (elem: any) => ISecondaryText;
+  getSecondary2Color?: (elem: any) => string;
   onClick?: (elem: any) => void;
   subHeader?: any;
   loading?: boolean;
@@ -30,12 +36,14 @@ class ElemList extends Component<ElemListProps> {
     onClick(elem);
   };
   render = () => {
+    const emptyFunc: (elem: any) => ISecondaryText = () => ({ text: "" });
     const {
       data = [],
       noDataMsg,
       getId = () => "",
       getPrimary = () => "",
-      getSecondary = () => "",
+      getSecondary1 = emptyFunc,
+      getSecondary2 = emptyFunc,
       subHeader = "",
       loading,
       error
@@ -67,6 +75,21 @@ class ElemList extends Component<ElemListProps> {
         </Typography>
       );
     }
+    const primary = (elem: any) => (
+      <Typography component="div" variant="body1">
+        {getPrimary(elem)}
+      </Typography>
+    );
+    const secondary = (elem: any) => {
+      const { text: t1, colorClass: c1 } = getSecondary1(elem);
+      const { text: t2, colorClass: c2 } = getSecondary2(elem);
+      return (
+        <Typography component="div" variant="body2" color="textSecondary">
+          <div className={c1}>{t1}</div>
+          <div className={c2}>{t2}</div>
+        </Typography>
+      );
+    };
     return (
       <ListWrapper subHeader={subHeader}>
         {data.map((elem: any) => (
@@ -77,10 +100,10 @@ class ElemList extends Component<ElemListProps> {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              // primaryTypographyProps={{component: 'div'}}
-              primary={getPrimary(elem)}
-              // secondaryTypographyProps={{component: 'div'}}
-              secondary={getSecondary(elem)}
+              className={"elem-list-text"}
+              disableTypography={true}
+              primary={primary(elem)}
+              secondary={secondary(elem)}
               onClick={() => this.onClick(elem)}
             />
           </ListItem>

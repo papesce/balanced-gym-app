@@ -1,10 +1,9 @@
 import React from 'react';
 import ElemCard from './ElemCard';
-// import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'generic/cardList/ElemCard',
-  };
+};
 
 const data =
 {
@@ -15,29 +14,10 @@ const data =
   muscleURL: "/GluteusMaximus.png"
 };
 
-// const getId = (elem: any) => elem._id;
-const getPrimary = (elem: any) => elem.name;
-const getSecondary1 = (elem: any) => elem.desc1;
-const getSecondary2 = (elem: any) => elem.desc2;
-const getImage = (elem: any) => elem.muscleURL;
-
-
 export const card = () => <ElemCard 
-  primary={getPrimary(data)}
-  secondary1={getSecondary1(data)}
-  secondary2={getSecondary2(data)}
-  image={getImage(data)}
-  // onClick={action('clicked item')}
+  primary={data.name}
+  secondary1={data.desc1}
+  secondary2={(<div style={{color: 'blue'}}>{data.desc2}</div>)}
+  image={data.muscleURL}
 />
-// export const loadingList = () => <ElemCardList loading/>;
-// export const errorList = () => <ElemCardList error="Error loading data"/>;
-// export const emptyListNoMsg = () => <ElemCardList data={emptydataList} />;
-// export const emptyList = () => <ElemCardList data={emptydataList} 
-// noDataMsg="No data available"/>;
-// export const singleList = () => <ElemCardList data={singledataList}
-// getPrimary={getPrimary} getSecondary={getSecondary} getId={getId} 
-// onClick={action('clicked item')}/>;
-// export const fullList = () => <ElemCardList data={fulldataList}
-// getPrimary={getPrimary} getSecondary={getSecondary} getId={getId}
-// onClick={action('clicked item')}/>;
 

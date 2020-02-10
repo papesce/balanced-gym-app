@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import ElemList from "../../generic/elemList/ElemList";
+import ElemList, {
+  ISecondaryText,
+  DEFAULT_LIST_BLUE
+} from "../../generic/elemList/ElemList";
 import { IRoutine, IRoutineSummary } from "balanced-gym-model";
-import { getRoutineSummary1 } from "../common";
+import { getRoutineSummary1, getRoutineSummary2 } from "../common";
 import "./RoutineList.css";
 
 interface RoutineListProps {
@@ -16,24 +19,19 @@ const getId = (routine: IRoutine) => {
   return routine._id;
 };
 
-const getSecondary = (routine: IRoutineSummary) => {
- //  const { doneToday } = routine;
-  const line1 = getRoutineSummary1(routine);
-  let text: any = line1;
-  // const line2 = getRoutineSummary2(routine);
-  // const wasToday: boolean = doneToday !== undefined && doneToday > 0;
-  // const colorLine2 = getColoredTextFromBoolean(line2, wasToday)
-  // if (line2) {
-  //   text = (
-  //     <div>
-  //       <div>{text}</div>
-  //       {colorLine2}
-  //     </div>
-  //   );
-  // }
-  return text;
+const getSecondary1 = (routine: IRoutineSummary): ISecondaryText => {
+  const line1: string = getRoutineSummary1(routine);
+  return { text: line1 };
 };
-const getPrimary = (elem: IRoutine) => {
+const getSecondary2 = (routine: IRoutineSummary): ISecondaryText => {
+  const { doneToday } = routine;
+  const line2: string = getRoutineSummary2(routine);
+  const wasToday: boolean = doneToday !== undefined && doneToday > 0;
+  const colorClass = wasToday ? DEFAULT_LIST_BLUE : undefined;
+  return { text: line2, colorClass };
+};
+
+const getPrimary = (elem: IRoutine): string => {
   return elem.name;
 };
 
@@ -52,7 +50,8 @@ export default class RoutineList extends Component<RoutineListProps> {
         loading={loading}
         data={routines}
         getPrimary={getPrimary}
-        getSecondary={getSecondary}
+        getSecondary1={getSecondary1}
+        getSecondary2={getSecondary2}
         getId={getId}
         error={error ? "Error loading routines" : undefined}
         subHeader={subHeader}

@@ -17,6 +17,7 @@ export const errorList = () => (
   <ExerciseList error="fetch error message ignored" />
 );
 export const noExercises = () => <ExerciseList target={sampleTarget1} />;
+
 export const singleExercisesList = () => (
   <Router>
     <ExerciseList

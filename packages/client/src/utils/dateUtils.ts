@@ -19,7 +19,7 @@ export const getTimeFromString = (date1: string, date2?: string) => {
     return getTimeFromDate(new Date(date1), date);
 }
 
-export const isToday = (date: Date) => {
+export const isToday = (date: Date): boolean => {
     return moment(date).isSame(moment(), 'day');
 }
 
@@ -29,7 +29,7 @@ export const getTimeForGraph = (date: string ) => {
         moment.updateLocale('en', {
             relativeTime: {
                 future: 'in %s',
-                past: '%s',
+                past: 'secs ago',
                 s:  '<1m',
                 ss: '%ss',
                 m:  '1m',
