@@ -35,7 +35,7 @@ describe("MuscleGroup", () => {
     
   it("getMuscleGroupForRoutine no targets", () => {
     const routineDao: IRoutineDao = { _id: "r1", name: "r1name" };
-    const muscleGroupDao: IMuscleGroupDao = { _id: "mg1", name: "mg1name" };
+    const muscleGroupDao: IMuscleGroupDao = { _id: "mg1", name: "mg1name" , order: 1};
     const exercisesDao: IExerciseDao[] = [];
     const muscleGroup: IMuscleGroup = getMuscleGroupForRoutine(
       routineDao,
@@ -52,7 +52,7 @@ describe("MuscleGroup", () => {
   });
   it("getMuscleGroupForRoutine 1 target", () => {
     const routineDao: IRoutineDao = { _id: "r1", name: "r1name" };
-    const muscleGroupDao: IMuscleGroupDao = { _id: "mg1", name: "mg1name" };
+    const muscleGroupDao: IMuscleGroupDao = { _id: "mg1", name: "mg1name", order:2 };
     const exercisesDao: IExerciseDao[] = [sampleExerciseDao9];
     const muscleGroup: IMuscleGroup = getMuscleGroupForRoutine(
       routineDao,

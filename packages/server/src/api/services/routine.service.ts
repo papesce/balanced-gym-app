@@ -18,7 +18,7 @@ import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
         .select('name').lean().exec();
        const exercisesDao: IExerciseDao[] = await ExerciseDocumentModel
         .find({ routineId }).select('name')
-        .populate("muscleGroup", 'name')
+        .populate("muscleGroup", 'name order')
         .populate("series")
         .populate("target", 'name')
         .populate("synergists")

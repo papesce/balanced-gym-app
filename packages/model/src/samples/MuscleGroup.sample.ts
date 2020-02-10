@@ -15,14 +15,16 @@ export const emptyMuscleGroup: IMuscleGroup = {
   name: ""
 };
 
-export const muscleGroupWithNoTargets: IMuscleGroup = {
+export const muscleGroupWithNoTargets: IMuscleGroupSummary = {
   _id: "5dde9b568603d000157b627f",
-  name: "Calves"
+  name: "Calves",
+  order: 2
 };
 
-export const muscleGroupWithEmptyTargets: IMuscleGroup = {
+export const muscleGroupWithEmptyTargets: IMuscleGroupSummary = {
   _id: "5dde9b568603d000157b6284",
-  name: "Hips"
+  name: "Hips",
+  order: 1
   // "lastUpdated": "2018-03-02T00:21:55.118Z",
   // targetsCount:0,
   // exercisesCount: 10,
@@ -31,12 +33,15 @@ export const muscleGroupWithEmptyTargets: IMuscleGroup = {
 export const muscleGroupWithSingleTargets: IMuscleGroupSummary = {
   _id: "5dde9b568603d000157b6285",
   name: "Chest",
-  targetsCount: 1
+  order: 1,
+  targetsCount: 1,
+  
 };
 
 export const muscleGroupWithFullTargets: IMuscleGroupSummary = {
   _id: "5dde9b568603d000157b6286",
   name: "Chest",
+  order: 1,
   targetsCount: 6,
   exercisesCount: 10,
   lastUpdated: "2018-03-02T00:21:55.118Z",
