@@ -1,6 +1,6 @@
 import React from 'react';
 import { IRoutineSummary } from 'balanced-gym-model';
-import { getTimeForGraph } from '../../utils/dateUtils';
+import { getTimeFromString } from '../../utils/dateUtils';
 import { addS } from '../../utils/utils';
 
 export const getRoutineSummary1 = (routine: IRoutineSummary): string => {
@@ -26,7 +26,7 @@ export const getRoutineSummary2 = (routine: IRoutineSummary): string => {
         return '';
     }
     if (lastUpdated) {
-        text = getTimeForGraph(lastUpdated)
+        text = getTimeFromString(lastUpdated)
     } 
     if (doneToday) {
         text = `${text}, ${doneToday} done today`;
