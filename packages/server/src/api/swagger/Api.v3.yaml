@@ -4,12 +4,14 @@ info:
   title: balanced-gym-app
   description: Balanced Gym App
 tags:
-  - name: All
+  - name: Routine
+  - name: Serie
+  - name: Exercise
 paths:
   /routines:
     get:
       tags:
-        - All
+        - Routine
       description: Fetch all routines
       responses:
         "200":
@@ -17,12 +19,12 @@ paths:
   /routine/{routineId}:
     get:
       tags:
-        - All
+        - Routine
       description: Fetch the routine with the given Id
       parameters:
         - in: path
           name: routineId
-          schema: 
+          schema:
             type: string
           required: true
           example: 59f0c59d4e55c40d38868034
@@ -32,66 +34,150 @@ paths:
   /routine/{routineId}/muscleGroup/{muscleGroupId}:
     get:
       tags:
-        - All
+        - Routine
       description: Fetch the muscleGroup with the given IDs
       parameters:
         - in: path
           name: routineId
-          schema: 
+          schema:
             type: string
           required: true
           example: 59f0c59d4e55c40d38868034
         - in: path
           name: muscleGroupId
-          schema: 
+          schema:
             type: string
           required: true
-          example: 5dde9b568603d000157b627d   
+          example: 5dde9b568603d000157b627d
       responses:
         "200":
-          description: Returns the routine with ID 
+          description: Returns the routine with ID
   /routine/{routineId}/muscleGroup/{muscleGroupId}/target/{targetId}:
     get:
       tags:
-        - All
+        - Routine
       description: Fetch the target with the given IDs
       parameters:
         - in: path
           name: routineId
-          schema: 
+          schema:
             type: string
           required: true
           example: 59f0c59d4e55c40d38868034
         - in: path
           name: muscleGroupId
-          schema: 
+          schema:
             type: string
           required: true
-          example: 5dde9b568603d000157b627d  
+          example: 5dde9b568603d000157b627d
         - in: path
           name: targetId
-          schema: 
+          schema:
             type: string
           required: true
-          example: 5a55152ad9b873001457578f 
+          example: 5a55152ad9b873001457578f
       responses:
         "200":
           description: Returns the target with ID
   /exercise/{exerciseId}:
     get:
       tags:
-        - All
+        - Exercise
       description: Fetch the exercise with the given Id
       parameters:
         - in: path
           name: exerciseId
-          schema: 
+          schema:
             type: string
           required: true
           example: 5a04c3471e403f31c973d699
       responses:
         "200":
           description: Returns the routine with ID
+  /updateSerie/{serieId}/exercise/{exerciseId}:
+    patch:
+      tags:
+        - Serie
+      description: Update the serie with the given Id
+      parameters:
+        - in: path
+          name: serieId
+          schema:
+            type: string
+          required: true
+          example: 5a4ea837ae79ef0014fc737f
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a3eb620260b8700140e500e
+      requestBody:
+        description: the ISerieUpdate data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reps:
+                  type: number
+                  example: 10
+                weight:
+                  type: number
+                  example: 12.5
+      responses:
+        "200":
+          description: Returns the exercise with the serie updated and hte updated serie
+  /deleteSerie/{serieId}/exercise/{exerciseId}:
+    delete:
+      tags:
+        - Serie
+      description: Delete the serie with the given Id
+      parameters:
+        - in: path
+          name: serieId
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a3eb620260b8700140e500e
+      responses:
+        "200":
+          description: Returns the exercise with the serie deleted and the deleted serie
+  /newSerie/{exerciseId}:
+    post:
+      tags:
+        - Serie
+      description: Adds a new serie to the exercise with the given Id
+      parameters:
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a3eb620260b8700140e500e
+      requestBody:
+        description: the suggestedSerie 
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reps:
+                  type: number
+                  example: 10
+                weight:
+                  type: number
+                  example: 12.5
+      responses:
+        "200":
+          description: Returns the exercise with the new serie and the new serie
   /spec:
     get:
       tags:

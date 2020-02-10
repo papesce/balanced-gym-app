@@ -5,6 +5,24 @@ info:
   version: 1.0.0
 basePath: /api/v1
 paths:
+  '/deleteSerie/{serieId}/exercise/{exerciseId}':
+    delete:
+      parameters:
+        - in: path
+          name: serieId
+          required: true
+          type: string
+        - in: path
+          name: exerciseId
+          required: true
+          type: string
+          x-example: 5a3eb620260b8700140e500e
+      responses:
+        '200':
+          description: Returns the exercise with the serie deleted and the deleted serie
+      tags:
+        - Serie
+      description: Delete the serie with the given Id
   '/exercise/{exerciseId}':
     get:
       parameters:
@@ -17,8 +35,37 @@ paths:
         '200':
           description: Returns the routine with ID
       tags:
-        - All
+        - Exercise
       description: Fetch the exercise with the given Id
+  '/newSerie/{exerciseId}':
+    post:
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: exerciseId
+          required: true
+          type: string
+          x-example: 5a3eb620260b8700140e500e
+        - description: the suggestedSerie
+          in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              reps:
+                example: 10
+                type: number
+              weight:
+                example: 12.5
+                type: number
+            type: object
+      responses:
+        '200':
+          description: Returns the exercise with the new serie and the new serie
+      tags:
+        - Serie
+      description: Adds a new serie to the exercise with the given Id
   '/routine/{routineId}':
     get:
       parameters:
@@ -31,7 +78,7 @@ paths:
         '200':
           description: Returns the routine with ID
       tags:
-        - All
+        - Routine
       description: Fetch the routine with the given Id
   '/routine/{routineId}/muscleGroup/{muscleGroupId}':
     get:
@@ -50,7 +97,7 @@ paths:
         '200':
           description: Returns the routine with ID
       tags:
-        - All
+        - Routine
       description: Fetch the muscleGroup with the given IDs
   '/routine/{routineId}/muscleGroup/{muscleGroupId}/target/{targetId}':
     get:
@@ -74,7 +121,7 @@ paths:
         '200':
           description: Returns the target with ID
       tags:
-        - All
+        - Routine
       description: Fetch the target with the given IDs
   /routines:
     get:
@@ -83,7 +130,7 @@ paths:
         '200':
           description: Returns all routines
       tags:
-        - All
+        - Routine
       description: Fetch all routines
   /spec:
     get:
@@ -93,6 +140,42 @@ paths:
           description: Return the API specification
       tags:
         - Specification
+  '/updateSerie/{serieId}/exercise/{exerciseId}':
+    patch:
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: serieId
+          required: true
+          type: string
+          x-example: 5a4ea837ae79ef0014fc737f
+        - in: path
+          name: exerciseId
+          required: true
+          type: string
+          x-example: 5a3eb620260b8700140e500e
+        - description: the ISerieUpdate data
+          in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              reps:
+                example: 10
+                type: number
+              weight:
+                example: 12.5
+                type: number
+            type: object
+      responses:
+        '200':
+          description: Returns the exercise with the serie updated and hte updated serie
+      tags:
+        - Serie
+      description: Update the serie with the given Id
 tags:
-  - name: All
+  - name: Routine
+  - name: Serie
+  - name: Exercise
 

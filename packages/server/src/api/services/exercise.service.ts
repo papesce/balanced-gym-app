@@ -5,7 +5,6 @@ import {
   ISerieDao
 } from "balanced-gym-model";
 import L from "../../common/logger";
-import { RoutineDocumentModel } from "../mongoose/routine.mongoose";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
 import { SerieDocumentModel } from "../mongoose/serie.mongoose";
 

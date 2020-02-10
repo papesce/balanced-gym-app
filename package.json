@@ -21,7 +21,7 @@
     "dev:server": "cd packages/server && yarn dev && cd../../",
     "start": "lerna run start",
     "types": "lerna run types",
-    "convert": "lerna run convert",
+    "convert:api": "lerna run convert:api",
     "build": "lerna run types && lerna run build --parallel",
     "storybook": "lerna run storybook",
     "test:model": "cd packages/model && yarn test",
