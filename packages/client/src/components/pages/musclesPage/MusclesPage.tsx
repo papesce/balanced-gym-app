@@ -66,7 +66,6 @@ export const getMuscles = (exercise: IExercise) => {
 };
 
 const getMuscleURL = (muscle: IMuscle) => {
-  debugger;
   return `${process.env.REACT_APP_ASSETS}/${muscle.muscleURL}`;
 };
 

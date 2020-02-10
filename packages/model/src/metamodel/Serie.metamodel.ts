@@ -16,3 +16,8 @@ export interface ISerie {
     weight: number,
     restTime?: number
 }
+
+export interface ISerieUpdate {
+    reps: number,
+    weight: number,
+}
