@@ -16,6 +16,9 @@ export interface IMuscleSummary {
   lastUpdated?: string;
   muscleURL?: string;
   muscleType?: string;
+  maxSeries?: number;
+  minSeries?: number;
+  totalSeries?: number;
 }
 
 export interface IMuscle {

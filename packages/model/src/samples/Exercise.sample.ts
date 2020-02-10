@@ -105,15 +105,17 @@ export const sampleExerciseSeries1: IExercise = {
   series: series1
 };
 
-export const sampleExerciseSeries2: IExercise = {
-  _id: "",
+export const sampleExerciseSeries2: IExerciseDao = {
+  _id: "123",
   name: "Chest",
+  target: sampleTarget4,
   series: series2
 };
 
-export const sampleExerciseSeries8: IExercise = {
-  _id: "",
+export const sampleExerciseSeries8: IExerciseDao = {
+  _id: "456",
   name: "Chest",
+  target: sampleTarget4,
   series: series8
 };
 
