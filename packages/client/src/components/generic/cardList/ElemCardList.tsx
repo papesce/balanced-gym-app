@@ -18,6 +18,7 @@ interface ElemCardListProps {
   getPrimary?: (elem: any) => string;
   getSecondary1?: (elem: any) => ISecondaryCardText;
   getSecondary2?: (elem: any) => ISecondaryCardText;
+  getSecondary3?: (elem: any) => ISecondaryCardText;
   getImage?: (elem: any) => string;
   onClick?: (elem: any) => void;
   subHeader?: any;
@@ -39,6 +40,7 @@ class ElemCardList extends Component<ElemCardListProps> {
       getPrimary = () => "",
       getSecondary1 = emptyFunc,
       getSecondary2 = emptyFunc,
+      getSecondary3 = emptyFunc,
       getImage = () => "",
       subHeader = "",
       loading,
@@ -79,6 +81,10 @@ class ElemCardList extends Component<ElemCardListProps> {
       const { text, colorClass } = getSecondary2(elem);
       return <div className={colorClass}>{text}</div>;
     };
+    const secondary3 = (elem: any) => {
+      const { text, colorClass } = getSecondary3(elem);
+      return <div className={colorClass}>{text}</div>;
+    };
     return (
       <ListWrapper subHeader={subHeader}>
         {data.map((elem: any) => (
@@ -87,6 +93,7 @@ class ElemCardList extends Component<ElemCardListProps> {
               primary={getPrimary(elem)}
               secondary1={secondary1(elem)}
               secondary2={secondary2(elem)}
+              secondary3={secondary3(elem)}
               image={getImage(elem)}
             ></ElemCard>
           </ListItem>

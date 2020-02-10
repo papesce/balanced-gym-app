@@ -23,8 +23,19 @@ export const getTargetSummary1 = (target: IMuscleSummary) => {
     let text = '';
     const { exercisesCount, synergistsCount, stabilizersCount} = target;
     const ecount = exercisesCount || 0;  
-    text = `${addS('exercise', ecount)}`
+    text = `${addS('ex', ecount)}`
     text = text + getSynsAndStabs(synergistsCount, stabilizersCount);
+    return text;
+}
+
+export const getTargetSummary3 = (target: IMuscleSummary) => {
+    let text = '';
+    const { exercisesCount, maxSeries = 0, minSeries, totalSeries = 0 } = target;
+    if (exercisesCount && exercisesCount > 0) {
+        text = `ts:${totalSeries} maxs:${maxSeries}`;
+        text = text + ((minSeries && minSeries >= 0) ? ` mins:${minSeries}` : ` mins:0`);
+        text = text + ` ratio:${Math.round(totalSeries/exercisesCount)}`;
+    }
     return text;
 }
 

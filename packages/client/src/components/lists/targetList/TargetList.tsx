@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ElemCardList, { ISecondaryCardText } from "../../generic/cardList/ElemCardList";
 import { IMuscle, IMuscleGroup, IMuscleSummary } from "balanced-gym-model";
-import { getTargetSummary1, getTargetSummary2 } from "./summary.target";
+import { getTargetSummary1, getTargetSummary2, getTargetSummary3 } from "./summary.target";
 import MuscleGroupHeader from "./MuscleGroupHeader";
 import { isToday } from "../../../utils/dateUtils";
 import { DEFAULT_LIST_BLUE } from "../../generic/elemList/ElemList";
@@ -32,9 +32,16 @@ export const getSecondary2 = (target: IMuscleSummary): ISecondaryCardText => {
     const colorClass = wasToday ? DEFAULT_LIST_BLUE : undefined;
     return ({ text: line2, colorClass });
 };
+
+export const getSecondary3 = (target: IMuscleSummary): ISecondaryCardText => {
+  const line3: string = getTargetSummary3(target);
+  return { text: line3 };
+};
+
 export const getImage = (target: IMuscle) => {
   return target.muscleURL || "";
 };
+
 export const getPrimary = (target: IMuscle) => {
   return target.name;
 };
@@ -56,6 +63,7 @@ export default class TargetList extends Component<TargetListProps> {
         getPrimary={getPrimary}
         getSecondary1={getSecondary1}
         getSecondary2={getSecondary2}
+        getSecondary3={getSecondary3}
         getImage={getImage}
         getId={getId}
         subHeader={<MuscleGroupHeader muscleGroup={muscleGroup} />}

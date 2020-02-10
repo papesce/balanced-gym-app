@@ -5,7 +5,7 @@ import {
 } from "../metamodel/MuscleGroup.metamodel";
 import { IRoutineDao } from "../metamodel/Routine.metamodel";
 import { IExerciseDao } from "../metamodel/Exercise.metamodel";
-import { sampleExerciseDao9 } from "../samples/Exercise.sample";
+import { sampleExerciseDao9, sampleExerciseSeries2, sampleExerciseSeries8 } from "../samples/Exercise.sample";
 import { IMuscle } from "../metamodel/Muscle.metamodel";
 
 describe("MuscleGroup", () => {
@@ -17,8 +17,18 @@ describe("MuscleGroup", () => {
     it('groupByTargetExercises 1 exercise', () => {
         const exercisesDao: IExerciseDao[] = [sampleExerciseDao9];
         const grouped = groupByTargetExercises(exercisesDao);
-        expect(grouped['5a551347620ca90014df37a6']).toBeDefined();
+        const g1 = grouped['5a551347620ca90014df37a6'];
+        expect(g1).toBeDefined();
     })
+    it('groupByTargetExercises 1 exercise', () => {
+      const exercisesDao: IExerciseDao[] = [sampleExerciseSeries2, sampleExerciseSeries8];
+      const grouped = groupByTargetExercises(exercisesDao);
+      const g1 = grouped['5a551347620ca90014df37a6'];
+      expect(g1).toBeDefined();
+      expect(g1.maxSeries).toBe(8);
+      expect(g1.minSeries).toBe(2);
+      expect(g1.totalSeries).toBe(10);
+  })
     it('groupExercisesByTarget []', () => {
         const exercisesDao: IExerciseDao[] = [];
         const targets: IMuscle[] = groupExercisesByTarget(exercisesDao);

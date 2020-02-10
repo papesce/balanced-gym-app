@@ -22,6 +22,7 @@ interface ElemCardProps {
   primary: string;
   secondary1: any;
   secondary2: any;
+  secondary3?: any;
   image: string;
 }
 
@@ -29,6 +30,7 @@ const ElemCard: React.FC<ElemCardProps> = ({
   primary = "",
   secondary1 = "",
   secondary2 = "",
+  secondary3 = "",
   image = ""
 }) => {
   const classes = useStyles();
@@ -48,6 +50,7 @@ const ElemCard: React.FC<ElemCardProps> = ({
         <Typography variant="subtitle2" color="textSecondary">
           <div>{secondary1}</div>
           <div>{secondary2}</div>
+          <div>{secondary3}</div>
         </Typography>
       </CardContent>
       <CardActions>
