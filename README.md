@@ -42,3 +42,7 @@ App used to log Gym Routines using the balanced gym algorithm to select the next
 ## Issue with port already in use:
 
 - pkill -f node
+
+
+## Docker
+docker build -t balanced-gym-app .
