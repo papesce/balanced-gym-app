@@ -1,6 +1,7 @@
 .elem-list {
-    padding: 16px 160px;
-    max-width: 360px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .elem-list-secondary-blue {

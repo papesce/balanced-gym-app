@@ -1,6 +1,8 @@
 
 .navigation-container {
-   max-width: 340px;
+   width: 100%;
+   box-sizing: border-box;
+   position: relative;
 }
 
 .navigation-table-pagination .MuiTablePagination-caption {
@@ -29,7 +31,7 @@
  .navigation-container .navigation-icon-button {
     position: absolute;
     margin-top: 14px;
-    margin-left: 295px;
+    right: 0;
     z-index: 3;
  }
 

@@ -15,7 +15,8 @@
 }
 
 .details-page-card {
-    max-width: 345px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .details-page-card .details-page-icon-button {
