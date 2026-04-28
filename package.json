@@ -5,9 +5,9 @@
     "lerna": "^3.20.2"
   },
   "engines": {
-    "node": "12.14.1",
-    "npm": "6.13.4",
-    "yarn": "1.19.1"
+    "node": ">=12",
+    "npm": ">=6",
+    "yarn": ">=1.21"
   },
   "author": "Pablo Pesce <papesce@gmail.com>",
   "license": "MIT",
@@ -26,6 +26,6 @@
     "storybook": "lerna run storybook",
     "test:model": "cd packages/model && yarn test",
     "test:client": "cd packages/client && yarn test"
-
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

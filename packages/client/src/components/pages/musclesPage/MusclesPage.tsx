@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    maxWidth: 345
+    width: "100%"
   },
   gridList: {
-    width: 345,
+    width: "100%",
     // height: 350
   },
   icon: {
@@ -86,7 +86,7 @@ const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
   }
   return (
     <div className={classes.root}>
-      <GridList cols={3} cellHeight={120} className={classes.gridList}>
+      <GridList cols={2} cellHeight={120} className={classes.gridList}>
         {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
              <ListSubheader component="div">December</ListSubheader>
         </GridListTile> */}

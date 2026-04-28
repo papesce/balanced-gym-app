@@ -1,5 +1,6 @@
 .serie-input {
-    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .MuiTextField-root.serie-input-text-field {

@@ -1,6 +1,6 @@
 .graph-bar-container {
-    position: absolute;
-    margin-left: 70px;
+    display: flex;
+    justify-content: center;
     z-index: 3;
 }
 

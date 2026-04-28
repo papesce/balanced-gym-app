@@ -1,6 +1,23 @@
-dist
-node_modules
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+packages/server/public/
+packages/client/build/
+
+# Environment
+.env
+.env.*
 packages/server/.env
-packages/server/public/*
-packages/server/dist
-packages/model/dist
+
+# Package manager
+package-lock.json
+yarn-error.log*
+yarn-debug.log*
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
