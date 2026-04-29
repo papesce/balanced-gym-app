@@ -1,52 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import RoutineList from '../components/lists/routineList/RoutineList';
 import { IRoutine } from 'balanced-gym-model';
-import {  IRoutinesState } from '../redux/reducer.routines';
-import { loadRoutines } from '../redux/actions.routines';
-import { withRouter } from "react-router";
+import { useGetRoutinesQuery } from '../redux/api';
+import { useNavigate } from "react-router-dom";
 import InitialHeader from '../components/headerBar/InitialHeader';
 
-interface RoutineProps {
-    routinesState?: IRoutinesState;
-    loadRoutines?: () => {};
-    history?: any;
-}
+const Routines: React.FC = () => {
+    const navigate = useNavigate();
+    const { data: routines, isLoading, error } = useGetRoutinesQuery();
 
-export class Routines extends Component<RoutineProps> {
-    componentDidMount = () => {
-       const { loadRoutines } = this.props;
-       loadRoutines && loadRoutines();
-    }
-    onRoutineClick = (routine: IRoutine) => {
-        const { history } = this.props;
-        history.push(`/routine/${routine._id}`);
-    }
-    render() {
-        const { routinesState = {} } = this.props;
-        return (<>
-           <InitialHeader handleLogout={() => {}} />
-           <RoutineList loading={routinesState.loading}
-             error={routinesState.error} 
-             routines={routinesState.routines}
-             onClick={this.onRoutineClick}
-             />
-            </>
-        )
-    }
-}
+    const onRoutineClick = (routine: IRoutine) => {
+        navigate(`/routine/${routine._id}`);
+    };
 
-const mapStateToProps = (state: any) => {
-    // console.log('state changed:', state)
-    return {
-        routinesState: state.routinesState
-    }
-}
+    return (
+        <>
+            <InitialHeader handleLogout={() => {}} />
+            <RoutineList
+                loading={isLoading}
+                error={error ? "Error loading routines" : undefined}
+                routines={routines as any}
+                onClick={onRoutineClick}
+            />
+        </>
+    );
+};
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        loadRoutines: () => dispatch(loadRoutines())
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Routines))
+export default Routines;

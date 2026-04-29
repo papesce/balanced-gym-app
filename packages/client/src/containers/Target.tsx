@@ -1,79 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import ExerciseList from "../components/lists/exerciseList/ExerciseList";
-import { IMuscle, IExercise } from "balanced-gym-model";
-import { loadTarget } from "../redux/actions.target";
-import { withRouter } from "react-router";
+import { IExercise } from "balanced-gym-model";
+import { useGetTargetQuery } from "../redux/api";
+import { useNavigate, useParams } from "react-router-dom";
 import BackHeader from "../components/headerBar/BackHeader";
 import { getMuscleGroupURL } from "../utils/routes";
 
-interface TargetProps {
-  loading: boolean;
-  error: string;
-  target: IMuscle;
-  loadTarget?: (
-    routineId: string,
-    muscleGroupId: string,
-    targetId: string
-  ) => {};
-  match?: any;
-  history?: any;
-}
+const Target: React.FC = () => {
+    const navigate = useNavigate();
+    const { routineId, muscleGroupId, targetId } = useParams<{
+        routineId: string;
+        muscleGroupId: string;
+        targetId: string;
+    }>();
+    const { data: target, isLoading, error } = useGetTargetQuery({ routineId, muscleGroupId, targetId });
 
-export class Target extends Component<TargetProps> {
-  componentDidMount = () => {
-    const {
-      loadTarget,
-      match: {
-        params: { routineId, muscleGroupId, targetId }
-      }
-    } = this.props;
-    loadTarget && loadTarget(routineId, muscleGroupId, targetId);
-  };
-  onExerciseClick = (exercise: IExercise) => {
-    const { history } = this.props;
-    history.push(`/exercise/${exercise._id}`);
-  };
-  handleBack = () => {
-    const {
-      history,
-      match: {
-        params: { routineId, muscleGroupId }
-      }
-    } = this.props;
-    history.push(getMuscleGroupURL(routineId, muscleGroupId));
-  };
-  render() {
-    const { loading, error, target } = this.props;
+    const onExerciseClick = (exercise: IExercise) => {
+        navigate(`/exercise/${exercise._id}`);
+    };
+
+    const handleBack = () => {
+        navigate(getMuscleGroupURL(routineId, muscleGroupId));
+    };
+
     return (
-      <>
-        <BackHeader handleBack={this.handleBack} />
-        <ExerciseList
-          loading={loading}
-          error={error}
-          target={target}
-          onClick={this.onExerciseClick}
-        />
-      </>
+        <>
+            <BackHeader handleBack={handleBack} />
+            <ExerciseList
+                loading={isLoading}
+                error={error ? "Error loading target" : undefined}
+                target={target as any}
+                onClick={onExerciseClick}
+            />
+        </>
     );
-  }
-}
-
-const mapStateToProps = (state: any) => {
-  // console.log('state changed:', state)
-  const { loading, error, target = {} } = state.targetState;
-  return {
-    loading,
-    error,
-    target
-  };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    loadTarget: (routineId: string, muscleGroupId: string, targetId: string) =>
-      dispatch(loadTarget(routineId, muscleGroupId, targetId))
-  };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Target));
+export default Target;

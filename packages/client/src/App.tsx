@@ -1,12 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { createStore } from "./redux/configureStore";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { store } from "./redux/configureStore";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Routines from "./containers/Routines";
 import Routine from "./containers/Routine";
 import MuscleGroup from "./containers/MuscleGroup";
@@ -14,40 +9,21 @@ import NoMatch from "./components/NoMatch";
 import Target from "./containers/Target";
 import Exercise from "./containers/Exercise";
 
-const store = createStore();
-
 const App: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Provider store={store}>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/routines" />
-          </Route>
-          <Route exact path="/exercise/:exerciseId">
-            <Exercise />
-          </Route>
-          <Route
-            exact
-            path="/routine/:routineId/muscleGroup/:muscleGroupId/target/:targetId"
-          >
-            <Target />
-          </Route>
-          <Route exact path="/routine/:routineId/muscleGroup/:muscleGroupId">
-            <MuscleGroup />
-          </Route>
-          <Route exact path="/routine/:routineId">
-            <Routine />
-          </Route>
-          <Route exact path="/routines">
-            <Routines />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Navigate to="/routines" replace />} />
+          <Route path="/routines" element={<Routines />} />
+          <Route path="/routine/:routineId" element={<Routine />} />
+          <Route path="/routine/:routineId/muscleGroup/:muscleGroupId" element={<MuscleGroup />} />
+          <Route path="/routine/:routineId/muscleGroup/:muscleGroupId/target/:targetId" element={<Target />} />
+          <Route path="/exercise/:exerciseId" element={<Exercise />} />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
       </Provider>
-    </Router>
+    </BrowserRouter>
   );
 };
 

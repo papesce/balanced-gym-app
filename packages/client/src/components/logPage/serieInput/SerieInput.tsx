@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
-// import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { ISerie, emptySerie } from 'balanced-gym-model';
@@ -13,14 +12,6 @@ interface SerieInputProps {
     handleCancelClick?: () => void;
     handleRepsChange?: () => void;
     handleWeightChange?: () => void;
-}
-
-interface SerieInputState {
-    isDirty: boolean;
-    isValidWeight: boolean;
-    weight: string;
-    isValidReps: boolean;
-    reps: string;
 }
 
 export const isValidWeight = (value: string) => {
@@ -35,104 +26,97 @@ export const isValidReps = (value: string) => {
 }
 
 export const isDirty = (reps: number, weight: number, initialSerie: ISerie) => {
-    const isDirty = weight >= 0 && reps >= 0 && (
+    const dirty = weight >= 0 && reps >= 0 && (
         weight !== initialSerie.weight ||
         reps !== initialSerie.reps);
-    return isDirty;
+    return dirty;
 }
 
-export default class SeriesInput extends Component<SerieInputProps, SerieInputState> {
-    constructor(props: SerieInputProps) {
-        super(props);
-        const { initialSerie = emptySerie } = props;
-        // console.log('initialSerie:', initialSerie);
-        this.state = {
-            isDirty: false,
-            weight: initialSerie.weight.toString(),
-            reps: initialSerie.reps.toString(),
-            isValidWeight: isValidWeight(initialSerie.weight.toString()),
-            isValidReps: isValidReps(initialSerie.reps.toString()),
-        };
-    }
-    reps: any = null;
-    handleRepsChange = (evt: any) => {
+const SeriesInput: React.FC<SerieInputProps> = ({
+  initialSerie = emptySerie,
+  handleDoneClick: onDoneClick,
+  handleCancelClick,
+  handleRepsChange: onRepsChange,
+  handleWeightChange: onWeightChange
+}) => {
+    const [dirtyState, setDirtyState] = useState(false);
+    const [weight, setWeight] = useState(initialSerie.weight.toString());
+    const [reps, setReps] = useState(initialSerie.reps.toString());
+    const [validWeight, setValidWeight] = useState(isValidWeight(initialSerie.weight.toString()));
+    const [validReps, setValidReps] = useState(isValidReps(initialSerie.reps.toString()));
+
+    const handleRepsChange = (evt: any) => {
         const { value } = evt.target;
-        const { weight, isValidWeight } = this.state;
-        const { initialSerie = emptySerie } = this.props;
         const isValid: boolean = isValidReps(value);
-        const dirty: boolean = isValid && isValidWeight &&
+        const dirty: boolean = isValid && validWeight &&
              isDirty(parseInt(value), parseFloat(weight), initialSerie);
-        this.setState({isDirty: dirty, isValidReps: isValid, reps: value })
+        setDirtyState(dirty);
+        setValidReps(isValid);
+        setReps(value);
     };
-    handleWeightChange = (evt: any) => {
+
+    const handleWeightChange = (evt: any) => {
         const { value } = evt.target;
-        const { reps, isValidReps } = this.state;
-        const { initialSerie = emptySerie } = this.props;
         const isValid: boolean = isValidWeight(value);
-        const dirty: boolean = isValid && isValidReps &&
+        const dirty: boolean = isValid && validReps &&
              isDirty(parseInt(reps), parseFloat(value), initialSerie);
-        this.setState({isDirty: dirty, isValidWeight: isValid, weight: value })
+        setDirtyState(dirty);
+        setValidWeight(isValid);
+        setWeight(value);
     };
-    handleDoneClick = () => {
-        const { handleDoneClick, initialSerie = emptySerie } = this.props;
-        const { reps, weight } = this.state; 
-        // console.log('initialSerie:', initialSerie);
+
+    const handleDoneClick = () => {
         const serie: ISerie = {...initialSerie, reps: parseInt(reps), weight: parseFloat(weight) };
-        handleDoneClick && handleDoneClick(serie);
-    }
-    handleDoneKeyPress = (event: any) => {
+        onDoneClick && onDoneClick(serie);
+    };
+
+    const handleDoneKeyPress = (event: any) => {
         console.log('keypress', event.keyCode);
         if (event.keyCode === 13){
-            this.handleDoneClick();
+            handleDoneClick();
         }
-    }
-    handleFocus = (event: any) => {
+    };
+
+    const handleFocus = (event: any) => {
         event.preventDefault();
         const { target } = event
         target.focus();
         target.select();
-      }
-      
-    render() {
-        const { weight, reps, isValidWeight, isValidReps } = this.state;     
-        return (
-            <div className="serie-input">
-                <TextField
-                    ref={div => (this.reps = div)} 
-                    className="serie-input-text-field"
-                    id="input-reps"
-                    label="# Reps"
-                    type="number"
-                    variant="outlined"
-                    onChange={this.handleRepsChange}
-                    value={reps}
-                    error={!isValidReps}
-                    onFocus={this.handleFocus}
-                    // onKeyPress={this.handleDoneKeyPress}
-                />
-                <TextField
-                    className="serie-input-text-field"
-                    id="input-weight"
-                    label="Weight:"
-                    InputProps={{
-                        endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
-                      }}
-                    type="number"
-                    variant="outlined"
-                    onChange={this.handleWeightChange}
-                    value={weight}
-                    error={!isValidWeight}
-                    onFocus={this.handleFocus}
-                    
-                />
-                {this.state.isDirty && (
-                <IconButton onClick={this.handleDoneClick} >
-                    <DoneIcon/>
-                </IconButton> )}
-                {/* <IconButton onClick={handleCancelClick}>
-                    <CancelIcon/>
-                </IconButton> */}
-            </div>
-        )
-    }
-}
+    };
+
+    return (
+        <div className="serie-input">
+            <TextField
+                className="serie-input-text-field"
+                id="input-reps"
+                label="# Reps"
+                type="number"
+                variant="outlined"
+                onChange={handleRepsChange}
+                value={reps}
+                error={!validReps}
+                onFocus={handleFocus}
+            />
+            <TextField
+                className="serie-input-text-field"
+                id="input-weight"
+                label="Weight:"
+                InputProps={{
+                    endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
+                  }}
+                type="number"
+                variant="outlined"
+                onChange={handleWeightChange}
+                value={weight}
+                error={!validWeight}
+                onFocus={handleFocus}
+            />
+            {dirtyState && (
+            <IconButton onClick={handleDoneClick} >
+                <DoneIcon/>
+            </IconButton> )}
+        </div>
+    )
+};
+
+export default SeriesInput;

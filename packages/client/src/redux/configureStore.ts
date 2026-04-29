@@ -1,23 +1,13 @@
-import { configureStore, getDefaultMiddleware }  from '@reduxjs/toolkit'
-import { routinesReducer } from './reducer.routines';
-import { routineReducer } from './reducer.routine';
-import { muscleGroupReducer } from './reducer.muscleGroup';
-import { targetReducer } from './reducer.target';
-import { exerciseReducer } from './reducer.exercise';
-import { serieReducer } from './reducer.serie';
+import { configureStore } from '@reduxjs/toolkit';
+import { gymApi } from './api';
 
-export const createStore = () => configureStore({
-    reducer: {
-        routinesState: routinesReducer,
-        routineState: routineReducer,
-        muscleGroupState: muscleGroupReducer,
-        targetState: targetReducer,
-        exerciseState: exerciseReducer,
-        serieState: serieReducer
-    },
-    middleware: [...getDefaultMiddleware()],
-    devTools: process.env.NODE_ENV !== 'production',
-    preloadedState: {},
-    enhancers: []
+export const store = configureStore({
+  reducer: {
+    [gymApi.reducerPath]: gymApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(gymApi.middleware),
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

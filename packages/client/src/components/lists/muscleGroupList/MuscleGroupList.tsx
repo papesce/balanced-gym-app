@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ElemList, {ISecondaryText, DEFAULT_LIST_BLUE} from '../../generic/elemList/ElemList';
 import { IRoutine, IRoutineSummary, IMuscleGroup } from 'balanced-gym-model';
 import { getRoutineSummary1, getRoutineSummary2 } from '../common';
@@ -29,27 +29,29 @@ const getSecondary1 = (routine: IRoutineSummary): ISecondaryText => {
   }
 
 export const getPrimary = (muscleGroup: IMuscleGroup): string => {
-    return muscleGroup.name; 
+    return muscleGroup.name;
  };
 
-export default class MuscleGroupList extends Component<MuscleGroupListProps> {
-    
-    render() {
-        const emptyRoutine: IRoutine = {_id:'', name:'', muscleGroups: []}
-        const { routine = emptyRoutine, loading, error, noDataMsg = "No muscle groups", 
-            onClick = ()=>{} } = this.props;
-        return (
-            <ElemList loading={loading} data={routine.muscleGroups}
-                getPrimary={getPrimary} 
-                getSecondary1={getSecondary1}
-                getSecondary2={getSecondary2}
-                getId={getId}
-                subHeader={(<RoutineHeader routine={routine}/>)}
-                error={error ? "Error loading muscle groups" : undefined}
-                noDataMsg={noDataMsg}
-                onClick={onClick}
-            >
-            </ElemList>
-        )
-    }
-}
+const MuscleGroupList: React.FC<MuscleGroupListProps> = ({
+  routine = { _id: '', name: '', muscleGroups: [] },
+  loading,
+  error,
+  noDataMsg = "No muscle groups",
+  onClick = () => {}
+}) => {
+  return (
+    <ElemList loading={loading} data={routine.muscleGroups}
+      getPrimary={getPrimary}
+      getSecondary1={getSecondary1}
+      getSecondary2={getSecondary2}
+      getId={getId}
+      subHeader={(<RoutineHeader routine={routine}/>)}
+      error={error ? "Error loading muscle groups" : undefined}
+      noDataMsg={noDataMsg}
+      onClick={onClick}
+    >
+    </ElemList>
+  )
+};
+
+export default MuscleGroupList;

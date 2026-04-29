@@ -1,59 +1,34 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import MuscleGroupList from '../components/lists/muscleGroupList/MuscleGroupList';
-import { IRoutine, IMuscleGroup } from 'balanced-gym-model';
-import { loadRoutine } from '../redux/actions.routine';
-import { withRouter } from "react-router";
+import { IMuscleGroup } from 'balanced-gym-model';
+import { useGetRoutineQuery } from '../redux/api';
+import { useNavigate, useParams } from "react-router-dom";
 import BackHeader from '../components/headerBar/BackHeader';
 
-interface RoutineProps {
-    loading: boolean;
-    error: string;
-    routine: IRoutine;
-    loadRoutine?: (routineId: string) => {};
-    match?: any;
-    history?: any;
-}
+const Routine: React.FC = () => {
+    const navigate = useNavigate();
+    const { routineId } = useParams<{ routineId: string }>();
+    const { data: routine, isLoading, error } = useGetRoutineQuery(routineId);
 
-export class Routine extends Component<RoutineProps> {
-    componentDidMount = () => {
-       const { loadRoutine, match : { params : { routineId }} } = this.props;
-       loadRoutine && loadRoutine(routineId);
-    }
-    onRoutineClick = (muscleGroup: IMuscleGroup) => {
-        const { history,  match : { params : { routineId }} } = this.props;
-        history.push(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
-    }
-    handleBack = () => {
-        const { history } = this.props;
-        history.push('/routines');
-    }
-    render() {
-        const { loading, error, routine } = this.props;
-        return (<>
-           <BackHeader handleBack={this.handleBack}/>
-           <MuscleGroupList loading={loading}
-             error={error} 
-             routine={routine}
-             onClick={this.onRoutineClick}
-             />
-             </>
-        )
-    }
-}
-
-const mapStateToProps = (state: any) => {
-    // console.log('state changed:', state)
-    const { loading, error, routine = {} } = state.routineState;
-    return {
-        loading, error, routine
+    const onRoutineClick = (muscleGroup: IMuscleGroup) => {
+        navigate(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);
     };
-}
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        loadRoutine: (routineId: string) => dispatch(loadRoutine(routineId))
-    }
-}
+    const handleBack = () => {
+        navigate('/routines');
+    };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Routine))
+    return (
+        <>
+            <BackHeader handleBack={handleBack} />
+            <MuscleGroupList
+                loading={isLoading}
+                error={error ? "Error loading routine" : undefined}
+                routine={routine as any}
+                onClick={onRoutineClick}
+            />
+        </>
+    );
+};
+
+export default Routine;

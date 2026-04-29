@@ -1,8 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
-// import TimerOffIcon from "@material-ui/icons/TimerOff";
-// import TimerIcon from "@material-ui/icons/Timer";
-// import { Tooltip } from "@material-ui/core";
 import { ISerie } from "balanced-gym-model";
 import {
   millisToMinutesAndSeconds,
@@ -19,24 +16,6 @@ interface AddSerieProps {
   timerLimit?: number;
 }
 
-interface AddSerieState {
-  timerTime: number;
-  startTime: number;
-  showTimer: boolean;
-}
-
-// const formatTime = (min: number, sec: number) => {
-//   const minutes: string = `${min}`;
-//   const seconds: string = `${sec < 10 ? "0" : ""}${sec}`;
-//   return minutes + ":" + seconds;
-// };
-
-// const millisToMinutesAndSeconds = (millis: number) => {
-//   const minutes: number = Math.floor(millis / 60000);
-//   const seconds: number = Math.trunc((millis % 60000) / 1000);
-//   return formatTime(minutes, seconds);
-// };
-
 const secondsToNowSerie = (createdAt?: string) => {
   let result: number = -1;
   if (createdAt) {
@@ -49,86 +28,77 @@ const isInRange = (secs: number, limit: number) => {
   return secs >= 0 && secs <= limit;
 };
 
-export default class AddSerie extends Component<AddSerieProps, AddSerieState> {
-  timer: any;
-  _isMounted = false;
-  constructor(props: AddSerieProps) {
-    super(props);
-    const { lastCreationDate, timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
-    const seconds = secondsToNowSerie(lastCreationDate);
-    const initialTimerTime: number = seconds * 1000;
-    const showTimer: boolean =
-      lastCreationDate !== undefined && isInRange(seconds, timerLimit);
-    this.state = {
-      timerTime: initialTimerTime,
-      startTime: Date.now() - initialTimerTime,
-      showTimer
-    };
-    this.timer = null;
-  }
-  stopTimer = () => {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
+const AddSerie: React.FC<AddSerieProps> = ({
+  lastCreationDate,
+  handleLogNewSerie,
+  timerLimit = DEFAULT_TIMER_LIMIT
+}) => {
+  const seconds = secondsToNowSerie(lastCreationDate);
+  const initialTimerTime: number = seconds * 1000;
+  const initialShowTimer: boolean =
+    lastCreationDate !== undefined && isInRange(seconds, timerLimit);
+
+  const [timerTime, setTimerTime] = useState(initialTimerTime);
+  const [startTime] = useState(Date.now() - initialTimerTime);
+  const [showTimer, setShowTimer] = useState(initialShowTimer);
+  const timerRef = useRef<any>(null);
+
+  const stopTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
   };
-  createTimer = () => {
-    if (!this.timer) this.timer = setInterval(this.increaseTimerTime, 1000);
-  };
-  increaseTimerTime = () => {
-    const { timerLimit = DEFAULT_TIMER_LIMIT } = this.props;
-    this._isMounted &&
-      this.setState(prevState => {
-        const { startTime } = prevState;
-        const timerTime = Date.now() - startTime;
-        if (timerTime >= timerLimit * 1000) {
-          this.stopTimer();
-          return { ...prevState, timerTime, showTimer: false };
-        } else return { ...prevState, timerTime };
-      });
-  };
-  componentDidMount = () => {
-    this._isMounted = true;
-    const { showTimer = false } = this.state;
-    if (showTimer) this.createTimer();
-  };
-  componentWillUnmount = () => {
-    this._isMounted = false;
-  };
-  handleAddSerie = () => {
-    const { handleLogNewSerie } = this.props;
-    const { timerTime } = this.state;
-    this.stopTimer();
+
+  useEffect(() => {
+    if (showTimer) {
+      timerRef.current = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        if (elapsed >= timerLimit * 1000) {
+          stopTimer();
+          setTimerTime(elapsed);
+          setShowTimer(false);
+        } else {
+          setTimerTime(elapsed);
+        }
+      }, 1000);
+    }
+    return () => {
+      stopTimer();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleAddSerie = () => {
+    stopTimer();
     if (timerTime === 0) handleLogNewSerie && handleLogNewSerie();
     else handleLogNewSerie && handleLogNewSerie(Math.round(timerTime / 1000));
   };
-  getShowTimer = (serie?: ISerie) => {};
-  render() {
-    const { timerTime, showTimer } = this.state;
-    return (
-      <div className="add-serie-container">
-        {showTimer && (
-          <div className="add-serie-rest-time">
-            <Typography variant="overline">Rest Time: </Typography>
-            <Typography className="add-serie-rest-timer" variant="overline">
-              {millisToMinutesAndSeconds(timerTime)}
-            </Typography>
-          </div>
-        )}
-        <div
-          className={
-            showTimer ? "add-serie-log-button" : "add-serie-log-button-center"
-          }
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleAddSerie}
-          >
-            Log New Serie
-          </Button>
+
+  return (
+    <div className="add-serie-container">
+      {showTimer && (
+        <div className="add-serie-rest-time">
+          <Typography variant="overline">Rest Time: </Typography>
+          <Typography className="add-serie-rest-timer" variant="overline">
+            {millisToMinutesAndSeconds(timerTime)}
+          </Typography>
         </div>
+      )}
+      <div
+        className={
+          showTimer ? "add-serie-log-button" : "add-serie-log-button-center"
+        }
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddSerie}
+        >
+          Log New Serie
+        </Button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default AddSerie;

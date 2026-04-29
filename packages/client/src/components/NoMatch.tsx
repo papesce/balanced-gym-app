@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class NoMatch extends Component {
-    render() {
-        return (
-            <div>
-                Page Not found
-            </div>
-        )
-    }
+const NoMatch: React.FC = () => {
+    return (
+        <div>
+            Page Not found
+        </div>
+    )
 }
+
+export default NoMatch;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import SwipeableItem from "../../generic/swipeable/SwipeableItem";
 import SerieInput from "../serieInput/SerieInput";
 import { ISerie } from "balanced-gym-model";
@@ -22,40 +22,44 @@ const computeRestTime = (serie: ISerie) => {
   return "";
 };
 
-export default class EditSerie extends Component<EditSerieProps> {
-  handleDelete = () => {
-    const { initialSerie, handleDelete } = this.props;
+const EditSerie: React.FC<EditSerieProps> = ({
+  handleDelete,
+  handleCancel,
+  handleDone,
+  initialSerie
+}) => {
+  const onDelete = () => {
     if (handleDelete) {
       handleDelete(initialSerie._id);
     }
   };
-  render() {
-    const { handleCancel, handleDone, initialSerie } = this.props;
-    const restTime: string = computeRestTime(initialSerie);
-    return (
-      <div className="deleteable-serie-container">
-      <IconButton className={"deleteable-serie-icon-button"} size="small" onClick={handleCancel}>
-          <CancelOutlinedIcon fontSize="inherit" />
-      </IconButton>
-      <Typography
-          className="log-page-created"
-          component="span"
-          variant="caption"
-          display="block"
-          gutterBottom
-        >
-          Created: {formatDateString(initialSerie.createdAt || "")}
-          {restTime && <span> ( rest: {restTime} )</span>}
-        </Typography>
-        
-        <SwipeableItem onSwipe={this.handleDelete}>
-          <SerieInput
-            initialSerie={initialSerie}
-            handleCancelClick={handleCancel}
-            handleDoneClick={handleDone}
-          ></SerieInput>
-        </SwipeableItem>
-      </div>
-    );
-  }
-}
+
+  const restTime: string = computeRestTime(initialSerie);
+  return (
+    <div className="deleteable-serie-container">
+    <IconButton className={"deleteable-serie-icon-button"} size="small" onClick={handleCancel}>
+        <CancelOutlinedIcon fontSize="inherit" />
+    </IconButton>
+    <Typography
+        className="log-page-created"
+        component="span"
+        variant="caption"
+        display="block"
+        gutterBottom
+      >
+        Created: {formatDateString(initialSerie.createdAt || "")}
+        {restTime && <span> ( rest: {restTime} )</span>}
+      </Typography>
+
+      <SwipeableItem onSwipe={onDelete}>
+        <SerieInput
+          initialSerie={initialSerie}
+          handleCancelClick={handleCancel}
+          handleDoneClick={handleDone}
+        ></SerieInput>
+      </SwipeableItem>
+    </div>
+  );
+};
+
+export default EditSerie;

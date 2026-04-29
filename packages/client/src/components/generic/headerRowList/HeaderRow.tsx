@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './HeaderRow.css';
 import { Link } from 'react-router-dom';
 
@@ -10,23 +10,22 @@ export interface IHeaderRow {
 }
 
 interface HeaderRowProps {
-   header: IHeaderRow;   
+   header: IHeaderRow;
 }
 
-export default class HeaderRow extends Component<HeaderRowProps> {
-    render() {
-        const { header: { title, url, value } } = this.props;
-        let linkedValue;
-        if (url) {
-            linkedValue = <Link className='header-link' to={url}>{value}</Link>  
-        } else {
-            linkedValue = (<span className='header-row-unlinked'>{value}</span>);
-        };
-        return (
-                <div className='header-row'>
-                  {title && <span className='header-row-title'>{title}</span>}
-                  {linkedValue}
-                </div>
-        )
-    }
+const HeaderRow: React.FC<HeaderRowProps> = ({ header: { title, url, value } }) => {
+    let linkedValue;
+    if (url) {
+        linkedValue = <Link className='header-link' to={url}>{value}</Link>
+    } else {
+        linkedValue = (<span className='header-row-unlinked'>{value}</span>);
+    };
+    return (
+            <div className='header-row'>
+              {title && <span className='header-row-title'>{title}</span>}
+              {linkedValue}
+            </div>
+    )
 }
+
+export default HeaderRow;

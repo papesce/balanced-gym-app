@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { IExercise, IRoutine, IMuscleGroup, IMuscle } from "balanced-gym-model";
 import { IHeaderRow } from "../../generic/headerRowList/HeaderRow";
 import HeaderRowList from "../../generic/headerRowList/HeaderRowList";
@@ -17,35 +17,31 @@ interface ExerciseHeaderProps {
   exercise: IExercise;
 }
 
-export default class ExerciseHeader extends Component<ExerciseHeaderProps> {
-  render() {
-    const emptyRoutine: IRoutine = { _id: "", name: "" };
-    const emptyMuscleGroup: IMuscleGroup = { _id: "", name: "" };
-    const emptyTarget: IMuscle = { _id: "", name: "" };
-    const {
-      exercise: {
-        routineId = emptyRoutine,
-        muscleGroup = emptyMuscleGroup,
-        target = emptyTarget,
-        name
-      }
-    } = this.props;
-    const headers: IHeaderRow[] = [
-      getExerciseHeaderRow(name),
-      getRoutineHeaderRow(routineId.name, getRoutineURL(routineId._id)),
-      getMuscleGroupHeaderRow(
-        muscleGroup.name,
-        getMuscleGroupURL(routineId._id, muscleGroup._id)
-      ),
-      getTargetHeaderRow(
-        target.name,
-        getTargetURL(routineId._id, muscleGroup._id, target._id)
-      )
-    ];
-    return (
-      <div className="exercise-header">
-        <HeaderRowList headers={headers} listTitle={""} />
-      </div>
-    );
+const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
+  exercise: {
+    routineId = { _id: "", name: "" },
+    muscleGroup = { _id: "", name: "" },
+    target = { _id: "", name: "" },
+    name
   }
-}
+}) => {
+  const headers: IHeaderRow[] = [
+    getExerciseHeaderRow(name),
+    getRoutineHeaderRow(routineId.name, getRoutineURL(routineId._id)),
+    getMuscleGroupHeaderRow(
+      muscleGroup.name,
+      getMuscleGroupURL(routineId._id, muscleGroup._id)
+    ),
+    getTargetHeaderRow(
+      target.name,
+      getTargetURL(routineId._id, muscleGroup._id, target._id)
+    )
+  ];
+  return (
+    <div className="exercise-header">
+      <HeaderRowList headers={headers} listTitle={""} />
+    </div>
+  );
+};
+
+export default ExerciseHeader;

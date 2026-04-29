@@ -1,8 +1,6 @@
-
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import SwipeableViews from 'react-swipeable-views';
 import './ElemPage.css';
 
 export interface IElemPage {
@@ -14,38 +12,25 @@ interface ElemPageProps {
     pages: IElemPage[]
 }
 
-interface ElemPageState {
-    selected: number
-}
+const ElemPage: React.FC<ElemPageProps> = ({ pages }) => {
+    const [selected, setSelected] = useState(0);
 
-export default class ElemPage extends Component<ElemPageProps, ElemPageState> {
-    state = {
-        selected: 0
-    }
-    handleClick = (index: number) => {
-        this.setState({selected: index});
-    }
-    render() {
-        const { pages } = this.props; 
-        const { selected } = this.state;
-        return (
-        <div className={'elem-page'}>
-            <ButtonGroup fullWidth size="small" aria-label="small outlined button group">
-                {pages.map((item, index)=> 
-                  (index === selected) ?  
-                     <Button key={index} style={{backgroundColor:'gray'}} onClick={()=>this.handleClick(index)}>{item.name}</Button>
-                   : <Button key={index} onClick={()=>this.handleClick(index)}>{item.name}</Button>
-                )}
-          </ButtonGroup>
-          <SwipeableViews
-        axis={'x'}
-        index={selected}
-        
-        // onChangeIndex={handleChangeIndex}
-      >
-          {pages.map(item => item.page)}
-          </SwipeableViews>    
-          </div>  
-        )
-    }
-}
+    const handleClick = (index: number) => {
+        setSelected(index);
+    };
+
+    return (
+    <div className={'elem-page'}>
+        <ButtonGroup fullWidth size="small" aria-label="small outlined button group">
+            {pages.map((item, index)=>
+              (index === selected) ?
+                 <Button key={index} style={{backgroundColor:'gray'}} onClick={()=>handleClick(index)}>{item.name}</Button>
+               : <Button key={index} onClick={()=>handleClick(index)}>{item.name}</Button>
+            )}
+      </ButtonGroup>
+      {pages[selected] && pages[selected].page}
+      </div>
+    )
+};
+
+export default ElemPage;
