@@ -2,10 +2,10 @@
   "name": "balanced-gym-app",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "npm-run-all": "^4.1.5"
   },
   "engines": {
-    "node": ">=12",
+    "node": ">=22",
     "npm": ">=6",
     "yarn": ">=1.21"
   },
@@ -15,17 +15,15 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "dev": "lerna run dev --parallel",
-    "dev:client": "cd packages/client && yarn dev && cd ../../",
-    "dev:server": "cd packages/server && yarn dev && cd../../",
-    "start": "lerna run start",
-    "types": "lerna run types",
-    "convert:api": "lerna run convert:api",
-    "build": "lerna run types && lerna run build --parallel",
-    "storybook": "lerna run storybook",
-    "test:model": "cd packages/model && yarn test",
-    "test:client": "cd packages/client && yarn test"
+    "dev": "npx npm-run-all --parallel dev:client dev:server",
+    "dev:client": "yarn workspace balanced-gym-app-client dev",
+    "dev:server": "yarn workspace balanced-gym-app-server dev",
+    "start": "yarn workspace balanced-gym-app-server start",
+    "types": "yarn workspace balanced-gym-model types",
+    "build": "yarn workspace balanced-gym-model types && npx npm-run-all --parallel build:client",
+    "build:client": "yarn workspace balanced-gym-app-client build",
+    "test:model": "yarn workspace balanced-gym-model test",
+    "test:client": "yarn workspace balanced-gym-app-client test"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

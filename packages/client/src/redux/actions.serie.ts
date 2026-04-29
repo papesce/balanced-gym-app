@@ -61,7 +61,7 @@ export const newSerie = (exerciseId: string, suggestedSerie: ISerie) => (
     weight: suggestedSerie.weight,
     reps: suggestedSerie.reps
   };
-  return fetch(`${process.env.REACT_APP_API}/newSerie/${exerciseId}`, {
+  return fetch(`${import.meta.env.VITE_APP_API}/newSerie/${exerciseId}`, {
     method: "post",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(body)
@@ -81,7 +81,7 @@ export const editSerie = (exerciseId: string, serie: ISerie) => (
   dispatch(editSerieBegin());
   const body: ISerieUpdate = { weight: serie.weight, reps: serie.reps };
   return fetch(
-    `${process.env.REACT_APP_API}/updateSerie/${serie._id}/exercise/${exerciseId}`,
+    `${import.meta.env.VITE_APP_API}/updateSerie/${serie._id}/exercise/${exerciseId}`,
     {
       method: "PATCH",
       headers: { "content-type": "application/json" },
@@ -105,7 +105,7 @@ export const deleteSerie = (exerciseId: string, serieId: string) => (
 ) => {
   dispatch(deleteSerieBegin());
   return fetch(
-    `${process.env.REACT_APP_API}/deleteSerie/${serieId}/exercise/${exerciseId}`,
+    `${import.meta.env.VITE_APP_API}/deleteSerie/${serieId}/exercise/${exerciseId}`,
     { method: "delete" }
   )
     .then(handleErrors)

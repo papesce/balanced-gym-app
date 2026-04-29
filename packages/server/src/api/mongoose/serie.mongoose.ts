@@ -3,8 +3,7 @@ import { ISerieDao } from 'balanced-gym-model';
 
 const Schema = mongoose.Schema;
 
-export interface ISerieDocument extends mongoose.Document, ISerieDao {
-}
+export type ISerieDocument = mongoose.Document & ISerieDao;
 
 
 const schema = new Schema(
@@ -15,7 +14,7 @@ const schema = new Schema(
       },
       {
         timestamps: true,
-        usePushEach: true
+
       }
 );
 

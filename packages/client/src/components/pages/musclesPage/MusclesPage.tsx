@@ -66,7 +66,7 @@ export const getMuscles = (exercise: IExercise) => {
 };
 
 const getMuscleURL = (muscle: IMuscle) => {
-  return `${process.env.REACT_APP_ASSETS}/${muscle.muscleURL}`;
+  return `${import.meta.env.VITE_APP_ASSETS}/${muscle.muscleURL}`;
 };
 
 const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {

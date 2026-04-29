@@ -1,4 +1,4 @@
-import * as HttpStatus from 'http-status-codes';
+import { getReasonPhrase } from 'http-status-codes';
 
 export class CustomError extends Error {
   inner: Error;
@@ -16,6 +16,6 @@ export class CustomError extends Error {
 
 export class HttpError extends CustomError {
   constructor(httpErrorCode: number, inner?: Error) {
-    super(HttpStatus.getStatusText(httpErrorCode), inner, httpErrorCode);
+    super(getReasonPhrase(httpErrorCode), inner, httpErrorCode);
   }
 }

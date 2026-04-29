@@ -3,7 +3,7 @@ import { IMuscleDao } from "balanced-gym-model";
 
 const Schema = mongoose.Schema;
 
-export interface IMuscleDocument extends mongoose.Document, IMuscleDao {}
+export type IMuscleDocument = mongoose.Document & IMuscleDao;
 
 const schema = new Schema(
   {
@@ -12,7 +12,7 @@ const schema = new Schema(
   },
   {
     timestamps: true,
-    usePushEach: true
+
   }
 );
 

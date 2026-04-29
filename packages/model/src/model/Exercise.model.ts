@@ -71,10 +71,10 @@ export const getLastUpdatedFromExercises = (exercises: IExerciseDao[]) => {
 const areSimilar = (musc1s: IMuscleDao[], musc2s: IMuscleDao[]) => {
   const s1: Set<string> = new Set(musc1s.map(m => m.name));
   const s2: Set<string> = new Set(musc2s.map(m => m.name));
-  const difference1: Set<String> = new Set(
+  const difference1: Set<string> = new Set(
     Array.from(s1).filter(x => !s2.has(x))
   );
-  const difference2: Set<String> = new Set(
+  const difference2: Set<string> = new Set(
     Array.from(s2).filter(x => !s1.has(x))
   );
   return difference1.size === 0 && difference2.size === 0;

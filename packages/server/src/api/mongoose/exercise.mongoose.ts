@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 import { IExerciseDao } from 'balanced-gym-model';
 
-export interface IExerciseDocument extends mongoose.Document, IExerciseDao {
-}
+export type IExerciseDocument = mongoose.Document & IExerciseDao;
 
 const schema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -19,7 +18,7 @@ const schema = new mongoose.Schema({
   },
   {
     timestamps: true,
-    usePushEach: true
+
   }
 );
 

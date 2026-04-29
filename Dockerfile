@@ -1,29 +1,18 @@
-# Use the official Node.js 12 image as the base image
-FROM node:12.14.1
+FROM node:22-slim
 
-# Install TypeScript globally
-RUN npm install -g typescript@3.7.2
-
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package.json yarn.lock ./
+COPY packages/model/package.json packages/model/
+COPY packages/server/package.json packages/server/
+COPY packages/client/package.json packages/client/
 
-# Install dependencies using Yarn
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
-
-# Copy the rest of the application code
 COPY . .
 
 RUN yarn build
 
-# Expose the port your app runs on
 EXPOSE 3000
 
-# Command to run your application
 CMD ["yarn", "start"]
-
-
-
