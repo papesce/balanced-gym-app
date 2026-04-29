@@ -1,24 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Header from './Header';
 import IconButton from "@material-ui/core/IconButton";
-// import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 interface BackHeaderProps {
-    handleBack : () => void;
+    handleBack: () => void;
 }
 
-export default class BackHeader extends Component<BackHeaderProps> {
+const BackHeader: React.FC<BackHeaderProps> = ({ handleBack }) => {
+    const leftComponent = (
+        <IconButton onClick={handleBack} edge="start" color="inherit">
+          <ArrowBackIosIcon/>
+        </IconButton>
+    );
+    return <Header leftComponent={leftComponent} />;
+};
 
-    render() {
-        const { handleBack } = this.props;
-        const leftComponent = (
-            <IconButton onClick={handleBack} edge="start" color="inherit">
-              <ArrowBackIosIcon/>
-            </IconButton>
-          );
-        return (
-            <Header leftComponent={leftComponent}></Header>
-        )
-    }
-}
+export default BackHeader;

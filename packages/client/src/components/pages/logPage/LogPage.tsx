@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { IExercise, ISerie } from "balanced-gym-model";
 import Graph from "../../logPage/graph/Graph";
 import { secondsToNow } from "../../../utils/dateUtils";
@@ -8,128 +8,130 @@ import EditSerie from "../../logPage/editSerie/EditSerie";
 import AddSerie from '../../logPage/addSerie/AddSerie';
 import "./LogPage.css";
 
-const LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT = 5;  //5 seconds
+const LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT = 5;
 
 interface LogProps {
   exercise: IExercise;
   handleAddSerie?: (restTime?: number) => void;
   handleEditSerie?: (exerciseId: string, serie: ISerie) => void;
   handleDeleteSerie?: (exerciseId: string, serieId: string) => void;
-  secondsLimit?: number; // hack: seconds to show navigable
+  secondsLimit?: number;
   timerLimit?: number;
 }
 
-interface LogState {
-  serieIndex: number;
-  subSeries: ISerie[];
-  navigable: boolean;
-  more: boolean;
-  
-}
+const LogPage: React.FC<LogProps> = ({
+  exercise,
+  handleAddSerie: onAddSerie,
+  handleEditSerie,
+  handleDeleteSerie,
+  secondsLimit = LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT,
+  timerLimit,
+}) => {
+  const { series = [], lastCreationDate } = exercise;
 
-export default class LogPage extends Component<LogProps, LogState> {
-  constructor(props: LogProps) {
-    super(props);
-    const { exercise, secondsLimit = LOG_PAGE_DEFAULT_NAVIGABLE_LIMIT } = this.props;
-    const { series = [] } = exercise;
-    let isNavigable = false;
+  const computeInitialNavigable = () => {
     if (series.length > 0) {
       const lastSerie: ISerie = series[0];
       if (lastSerie.createdAt) {
-        isNavigable = secondsToNow(lastSerie.createdAt) <= secondsLimit;
+        return secondsToNow(lastSerie.createdAt) <= secondsLimit;
       }
     }
-    this.state = {
-      serieIndex: 0,
-      navigable: isNavigable,
-      more: series.length > 6,
-      subSeries: series.slice(0, 5)
-    };
-  }
-
-  handleGraphSelected = (serieIndex: number) => {
-    this.setState({ serieIndex: serieIndex });
+    return false;
   };
-  handleSerieDelete = (serieId: string) => {
-    const { handleDeleteSerie, exercise } = this.props;
+
+  const [serieIndex, setSerieIndex] = useState(0);
+  const [navigable, setNavigable] = useState(computeInitialNavigable);
+  const [more, setMore] = useState(series.length > 6);
+  const [subSeries, setSubSeries] = useState<ISerie[]>(series.slice(0, 5));
+
+  const handleGraphSelected = (index: number) => {
+    setSerieIndex(index);
+  };
+
+  const handleSerieDelete = (serieId: string) => {
     handleDeleteSerie && handleDeleteSerie(exercise._id, serieId);
   };
-  handleSerieDone = (editedSerie: ISerie) => {
-    const { exercise, handleEditSerie } = this.props;
+
+  const handleSerieDone = (editedSerie: ISerie) => {
     const { weight, reps, _id } = editedSerie;
     if (handleEditSerie) {
-      const editedSerie: ISerie = {
-        _id,
-        weight,
-        reps
-      };
-      handleEditSerie(exercise._id, editedSerie);
+      handleEditSerie(exercise._id, { _id, weight, reps });
     }
-    this.setState({ navigable: false });
+    setNavigable(false);
   };
-  handleEditClick = () => {
-    this.setState({ navigable: true, serieIndex: 0 });
+
+  const handleEditClick = () => {
+    setNavigable(true);
+    setSerieIndex(0);
   };
-  handleMoreClick = () => {
-    this.setState({ more: false, serieIndex: 0 });
+
+  const handleMoreClick = () => {
+    setMore(false);
+    setSerieIndex(0);
   };
-  handleSeriesChange = (subSeries: ISerie[]) => {
-    // console.log('handleSeriesChange');
-    this.setState({ subSeries, navigable: false });
+
+  const handleSeriesChange = (newSubSeries: ISerie[]) => {
+    setSubSeries(newSubSeries);
+    setNavigable(false);
   };
-  handleEditSerieCancel = () => {
-    this.setState({ navigable: false });
+
+  const handleEditSerieCancel = () => {
+    setNavigable(false);
   };
-  handleMoreCancel = () => {
-    this.setState({ more: true });
-  }
-  handleAddSerie = (restTime?: number) => {
-    const { handleAddSerie } = this.props;
-    handleAddSerie && handleAddSerie(restTime);
-  }
-  render() {
-    const { exercise, timerLimit } = this.props;
-    const { series = [], lastCreationDate } = exercise;
-    const { serieIndex, navigable, more, subSeries } = this.state;
-    const serie: ISerie = subSeries[serieIndex];
-    const showNav: boolean = !more && series.length > 6;
-    const isEditable: boolean = !navigable && series.length > 0;
-    return (
-      <>
-        {(showNav &&
-          <Navigation
-            series={series}
-            handleSeriesChange={this.handleSeriesChange}
-            handleCancel={this.handleMoreCancel}
-          ></Navigation>
-        )}
-         {!showNav && <div className='log-page-spacer'></div>}
-        <GraphBar
-          edit={isEditable}
-          more={more}
-          handleEditClick={this.handleEditClick}
-          handleMoreClick={this.handleMoreClick}
-        ></GraphBar>
-        <Graph
-          key={navigable ? "1" : "0"}
-          series={subSeries}
-          handleSelected={this.handleGraphSelected}
-          isNavigable={navigable}
-        ></Graph>
-        {navigable && <EditSerie
+
+  const handleMoreCancel = () => {
+    setMore(true);
+  };
+
+  const handleAddSerie = (restTime?: number) => {
+    onAddSerie && onAddSerie(restTime);
+  };
+
+  const serie: ISerie = subSeries[serieIndex];
+  const showNav: boolean = !more && series.length > 6;
+  const isEditable: boolean = !navigable && series.length > 0;
+
+  return (
+    <>
+      {showNav && (
+        <Navigation
+          series={series}
+          handleSeriesChange={handleSeriesChange}
+          handleCancel={handleMoreCancel}
+        />
+      )}
+      {!showNav && <div className='log-page-spacer'></div>}
+      <GraphBar
+        edit={isEditable}
+        more={more}
+        handleEditClick={handleEditClick}
+        handleMoreClick={handleMoreClick}
+      />
+      <Graph
+        key={navigable ? "1" : "0"}
+        series={subSeries}
+        handleSelected={handleGraphSelected}
+        isNavigable={navigable}
+      />
+      {navigable && (
+        <EditSerie
           key={serie._id}
           initialSerie={serie}
-          handleDone={this.handleSerieDone}
-          handleDelete={this.handleSerieDelete}
-          handleCancel={this.handleEditSerieCancel} 
-        />}
-        {!navigable && <AddSerie 
+          handleDone={handleSerieDone}
+          handleDelete={handleSerieDelete}
+          handleCancel={handleEditSerieCancel}
+        />
+      )}
+      {!navigable && (
+        <AddSerie
           key={serie ? serie._id : 'new'}
           lastCreationDate={lastCreationDate}
-          handleLogNewSerie={this.handleAddSerie}
-          timerLimit={timerLimit} />
-        }        
-      </>
-    );
-  }
-}
+          handleLogNewSerie={handleAddSerie}
+          timerLimit={timerLimit}
+        />
+      )}
+    </>
+  );
+};
+
+export default LogPage;

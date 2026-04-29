@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Navigation.css";
 import TablePagination from "@material-ui/core/TablePagination";
 import { ISerie } from "balanced-gym-model";
@@ -12,43 +12,35 @@ interface NavigationProps {
   handleCancel?: () => void;
 }
 
-interface NavigationState {
-  pointsPerScreen: number;
-  screen: number;
-}
+const Navigation: React.FC<NavigationProps> = ({
+  series = [],
+  handleSeriesChange,
+  handleCancel
+}) => {
+  const [pointsPerScreen, setPointsPerScreen] = useState(6);
+  const [screen, setScreen] = useState(0);
 
-export default class Navigation extends Component<
-  NavigationProps,
-  NavigationState
-> {
-  constructor(props: NavigationProps) {
-    super(props);
-    this.state = { pointsPerScreen: 6, screen: 0 };
-  }
-  handleSeriesChange = (page: number) => {
-    const { pointsPerScreen } = this.state;
-    const { handleSeriesChange, series } = this.props;
-    // const count = series.length;
-    const from = page * pointsPerScreen + 1;
-    const to = (page + 1) * pointsPerScreen;
+  const computeSeriesChange = (page: number, pps: number) => {
+    const from = page * pps + 1;
+    const to = (page + 1) * pps;
     console.log('hsc:', from, to)
-    handleSeriesChange && 
+    handleSeriesChange &&
       handleSeriesChange(series.slice(from-1, to));
-  }
-  handleChangePage = (evt: any, page: number) => {
-    this.setState({ screen: page }, () =>
-    this.handleSeriesChange(page));
   };
-  handlePPPChange = (evt: any) => {
+
+  const handleChangePage = (evt: any, page: number) => {
+    setScreen(page);
+    computeSeriesChange(page, pointsPerScreen);
+  };
+
+  const handlePPPChange = (evt: any) => {
     const pps = parseInt(evt.target.value);
-    // console.log('pppchange', page)
-    this.setState({ pointsPerScreen: pps, screen: 0}, 
-     () => {this.handleSeriesChange(0)}  
-    );
-    
+    setPointsPerScreen(pps);
+    setScreen(0);
+    computeSeriesChange(0, pps);
   };
-  getRowsPerPageOptions = () => {
-    const { series = [] } = this.props;
+
+  const getRowsPerPageOptions = () => {
     const size = series.length;
     if (size <= 8) {
       return [6, { label: "All", value: size }];
@@ -58,48 +50,41 @@ export default class Navigation extends Component<
     }
     return [6, 8, 10, { label: "All", value: size }];
   };
-  getDisplayedRows = (nav: any) => {
+
+  const getDisplayedRows = (nav: any) => {
     const { from, to, count } = nav;
     const newFrom: number = count - to + 1;
     const newTo: number = count-from + 1;
     return `${newFrom}-${newTo} of ${count}`;
   };
-  
-  render() {
-    const { series = [], handleCancel } = this.props;
-    if (series.length <= 6) {
-      return null;
-    }
-    const { pointsPerScreen, screen } = this.state;
-    // const screens: number = Math.ceil(series.length / pointsPerScreen);
-    // console.log('screens', screens);
-    // console.log('screen', screen)
-    // const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-    return (
-      <div className="navigation-container">
-        <IconButton className={"navigation-icon-button"} size="small" onClick={handleCancel}>
-          <CancelOutlinedIcon fontSize="inherit" />
-        </IconButton>
-        <TablePagination
-          className="navigation-table-pagination"
-          component="div"
-          labelRowsPerPage={"Points:"}
-          rowsPerPageOptions={this.getRowsPerPageOptions()}
-          // backIconButtonProps={{disabled: screen === screens - 1}}
-          // nextIconButtonProps={{disabled: screen === screens -1}}
-          // colSpan={3}
-          labelDisplayedRows={this.getDisplayedRows}
-          count={series.length}
-          rowsPerPage={pointsPerScreen}
-          page={screen}
-          SelectProps={{
-            native: true
-          }}
-          onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handlePPPChange}
-          ActionsComponent={NavigationActions}
-        />
-      </div>
-    );
+
+  if (series.length <= 6) {
+    return null;
   }
-}
+
+  return (
+    <div className="navigation-container">
+      <IconButton className={"navigation-icon-button"} size="small" onClick={handleCancel}>
+        <CancelOutlinedIcon fontSize="inherit" />
+      </IconButton>
+      <TablePagination
+        className="navigation-table-pagination"
+        component="div"
+        labelRowsPerPage={"Points:"}
+        rowsPerPageOptions={getRowsPerPageOptions()}
+        labelDisplayedRows={getDisplayedRows}
+        count={series.length}
+        rowsPerPage={pointsPerScreen}
+        page={screen}
+        SelectProps={{
+          native: true
+        }}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handlePPPChange}
+        ActionsComponent={NavigationActions}
+      />
+    </div>
+  );
+};
+
+export default Navigation;

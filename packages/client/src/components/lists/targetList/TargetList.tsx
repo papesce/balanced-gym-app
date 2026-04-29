@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ElemCardList, { ISecondaryCardText } from "../../generic/cardList/ElemCardList";
 import { IMuscle, IMuscleGroup, IMuscleSummary } from "balanced-gym-model";
 import { getTargetSummary1, getTargetSummary2, getTargetSummary3 } from "./summary.target";
@@ -46,31 +46,29 @@ export const getPrimary = (target: IMuscle) => {
   return target.name;
 };
 
-export default class TargetList extends Component<TargetListProps> {
-  render() {
-    const emptyMuscleGroup: IMuscleGroup = { _id: "", name: "", targets: [] };
-    const {
-      muscleGroup = emptyMuscleGroup,
-      loading,
-      error,
-      noDataMsg = "No targets",
-      onClick = () => {}
-    } = this.props;
-    return (
-      <ElemCardList
-        loading={loading}
-        data={muscleGroup.targets}
-        getPrimary={getPrimary}
-        getSecondary1={getSecondary1}
-        getSecondary2={getSecondary2}
-        getSecondary3={getSecondary3}
-        getImage={getImage}
-        getId={getId}
-        subHeader={<MuscleGroupHeader muscleGroup={muscleGroup} />}
-        error={error ? "Error loading the muscle group" : undefined}
-        noDataMsg={noDataMsg}
-        onClick={onClick}
-      ></ElemCardList>
-    );
-  }
-}
+const TargetList: React.FC<TargetListProps> = ({
+  muscleGroup = { _id: "", name: "", targets: [] },
+  loading,
+  error,
+  noDataMsg = "No targets",
+  onClick = () => {}
+}) => {
+  return (
+    <ElemCardList
+      loading={loading}
+      data={muscleGroup.targets}
+      getPrimary={getPrimary}
+      getSecondary1={getSecondary1}
+      getSecondary2={getSecondary2}
+      getSecondary3={getSecondary3}
+      getImage={getImage}
+      getId={getId}
+      subHeader={<MuscleGroupHeader muscleGroup={muscleGroup} />}
+      error={error ? "Error loading the muscle group" : undefined}
+      noDataMsg={noDataMsg}
+      onClick={onClick}
+    ></ElemCardList>
+  );
+};
+
+export default TargetList;

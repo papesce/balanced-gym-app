@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { IRoutine } from 'balanced-gym-model';
 import { IHeaderRow } from '../../generic/headerRowList/HeaderRow';
 import HeaderRowList from '../../generic/headerRowList/HeaderRowList';
@@ -9,14 +9,12 @@ interface  RoutineHeaderProps {
     routine: IRoutine;
 }
 
-export default class RoutineHeader extends Component<RoutineHeaderProps> {
-    render() {
-        const { routine } = this.props;
-        const headers: IHeaderRow[] = [
-            getRoutineHeaderRow(routine.name),
-            getRoutinesHeaderRow()
-        ];
-        return (<HeaderRowList headers={headers} listTitle={'Muscle Groups:'} />)
-    }
-}
+const RoutineHeader: React.FC<RoutineHeaderProps> = ({ routine }) => {
+    const headers: IHeaderRow[] = [
+        getRoutineHeaderRow(routine.name),
+        getRoutinesHeaderRow()
+    ];
+    return (<HeaderRowList headers={headers} listTitle={'Muscle Groups:'} />)
+};
 
+export default RoutineHeader;

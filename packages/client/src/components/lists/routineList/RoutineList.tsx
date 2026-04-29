@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ElemList, {
   ISecondaryText,
   DEFAULT_LIST_BLUE
@@ -35,29 +35,28 @@ const getPrimary = (elem: IRoutine): string => {
   return elem.name;
 };
 
-export default class RoutineList extends Component<RoutineListProps> {
-  render() {
-    const {
-      routines = [],
-      loading,
-      error,
-      noDataMsg = "No routines",
-      onClick = () => {}
-    } = this.props;
-    const subHeader = <div className="routine-list-subheader">Routines:</div>;
-    return (
-      <ElemList
-        loading={loading}
-        data={routines}
-        getPrimary={getPrimary}
-        getSecondary1={getSecondary1}
-        getSecondary2={getSecondary2}
-        getId={getId}
-        error={error ? "Error loading routines" : undefined}
-        subHeader={subHeader}
-        noDataMsg={noDataMsg}
-        onClick={onClick}
-      ></ElemList>
-    );
-  }
-}
+const RoutineList: React.FC<RoutineListProps> = ({
+  routines = [],
+  loading,
+  error,
+  noDataMsg = "No routines",
+  onClick = () => {}
+}) => {
+  const subHeader = <div className="routine-list-subheader">Routines:</div>;
+  return (
+    <ElemList
+      loading={loading}
+      data={routines}
+      getPrimary={getPrimary}
+      getSecondary1={getSecondary1}
+      getSecondary2={getSecondary2}
+      getId={getId}
+      error={error ? "Error loading routines" : undefined}
+      subHeader={subHeader}
+      noDataMsg={noDataMsg}
+      onClick={onClick}
+    ></ElemList>
+  );
+};
+
+export default RoutineList;

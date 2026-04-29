@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ElemCardList from '../../generic/cardList/ElemCardList';
 import { IMuscle, IExerciseSummary } from 'balanced-gym-model';
 import { getExerciseSummary1, getExerciseSummary2 } from './summary.exercise';
@@ -28,7 +28,7 @@ const wasDoneToday = (exercise: IExerciseSummary) : boolean => {
 }
 
 export const getSecondary1 = (exercise: IExerciseSummary) => {
-    const line2: string = getExerciseSummary1(exercise); 
+    const line2: string = getExerciseSummary1(exercise);
     const colorClass = wasDoneToday(exercise) ? DEFAULT_LIST_BLUE : undefined;
     return ({ text: line2, colorClass });
 }
@@ -42,28 +42,30 @@ export const getImage = (exercise: IExerciseSummary) => {
     return exercise.gifURL || '';
 }
 export const getPrimary = (exercise: IExerciseSummary) => {
-    return exercise.name; 
+    return exercise.name;
  };
 
-export default class ExerciseList extends Component<ExerciseListProps> {
-    
-    render() {
-        const emptyTarget: IMuscle = {_id:'', name:'', exercises: []}
-        const { target = emptyTarget, loading, error, noDataMsg = "No exercises", 
-            onClick = ()=>{} } = this.props;
-        return (
-            <ElemCardList loading={loading} data={target.exercises}
-                getPrimary={getPrimary} 
-                getSecondary1={getSecondary1}
-                getSecondary2={getSecondary2}
-                getId={getId}
-                getImage={getImage}
-                subHeader={(<TargetHeader target={target}/>)}
-                error={error ? "Error loading exercises" : undefined}
-                noDataMsg={noDataMsg}
-                onClick={onClick}
-            >
-            </ElemCardList>
-        )
-    }
-}
+const ExerciseList: React.FC<ExerciseListProps> = ({
+  target = { _id: '', name: '', exercises: [] },
+  loading,
+  error,
+  noDataMsg = "No exercises",
+  onClick = () => {}
+}) => {
+  return (
+    <ElemCardList loading={loading} data={target.exercises}
+      getPrimary={getPrimary}
+      getSecondary1={getSecondary1}
+      getSecondary2={getSecondary2}
+      getId={getId}
+      getImage={getImage}
+      subHeader={(<TargetHeader target={target}/>)}
+      error={error ? "Error loading exercises" : undefined}
+      noDataMsg={noDataMsg}
+      onClick={onClick}
+    >
+    </ElemCardList>
+  )
+};
+
+export default ExerciseList;
