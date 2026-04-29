@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header';
-import IconButton from "@material-ui/core/IconButton";
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 interface BackHeaderProps {
     handleBack: () => void;

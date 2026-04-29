@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import './ElemPage.css';
 
 export interface IElemPage {

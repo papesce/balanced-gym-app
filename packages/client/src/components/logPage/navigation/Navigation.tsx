@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Navigation.css";
-import TablePagination from "@material-ui/core/TablePagination";
+import TablePagination from "@mui/material/TablePagination";
 import { ISerie } from "balanced-gym-model";
 import { NavigationActions } from './NavigationActions';
-import IconButton from "@material-ui/core/IconButton";
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import IconButton from "@mui/material/IconButton";
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 interface NavigationProps {
   series: ISerie[];
@@ -79,8 +79,8 @@ const Navigation: React.FC<NavigationProps> = ({
         SelectProps={{
           native: true
         }}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handlePPPChange}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handlePPPChange}
         ActionsComponent={NavigationActions}
       />
     </div>

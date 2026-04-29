@@ -1,8 +1,8 @@
 import React from "react";
-import ReactFrappeChart from "../../generic/chart/FappeChart";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceArea } from "recharts";
 import { ISerie } from "balanced-gym-model";
-import { getGraphData } from "./GraphUtils";
-import Typography from "@material-ui/core/Typography";
+import { getGraphData, GraphDataPoint } from "./GraphUtils";
+import Typography from "@mui/material/Typography";
 import "./Graph.css";
 
 interface GraphProps {
@@ -20,10 +20,10 @@ const Graph: React.FC<GraphProps> = ({
   handleSelected,
   handleGraphClick
 }) => {
-  const onDataSelect = (evt: any) => {
-    let index: number = 0;
-    if (series.length > 0) index = series.length - evt.index - 1;
-    handleSelected && handleSelected(index);
+  const onDotClick = (data: any) => {
+    if (!isNavigable || !handleSelected) return;
+    const index = series.length - data.index - 1;
+    handleSelected(index);
   };
 
   const onGraphClick = () => {
@@ -42,43 +42,36 @@ const Graph: React.FC<GraphProps> = ({
       </Typography>
     );
   }
-  const { labels, reps, weights } = getGraphData(series);
+
+  const data = getGraphData(series);
+
   return (
-      <div className="graph-chart-container" onClick={onGraphClick}>
-      <ReactFrappeChart
-        title={"History"}
-        type="line"
-        colors={["#7cd6fd", "#743ee2"]}
-        axisOptions={{ xAxisMode: "span", yAxisMode: "tick", xIsSeries: 1 }}
-        height={250}
-        data={{
-          labels,
-          datasets: [
-            { name: "Reps", values: reps },
-            { name: "Weight", values: weights }
-          ],
-          yRegions: [
-            {
-              label: "",
-              start: 5,
-              end: 12,
-              options: { labelPos: "left" }
-            }
-          ]
-        }}
-        lineOptions={{
-          dotSize: 5,
-          hideLine: 0,
-          hideDots: 0,
-          heatline: 0,
-          regionFill: 0,
-          areaFill: 0
-        }}
-        isNavigable={isNavigable}
-        valuesOverPoints={1}
-        onDataSelect={onDataSelect}
-      />
-      </div>
+    <div className="graph-chart-container" onClick={onGraphClick}>
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+          <XAxis dataKey="label" tick={{ fontSize: 11 }} />
+          <YAxis tick={{ fontSize: 11 }} />
+          <Tooltip />
+          <ReferenceArea y1={5} y2={12} fill="#e0e0e0" fillOpacity={0.3} />
+          <Line
+            type="monotone"
+            dataKey="reps"
+            stroke="#7cd6fd"
+            dot={{ r: 4, cursor: isNavigable ? 'pointer' : 'default' }}
+            activeDot={isNavigable ? { r: 6, onClick: (e: any, payload: any) => onDotClick(payload) } : undefined}
+            label={{ fontSize: 10, position: 'top' }}
+          />
+          <Line
+            type="monotone"
+            dataKey="weight"
+            stroke="#743ee2"
+            dot={{ r: 4, cursor: isNavigable ? 'pointer' : 'default' }}
+            activeDot={isNavigable ? { r: 6, onClick: (e: any, payload: any) => onDotClick(payload) } : undefined}
+            label={{ fontSize: 10, position: 'bottom' }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

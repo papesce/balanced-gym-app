@@ -1,15 +1,8 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-
-const useStyles1 = makeStyles(theme => ({
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(2.5)
-  }
-}));
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 interface NavigationActionsProps {
   count: number;
@@ -19,8 +12,6 @@ interface NavigationActionsProps {
 }
 
 export const NavigationActions: React.FC<NavigationActionsProps> = props => {
-  const theme = useTheme();
-  const classes = useStyles1(theme);
   const { count, page, rowsPerPage, onChangePage } = props;
 
   const handleBackButtonClick = (event: any) => {
@@ -32,7 +23,7 @@ export const NavigationActions: React.FC<NavigationActionsProps> = props => {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexShrink: 0, marginLeft: 2.5 }}>
       <IconButton onClick={handleBackButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}>
         <KeyboardArrowLeft />
@@ -43,6 +34,6 @@ export const NavigationActions: React.FC<NavigationActionsProps> = props => {
       >
         <KeyboardArrowRight />
       </IconButton>
-    </div>
+    </Box>
   );
 };

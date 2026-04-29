@@ -5,8 +5,8 @@ import DetailsPage from "../detailsPage/DetailsPage";
 import LogPage from "../logPage/LogPage";
 import MusclesPage from "../musclesPage/MusclesPage";
 import ExerciseHeader from "./ExerciseHeader";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 interface ExercisePageProps {
   loading?: boolean;

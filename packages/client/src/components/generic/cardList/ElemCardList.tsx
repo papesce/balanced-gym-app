@@ -1,8 +1,8 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem";
+import ListItem from "@mui/material/ListItem";
 import ElemCard from "./ElemCard";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 import ListWrapper from "../ListWrapper";
 import "./ElemCardList.css";
 

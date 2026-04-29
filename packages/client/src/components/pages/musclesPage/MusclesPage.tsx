@@ -1,43 +1,13 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import ListSubheader from '@material-ui/core/ListSubheader';
-// import IconButton from "@material-ui/core/IconButton";
-// import InfoIcon from "@material-ui/icons/Info";
+import Box from "@mui/material/Box";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+// import ListSubheader from '@mui/material/ListSubheader';
+// import IconButton from "@mui/material/IconButton";
+// import InfoIcon from "@mui/icons-material/Info";
 import { IExercise, IMuscle } from "balanced-gym-model";
-import Typography from "@material-ui/core/Typography";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-    width: "100%"
-  },
-  gridList: {
-    width: "100%",
-    // height: 350
-  },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)"
-  },
-  gridTileBar: {
-    background: "rgba(0, 0, 0, 0.2)"
-  },
-  tileBarSubtitle: {
-    whiteSpace: "normal",
-    color: "rgba(0, 0, 0, 0.9)",
-    background: "rgba(255, 255, 255, 0.5)"
-  },
-  tileBarTitle: {
-    color: "rgba(0, 0, 0, 0.9)",
-    background: "rgba(255, 255, 255, 0.5)"
-  }
-}));
+import Typography from "@mui/material/Typography";
 
 interface MusclePageProps {
   exercise: IExercise;
@@ -70,7 +40,6 @@ const getMuscleURL = (muscle: IMuscle) => {
 };
 
 const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
-  const classes = useStyles();
   const muscles: IMuscleWithType[] = getMuscles(exercise);
   if (muscles.length === 0) {
     return (
@@ -85,34 +54,48 @@ const MusclesPage: React.FC<MusclePageProps> = ({ exercise, noDataMsg }) => {
     );
   }
   return (
-    <div className={classes.root}>
-      <GridList cols={2} cellHeight={120} className={classes.gridList}>
-        {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+    <Box sx={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      overflow: "hidden",
+      backgroundColor: "background.paper",
+      width: "100%",
+    }}>
+      <ImageList cols={2} rowHeight={120} sx={{ width: "100%" }}>
+        {/* <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
              <ListSubheader component="div">December</ListSubheader>
-        </GridListTile> */}
+        </ImageListItem> */}
         {muscles.map(muscle => (
-          <GridListTile key={muscle._id}>
+          <ImageListItem key={muscle._id}>
             <img src={getMuscleURL(muscle)} alt={" "} />
-            <GridListTileBar className={classes.gridTileBar}
+            <ImageListItemBar sx={{ background: "rgba(0, 0, 0, 0.2)" }}
               // title={muscle.muscleType || ""}
               // titlePosition="top"
               subtitle={(<div>
-              <span className={classes.tileBarSubtitle}>{muscle.name}</span><div>
-              <span className={classes.tileBarTitle}>({muscle.muscleType || ""})</span>
+              <Box component="span" sx={{
+                whiteSpace: "normal",
+                color: "rgba(0, 0, 0, 0.9)",
+                background: "rgba(255, 255, 255, 0.5)",
+              }}>{muscle.name}</Box><div>
+              <Box component="span" sx={{
+                color: "rgba(0, 0, 0, 0.9)",
+                background: "rgba(255, 255, 255, 0.5)",
+              }}>({muscle.muscleType || ""})</Box>
               </div></div>)}
               // actionIcon={
               //   <IconButton
               //     aria-label={`info about ${muscle.name}`}
-              //     className={classes.icon}
+              //     sx={{ color: "rgba(255, 255, 255, 0.54)" }}
               //   >
               //     <InfoIcon />
               //   </IconButton>
               // }
             />
-          </GridListTile>
+          </ImageListItem>
         ))}
-      </GridList>
-    </div>
+      </ImageList>
+    </Box>
   );
 };
 
