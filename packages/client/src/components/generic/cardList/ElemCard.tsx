@@ -34,7 +34,7 @@ const ElemCard: React.FC<ElemCardProps> = ({
   image = ""
 }) => {
   const classes = useStyles();
-  const imageURL: string = `${process.env.REACT_APP_ASSETS}/${image}`;
+  const imageURL: string = `${import.meta.env.VITE_APP_ASSETS}/${image}`;
   // console.log(imageURL)
   return (
     <Card className={classes.card}>

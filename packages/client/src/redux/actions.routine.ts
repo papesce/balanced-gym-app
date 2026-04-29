@@ -22,7 +22,7 @@ import { handleErrors } from './utils';
  
  export const loadRoutine = (routineId: string) => (dispatch: any) => {
       dispatch(fetchRoutineBegin());
-      return fetch(`${process.env.REACT_APP_API}/routine/${routineId}`)
+      return fetch(`${import.meta.env.VITE_APP_API}/routine/${routineId}`)
       .then(handleErrors)
       .then(res => res.json())
       .then(routine => {

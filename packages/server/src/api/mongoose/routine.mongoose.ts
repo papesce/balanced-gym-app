@@ -3,7 +3,7 @@ import { IRoutineDao } from "balanced-gym-model";
 
 const Schema = mongoose.Schema;
 
-export interface IRoutineDocument extends mongoose.Document, IRoutineDao {}
+export type IRoutineDocument = mongoose.Document & IRoutineDao;
 
 const schema = new Schema(
   {
@@ -11,7 +11,7 @@ const schema = new Schema(
   },
   {
     timestamps: true,
-    usePushEach: true
+
   }
 );
 

@@ -50,7 +50,7 @@ export class SerieService {
     serieId: string
   ): Promise<ISerie> {
     L.info(`deeleting serie id ${serieId}`);
-    const serieDao: ISerieDao = await SerieDocumentModel.findOneAndRemove({
+    const serieDao: ISerieDao = await SerieDocumentModel.findOneAndDelete({
       _id: serieId
     })
       .lean()
