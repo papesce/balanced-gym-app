@@ -2,10 +2,10 @@ import React from "react";
 import SwipeableItem from "../../generic/swipeable/SwipeableItem";
 import SerieInput from "../serieInput/SerieInput";
 import { ISerie } from "balanced-gym-model";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import { formatDateString, millisToMinutesAndSeconds } from "../../../utils/dateUtils";
-import IconButton from "@material-ui/core/IconButton";
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import IconButton from "@mui/material/IconButton";
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import './EditSerie.css';
 
 interface EditSerieProps {

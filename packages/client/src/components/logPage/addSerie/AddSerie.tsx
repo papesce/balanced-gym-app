@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import { ISerie } from "balanced-gym-model";
 import {
   millisToMinutesAndSeconds,
   secondsToNow
 } from "../../../utils/dateUtils";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import "./AddSerie.css";
 
 const DEFAULT_TIMER_LIMIT: number = 5 * 60; //5 minutes

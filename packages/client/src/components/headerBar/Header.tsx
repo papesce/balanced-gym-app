@@ -1,21 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
-  }
-}));
 
 interface HeaderProps {
   leftComponent?: any;
@@ -23,24 +11,23 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ leftComponent, rightComponent }) => {
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           {leftComponent}
-          <Typography variant="subtitle1" className={classes.title}>
+          <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
             <Link to="/" style={{ color: 'inherit', textDecoration: "none" }}>
               Balanced Gym App
             </Link>
           </Typography>
-          <Typography variant="caption" className={classes.title}>
+          <Typography variant="caption" sx={{ flexGrow: 1 }}>
             v{import.meta.env.VITE_APP_VERSION}
           </Typography>
           {rightComponent}
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   );
 };
 

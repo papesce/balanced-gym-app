@@ -1,8 +1,8 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
-import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import MoreOutlinedIcon from "@mui/icons-material/MoreOutlined";
+import Tooltip from "@mui/material/Tooltip";
 import "./GraphBar.css";
 
 interface GraphBarProps {

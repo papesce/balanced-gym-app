@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { IExercise } from "balanced-gym-model";
-import CardContent from "@material-ui/core/CardContent";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import FlipToBackIcon from '@material-ui/icons/FlipToBack';
-import Tooltip from "@material-ui/core/Tooltip";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import FlipToBackIcon from '@mui/icons-material/FlipToBack';
+import Tooltip from "@mui/material/Tooltip";
 import "./DetailsPage.css";
 
 interface DetailsPageProps {
