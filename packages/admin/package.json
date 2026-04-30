@@ -1,0 +1,36 @@
+{
+  "name": "balanced-gym-app-admin",
+  "description": "Balanced Gym App Admin",
+  "version": "0.4.0",
+  "private": true,
+  "engines": {
+    "npm": ">=6",
+    "node": ">=22",
+    "yarn": ">=1.21"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.0",
+    "@mui/material": "^6.4.0",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "balanced-gym-model": "0.4.0",
+    "firebase": "^12.12.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.0.0",
+    "typescript": "^5.7.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^6.0.0"
+  }
+}

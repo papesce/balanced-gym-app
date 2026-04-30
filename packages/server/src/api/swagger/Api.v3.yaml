@@ -7,6 +7,9 @@ tags:
   - name: Routine
   - name: Serie
   - name: Exercise
+  - name: Muscle
+  - name: MuscleGroup
+  - name: Admin
 paths:
   /routines:
     get:
@@ -79,21 +82,6 @@ paths:
       responses:
         "200":
           description: Returns the target with ID
-  /exercise/{exerciseId}:
-    get:
-      tags:
-        - Exercise
-      description: Fetch the exercise with the given Id
-      parameters:
-        - in: path
-          name: exerciseId
-          schema:
-            type: string
-          required: true
-          example: 5a04c3471e403f31c973d699
-      responses:
-        "200":
-          description: Returns the routine with ID
   /updateSerie/{serieId}/exercise/{exerciseId}:
     patch:
       tags:
@@ -178,6 +166,191 @@ paths:
       responses:
         "200":
           description: Returns the exercise with the new serie and the new serie
+  /muscles:
+    get:
+      tags:
+        - Muscle
+      description: Fetch all muscles (sorted by name)
+      responses:
+        "200":
+          description: Returns all muscles
+  /newMuscle:
+    post:
+      tags:
+        - Admin
+      description: Create a new muscle (admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Biceps Brachii
+                muscleURL:
+                  type: string
+                  example: BicepsInsideSmall.png
+      responses:
+        "201":
+          description: Returns the created muscle
+        "403":
+          description: Admin access required
+  /muscle/{muscleId}:
+    patch:
+      tags:
+        - Admin
+      description: Update a muscle (admin only)
+      parameters:
+        - in: path
+          name: muscleId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                muscleURL:
+                  type: string
+      responses:
+        "200":
+          description: Returns the updated muscle
+        "403":
+          description: Admin access required
+  /muscleGroups:
+    get:
+      tags:
+        - MuscleGroup
+      description: Fetch all muscle groups (sorted by order)
+      responses:
+        "200":
+          description: Returns all muscle groups
+  /newExercise/{routineId}:
+    post:
+      tags:
+        - Admin
+      description: Create a new exercise in a routine (admin only)
+      parameters:
+        - in: path
+          name: routineId
+          schema:
+            type: string
+          required: true
+          example: 59f0c59d4e55c40d38868034
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Barbell Bench Press
+                muscleGroup:
+                  type: string
+                  example: 5dde9b568603d000157b627d
+                target:
+                  type: string
+                  example: 5a55152ad9b873001457578f
+                gifURL:
+                  type: string
+                  example: BBBenchPress.gif
+                equipment:
+                  type: string
+                  example: Barbell Long
+                synergists:
+                  type: array
+                  items:
+                    type: string
+                stabilizers:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: Returns the created exercise
+        "403":
+          description: Admin access required
+  /exercise/{exerciseId}:
+    get:
+      tags:
+        - Exercise
+      description: Fetch the exercise with the given Id
+      parameters:
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a04c3471e403f31c973d699
+      responses:
+        "200":
+          description: Returns the exercise with ID
+    patch:
+      tags:
+        - Admin
+      description: Update an exercise (admin only)
+      parameters:
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a04c3471e403f31c973d699
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                muscleGroup:
+                  type: string
+                target:
+                  type: string
+                gifURL:
+                  type: string
+                equipment:
+                  type: string
+                synergists:
+                  type: array
+                  items:
+                    type: string
+                stabilizers:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: Returns the updated exercise
+        "403":
+          description: Admin access required
+    delete:
+      tags:
+        - Admin
+      description: Delete an exercise and its series (admin only)
+      parameters:
+        - in: path
+          name: exerciseId
+          schema:
+            type: string
+          required: true
+          example: 5a04c3471e403f31c973d699
+      responses:
+        "204":
+          description: Exercise deleted successfully
+        "403":
+          description: Admin access required
   /spec:
     get:
       tags:
