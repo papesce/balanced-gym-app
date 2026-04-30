@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import { Edit, Add } from '@mui/icons-material';
 import { useGetMusclesQuery } from '../redux/api';
+import { imgUrl } from '../components/utils';
 
 export default function MuscleList() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function MuscleList() {
           <ImageListItem key={muscle._id}>
             {muscle.muscleURL && (
               <img
-                src={muscle.muscleURL}
+                src={imgUrl(muscle.muscleURL)}
                 alt={muscle.name}
                 loading="lazy"
                 style={{ height: 200, objectFit: 'contain' }}

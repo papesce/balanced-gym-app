@@ -4,9 +4,7 @@
   "version": "0.4.0",
   "private": true,
   "engines": {
-    "npm": ">=6",
-    "node": ">=22",
-    "yarn": ">=1.21"
+    "node": ">=22"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -16,7 +14,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "balanced-gym-model": "0.4.0",
+    "balanced-gym-model": "workspace:*",
     "firebase": "^12.12.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

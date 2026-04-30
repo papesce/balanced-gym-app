@@ -14,6 +14,7 @@ import {
   IExerciseCreate,
 } from '../redux/api';
 import { EQUIPMENTS } from '../components/Equipments';
+import { imgUrl } from '../components/utils';
 
 export default function ExerciseForm() {
   const { exerciseId } = useParams<{ exerciseId: string }>();
@@ -148,7 +149,7 @@ export default function ExerciseForm() {
             <img
               alt="target muscle"
               style={{ maxHeight: 120 }}
-              src={muscles.find((m) => m._id === target)?.muscleURL}
+              src={imgUrl(muscles.find((m) => m._id === target)?.muscleURL)}
             />
           </Box>
         )}
@@ -161,7 +162,7 @@ export default function ExerciseForm() {
         />
         {gifURL && (
           <Box mt={2}>
-            <img alt="exercise gif" style={{ width: 150 }} src={gifURL} />
+            <img alt="exercise gif" style={{ width: 150 }} src={imgUrl(gifURL)} />
           </Box>
         )}
       </Box>
@@ -173,7 +174,7 @@ export default function ExerciseForm() {
         />
         {exerciseURL && (
           <Box mt={2}>
-            <img alt="exercise ref" style={{ maxWidth: 200 }} src={exerciseURL} />
+            <img alt="exercise ref" style={{ maxWidth: 200 }} src={imgUrl(exerciseURL)} />
           </Box>
         )}
       </Box>

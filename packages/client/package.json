@@ -4,11 +4,10 @@
   "version": "0.4.0",
   "private": true,
   "engines": {
-    "npm": ">=6",
-    "node": ">=22",
-    "yarn": ">=1.21"
+    "node": ">=22"
   },
   "dependencies": {
+    "balanced-gym-model": "workspace:*",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.0",

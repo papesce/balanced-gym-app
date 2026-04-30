@@ -8,6 +8,7 @@ import {
   useCreateMuscleMutation,
   useUpdateMuscleMutation,
 } from '../redux/api';
+import { imgUrl } from '../components/utils';
 
 export default function MuscleForm() {
   const { muscleId } = useParams<{ muscleId: string }>();
@@ -71,7 +72,7 @@ export default function MuscleForm() {
         />
         {muscleURL && (
           <Box mt={2}>
-            <img alt="muscle preview" style={{ maxHeight: 150 }} src={muscleURL} />
+            <img alt="muscle preview" style={{ maxHeight: 150 }} src={imgUrl(muscleURL)} />
           </Box>
         )}
       </Box>

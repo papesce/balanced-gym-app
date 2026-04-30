@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { IExerciseListItem } from '../redux/api';
+import { imgUrl } from './utils';
 
 interface ExerciseCardProps {
   exercise: IExerciseListItem;
@@ -32,7 +33,7 @@ export function ExerciseCard({ exercise, onEdit, onDelete }: ExerciseCardProps) 
         <CardMedia
           component="img"
           height="180"
-          image={exercise.gifURL}
+          image={imgUrl(exercise.gifURL)}
           alt={exercise.name}
         />
       )}
