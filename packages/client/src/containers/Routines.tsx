@@ -4,9 +4,11 @@ import { IRoutine } from 'balanced-gym-model';
 import { useGetRoutinesQuery } from '../redux/api';
 import { useNavigate } from "react-router-dom";
 import InitialHeader from '../components/headerBar/InitialHeader';
+import { useAuth } from '../context/AuthContext';
 
 const Routines: React.FC = () => {
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const { data: routines, isLoading, error } = useGetRoutinesQuery();
 
     const onRoutineClick = (routine: IRoutine) => {
@@ -15,7 +17,7 @@ const Routines: React.FC = () => {
 
     return (
         <>
-            <InitialHeader handleLogout={() => {}} />
+            <InitialHeader handleLogout={logout} />
             <RoutineList
                 loading={isLoading}
                 error={error ? "Error loading routines" : undefined}
