@@ -19,5 +19,9 @@ yarn-debug.log*
 # IDE
 .vscode/
 
+# Backup data
+packages/server/src/scripts/backup/dbbackup/balanced_gym
+packages/server/src/scripts/backup/*.log
+
 # OS
 .DS_Store
