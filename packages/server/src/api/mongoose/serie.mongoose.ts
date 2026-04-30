@@ -10,7 +10,8 @@ const schema = new Schema(
     {
         reps: Number,
         weight: Number,
-        restTime: Number
+        restTime: Number,
+        userId: String
       },
       {
         timestamps: true,
