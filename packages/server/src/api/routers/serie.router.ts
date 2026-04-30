@@ -1,15 +1,16 @@
 import { ISerie, IExercise, ISerieUpdate } from "balanced-gym-model";
 import SerieService from "../services/serie.service";
 import ExerciseService from "../services/exercise.service";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import * as HttpStatus from "http-status-codes";
 import express from "express";
+import { AuthenticatedRequest } from "../middleware/auth.middleware";
 
 const api = express.Router();
 
 api.patch(
   "/updateSerie/:serieId/exercise/:exerciseId",
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     try {
       const { serieId, exerciseId } = req.params;
       const serieUpdate: ISerieUpdate = req.body;
@@ -26,7 +27,7 @@ api.patch(
 
 api.delete(
   "/deleteSerie/:serieId/exercise/:exerciseId",
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     try {
       const { serieId, exerciseId } = req.params;
       const updatedSerie: ISerie = await SerieService.deleteSerie(serieId);
@@ -42,11 +43,11 @@ api.delete(
 
 api.post(
   "/newSerie/:exerciseId",
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     try {
       const { exerciseId } = req.params;
       const serieUpdate: ISerieUpdate = req.body;
-      const newSerie: ISerie = await SerieService.newSerie(exerciseId, serieUpdate);
+      const newSerie: ISerie = await SerieService.newSerie(exerciseId, serieUpdate, req.userId);
       const exercise: IExercise = await ExerciseService.getExerciseById(
         exerciseId
       );

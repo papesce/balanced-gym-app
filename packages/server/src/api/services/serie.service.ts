@@ -21,17 +21,19 @@ export class SerieService {
       reps: serieDao.reps,
       weight: serieDao.weight,
       createdAt: serieDao.createdAt,
-      restTime: serieDao.restTime
+      restTime: serieDao.restTime,
+      userId: serieDao.userId
     };
     return serie;
   }
   async newSerie(
     exerciseId: string,
-    suggestedSerie: ISerieUpdate = { reps: 10, weight: 1 }
+    suggestedSerie: ISerieUpdate = { reps: 10, weight: 1 },
+    userId?: string
   ): Promise<ISerie> {
     L.info(`creating serie for exercise id ${exerciseId}`);
     const serieDao: ISerieDao = await new SerieDocumentModel(
-      suggestedSerie
+      { ...suggestedSerie, userId }
     ).save();
     const exerciseDao: IExerciseDocument = await ExerciseDocumentModel.findById(exerciseId).exec();
     exerciseDao.series.push(serieDao);
@@ -42,7 +44,8 @@ export class SerieService {
       reps: serieDao.reps,
       weight: serieDao.weight,
       createdAt: serieDao.createdAt,
-      restTime: serieDao.restTime
+      restTime: serieDao.restTime,
+      userId: serieDao.userId
     };
     return serie;
   }
@@ -60,7 +63,8 @@ export class SerieService {
       reps: serieDao.reps,
       weight: serieDao.weight,
       createdAt: serieDao.createdAt,
-      restTime: serieDao.restTime
+      restTime: serieDao.restTime,
+      userId: serieDao.userId
     };
     return serie;
   }

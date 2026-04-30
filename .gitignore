@@ -9,6 +9,7 @@ packages/client/build/
 # Environment
 .env
 .env.local
+.envrc
 packages/server/.env
 
 # Package manager

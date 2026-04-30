@@ -5,7 +5,8 @@ export interface ISerieDao {
     weight: number,
     createdAt?: string;
     updatedAt?: string;
-    restTime?: number
+    restTime?: number;
+    userId?: string;
 }
 
 
@@ -14,7 +15,8 @@ export interface ISerie {
     createdAt?: string,
     reps: number,
     weight: number,
-    restTime?: number
+    restTime?: number;
+    userId?: string;
 }
 
 export interface ISerieUpdate {
