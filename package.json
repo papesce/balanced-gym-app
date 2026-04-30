@@ -1,33 +1,31 @@
 {
   "name": "balanced-gym-app",
   "private": true,
-  "devDependencies": {
-    "npm-run-all": "^4.1.5"
-  },
   "engines": {
-    "node": ">=22",
-    "npm": ">=6",
-    "yarn": ">=1.21"
+    "node": ">=22"
   },
   "author": "Pablo Pesce <papesce@gmail.com>",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "npx npm-run-all --parallel dev:client dev:server",
-    "dev:admin": "npx npm-run-all --parallel dev:admin:app dev:server",
-    "dev:all": "npx npm-run-all --parallel dev:client dev:admin:app dev:server",
-    "dev:client": "yarn workspace balanced-gym-app-client dev",
-    "dev:admin:app": "yarn workspace balanced-gym-app-admin dev",
-    "dev:server": "yarn workspace balanced-gym-app-server dev",
-    "start": "yarn workspace balanced-gym-app-server start",
-    "types": "yarn workspace balanced-gym-model types",
-    "build": "yarn workspace balanced-gym-model types && npx npm-run-all --parallel build:client",
-    "build:client": "yarn workspace balanced-gym-app-client build",
-    "build:admin": "yarn workspace balanced-gym-app-admin build",
-    "test:model": "yarn workspace balanced-gym-model test",
-    "test:client": "yarn workspace balanced-gym-app-client test"
+    "dev": "pnpm --parallel --filter balanced-gym-app-client --filter balanced-gym-app-server run dev",
+    "dev:admin": "pnpm dev:server & wait-on http://localhost:3000/spec && pnpm dev:admin:app",
+    "dev:all": "pnpm dev:server & wait-on http://localhost:3000/spec && pnpm --parallel --filter balanced-gym-app-client --filter balanced-gym-app-admin run dev",
+    "dev:client": "pnpm --filter balanced-gym-app-client dev",
+    "dev:admin:app": "pnpm --filter balanced-gym-app-admin dev",
+    "dev:server": "pnpm --filter balanced-gym-app-server dev",
+    "start": "pnpm --filter balanced-gym-app-server start",
+    "types": "pnpm --filter balanced-gym-model types",
+    "build": "pnpm --filter balanced-gym-model types && pnpm --parallel --filter balanced-gym-app-client run build",
+    "build:client": "pnpm --filter balanced-gym-app-client build",
+    "build:admin": "pnpm --filter balanced-gym-app-admin build",
+    "test:model": "pnpm --filter balanced-gym-model test",
+    "test:client": "pnpm --filter balanced-gym-app-client test",
+    "backup": "pnpm --filter balanced-gym-app-server backup",
+    "restore": "pnpm --filter balanced-gym-app-server restore",
+    "set-admin": "pnpm --filter balanced-gym-app-server set-admin"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501",
+  "dependencies": {
+    "wait-on": "^9.0.5"
+  }
 }

@@ -21,6 +21,7 @@ export default class ExpressServer {
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(express.static(`${root}/public`));
+    app.use('/img', express.static(`${root}/assets`));
   }
 
   router(routes: (app: Application) => void): ExpressServer {
