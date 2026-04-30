@@ -8,11 +8,23 @@ import L from "../../common/logger";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
 import { SerieDocumentModel } from "../mongoose/serie.mongoose";
 
+export interface IExerciseCreate {
+  name: string;
+  muscleGroup?: string;
+  target?: string;
+  gifURL: string;
+  exerciseURL?: string;
+  equipment?: string;
+  synergists?: string[];
+  stabilizers?: string[];
+  routineId?: string;
+  links?: string[];
+}
+
 export class ExerciseService {
   async getExerciseById(exerciseId: string): Promise<IExercise> {
     L.info(`fetch exercise with id ${exerciseId}`);
 
-    // if (!mongooseTypes.ObjectId.isValid(routineId)) throw new errors.HttpError(HttpStatus.BAD_REQUEST);
     let lastCreationDate: string | undefined = undefined;
     const seriesDao: ISerieDao[] = await SerieDocumentModel.find()
       .sort({
@@ -33,7 +45,6 @@ export class ExerciseService {
       .populate("target", "name muscleURL")
       .populate("synergists", "name muscleURL")
       .populate("stabilizers", "name muscleURL")
-      // .populate("series", 'createdAt reps weight')
       .populate({
         path: "series",
         select: "createdAt reps weight restTime",
@@ -52,14 +63,51 @@ export class ExerciseService {
       .populate("stabilizers", "name")
       .lean()
       .exec();
-    //   if (!doc) throw new errors.HttpError(HttpStatus.NOT_FOUND);
-    // L.info(exercisesDao)
     const exercise: IExercise = getExercise(
       exerciseDao,
       exercisesDao,
       lastCreationDate
     );
     return Promise.resolve(exercise);
+  }
+
+  async createExercise(routineId: string, data: IExerciseCreate): Promise<IExerciseDao> {
+    L.info(`creating exercise in routine ${routineId}`);
+    const exercise = await new ExerciseDocumentModel({
+      name: data.name,
+      series: [],
+      muscleGroup: data.muscleGroup,
+      target: data.target,
+      gifURL: data.gifURL,
+      exerciseURL: data.exerciseURL,
+      equipment: data.equipment,
+      synergists: data.synergists || [],
+      stabilizers: data.stabilizers || [],
+      routineId,
+      links: data.links || []
+    }).save();
+    return exercise.toObject();
+  }
+
+  async updateExercise(exerciseId: string, data: Partial<IExerciseCreate>): Promise<IExerciseDao> {
+    L.info(`updating exercise ${exerciseId}`);
+    const exercise: IExerciseDao = await ExerciseDocumentModel.findOneAndUpdate(
+      { _id: exerciseId },
+      data,
+      { new: true }
+    )
+      .lean()
+      .exec();
+    return exercise;
+  }
+
+  async deleteExercise(exerciseId: string): Promise<void> {
+    L.info(`deleting exercise ${exerciseId}`);
+    const exercise = await ExerciseDocumentModel.findById(exerciseId).lean().exec();
+    if (exercise?.series?.length) {
+      await SerieDocumentModel.deleteMany({ _id: { $in: exercise.series } }).exec();
+    }
+    await ExerciseDocumentModel.findByIdAndDelete(exerciseId).exec();
   }
 }
 
