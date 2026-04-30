@@ -1,4 +1,5 @@
 import { Application } from "express";
+import { authMiddleware } from "./api/middleware/auth.middleware";
 import routinesRouter from "./api/routers/routines.router";
 import routineRouter from "./api/routers/routine.router";
 import muscleGroupRouter from "./api/routers/muscleGroup.router";
@@ -9,6 +10,7 @@ import serieRouter from "./api/routers/serie.router";
 const API_VERSION = '/api/v1';
 
 export default function routes(app: Application): void {
+  app.use(`${API_VERSION}`, authMiddleware);
   app.use(`${API_VERSION}`, routinesRouter);
   app.use(`${API_VERSION}`, routineRouter);
   app.use(`${API_VERSION}`, muscleGroupRouter);

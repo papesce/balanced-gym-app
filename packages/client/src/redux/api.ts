@@ -3,7 +3,17 @@ import { IRoutineSummary, IRoutine, IMuscleGroup, IMuscle, IExercise, ISerie, IS
 
 export const gymApi = createApi({
   reducerPath: 'gymApi',
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_API }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_APP_API,
+    prepareHeaders: async (headers) => {
+      const { auth } = await import('../firebase');
+      const token = await auth.currentUser?.getIdToken();
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   tagTypes: ['Exercise'],
   endpoints: (builder) => ({
     getRoutines: builder.query<IRoutineSummary[], void>({

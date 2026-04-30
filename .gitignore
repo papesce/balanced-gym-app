@@ -8,7 +8,7 @@ packages/client/build/
 
 # Environment
 .env
-.env.*
+.env.local
 packages/server/.env
 
 # Package manager
