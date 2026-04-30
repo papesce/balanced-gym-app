@@ -9,17 +9,17 @@ import { RoutineDocumentModel } from "../mongoose/routine.mongoose";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
   
   export class RoutineService {
-    async getRoutineById(routineId: string): Promise<IRoutine> {
+    async getRoutineById(routineId: string, userId?: string): Promise<IRoutine> {
       L.info(`fetch routine with id ${routineId}`);
-  
-      // if (!mongooseTypes.ObjectId.isValid(routineId)) throw new errors.HttpError(HttpStatus.BAD_REQUEST);
+
+      const serieFilter = userId ? { userId } : {};
       const routineDao: IRoutineDao = await RoutineDocumentModel
         .findOne({ _id: routineId })
         .select('name').lean().exec();
        const exercisesDao: IExerciseDao[] = await ExerciseDocumentModel
         .find({ routineId }).select('name')
         .populate("muscleGroup", 'name order')
-        .populate("series")
+        .populate({ path: "series", match: serieFilter })
         .populate("target", 'name')
         .populate("synergists")
         .populate("stabilizers").lean().exec();

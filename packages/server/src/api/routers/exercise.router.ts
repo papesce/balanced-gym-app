@@ -7,10 +7,10 @@ import { adminMiddleware, AuthenticatedRequest } from "../middleware/auth.middle
 
 const api = express.Router();
 
-api.get("/exercise/:exerciseId", async (req: Request, res: Response, next: NextFunction) => {
+api.get("/exercise/:exerciseId", async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { exerciseId } = req.params;
-    const exercise: IExercise = await ExerciseService.getExerciseById(exerciseId);
+    const exercise: IExercise = await ExerciseService.getExerciseById(exerciseId, req.userId);
     return res.status(HttpStatus.OK).json(exercise);
   } catch (err) {
     return next(err);

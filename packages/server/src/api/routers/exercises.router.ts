@@ -1,18 +1,19 @@
 import { IExerciseDao } from "balanced-gym-model";
 import ExercisesService from "../services/exercises.service";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import * as HttpStatus from "http-status-codes";
 import express from "express";
+import { AuthenticatedRequest } from "../middleware/auth.middleware";
 
 const api = express.Router();
 
-api.get("/exercises", async (req: Request, res: Response, next: NextFunction) => {
+api.get("/exercises", async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const query: Record<string, string> = {};
     if (req.query.routineId) query.routineId = req.query.routineId as string;
     if (req.query.muscleGroup) query.muscleGroup = req.query.muscleGroup as string;
     if (req.query.target) query.target = req.query.target as string;
-    const exercises: IExerciseDao[] = await ExercisesService.getExercises(query);
+    const exercises: IExerciseDao[] = await ExercisesService.getExercises(query, req.userId);
     return res.status(HttpStatus.OK).json(exercises);
   } catch (err) {
     return next(err);

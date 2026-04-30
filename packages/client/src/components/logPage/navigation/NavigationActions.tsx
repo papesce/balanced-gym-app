@@ -8,18 +8,18 @@ interface NavigationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onChangePage: (event: any, page: number) => void;
+  onPageChange: (event: any, page: number) => void;
 }
 
 export const NavigationActions: React.FC<NavigationActionsProps> = props => {
-  const { count, page, rowsPerPage, onChangePage } = props;
+  const { count, page, rowsPerPage, onPageChange } = props;
 
   const handleBackButtonClick = (event: any) => {
-    onChangePage(event, page + 1);
+    onPageChange(event, page + 1);
   };
 
   const handleNextButtonClick = (event: any) => {
-    onChangePage(event, page - 1);
+    onPageChange(event, page - 1);
   };
 
   return (

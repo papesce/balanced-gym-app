@@ -9,7 +9,7 @@ import { getTargetURL } from '../utils/routes';
 const Exercise: React.FC = () => {
     const navigate = useNavigate();
     const { exerciseId } = useParams<{ exerciseId: string }>();
-    const { data: exercise, isLoading, error } = useGetExerciseQuery(exerciseId);
+    const { data: exercise, isLoading, error } = useGetExerciseQuery(exerciseId!);
     const [triggerNewSerie, { isLoading: isCreating, error: creatingError }] = useNewSerieMutation();
     const [triggerEditSerie, { isLoading: isEditing, error: editingError }] = useEditSerieMutation();
     const [triggerDeleteSerie, { isLoading: isDeleting, error: deletingError }] = useDeleteSerieMutation();

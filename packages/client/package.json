@@ -7,7 +7,6 @@
     "node": ">=22"
   },
   "dependencies": {
-    "balanced-gym-model": "workspace:*",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.0",
@@ -15,6 +14,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "balanced-gym-model": "workspace:*",
     "date-fns": "^4.1.0",
     "firebase": "^12.12.1",
     "react": "^19.0.0",
@@ -32,6 +32,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@vitejs/plugin-react": "^4.3.0",
     "vite": "^6.0.0"
   }

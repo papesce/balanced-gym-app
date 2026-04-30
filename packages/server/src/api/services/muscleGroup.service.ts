@@ -13,11 +13,13 @@ import { MuscleGroupDocumentModel, getMuscleGroupDao } from "../mongoose/muscleG
 export class MuscleGroupService {
   async getMuscleGroupById(
     routineId: string,
-    muscleGroupId: string
+    muscleGroupId: string,
+    userId?: string
   ): Promise<IMuscleGroup> {
     L.info(
       `fetch muscleGroup with routineId ${routineId} muscleGroupId: ${muscleGroupId}`
     );
+    const serieFilter = userId ? { userId } : {};
     const muscleGroupDao: IMuscleGroupDao = await getMuscleGroupDao(muscleGroupId);
     const routineDao: IRoutineDao = await getRoutineDao(routineId);
     const exercisesDao: IExerciseDao[] = await ExerciseDocumentModel.find({
@@ -25,7 +27,7 @@ export class MuscleGroupService {
       muscleGroup: muscleGroupId
     })
       .select("name target synergists stabilizers")
-      .populate("series")
+      .populate({ path: "series", match: serieFilter })
       .populate("target", "name muscleURL")
       .lean()
       .exec();

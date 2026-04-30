@@ -16,7 +16,7 @@ api.patch(
       const serieUpdate: ISerieUpdate = req.body;
       const updatedSerie: ISerie = await SerieService.updateSerie(serieId, serieUpdate);
       const exercise: IExercise = await ExerciseService.getExerciseById(
-        exerciseId
+        exerciseId, req.userId
       );
       return res.status(HttpStatus.OK).json({ exercise, serie: updatedSerie });
     } catch (err) {
@@ -32,7 +32,7 @@ api.delete(
       const { serieId, exerciseId } = req.params;
       const updatedSerie: ISerie = await SerieService.deleteSerie(serieId);
       const exercise: IExercise = await ExerciseService.getExerciseById(
-        exerciseId
+        exerciseId, req.userId
       );
       return res.status(HttpStatus.OK).json({ exercise, serie: updatedSerie });
     } catch (err) {
@@ -49,7 +49,7 @@ api.post(
       const serieUpdate: ISerieUpdate = req.body;
       const newSerie: ISerie = await SerieService.newSerie(exerciseId, serieUpdate, req.userId);
       const exercise: IExercise = await ExerciseService.getExerciseById(
-        exerciseId
+        exerciseId, req.userId
       );
       return res.status(HttpStatus.OK).json({ exercise, serie: newSerie });
     } catch (err) {

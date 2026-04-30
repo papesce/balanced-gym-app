@@ -8,7 +8,7 @@ import BackHeader from '../components/headerBar/BackHeader';
 const Routine: React.FC = () => {
     const navigate = useNavigate();
     const { routineId } = useParams<{ routineId: string }>();
-    const { data: routine, isLoading, error } = useGetRoutineQuery(routineId);
+    const { data: routine, isLoading, error } = useGetRoutineQuery(routineId!);
 
     const onRoutineClick = (muscleGroup: IMuscleGroup) => {
         navigate(`/routine/${routineId}/muscleGroup/${muscleGroup._id}`);

@@ -16,9 +16,11 @@ export class TargetService {
   async getTarget(
     routineId: string,
     muscleGroupId: string,
-    targetId: string
+    targetId: string,
+    userId?: string
   ): Promise<IMuscle> {
     L.info(`fetch target with routineId targetId`);
+    const serieFilter = userId ? { userId } : {};
     const targetDao: IMuscleDao = await getTargetDao(targetId);
     const muscleGroupDao: IMuscleGroupDao = await getMuscleGroupDao(muscleGroupId);
     const routineDao: IRoutineDao = await getRoutineDao(routineId);
@@ -28,7 +30,7 @@ export class TargetService {
       target: targetId
     })
       .select("name target gifURL synergists stabilizers series")
-      .populate("series")
+      .populate({ path: "series", match: serieFilter })
       .lean()
       .exec();
     const target: IMuscle = getTarget(

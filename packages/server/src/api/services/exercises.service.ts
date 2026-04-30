@@ -5,12 +5,13 @@ import L from "../../common/logger";
 import { ExerciseDocumentModel } from "../mongoose/exercise.mongoose";
 
 export class ExercisesService {
-  async getExercises(query: Record<string, string>): Promise<IExerciseDao[]> {
+  async getExercises(query: Record<string, string>, userId?: string): Promise<IExerciseDao[]> {
     L.info(`fetch exercises with query ${JSON.stringify(query)}`);
+    const serieFilter = userId ? { userId } : {};
     const exercises: IExerciseDao[] = await ExerciseDocumentModel.find(query)
       .populate("routineId", "name")
       .populate("muscleGroup", "name")
-      .populate("series", "createdAt reps weight restTime")
+      .populate({ path: "series", select: "createdAt reps weight restTime", match: serieFilter })
       .populate("target", "name muscleURL")
       .populate("synergists", "name")
       .populate("stabilizers", "name")

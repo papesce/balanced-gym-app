@@ -22,11 +22,12 @@ export interface IExerciseCreate {
 }
 
 export class ExerciseService {
-  async getExerciseById(exerciseId: string): Promise<IExercise> {
+  async getExerciseById(exerciseId: string, userId?: string): Promise<IExercise> {
     L.info(`fetch exercise with id ${exerciseId}`);
 
     let lastCreationDate: string | undefined = undefined;
-    const seriesDao: ISerieDao[] = await SerieDocumentModel.find()
+    const serieFilter = userId ? { userId } : {};
+    const seriesDao: ISerieDao[] = await SerieDocumentModel.find(serieFilter)
       .sort({
         createdAt: -1
       })
@@ -48,6 +49,7 @@ export class ExerciseService {
       .populate({
         path: "series",
         select: "createdAt reps weight restTime",
+        match: serieFilter,
         options: { limit: 100, sort: { createdAt: -1 } }
       })
       .lean()
@@ -58,7 +60,7 @@ export class ExerciseService {
       target: exerciseDao.target
     })
       .select("name equipment")
-      .populate("series", "createdAt reps weight restTime")
+      .populate({ path: "series", select: "createdAt reps weight restTime", match: serieFilter })
       .populate("synergists", "name")
       .populate("stabilizers", "name")
       .lean()

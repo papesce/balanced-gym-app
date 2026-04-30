@@ -8,6 +8,8 @@ import {
   signOut,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
+import { store } from '../redux/configureStore';
+import { gymApi } from '../redux/api';
 
 interface AuthContextType {
   user: User | null;
@@ -46,6 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     await signOut(auth);
+    store.dispatch(gymApi.util.resetApiState());
   };
 
   return (

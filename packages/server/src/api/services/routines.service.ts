@@ -9,14 +9,15 @@ import { RoutineDocumentModel } from '../mongoose/routine.mongoose';
 import { ExerciseDocumentModel } from '../mongoose/exercise.mongoose';
 
 export class RoutinesService {
-  async getRoutinesSummary(): Promise<IRoutineSummary[]> {
+  async getRoutinesSummary(userId?: string): Promise<IRoutineSummary[]> {
     L.info("fetch all routines");
+    const serieFilter = userId ? { userId } : {};
     const routinesDao: IRoutineDao[] = await RoutineDocumentModel.find()
       .lean()
       .exec();
     const getExercises = async (routineId: string) => {
       const exerciseDAO: IExerciseDao[] = await ExerciseDocumentModel.find({ routineId })
-        .populate("series")
+        .populate({ path: "series", match: serieFilter })
         .lean()
         .exec();
       return exerciseDAO;

@@ -13,14 +13,14 @@ const Target: React.FC = () => {
         muscleGroupId: string;
         targetId: string;
     }>();
-    const { data: target, isLoading, error } = useGetTargetQuery({ routineId, muscleGroupId, targetId });
+    const { data: target, isLoading, error } = useGetTargetQuery({ routineId: routineId!, muscleGroupId: muscleGroupId!, targetId: targetId! });
 
     const onExerciseClick = (exercise: IExercise) => {
         navigate(`/exercise/${exercise._id}`);
     };
 
     const handleBack = () => {
-        navigate(getMuscleGroupURL(routineId, muscleGroupId));
+        navigate(getMuscleGroupURL(routineId!, muscleGroupId!));
     };
 
     return (

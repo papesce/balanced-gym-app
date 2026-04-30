@@ -9,14 +9,14 @@ import { getRoutineURL } from '../utils/routes';
 const MuscleGroup: React.FC = () => {
     const navigate = useNavigate();
     const { routineId, muscleGroupId } = useParams<{ routineId: string; muscleGroupId: string }>();
-    const { data: muscleGroup, isLoading, error } = useGetMuscleGroupQuery({ routineId, muscleGroupId });
+    const { data: muscleGroup, isLoading, error } = useGetMuscleGroupQuery({ routineId: routineId!, muscleGroupId: muscleGroupId! });
 
     const onTargetClick = (target: IMuscle) => {
         navigate(`/routine/${routineId}/muscleGroup/${muscleGroupId}/target/${target._id}`);
     };
 
     const handleBack = () => {
-        navigate(getRoutineURL(routineId));
+        navigate(getRoutineURL(routineId!));
     };
 
     return (
