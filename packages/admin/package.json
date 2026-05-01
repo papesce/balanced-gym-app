@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && ./build.sh",
     "preview": "vite preview"
   },
   "devDependencies": {
