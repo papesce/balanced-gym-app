@@ -1,18 +1,18 @@
-FROM node:22-slim
+FROM node:22-slim AS base
+RUN npm install -g pnpm@10
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-COPY packages/model/package.json packages/model/
-COPY packages/server/package.json packages/server/
-COPY packages/client/package.json packages/client/
+# Install dependencies (layer cache)
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY packages/server/package.json ./packages/server/
+COPY packages/client/package.json ./packages/client/
+COPY packages/model/package.json ./packages/model/
+RUN pnpm install --frozen-lockfile
 
-RUN yarn install --frozen-lockfile
-
+# Copy source and build
 COPY . .
-
-RUN yarn build
+RUN pnpm build
 
 EXPOSE 3000
-
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]

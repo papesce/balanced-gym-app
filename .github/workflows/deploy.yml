@@ -1,0 +1,44 @@
+name: Deploy to Google Cloud Run
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - run: |
+          docker build \
+            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/balanced-gym/app:${{ github.sha }} \
+            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/balanced-gym/app:latest \
+            .
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/balanced-gym/app:${{ github.sha }}
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/balanced-gym/app:latest
+
+      - run: |
+          gcloud run deploy balanced-gym-app \
+            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/balanced-gym/app:${{ github.sha }} \
+            --region us-central1 \
+            --platform managed \
+            --allow-unauthenticated \
+            --port 3000 \
+            --set-env-vars PORT=3000 \
+            --service-account=${{ secrets.GCP_SERVICE_ACCOUNT }} \
+            --project=${{ secrets.GCP_PROJECT_ID }}
