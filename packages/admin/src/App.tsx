@@ -24,7 +24,7 @@ export default function App() {
       <CssBaseline />
       <Provider store={store}>
         <AuthProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/admin">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><AdminLayout><ExerciseBrowser /></AdminLayout></ProtectedRoute>} />
