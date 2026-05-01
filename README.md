@@ -109,11 +109,31 @@ The server exposes a REST API at `/api/v1` with Swagger documentation available 
 
 ## Deployment
 
-### Docker
+### Local Deploy (Podman)
 
 ```bash
-docker build -t balanced-gym-app .
-docker run -p 3000:3000 balanced-gym-app
+pnpm local-deploy   # Build image and run on localhost:4000
+pnpm local-run      # Run existing image (no rebuild) on localhost:4000
+```
+
+`local-deploy` builds the Docker image with Firebase env vars baked in, removes any previous container/image, and runs the app in detached mode. `local-run` skips the build and just restarts the container. Both use `packages/server/.env` for runtime environment variables.
+
+Check logs with `podman logs balanced-gym-app`, stop with `podman stop balanced-gym-app`.
+
+### Cloud (Google Cloud Run)
+
+Pushing to `master` triggers a GitHub Actions workflow that builds the Docker image, pushes it to Artifact Registry, and deploys to Cloud Run.
+
+### Docker (manual)
+
+```bash
+docker build \
+  --build-arg VITE_FIREBASE_API_KEY=<key> \
+  --build-arg VITE_FIREBASE_AUTH_DOMAIN=<domain> \
+  --build-arg VITE_FIREBASE_PROJECT_ID=<project> \
+  --build-arg VITE_FIREBASE_APP_ID=<app-id> \
+  -t balanced-gym-app .
+docker run -p 3000:3000 --env-file packages/server/.env balanced-gym-app
 ```
 
 ## License
