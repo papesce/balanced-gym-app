@@ -47,6 +47,10 @@ export default class ExpressServer {
     http.createServer(app).listen(p, welcome(p));
     mongoose.init();
     const root = path.normalize(__dirname + "/..");
+    app.use("/admin", express.static(`${root}/public/admin`));
+    app.get("/admin/*", (req, res) => {
+      res.sendFile(`${root}/public/admin/index.html`);
+    });
     app.get("/*", (req, res, next) => {
       if (req.url === "/" || req.url === "/spec") return next();
       if (req.url.startsWith("/api")) return next();
