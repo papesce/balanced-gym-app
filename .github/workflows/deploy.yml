@@ -39,6 +39,5 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --port 3000 \
-            --set-env-vars PORT=3000 \
             --service-account=${{ secrets.GCP_SERVICE_ACCOUNT }} \
             --project=${{ secrets.GCP_PROJECT_ID }}
