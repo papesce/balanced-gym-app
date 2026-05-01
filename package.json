@@ -15,7 +15,7 @@
     "dev:server": "pnpm --filter balanced-gym-app-server dev",
     "start": "pnpm --filter balanced-gym-app-server start",
     "types": "pnpm --filter balanced-gym-model types",
-    "build": "pnpm --filter balanced-gym-model types && pnpm --parallel --filter balanced-gym-app-client run build",
+    "build": "pnpm --filter balanced-gym-model types && pnpm --parallel --filter balanced-gym-app-client --filter balanced-gym-app-server run build",
     "build:client": "pnpm --filter balanced-gym-app-client build",
     "build:admin": "pnpm --filter balanced-gym-app-admin build",
     "test:model": "pnpm --filter balanced-gym-model test",
