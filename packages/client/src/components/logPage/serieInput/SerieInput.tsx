@@ -3,8 +3,10 @@ import IconButton from '@mui/material/IconButton';
 import DoneIcon from '@mui/icons-material/Done';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import { ISerie, emptySerie } from 'balanced-gym-model';
+import { ISerie } from 'balanced-gym-model';
 import './SerieInput.css';
+
+const emptySerie: ISerie = { _id: "", createdAt: "", reps: 0, weight: 0 };
 
 interface SerieInputProps {
     initialSerie?: ISerie;
