@@ -5,6 +5,7 @@ node_modules/
 dist/
 packages/server/public/
 packages/client/build/
+packages/admin/build/
 
 # Environment
 .env
