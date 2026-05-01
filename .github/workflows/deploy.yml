@@ -39,5 +39,7 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --port 3000 \
+            --set-env-vars="MONGO_URI=${{ secrets.MONGO_URI }},FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }},FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }},NODE_ENV=production" \
+            --set-secrets="FIREBASE_PRIVATE_KEY=FIREBASE_PRIVATE_KEY:latest" \
             --service-account=${{ secrets.GCP_SERVICE_ACCOUNT }} \
             --project=${{ secrets.GCP_PROJECT_ID }}
