@@ -10,6 +10,7 @@ packages/admin/build/
 # Environment
 .env
 .env.local
+.env.deploy
 .envrc
 packages/server/.env
 
